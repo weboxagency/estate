@@ -1,6 +1,8 @@
 <header class="header">
       <div class="header-primary">
         <div class="header-primary__container container">
+          
+          <!-- LANGUAGE DROPDOWN -->
           <div class="dropdown">
             <div class="header-language dropdown-toggle" id="languageDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               <?php 
@@ -31,9 +33,11 @@
             <?php endforeach;?>
             </div>
           </div>
+          <!-- LANGUAGE END -->
+
           <nav class="d-none d-xl-flex">
             <a href="<?= base_url() ?>home/user_agreement" data-toggle="tooltip" title="<?= translate('by_registering_you_are_deemed_to_have_accepted_all_the_rules') ?>">
-              İstifadəçi razılaşması
+              <?= translate('user_agreement') ?>
             </a>
             <a href="<?= base_url() ?>home/sitemap"><?= translate('site_map') ?></a>
           </nav>
@@ -43,7 +47,7 @@
             </svg>
             info@estate.az
           </a>
-          <a class="nav-item--secondary nav-item__favorites  d-sm-flex" href="az/secilmisler.html" x-favorites>
+          <a class="nav-item--secondary nav-item__favorites  d-sm-flex" href="<?= base_url() ?>" x-favorites>
             <svg class="icon icon-heart-outline">
             <use xlink:href="<?= base_url() ?>assets/site/img/icons/icons.svg#icon-heart-outline"></use>
             </svg>
@@ -53,6 +57,7 @@
               <use xlink:href="<?= base_url() ?>assets/site/img/icons/icons.svg#icon-user"></use>
               </svg> 
             <?= translate('login') ?> </a>
+          <!-- REGISTER -->
           <div class="modal modal--small" id="register">
             <div class="modal-dialog">
               <div class="modal-content">
@@ -130,6 +135,9 @@
               </div>
             </div>
           </div>
+          <!-- REGISTER END -->
+
+          <!-- LOGIN START -->
           <div class="modal modal--small" id="login">
             <div class="modal-dialog">
               <div class="modal-content">
@@ -178,6 +186,9 @@
               </div>
             </div>
           </div>
+          <!-- LOGIN END -->
+
+          <!-- FORGOT PASSWORD START -->
           <div class="modal modal--small" id="forgotPassword">
             <div class="modal-dialog">
               <div class="modal-content">
@@ -214,7 +225,10 @@
               </div>
             </div>
           </div>
+          <!-- FORGOT PASSWORD END -->
         </div>
+
+        <!-- SECOND HEADER START -->
         <div class="header-secondary" id="headerSecondary">
           <div class="header-secondary__container container">
             <a class="logo" href="<?= base_url(); ?>">
@@ -242,6 +256,9 @@
             </a>
           </div>
         </div>
+        <!-- SECOND HEADER END -->
+
+        <!-- BURGER MENU START -->
         <div class="burger-menu collapse d-xl-none" id="burger-menu">
           <ul class="burger-menu__container">
             <li class="container">
@@ -313,5 +330,6 @@
             </li>
           </ul>
         </div>
+        <!-- BURGER MENU END -->
       </div>
     </header>

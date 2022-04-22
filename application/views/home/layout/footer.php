@@ -2155,7 +2155,7 @@
            $(".region-"+regions[i]).addClass("active");
            $(".region-"+regions[i]).parent().find(".region-part").addClass("active");
            if(regions.length > 0 && regions[i]!=""){
-               $(".selected-regions__content").append('<li class="lslide"><p class="region-part region-'+regions[i]+'"><span>' + $(".region-"+regions[i]).find("span").text()+ '</span><svg class="icon icon-close"><use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-21 19:44:49#icon-close"></use></svg></p></li>');
+               $(".selected-regions__content").append('<li class="lslide"><p class="region-part region-'+regions[i]+'"><span>' + $(".region-"+regions[i]).find("span").text()+ '</span><svg class="icon icon-close"><use xlink:href="<?= base_url() ?>assets/site/img/icons/icons.svg?v=2022-04-21 19:44:49#icon-close"></use></svg></p></li>');
                count++;
            }
            $(".region-list .pretty#region-"+regions[i]+" input").prop("checked", true);
@@ -2164,7 +2164,7 @@
        for(let i=0; i<districts.length; i++){
            $(".district-"+districts[i]).addClass("active");
            if(districts.length > 0 && districts[i]!=""){
-               $(".selected-regions__content").append('<li class="lslide"><p class="region-part district-'+districts[i]+'"><span>' + $(".district-"+districts[i]).find("span").text()+ '</span><svg class="icon icon-close"><use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-21 19:44:49#icon-close"></use></svg></p></li>');
+               $(".selected-regions__content").append('<li class="lslide"><p class="region-part district-'+districts[i]+'"><span>' + $(".district-"+districts[i]).find("span").text()+ '</span><svg class="icon icon-close"><use xlink:href="<?= base_url() ?>assets/site/img/icons/icons.svg?v=2022-04-21 19:44:49#icon-close"></use></svg></p></li>');
                count++;
            }
            $(".region-list .pretty#region-"+districts[i]+" input").prop("checked", true);
@@ -2173,7 +2173,7 @@
        for(let i=0; i<placemarks.length; i++){
            $(".target-"+placemarks[i]).addClass("active");
            if(placemarks.length > 0 && placemarks[i]!=""){
-               $(".selected-regions__content").append('<li class="lslide"><p class="region-part target-'+placemarks[i]+'"><span>' + $(".target-"+placemarks[i]).find("span").text()+ '</span><svg class="icon icon-close"><use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-21 19:44:49#icon-close"></use></svg></p></li>');
+               $(".selected-regions__content").append('<li class="lslide"><p class="region-part target-'+placemarks[i]+'"><span>' + $(".target-"+placemarks[i]).find("span").text()+ '</span><svg class="icon icon-close"><use xlink:href="<?= base_url() ?>assets/site/img/icons/icons.svg?v=2022-04-21 19:44:49#icon-close"></use></svg></p></li>');
                count++;
            }
            $(".region-list .pretty#target-"+placemarks[i]+" input").prop("checked", true);
@@ -2182,7 +2182,7 @@
        for(let i=0; i<stations.length; i++){
            $(".station-"+stations[i]).addClass("active");
            if(stations.length > 0 && stations[i]!=""){
-               $(".selected-regions__content").append('<li class="lslide"><p class="region-part station-'+stations[i]+'"><span>' + $(".station-"+stations[i]).find("span").text()+ '</span><svg class="icon icon-close"><use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-21 19:44:49#icon-close"></use></svg></p></li>');
+               $(".selected-regions__content").append('<li class="lslide"><p class="region-part station-'+stations[i]+'"><span>' + $(".station-"+stations[i]).find("span").text()+ '</span><svg class="icon icon-close"><use xlink:href="<?= base_url() ?>assets/site/img/icons/icons.svg?v=2022-04-21 19:44:49#icon-close"></use></svg></p></li>');
                count++;
            }
            $(".region-list .pretty#station-"+stations[i]+" input").prop("checked", true);
@@ -2383,7 +2383,7 @@
        var classNameArray = className.split(" ");
        $(this).toggleClass("active");
        if($(this).hasClass("active")){
-           $(".selected-regions__content").append('<li class="lslide"><p class="region-part '+classNameArray[1]+'"><span>' + $(this).find("p").text()+ '</span><svg class="icon icon-close"><use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-21 19:44:49#icon-close"></use></svg></p></li>');
+           $(".selected-regions__content").append('<li class="lslide"><p class="region-part '+classNameArray[1]+'"><span>' + $(this).find("p").text()+ '</span><svg class="icon icon-close"><use xlink:href="<?= base_url() ?>assets/site/img/icons/icons.svg?v=2022-04-21 19:44:49#icon-close"></use></svg></p></li>');
            if($(this).hasClass("station-13")){
                // $(".purple").css({"left" : "64px", "top" : "91px"});
                $(".purple").css({"z-index" : "2"});
@@ -2696,7 +2696,7 @@
 <script type="text/template" x-validation>
    <p class="form-message form-message--error">
        <svg class="icon icon-triangle-error">
-           <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-21 19:44:49#icon-triangle-error"></use>
+           <use xlink:href="<?= base_url() ?>assets/site/img/icons/icons.svg?v=2022-04-21 19:44:49#icon-triangle-error"></use>
        </svg>
        <span><%- rc.message %></span>
    </p>
@@ -2713,7 +2713,7 @@
                <% } %>
                <div class="modal-close" data-dismiss="modal">
                    <svg class="icon icon-close">
-                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-21 19:44:49#icon-close"></use>
+                       <use xlink:href="<?= base_url() ?>assets/site/img/icons/icons.svg?v=2022-04-21 19:44:49#icon-close"></use>
                    </svg>
                </div>
            </div>
@@ -2726,13 +2726,13 @@
            <div class="modal-header">
                <div class="modal-close" data-dismiss="modal">
                    <svg class="icon icon-close">
-                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-21 19:44:49#icon-close"></use>
+                       <use xlink:href="<?= base_url() ?>assets/site/img/icons/icons.svg?v=2022-04-21 19:44:49#icon-close"></use>
                    </svg>
                </div>
            </div>
            <div class="modal-body">
                <svg class="icon icon-message-sent">
-                   <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-21 19:44:49#icon-message-sent"></use>
+                   <use xlink:href="<?= base_url() ?>assets/site/img/icons/icons.svg?v=2022-04-21 19:44:49#icon-message-sent"></use>
                </svg>
                <h6><%- rc.title %></h6>
                <p><%= rc.text %></p>
@@ -2766,14 +2766,14 @@
                <% if( rc.is_premium ) { %>
                    <div class="shape">
                        <svg class="icon icon-premium-icon">
-                           <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-21 19:44:49#icon-premium-icon"></use>
+                           <use xlink:href="<?= base_url() ?>assets/site/img/icons/icons.svg?v=2022-04-21 19:44:49#icon-premium-icon"></use>
                        </svg>
                    </div>
                <% } %>
                <% if( rc.vip ) { %>
                    <div class="shape">
                        <svg class="icon icon-vipp">
-                           <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-21 19:44:49#icon-vipp"></use>
+                           <use xlink:href="<?= base_url() ?>assets/site/img/icons/icons.svg?v=2022-04-21 19:44:49#icon-vipp"></use>
                        </svg>
                    </div>
                <% } %>
@@ -2782,7 +2782,7 @@
                        <input type="hidden" name="id" value="<%- rc.id %>">
                        <button type="submit">
                            <svg class="icon icon-heart<%- rc.wishlist %>">
-                               <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-21 19:44:49#icon-heart<%- rc.wishlist %>"></use>
+                               <use xlink:href="<?= base_url() ?>assets/site/img/icons/icons.svg?v=2022-04-21 19:44:49#icon-heart<%- rc.wishlist %>"></use>
                            </svg>
                        </button>
                    </form>

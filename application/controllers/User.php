@@ -31,18 +31,78 @@ class User extends Frontend_Controller
 
     public function signin()
     {
-        if (!$this->input->is_ajax_request()) {
+        if (!$this->input->is_ajax_request()) 
+        {
             exit('No direct script access allowed');
         }
         else
         {
-            
+            if ($_POST) 
+            {
+                $rules = array(
+                    "email" => array(
+                        'field' => 'email',
+                        'label' => "Email",
+                        'rules' => 'trim|required',
+                        ),
+                    "password" => array(
+                        'field' => 'password',
+                        'label' => "Password",
+                        'rules' => 'trim|required',
+                        ),
+                );
+                $email = $this->input->post('email');
+                $password = $this->input->post('password');
+                $this->form_validation->set_rules($rules);
+                
+                if ($this->form_validation->run() !== false) 
+                {
+                    $email = $this->input->post('email');
+                    $password = $this->input->post('password');
+                }
+                else
+                {
+                    $response = [
+                        "status"        => "success",
+                        "validations"   => [
+                             "email"     => (empty($email)) ? ["Email ünvanı daxil edilməyib"] : '',
+                             "password"  => (empty($password)) ? ["Şifrə daxil edilməyib"] : '',
+                        ]
+                        // "cavid" => validation_errors()
+                    ];
+
+
+                    /* 
+    xanim telefonla danisir ayqa ona gore zeng ede bilmirem
+    eqiq yazdinhaaaa basa dusdum
+    canin sag olsun
+    bu andirin yazanisan da deyirem 
+    bidene qaldi ferqli mesajlar vermek email duzgun yazilmasa email duzgun qeyd edilmeyib ve s
+    yess indi dus asagi bir az havani deyis
+    sen baxirsan?
+    smeye caisacam gorum ne hardadi admin panele baxacam men
+    biraz cetin olacag senincun cunki qarisigdi biraz burda 
+     admin panelde menim modelimi controllermi viewimi goster 
+     abi hamisi eyni yerdedi 
+     solda gorduyun 
+     CONTROLLERS
+     MODELS
+     VIEWS
+     papkalari hem admin hem fronta baxir sadece bolusdurulub 
+     admin panelin partialsi dayan gorum tapa biliremmi
+     ela
+     view larda papka papka bolusdurulub
+     controllerin birini gosterim ozun basa duseceksen necedi
+     indi bax burda baxirsan url-e
+     http://localhost/evelani/ settings/universal
+     
+
+
+                    */
+                    echo json_encode($response);
+                }   
+            }       
         }
-        // status: "success"
-// validations: {email: ["Elektron poçt və ya şifrə səhvdir"]}
-       $res['status'] = 'error';
-       $res['message'] = 'salam';
-       echo json_encode($res);
     }
 
     public function set_language($action = '')
