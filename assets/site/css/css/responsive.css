@@ -1,0 +1,167 @@
+@media (max-width: 1200px) {
+    .numbers:nth-child(3) {
+        left: 50%;
+    }
+
+    .numbers:nth-child(4) {
+        left: 80%;
+    }
+
+    .topbar {
+        height: 45px;
+    }
+
+    .top-navbar > li {
+        margin: 0 5px;
+    }
+
+    .top-navbar > li > a {
+        font-size: 10px;
+        padding: 18px 0 15px;
+    }
+
+    .language-switch {
+        top: 10px;
+    }
+}
+
+@media (max-width: 992px) {
+    .counter-block {
+        margin-bottom: 10px;
+    }
+
+    .block-footer {
+        margin-bottom: 15px;
+    }
+
+    .m-hidden {
+        opacity: 0;
+        visibility: hidden;
+        transition: all .3s;
+    }
+
+    .mobile-bars {
+        display: inline-block;
+        border: 1px solid #fff;
+        padding: 5px 10px;
+        margin-top: 8px;
+        border-radius: 4px;
+    }
+
+    .top-navbar {
+        position: absolute;
+        left: 0;
+        top: 45px;
+        width: 100%;
+        padding: 10px 10px;
+        z-index: 2;
+    }
+
+    .top-navbar.active {
+        visibility: visible;
+        opacity: 1;
+    }
+
+    .top-navbar > li {
+        display: inline-block;
+        width: 100%;
+        background-color: #0D0A0A;
+        padding-left: 15px;
+    }
+
+    .top-navbar > li > a {
+        font-size: 16px;
+    }
+
+    .topbar {
+        position: absolute;
+        width: 100%;
+        z-index: 2;
+    }
+
+    .tabbar {
+        margin-top: 45px;
+    }
+
+    .c-s.half, .c-s.full {
+        width: 25%;
+    }
+
+
+    .mobile-bottoms {
+        position: relative !important;
+    }
+
+}
+
+
+@media (max-width: 768px) {
+    .article-section {
+        margin-bottom: 20px;
+    }
+
+    .banners-block {
+        padding-left: 30px;
+    }
+
+    .m-b15 {
+        margin-bottom: 15px;
+    }
+
+    .counter-block .counter-num, .counter-block .counter-text {
+        font-size: 12px;
+    }
+
+    .right-slider {
+        padding-left: 15px;
+    }
+
+    .topbar {
+        position: absolute;
+        width: 100%;
+        z-index: 2;
+    }
+
+    .tabbar {
+        margin-top: 45px;
+    }
+
+    .tabbar a {
+        font-size: 12px;
+    }
+
+    .m-text-center {
+        text-align: center !important;
+    }
+
+
+    .padding35 {
+        padding-right: 15px;
+        padding-left: 15px;
+    }
+
+    #news-block {
+        padding: 0 10px;
+    }
+
+    .modal-cs {
+        top: 5%;
+        left: 5vw;
+        width: 90vw;
+    }
+
+    .row-eq-height {
+        display: block;
+    }
+
+    .vertical-block {
+        position: relative;
+        margin: 0 !important;
+        padding: 30px 0;
+    }
+
+    .vertical-block .vertical-center {
+        transform: none;
+    }
+
+}

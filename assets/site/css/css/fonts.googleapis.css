@@ -1,0 +1,30 @@
+@font-face {
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 300;
+    src: local('Roboto Light'), local('Roboto-Light'), local('sans-serif-light'), url(https://fonts.gstatic.com/l/font?kit=KFOlCnqEu92Fr1MmSU5vBh0_IsHAD4luWlmXJXw5RBzxdssiAXmimjzqo2oR51YM6EdK0_iABLKpB2V9d4PNndxR307JXCLA_SpFtVJBWz6ww8Ky6rw7SJlUDUa_afiiniPQxvi3rZBrF5mTtGICrzODbFFykpNPXI6HYrZ-S28wz1FxNGRs5vrdki-Eq6GTuohcqkYvBjlCcs3n-XplnEg5gei_Ji7rWpBMIyzMhnQA&amp;skey=11ce8ad5f54705ca&amp;v=v20) format('woff2');
+}
+@font-face {
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    src: local('Roboto'), local('Roboto-Regular'), local('sans-serif'), url(https://fonts.gstatic.com/l/font?kit=KFOmCnqEu92Fr1Me4GZNCzcPsMDStKptX16SJnE2Txn2ddY9HHqnnTnprmUc5FML7UQ3rIWDAbWsBGhyeoDImtlSwlHUXyfH-ClIul9CXjm1wP-N178-T5xXAEmyav2lmyDN2eW0qJduFJScuWEHqDY9uO0e-eEjL_zwEPMIHitvmjUuQQAYk4Wuz1ff8dXIz_0G3hx3TG8dH4Tm-XpknEg8gei-Ji7oWpJ-IyrC&amp;skey=a0a0114a1dcab3ac&amp;v=v20) format('woff2');
+}
+@font-face {
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 500;
+    src: local('Roboto Medium'), local('Roboto-Medium'), local('sans-serif-medium'), url(https://fonts.gstatic.com/l/font?kit=KFOlCnqEu92Fr1MmEU9vBh0_IsHAD4luWlmXJXw5RBzxdssiAXmimjzqo2oR51YM6EdK0_iABLKpB2V9d4PNndxR307JXCLA_SpFtVJBWz6ww8Ky6rw7SJlUDUa_afiiniPQxvi3rZBrF5mTtGICrzODbFFykpNPXI6HYrZ-S28wz1FxNGRs5vrdki-Eq6GTuohcqkYvBjlCcs3n-XplnEg5gei_Ji7rWpBMIyzMhnQA&amp;skey=ee881451c540fdec&amp;v=v20) format('woff2');
+}
+@font-face {
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 700;
+    src: local('Roboto Bold'), local('Roboto-Bold'), local('sans-serif'), url(https://fonts.gstatic.com/l/font?kit=KFOlCnqEu92Fr1MmWUlvBh0_IsHAD4luWlmXJXw5RBzxdssiAXmimjzqo2oR51YM6EdK0_iABLKpB2V9d4PNndxR307JXCLA_SpFtVJBWz6ww8Ky6rw7SJlUDUa_afiiniPQxvi3rZBrF5mTtGICrzODbFFykpNPXI6HYrZ-S28wz1FxNGRs5vrdki-Eq6GTuohcqkYvBjlCcs3n-XplnEg5gei_Ji7rWpBMIyzMhnQA&amp;skey=c06e7213f788649e&amp;v=v20) format('woff2');
+}
+@font-face {
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 900;
+    src: local('Roboto Black'), local('Roboto-Black'), local('sans-serif-black'), url(https://fonts.gstatic.com/l/font?kit=KFOlCnqEu92Fr1MmYUtvBh0_IsHAD4luWlmXJXw5RBzxdssiAXmimjzqo2oR51YM6EdK0_iABLKpB2V9d4PNndxR307JXCLA_SpFtVJBWz6ww8Ky6rw7SJlUDUa_afiiniPQxvi3rZBrF5mTtGICrzODbFFykpNPXI6HYrZ-S28wz1FxNGRs5vrdki-Eq6GTuohcqkYvBjlCcs3n-XplnEg5gei_Ji7rWpBMIyzMhnQA&amp;skey=934406f772f9777d&amp;v=v20) format('woff2');
+}

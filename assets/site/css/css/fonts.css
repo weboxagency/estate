@@ -1,0 +1,119 @@
+@font-face {
+    font-family: 'Isabel SemiCondensed';
+    src: url('subset-IsabelSemiCondensed-Light-Italic.html') format('woff2'),
+        url('subset-IsabelSemiCondensed-Light-Italic-2.html') format('woff');
+    font-weight: 100;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Isabel SemiCondensed Unicase';
+    src: url('subset-IsabelSemiCondensed-UnicaseLight.html') format('woff2'),
+        url('subset-IsabelSemiCondensed-UnicaseLight-2.html') format('woff');
+    font-weight: 100;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Isabel SemiCondensed';
+    src: url('subset-IsabelSemiCondensed-UnicaseBlack.html') format('woff2'),
+        url('subset-IsabelSemiCondensed-UnicaseBlack-2.html') format('woff');
+    font-weight: 900;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Isabel SemiCondensed';
+    src: url('subset-IsabelSemiCondensed-Black.html') format('woff2'),
+        url('subset-IsabelSemiCondensed-Black-2.html') format('woff');
+    font-weight: 900;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Isabel SemiCondensed Unicase Bd';
+    src: url('subset-IsabelSemiCondensed-UnicaseBold.html') format('woff2'),
+        url('subset-IsabelSemiCondensed-UnicaseBold-2.html') format('woff');
+    font-weight: bold;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Isabel SemiCondensed';
+    src: url('subset-IsabelSemiCondensed-Thin.html') format('woff2'),
+        url('subset-IsabelSemiCondensed-Thin-2.html') format('woff');
+    font-weight: 100;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Isabel SemiCondensed';
+    src: url('subset-IsabelSemiCondensed-Regular-Italic.html') format('woff2'),
+        url('subset-IsabelSemiCondensed-Regular-Italic-2.html') format('woff');
+    font-weight: normal;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Isabel SemiCondensed';
+    src: url('subset-IsabelSemiCondensed-Thin-Italic.html') format('woff2'),
+        url('subset-IsabelSemiCondensed-Thin-Italic-2.html') format('woff');
+    font-weight: 100;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Isabel SemiCondensed';
+    src: url('subset-IsabelSemiCondensed-Regular.html') format('woff2'),
+        url('subset-IsabelSemiCondensed-Regular-2.html') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Isabel SemiCondensed';
+    src: url('subset-IsabelSemiCondensed-Bold.html') format('woff2'),
+        url('subset-IsabelSemiCondensed-Bold-2.html') format('woff');
+    font-weight: bold;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Isabel SemiCondensed';
+    src: url('subset-IsabelSemiCondensed-Black-Italic.html') format('woff2'),
+        url('subset-IsabelSemiCondensed-Black-Italic-2.html') format('woff');
+    font-weight: 900;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Isabel SemiCondensed Unicase';
+    src: url('subset-IsabelSemiCondensed-UnicaseRegular.html') format('woff2'),
+        url('subset-IsabelSemiCondensed-UnicaseRegular-2.html') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Isabel SemiCondensed';
+    src: url('subset-IsabelSemiCondensed-Light.html') format('woff2'),
+        url('subset-IsabelSemiCondensed-Light-2.html') format('woff');
+    font-weight: 100;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Isabel SemiCondensed Unicase';
+    src: url('subset-IsabelSemiCondensed-UnicaseThin.html') format('woff2'),
+        url('subset-IsabelSemiCondensed-UnicaseThin-2.html') format('woff');
+    font-weight: 100;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Isabel SemiCondensed';
+    src: url('subset-IsabelSemiCondensed-Bold-Italic.html') format('woff2'),
+        url('subset-IsabelSemiCondensed-Bold-Italic-2.html') format('woff');
+    font-weight: bold;
+    font-style: italic;
+}
