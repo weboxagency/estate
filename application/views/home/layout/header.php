@@ -51,12 +51,72 @@
             <svg class="icon icon-heart-outline">
             <use xlink:href="<?= base_url() ?>assets/site/img/icons/icons.svg#icon-heart-outline"></use>
             </svg>
-            <?= translate('wishlist') ?> </a>
+            <?= translate('wishlist') ?> 
+          </a>
           <a class="nav-item--secondary nav-item__login" data-toggle="modal" data-target="#login">
              <svg class="icon icon-user">
               <use xlink:href="<?= base_url() ?>assets/site/img/icons/icons.svg#icon-user"></use>
               </svg> 
-            <?= translate('login') ?> </a>
+            <?= translate('login') ?> 
+          </a>
+
+
+          <div class="dropdown-hover notification" x-notification-color>
+          <!-- User Dashboard -->
+             <a class="nav-item--secondary">
+                <svg class="icon icon-bell">
+                   <use xlink:href="<?= base_url() ?>assets/site/img/icons/icons.svg#icon-bell"></use>
+                </svg>
+                <?= translate('notifications') ?>
+             </a>
+             <div class="dropdown-hover__menu">
+                <div class="dropdown-menu__group dropdown-menu__header" x-notification-area style="display: none;">
+                   <span class="notification-count"><?= translate('notifications') ?> (<span x-notification-count>0</span>)</span>
+                   <form action="https://evelani.az/az/notification/clear" x-edit-form x-target="clearNotifications">
+                      <button>
+                      <span class="notification-clear">Təmizlə</span>
+                      </button>
+                   </form>
+                </div>
+                <div class="dropdown-menu__group dropdown-menu__header" x-no-notification-area>
+                   <span class="notification-count">Bildiriş yoxdur</span>
+                </div>
+                <div x-notifications></div>
+             </div>
+          </div>
+          <div class="dropdown show dropdown-profile">
+             <div class="dropdown">
+                <div class="dropdown-toggle" id="navDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                   <svg class="icon icon-down">
+                      <use xlink:href="<?= base_url() ?>assets/site/img/icons/icons.svg#icon-down"></use>
+                   </svg>
+                   Ağakərim
+                </div>
+                <div class="dropdown-menu dropdown-menu--right login-dropdown" aria-labelledby="navDropdown">
+                   <ul>
+                      <li>
+                         <a href="<?= base_url() ?>user/profile">
+                            <svg class="icon icon-user">
+                               <use xlink:href="<?= base_url() ?>assets/site/img/icons/icons.svg#icon-user"></use>
+                            </svg>
+                            Profil
+                         </a>
+                      </li>
+                      <li>
+                         <a href="<?= base_url() ?>user/logout">
+                            <svg class="icon icon-logout">
+                               <use xlink:href="<?= base_url() ?>assets/site/img/icons/icons.svg#icon-logout"></use>
+                            </svg>
+                            Çıxış
+                         </a>
+                      </li>
+                   </ul>
+                </div>
+             </div>
+          <!-- User Dashboard END-->
+          </div>
+
+
           <!-- REGISTER -->
           <div class="modal modal--small" id="register">
             <div class="modal-dialog">
@@ -70,7 +130,8 @@
                   </div>
                 </div>
                 <div class="modal-body">
-                  <form action="https://evelani.az/az/register" x-edit-form method="post" x-target-with-data="afterRegister">
+                  <form action="<?= base_url() ?>user/register" x-edit-form method="post" x-target-with-data="afterRegister">
+                     <input type="hidden" name="<?php echo $this->security->get_csrf_token_name();?>" value="<?php echo $this->security->get_csrf_hash();?>">
                     <fieldset>
                       <div class="form-row">
                         <div class="form-item form-item--large">
@@ -100,7 +161,7 @@
                         <div class="form-item form-item--small">
                           <label for="password">Təkrar şifrə</label>
                           <div class="form-item__password">
-                            <input class="form-item__element" name="password" type="password" placeholder="∗∗∗∗∗∗">
+                            <input class="form-item__element" name="repassword" type="password" placeholder="∗∗∗∗∗∗">
                             <svg class="icon icon-eye">
                               <use xlink:href="<?= base_url() ?>assets/site/img/icons/icons.svg#icon-eye"></use>
                             </svg>
@@ -116,7 +177,7 @@
                               <i class="icon fa fa-check"></i>
                               <label></label>
                               <span>
-                                <a href="az/istifadeci-razilasmasi.html" target="_blank">İstifadəçi qaydalarını</a> oxudum və qəbul edirəm </span>
+                                <a href="#" target="_blank">İstifadəçi qaydalarını</a> oxudum və qəbul edirəm </span>
                             </div>
                           </div>
                         </div>

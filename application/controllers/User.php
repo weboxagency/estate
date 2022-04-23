@@ -39,71 +39,171 @@ class User extends Frontend_Controller
         {
             if ($_POST) 
             {
-                $rules = array(
-                    "email" => array(
-                        'field' => 'email',
-                        'label' => "Email",
-                        'rules' => 'trim|required',
-                        ),
-                    "password" => array(
-                        'field' => 'password',
-                        'label' => "Password",
-                        'rules' => 'trim|required',
-                        ),
-                );
-                $email = $this->input->post('email');
-                $password = $this->input->post('password');
-                $this->form_validation->set_rules($rules);
+                // Validations
+                $this->form_validation->set_rules("email", translate("email"), "trim|required|valid_email");
+                $this->form_validation->set_rules("password", translate("password"), "trim|required");
+                
+                $email      = $this->input->post('email');
+                $password   = $this->input->post('password');
                 
                 if ($this->form_validation->run() !== false) 
                 {
-                    $email = $this->input->post('email');
-                    $password = $this->input->post('password');
+                    // post
                 }
                 else
                 {
+                    $email_errors = [];
+                    $pass_errors = [];
+                    if (empty($email)) 
+                    {
+                        $email_errors = translate("email_address_not_entered");
+                    }
+                    elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) 
+                    {
+                        $email_errors = translate("email_address_is_incorrect");
+                    }
+                    if (empty($password)) 
+                    {
+                        $pass_errors = translate("password_not_entered");
+                    }
+                    
                     $response = [
                         "status"        => "success",
                         "validations"   => [
-                             "email"     => (empty($email)) ? ["Email ünvanı daxil edilməyib"] : '',
-                             "password"  => (empty($password)) ? ["Şifrə daxil edilməyib"] : '',
-                        ]
-                        // "cavid" => validation_errors()
+                             "email"     => (!empty($email_errors)) ? [$email_errors] : '',
+                             "password"  => (!empty($pass_errors)) ? [$pass_errors] : ''
+                            ]
                     ];
 
-
-                    /* 
-    xanim telefonla danisir ayqa ona gore zeng ede bilmirem
-    eqiq yazdinhaaaa basa dusdum
-    canin sag olsun
-    bu andirin yazanisan da deyirem 
-    bidene qaldi ferqli mesajlar vermek email duzgun yazilmasa email duzgun qeyd edilmeyib ve s
-    yess indi dus asagi bir az havani deyis
-    sen baxirsan?
-    smeye caisacam gorum ne hardadi admin panele baxacam men
-    biraz cetin olacag senincun cunki qarisigdi biraz burda 
-     admin panelde menim modelimi controllermi viewimi goster 
-     abi hamisi eyni yerdedi 
-     solda gorduyun 
-     CONTROLLERS
-     MODELS
-     VIEWS
-     papkalari hem admin hem fronta baxir sadece bolusdurulub 
-     admin panelin partialsi dayan gorum tapa biliremmi
-     ela
-     view larda papka papka bolusdurulub
-     controllerin birini gosterim ozun basa duseceksen necedi
-     indi bax burda baxirsan url-e
-     http://localhost/evelani/ settings/universal
-     
-
-
-                    */
                     echo json_encode($response);
                 }   
             }       
         }
     }
+
+    public function register()
+    {
+        if (!$this->input->is_ajax_request()) {
+            exit('No direct script access allowed');
+        }
+        else
+        {
+            if ($_POST) 
+            {
+                // Validations
+                $this->form_validation->set_rules("announcement_owner", translate("announcement_owner"), "trim|required|valid_email");
+                $this->form_validation->set_rules("email", translate("email"), "trim|required");
+                $this->form_validation->set_rules("mobile", translate("mobile"), "trim|required");
+                $this->form_validation->set_rules("password", translate("password"), "trim|required");
+                $this->form_validation->set_rules("repassword", translate("retry_password"), "trim|required");
+                $this->form_validation->set_rules("user_agreement", translate("user_agreement"), "trim|required");
+                
+                $announcement_owner     = $this->input->post('announcement_owner');
+                $email                  = $this->input->post('email');
+                $mobile                 = $this->input->post('mobile');
+                $password               = $this->input->post('password');
+                $repassword             = $this->input->post('repassword');
+                $user_agreement         = $this->input->post('user_agreement');
+
+                
+                if ($this->form_validation->run() !== false) 
+                {
+                    // post
+                }
+                else
+                {
+                    $email_errors   = [];
+                    $pass_errors    = [];
+                    $owner_errors   = [];
+                    $agree_errors   = []; 
+                    $mobile_errors  = []; 
+                    if (empty($email)) 
+                    {
+                        $email_errors = translate("email_address_not_entered");
+                    }
+                    elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) 
+                    {
+                        $email_errors = translate("email_address_is_incorrect");
+                    }
+                    if (empty($password)) 
+                    {
+                        $pass_errors = translate("password_not_entered");
+                    }
+                    elseif ($password!=$repassword) 
+                    {
+                        $pass_errors = translate("password_do_not_match");
+                    }
+                    if (empty($announcement_owner)) 
+                    {
+                        $owner_errors = translate("no_contact_person_specified");
+                    }
+                    if (!isset($user_agreement)) 
+                    {
+                        $agree_errors = translate("user_rules_not_accepted");
+                    }
+                    if (empty($mobile)) 
+                    {
+                        $mobile_errors = translate("mobile_number_is_not_specified");
+                    }
+                    elseif (!preg_match('/^[0-9]{10}+$/', $mobile)) 
+                    {
+                        $mobile_errors = translate("mobile_number_is_incorrect");
+                    }
+                    
+
+                    $response = [
+                        "status"        => "success",
+                        "text"          => "",
+                        "validations"   => [
+                             "announcement_owner"   => (!empty($owner_errors)) ? [$owner_errors] : '',
+                             "email"                => (!empty($email_errors)) ? [$email_errors] : '',
+                             "mobile"               => (!empty($mobile_errors)) ? [$mobile_errors] : '',
+                             "password"             => (!empty($pass_errors)) ? [$pass_errors] : '',
+                             "user_agreement"       => (!empty($agree_errors)) ? [$agree_errors] : ''
+                            ]
+                    ];
+
+                    echo json_encode($response);
+                }   
+            } 
+        }
+    }
+
+    public function profile()
+    {
+        $this->data['page_data'] = $this->home_model->get('front_cms_home_seo', array('branch_id' => 1), true);
+        $this->data['main_contents'] = $this->load->view('user/profile', $this->data, true);
+        $this->load->view('home/layout/index', $this->data);
+    }
+
+    public function account()
+    {
+        $this->data['page_data'] = $this->home_model->get('front_cms_home_seo', array('branch_id' => 1), true);
+        $this->data['main_contents'] = $this->load->view('user/account', $this->data, true);
+        $this->load->view('home/layout/index', $this->data);
+    }
+
+    public function balance()
+    {
+        $this->data['page_data'] = $this->home_model->get('front_cms_home_seo', array('branch_id' => 1), true);
+        $this->data['main_contents'] = $this->load->view('user/balance', $this->data, true);
+        $this->load->view('home/layout/index', $this->data);
+    }
+
+    public function statistics()
+    {
+        $this->data['page_data'] = $this->home_model->get('front_cms_home_seo', array('branch_id' => 1), true);
+        $this->data['main_contents'] = $this->load->view('user/statistics', $this->data, true);
+        $this->load->view('home/layout/index', $this->data);
+    }
+
+
+
+    
+
+
+
+
 
     public function set_language($action = '')
     {
