@@ -391,6 +391,118 @@ $.extend(theme.PluginDatePicker.defaults, {
 			});  
 		});
 
+		// cities status
+		$(".cities-switch").on("change", function() {
+			var state = $(this).prop('checked');
+			var id = $(this).data('id');
+			if (state != null) {
+				$.ajax({
+					type: 'POST',
+					url: base_url + "locations/city_status",
+					data: {
+						id: id,
+						status: state
+					},
+					dataType: "json",
+					success: function (data) {
+						if(data.status == true) {
+							alertMsg(data.msg);
+						}
+					}
+				});
+			}
+		});
+
+
+		// region status
+		$(".regions-switch").on("change", function() {
+			var state = $(this).prop('checked');
+			var id = $(this).data('id');
+			if (state != null) {
+				$.ajax({
+					type: 'POST',
+					url: base_url + "locations/region_status",
+					data: {
+						id: id,
+						status: state
+					},
+					dataType: "json",
+					success: function (data) {
+						if(data.status == true) {
+							alertMsg(data.msg);
+						}
+					}
+				});
+			}
+		});
+
+		//districts
+		$(".districts-switch").on("change", function() {
+			var state = $(this).prop('checked');
+			var id = $(this).data('id');
+			if (state != null) {
+				$.ajax({
+					type: 'POST',
+					url: base_url + "locations/district_status",
+					data: {
+						id: id,
+						status: state
+					},
+					dataType: "json",
+					success: function (data) {
+						if(data.status == true) {
+							alertMsg(data.msg);
+						}
+					}
+				});
+			}
+		});
+
+		//metros
+		$(".metros-switch").on("change", function() {
+			var state = $(this).prop('checked');
+			var id = $(this).data('id');
+			if (state != null) {
+				$.ajax({
+					type: 'POST',
+					url: base_url + "locations/metro_status",
+					data: {
+						id: id,
+						status: state
+					},
+					dataType: "json",
+					success: function (data) {
+						if(data.status == true) {
+							alertMsg(data.msg);
+						}
+					}
+				});
+			}
+		});
+
+		//targets
+		$(".targets-switch").on("change", function() {
+			var state = $(this).prop('checked');
+			var id = $(this).data('id');
+			if (state != null) {
+				$.ajax({
+					type: 'POST',
+					url: base_url + "locations/target_status",
+					data: {
+						id: id,
+						status: state
+					},
+					dataType: "json",
+					success: function (data) {
+						if(data.status == true) {
+							alertMsg(data.msg);
+						}
+					}
+				});
+			}
+		});
+
+
 		// events status
 		$(".event-switch").on("change", function() {
 			var state = $(this).prop('checked');

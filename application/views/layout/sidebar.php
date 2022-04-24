@@ -50,6 +50,157 @@
                     </li>
                     <?php endif; ?>
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                    <!-- ESTATE MENUS START -->
+
+                    <?php
+                    if (get_permission('cities', 'is_view') ||
+                        get_permission('regions', 'is_view') ||
+                        get_permission('districts', 'is_view') ||
+                        get_permission('metros', 'is_view') ||
+                        get_permission('targets', 'is_view'))  {
+                        ?>
+                    <!-- Patient Details -->
+                    <li class="nav-parent <?php if ($main_menu == 'locations') echo 'nav-expanded nav-active'; ?>">
+                        <a><i class="fas fa-globe"></i><span><?php echo translate('locations'); ?></span></a>
+                        <ul class="nav nav-children">
+                        <?php if(get_permission('cities', 'is_view')){ ?>
+                            <li class="<?php if ($sub_page == 'locations/cities') echo 'nav-active'; ?>">
+                                <a href="<?php echo base_url('locations/cities'); ?>">
+                                    <span><i class="fas fa-caret-right" aria-hidden="true"></i><?php echo translate('cities'); ?></span>
+                                </a>
+                            </li>
+                       <?php } ?>
+                       <?php if(get_permission('regions', 'is_view')){ ?>
+                            <li class="<?php if ($sub_page == 'locations/regions') echo 'nav-active'; ?>">
+                                <a href="<?php echo base_url('locations/regions'); ?>">
+                                    <span><i class="fas fa-caret-right" aria-hidden="true"></i><?php echo translate('regions'); ?></span>
+                                </a>
+                            </li>
+                       <?php } ?>
+                       <?php if(get_permission('districts', 'is_view')){ ?>
+                            <li class="<?php if ($sub_page == 'locations/districts') echo 'nav-active'; ?>">
+                                <a href="<?php echo base_url('locations/districts'); ?>">
+                                    <span><i class="fas fa-caret-right" aria-hidden="true"></i><?php echo translate('districts'); ?></span>
+                                </a>
+                            </li>
+                       <?php } ?>
+                       <?php if(get_permission('metros', 'is_view')){ ?>
+                            <li class="<?php if ($sub_page == 'locations/metros') echo 'nav-active'; ?>">
+                                <a href="<?php echo base_url('locations/metros'); ?>">
+                                    <span><i class="fas fa-caret-right" aria-hidden="true"></i><?php echo translate('metros'); ?></span>
+                                </a>
+                            </li>
+                       <?php } ?>
+                       <?php if(get_permission('targets', 'is_view')){ ?>
+                            <li class="<?php if ($sub_page == 'locations/targets') echo 'nav-active'; ?>">
+                                <a href="<?php echo base_url('locations/targets'); ?>">
+                                    <span><i class="fas fa-caret-right" aria-hidden="true"></i><?php echo translate('targets'); ?></span>
+                                </a>
+                            </li>
+                       <?php } ?>
+                        </ul>
+                    </li>
+                    <?php } ?>
+
+
+
+
+
+                    <!-- ESTATE MENUS END -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                    
                     <?php
                     if (get_permission('frontend_setting', 'is_view') ||
                         get_permission('frontend_menu', 'is_view') ||
