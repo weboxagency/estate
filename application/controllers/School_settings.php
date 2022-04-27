@@ -439,8 +439,9 @@ class School_settings extends Admin_Controller
             set_alert('success', translate('the_configuration_has_been_updated'));
             redirect(base_url('mailconfig/email'));
         }
-        $branchID = $this->school_model->getBranchID();
-        $this->data['config'] = $this->school_model->get('email_config', array('branch_id' => $branchID), true);
+        // $branchID = $this->school_model->getBranchID();
+        $this->data['config'] = $this->school_model->get('email_config', array('branch_id' => 1), true);
+        // dd($this->data['config']);
         $this->data['title'] = translate('email_settings');
         $this->data['sub_page'] = 'school_settings/emailconfig';
         $this->data['main_menu'] = 'school_m';

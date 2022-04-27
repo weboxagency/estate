@@ -46,7 +46,7 @@
                   </li>
                </ul>
             </div>
-            <div class="find-home">
+           <!--  <div class="find-home">
                <a href="<?= base_url() ?>user/my-homes"><span>Mənə ev tap</span></a>
                <div class="pretty p-switch p-fill newclass">
                   <input x-activate-url="<?= base_url() ?>user/activate-find-me-home-function" type="checkbox" />
@@ -55,7 +55,7 @@
                <div class="find-home--desc">
                   <p>Sizin istəklərinizə uyğun ev tövsiyyələri edilir.</p>
                </div>
-            </div>
+            </div> -->
          </div>
          <div class="account-right balance-dropdown--right balance-right">
             <h4>Balansım</h4>

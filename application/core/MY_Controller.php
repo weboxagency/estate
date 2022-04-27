@@ -53,6 +53,18 @@ class Admin_Controller extends MY_Controller
     }
 }
 
+class Front_User_Controller extends MY_Controller
+{
+    public function __construct()
+    {
+        parent::__construct();
+        if (!is_user_loggedin()) {
+            $this->session->set_userdata('redirect_url', current_url());
+            redirect(base_url(), 'refresh');
+        }
+    }
+}
+
 class User_Controller extends MY_Controller
 {
     public function __construct()

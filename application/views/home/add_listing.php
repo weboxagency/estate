@@ -408,7 +408,7 @@
                                     <p class="form-message form-message--small">
                                        <span>Şəkillərin optimal ölçüləri — <strong>1200 x 900 pikseldir</strong></span>
                                     </p>
-                                    <p class="form-message mt-5"><span>Elan yerləşdirərək, Siz <a target="_blank" href="istifadeci-razilasmasi.html">Evelani.az-ın İstifadəçi razılaşması</a> ilə razı olduğunuzu təsdiq edirsiniz.</span></p>
+                                    <p class="form-message mt-5"><span>Elan yerləşdirərək, Siz <a target="_blank" href="istifadeci-razilasmasi.html">Estate.az-ın İstifadəçi razılaşması</a> ilə razı olduğunuzu təsdiq edirsiniz.</span></p>
                                  </div>
                               </div>
                            </div>
@@ -429,7 +429,7 @@
                   <h3>Qaydalar</h3>
                   <div class="rules-list rules-5">
                      <p class="rules-list__item  rule-visible ">
-                        <span class="rules-list--number">1.</span>Evelani.az saytında bir ay ərzində bir nömrədən 2 pulsuz (təkrar olmayan) elan yerləşdirmək mümkündür. Hər bir növbəti elanın qiyməti - 3 AZN təşkil edir.
+                        <span class="rules-list--number">1.</span>Estate.az saytında bir ay ərzində bir nömrədən 2 pulsuz (təkrar olmayan) elan yerləşdirmək mümkündür. Hər bir növbəti elanın qiyməti - 3 AZN təşkil edir.
                      </p>
                      <p class="rules-list__item  rule-visible ">
                         <span class="rules-list--number">2.</span>Elanınız təqdim edərkən, elektron poçt ünvanı, telefon nömrəsi, əmlakın növünü və digər məlumatları dəqiq qeyd edin.

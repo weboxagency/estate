@@ -53,14 +53,15 @@
             </svg>
             <?= translate('wishlist') ?> 
           </a>
+          <?php if (!is_user_loggedin()) { ?>
           <a class="nav-item--secondary nav-item__login" data-toggle="modal" data-target="#login">
              <svg class="icon icon-user">
               <use xlink:href="<?= base_url() ?>assets/site/img/icons/icons.svg#icon-user"></use>
               </svg> 
             <?= translate('login') ?> 
           </a>
-
-
+          <?php } ?>
+          <?php if (is_user_loggedin()) { ?>
           <div class="dropdown-hover notification" x-notification-color>
           <!-- User Dashboard -->
              <a class="nav-item--secondary">
@@ -90,7 +91,7 @@
                    <svg class="icon icon-down">
                       <use xlink:href="<?= base_url() ?>assets/site/img/icons/icons.svg#icon-down"></use>
                    </svg>
-                   Ağakərim
+                   <?= is_logged_name(); ?>
                 </div>
                 <div class="dropdown-menu dropdown-menu--right login-dropdown" aria-labelledby="navDropdown">
                    <ul>
@@ -107,7 +108,7 @@
                             <svg class="icon icon-logout">
                                <use xlink:href="<?= base_url() ?>assets/site/img/icons/icons.svg#icon-logout"></use>
                             </svg>
-                            Çıxış
+                            <?= translate('logout') ?>
                          </a>
                       </li>
                    </ul>
@@ -115,7 +116,7 @@
              </div>
           <!-- User Dashboard END-->
           </div>
-
+          <?php } ?>
 
           <!-- REGISTER -->
           <div class="modal modal--small" id="register">
@@ -135,19 +136,19 @@
                     <fieldset>
                       <div class="form-row">
                         <div class="form-item form-item--large">
-                          <label for="announcement_owner">Əlaqədar şəxs</label>
-                          <input class="form-item__element" name="announcement_owner" placeholder="Əlaqədar şəxs">
+                          <label for="announcement_owner"><?= translate('relevant_person') ?></label>
+                          <input class="form-item__element" name="announcement_owner" placeholder="<?= translate('relevant_person') ?>">
                         </div>
                         <div class="form-item form-item--large">
-                          <label for="email">Elektron poçt</label>
-                          <input class="form-item__element" name="email" placeholder="Elektron poçt">
+                          <label for="email"><?= translate('email') ?></label>
+                          <input class="form-item__element" name="email" placeholder="<?= translate('email') ?>">
                         </div>
                         <div class="form-item form-item--large">
-                          <label for="mobile">Mobil nömrə</label>
-                          <input onkeypress="return isNumberKey(event)" type="number" class="form-item__element" name="mobile" placeholder="Mobil nömrə">
+                          <label for="mobile"><?= translate('phone_number') ?></label>
+                          <input onkeypress="return isNumberKey(event)" type="number" class="form-item__element" name="mobile" placeholder="<?= translate('phone_number') ?>">
                         </div>
                         <div class="form-item form-item--small">
-                          <label for="password">Şifrə</label>
+                          <label for="password"><?= translate('password') ?></label>
                           <div class="form-item__password">
                             <input class="form-item__element" name="password" type="password" placeholder="∗∗∗∗∗∗">
                             <svg class="icon icon-eye">
@@ -159,7 +160,7 @@
                           </div>
                         </div>
                         <div class="form-item form-item--small">
-                          <label for="password">Təkrar şifrə</label>
+                          <label for="password"><?= translate('repeat_password') ?></label>
                           <div class="form-item__password">
                             <input class="form-item__element" name="repassword" type="password" placeholder="∗∗∗∗∗∗">
                             <svg class="icon icon-eye">
@@ -203,7 +204,7 @@
             <div class="modal-dialog">
               <div class="modal-content">
                 <div class="modal-header">
-                  <h6 class="modal-title">Evelani.az-a xoş gəlmisiniz</h6>
+                  <h6 class="modal-title">Estate.az-a xoş gəlmisiniz</h6>
                   <div class="modal-close" data-dismiss="modal">
                     <svg class="icon icon-close">
                       <use xlink:href="<?= base_url() ?>assets/site/img/icons/icons.svg#icon-close"></use>

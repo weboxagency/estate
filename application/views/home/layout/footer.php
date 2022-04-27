@@ -1009,6 +1009,8 @@
                success : function( res )
                {
                     res = JSON.parse(res);
+                    console.log(res);
+                    console.log(res);
                    if( res[ 'status' ] === 'success' )
                    {
                        if( res.validations !== undefined && Object.keys( res.validations ).length )
@@ -1032,15 +1034,19 @@
                                    } );
                                }
                            } );
-                       } else
+                       } 
+                       else
                        {
+                        console.log('targetWithData' + targetWithData);
+                        console.log('target' + target);
                            if( targetWithData && typeof window[ targetWithData ] === 'function' )
                            {
                                window[ targetWithData ]( res );
                            } else if( target && typeof window[ target ] === 'function' )
                            {
                                window[ target ]();
-                           } else if( $.isFunction( window.editFormCallback ) ) editFormCallback( res );
+                           } 
+                           else if( $.isFunction( window.editFormCallback ) ) editFormCallback( res );
                            else
                            {
                                let title = res.title !== undefined ? res.title : '' ,
@@ -1703,7 +1709,7 @@
 <script src="<?= base_url() ?>assets/site/js/libs.min.js"></script>
 <script src="<?= base_url() ?>assets/site/js/bootstrap-swipe-carousel.min.js"></script>
 <script src="<?= base_url() ?>assets/site/js/lightslider.js"></script>
-<script src="<?= base_url() ?>assets/site/js/isotope-docs.min.js49"></script>
+<script src="<?= base_url() ?>assets/site/js/isotope-docs.min.js"></script>
 <script src="<?= base_url() ?>assets/site/js/semantic.min.js"></script>
 <script src="<?= base_url() ?>assets/site/js/common.js"></script>
 <script src="<?= base_url() ?>assets/site/js/js/select2.full.js"></script>
@@ -1790,12 +1796,13 @@
    
    
    
-   $( document ).ready( function()
+   $(document).ready( function()
    { 
     loading();
    });
 </script>
 <script>
+    // const val = undefined;
    var count = 0;
    function addId( name , id )
    {
@@ -2150,6 +2157,7 @@
        slider.destroy();
    });
    $( document ).ready( function(){
+    // const let = undefined;
        let regions = $( '[x-search-form] [name="region"]' ).val().split(",");
        for(let i=0; i<regions.length; i++){
            $(".region-"+regions[i]).addClass("active");
@@ -2647,9 +2655,9 @@
        let _count = 8;
        let j;
        window.addEventListener("scroll", function() {
-           console.log(window.innerHeight);
-           console.log(Math.ceil(document.documentElement.scrollTop));
-           console.log(document.scrollingElement.scrollHeight-(footerHeight+footerContainerHeight));
+           // console.log(window.innerHeight);
+           // console.log(Math.ceil(document.documentElement.scrollTop));
+           // console.log(document.scrollingElement.scrollHeight-(footerHeight+footerContainerHeight));
            if((window.innerHeight  +  Math.ceil(document.documentElement.scrollTop)) >= (document.scrollingElement.scrollHeight-(footerHeight+footerContainerHeight))) {
                for( j = _count; j < _count + 4; j++ ){
                    showAnnouncement( j );

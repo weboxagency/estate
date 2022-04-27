@@ -29,15 +29,21 @@ class Home extends Frontend_Controller
         $this->home();
     }
 
-    public function set_language($action = '')
+    public function home()
     {
-        $this->session->set_userdata('set_lang', $action);
-        if (!empty($_SERVER['HTTP_REFERER'])) {
-            redirect($_SERVER['HTTP_REFERER']);
-        } else {
-            redirect(base_url(), 'refresh');
-        } 
+        $this->data['cities']           = $this->home_model->allCities();
+        $this->data['regions']          = $this->home_model->allRegions();
+        $this->data['metros']           = $this->home_model->allMetros();
+        $this->data['estate_types']     = $this->home_model->estateTypes();
+        $this->data['ads_type']         = $this->home_model->adsType();
+        $this->data['district']         = $this->home_model->allDistricts();
+        $this->data['targets']          = $this->home_model->allTargets();
+        $this->data['page_data'] = $this->home_model->get('front_cms_home_seo', array('branch_id' => 1), true);
+        $this->data['main_contents'] = $this->load->view('home/index', $this->data, true);
+        $this->load->view('home/layout/index', $this->data);
     }
+
+    
 
     public function wishlist()
     {
@@ -46,44 +52,44 @@ class Home extends Frontend_Controller
         }
         else
         {
-        $data      = ["wish_sess" => unique_token()];
-        $sess      = ($this->session->has_userdata('wish_sess')) ? $this->session->userdata('wish_sess') : $this->session->set_userdata($data);
-        $id        = $this->input->post('id');
-        $sess_id   = $this->session->userdata('wish_sess');
-           
-        $count     = $this->home_model->getWishCount($id, $sess_id);
+            $data      = ["wish_sess" => unique_token()];
+            $sess      = ($this->session->has_userdata('wish_sess')) ? $this->session->userdata('wish_sess') : $this->session->set_userdata($data);
+            $id        = $this->input->post('id');
+            $sess_id   = $this->session->userdata('wish_sess');
+               
+            $count     = $this->home_model->getWishCount($id, $sess_id);
 
-        if ($count==0) 
-        {
-            $insertData = array(
-                'session_id' => $sess_id,
-                'data_id'    => $id
-            );
+            if ($count==0) 
+            {
+                $insertData = array(
+                    'session_id' => $sess_id,
+                    'data_id'    => $id
+                );
 
-            $this->db->insert('wishlists', $insertData);
-            $data = [
-                "announcement" => $this->input->post('id'),
-                "favorites"    => 1,
-                "result"       => 1,
-                "status"       => "success",
-                "validations"  => []
-            ];
-            echo  json_encode($data);
-        }
-        else
-        {
-            $this->db->where('session_id', $sess_id);
-            $this->db->where('data_id', $id);
-            $this->db->delete('wishlists');
-            $data = [
-                "announcement" => $this->input->post('id'),
-                "favorites"    => 0,
-                "result"       => 0,
-                "status"       => "success",
-                "validations"  => []
-            ];
-             echo  json_encode($data);
-        }
+                $this->db->insert('wishlists', $insertData);
+                $data = [
+                    "announcement" => $this->input->post('id'),
+                    "favorites"    => 1,
+                    "result"       => 1,
+                    "status"       => "success",
+                    "validations"  => []
+                ];
+                echo  json_encode($data);
+            }
+            else
+            {
+                $this->db->where('session_id', $sess_id);
+                $this->db->where('data_id', $id);
+                $this->db->delete('wishlists');
+                $data = [
+                    "announcement" => $this->input->post('id'),
+                    "favorites"    => 0,
+                    "result"       => 0,
+                    "status"       => "success",
+                    "validations"  => []
+                ];
+                 echo  json_encode($data);
+            }
         }
     }
 
@@ -121,28 +127,18 @@ class Home extends Frontend_Controller
         $this->data['main_contents'] = $this->load->view('home/user_agreement', $this->data, true);
         $this->load->view('home/layout/index', $this->data);
     }
-    public function home()
-    {
-        $this->data['cities']       = $this->home_model->allCities();
-        $this->data['regions']      = $this->home_model->allRegions();
-        $this->data['metros']       = $this->home_model->allMetros();
-        $this->data['ads_type']     = $this->home_model->adsType();
-        $this->data['district']     = $this->home_model->allDistricts();
-        $this->data['targets']      = $this->home_model->allTargets();
+  
 
-        // $branchID = $this->home_model->getDefaultBranch();
-        // $this->data['branchID'] = $branchID;
-        // $this->data['sliders'] = $this->home_model->getCmsHome('slider', $branchID, 1, false);
-        // $this->data['features'] = $this->home_model->getCmsHome('features', $branchID, 1, false);
-        // $this->data['wellcome'] = $this->home_model->getCmsHome('wellcome', $branchID);
-        // $this->data['testimonial'] = $this->home_model->getCmsHome('testimonial', $branchID);
-        // $this->data['services'] = $this->home_model->getCmsHome('services', $branchID);
-        // $this->data['cta_box'] = $this->home_model->getCmsHome('cta', $branchID);
-        // $this->data['statistics'] = $this->home_model->getCmsHome('statistics', $branchID);
-        $this->data['page_data'] = $this->home_model->get('front_cms_home_seo', array('branch_id' => 1), true);
-        $this->data['main_contents'] = $this->load->view('home/index', $this->data, true);
-        $this->load->view('home/layout/index', $this->data);
+    public function set_language($action = '')
+    {
+        $this->session->set_userdata('set_lang', $action);
+        if (!empty($_SERVER['HTTP_REFERER'])) {
+            redirect($_SERVER['HTTP_REFERER']);
+        } else {
+            redirect(base_url(), 'refresh');
+        } 
     }
+
 
     public function about()
     {
@@ -571,41 +567,6 @@ class Home extends Frontend_Controller
         $this->load->view('home/layout/index', $this->data);
     }
 
-    public function getSectionByClass()
-    {
-        $html = "";
-        $classID = $this->input->post("class_id");
-        if (!empty($classID)) {
-            $result = $this->db->select('sections_allocation.section_id,section.name')
-                ->from('sections_allocation')
-                ->join('section', 'section.id = sections_allocation.section_id', 'left')
-                ->where('sections_allocation.class_id', $classID)
-                ->get()->result_array();
-            if (is_array($result) && count($result)) {
-                $html .= '<option value="">' . translate('select') . '</option>';
-                foreach ($result as $row) {
-                    $html .= '<option value="' . $row['section_id'] . '">' . $row['name'] . '</option>';
-                }
-            } else {
-                $html .= '<option value="">' . translate('no_selection_available') . '</option>';
-            }
-        } else {
-            $html .= '<option value="">' . translate('select_class_first') . '</option>';
-        }
-        echo $html;
-    }
-
-    public function get_branch_url()
-    {
-        $branch_id = $this->input->post("branch_id");
-        $url = $this->db->where('branch_id', $branch_id)->get('front_cms_setting')->row_array();
-        $school = "";
-        if ($this->uri->segment(4)) {
-            $school = $this->uri->segment(4);
-        } else {
-            $school = $this->uri->segment(3);
-        }
-        echo json_encode(array('url_alias' => base_url("home/index/" . $url['url_alias'])));
-    }
+    
 
 }
