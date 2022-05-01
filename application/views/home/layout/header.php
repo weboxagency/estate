@@ -294,13 +294,13 @@
         <div class="header-secondary" id="headerSecondary">
           <div class="header-secondary__container container">
             <a class="logo" href="<?= base_url(); ?>">
-              <img src="<?php echo base_url('uploads/frontend/images/' . $cms_setting['logo']); ?>">
+              <img src="<?php echo base_url('uploads/frontend/images/' . $cms_setting['logo']); ?>" style="height: 110px;">
             </a>
             <div class="justify">
             <nav class="nav d-none d-xl-flex">             
-              <a href="#" class="nav-item--secondary"><?= translate('for_sale') ?></a>
-              <a href="#" class="nav-item--secondary"><?= translate('for_rent') ?></a>
-              <a href="#" class="nav-item--secondary"><?= translate('agency') ?></a>
+              <a href="<?= base_url() ?>elanlar/satish" class="nav-item--secondary"><?= translate('for_sale') ?></a>
+              <a href="<?= base_url() ?>elanlar/kiraye" class="nav-item--secondary"><?= translate('for_rent') ?></a>
+              <a href="<?= base_url() ?>elanlar/agency" class="nav-item--secondary"><?= translate('agency') ?></a>
             </nav>
             </div>
             <a href="<?= base_url() ?>add_listing" class="link-button link-button--primary link-setup d-none d-sm-flex">

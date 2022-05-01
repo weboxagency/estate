@@ -38,8 +38,8 @@ class Home extends Frontend_Controller
         $this->data['ads_type']         = $this->home_model->adsType();
         $this->data['district']         = $this->home_model->allDistricts();
         $this->data['targets']          = $this->home_model->allTargets();
-        $this->data['page_data'] = $this->home_model->get('front_cms_home_seo', array('branch_id' => 1), true);
-        $this->data['main_contents'] = $this->load->view('home/index', $this->data, true);
+        $this->data['page_data']        = $this->home_model->get('front_cms_home_seo', array('branch_id' => 1), true);
+        $this->data['main_contents']    = $this->load->view('home/index', $this->data, true);
         $this->load->view('home/layout/index', $this->data);
     }
 

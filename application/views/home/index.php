@@ -457,7 +457,7 @@
 <div class="announcement-group">
 <div class="announcement-group__header">
    <h2 class="announcement-title"><?= translate('vip_ads') ?></h2>
-   <a class="link-button link-button--tertiary" href="az/vip.html"><?= translate('see_them_all') ?></a>
+   <a class="link-button link-button--tertiary" href="<?= base_url() ?>elanlar/vip"><?= translate('see_them_all') ?></a>
 </div>
 <div class="announcement-group__body">
      <div class="announcement announcement--short announcement-template">
@@ -523,7 +523,7 @@
 <div class="announcement-group">
    <div class="announcement-group__header">
       <h5 class="announcement-title"><?= translate('new_ads') ?></h5>
-      <a class="link-button link-button--tertiary" href="az/axtar.html"><?= translate('see_them_all') ?></a>
+      <a class="link-button link-button--tertiary" href="<?= base_url() ?>elanlar/new"><?= translate('see_them_all') ?></a>
    </div>
    <div class="announcement-group__body">
       <div class="announcement announcement--short announcement-template" x-announcement-owner="438">

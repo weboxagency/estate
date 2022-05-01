@@ -23,6 +23,7 @@ class User extends Frontend_Controller
         $this->load->model('gallery_model');
         $this->load->model('user_model','um');
         $this->load->library('mailer');
+
     }
 
     public function index()
@@ -203,160 +204,82 @@ class User extends Frontend_Controller
                         $msgData['recipient'] = $email;
                         $msgData['subject'] = "Estate.az qeydiyyatınız tamamlandı.";
                         $msgData['message'] = '<!DOCTYPE html>
-                        <html>
-                        <head>
-
-                          <meta charset="utf-8">
-                          <meta http-equiv="x-ua-compatible" content="ie=edge">
-                          <title>Email Confirmation</title>
-                          <meta name="viewport" content="width=device-width, initial-scale=1">
-                          <style type="text/css">
-                          @media screen {
-                            @font-face {
-                              font-family: "Source Sans Pro";
-                              font-style: normal;
-                              font-weight: 400;
-                              src: local("Source Sans Pro Regular"), local("SourceSansPro-Regular"), url(https://fonts.gstatic.com/s/sourcesanspro/v10/ODelI1aHBYDBqgeIAH2zlBM0YzuT7MdOe03otPbuUS0.woff) format("woff");
-                            }
-                            @font-face {
-                              font-family: "Source Sans Pro";
-                              font-style: normal;
-                              font-weight: 700;
-                              src: local("Source Sans Pro Bold"), local("SourceSansPro-Bold"), url(https://fonts.gstatic.com/s/sourcesanspro/v10/toadOcfmlt9b38dHJxOBGFkQc6VGVFSmCnC_l7QZG60.woff) format("woff");
-                            }
-                          }
-                          body,
-                          table,
-                          td,
-                          a {
-                            -ms-text-size-adjust: 100%; /* 1 */
-                            -webkit-text-size-adjust: 100%; /* 2 */
-                          }
-                          table,
-                          td {
-                            mso-table-rspace: 0pt;
-                            mso-table-lspace: 0pt;
-                          }
-                          img {
-                            -ms-interpolation-mode: bicubic;
-                          }
-                          a[x-apple-data-detectors] {
-                            font-family: inherit !important;
-                            font-size: inherit !important;
-                            font-weight: inherit !important;
-                            line-height: inherit !important;
-                            color: inherit !important;
-                            text-decoration: none !important;
-                          }
-                          div[style*="margin: 16px 0;"] {
-                            margin: 0 !important;
-                          }
-                          body {
-                            width: 100% !important;
-                            height: 100% !important;
-                            padding: 0 !important;
-                            margin: 0 !important;
-                          }
-                          table {
-                            border-collapse: collapse !important;
-                          }
-                          a {
-                            color: #1a82e2;
-                          }
-                          img {
-                            height: auto;
-                            line-height: 100%;
-                            text-decoration: none;
-                            border: 0;
-                            outline: none;
-                          }
-                          </style>
-
-                        </head>
-                        <body style="background-color: #e9ecef;">
-                          <div class="preheader" style="display: none; max-width: 0; max-height: 0; overflow: hidden; font-size: 1px; line-height: 1px; color: #fff; opacity: 0;">
-                            A preheader is the short summary text that follows the subject line when an email is viewed in the inbox.
-                          </div>
-                          <table border="0" cellpadding="0" cellspacing="0" width="100%">
-                            <tr>
-                              <td align="center" bgcolor="#e9ecef">
-                                <table border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width: 600px;">
-                                  <tr>
-                                    <td align="center" valign="top" style="padding: 36px 24px;">
-                                      <a href="https://sendgrid.com" target="_blank" style="display: inline-block;">
-                                        <img src="https://estate.az/assets/uploads/logo/logo354.png" alt="Logo" border="0" style="display: block; width: 108px; max-width: 108px; min-width: 98px;">
-                                      </a>
-                                    </td>
-                                  </tr>
-                                </table>
+   <head>
+      <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+      <title>New Account Email Template</title>
+      <meta name="description" content="New Account Email Template.">
+      <style type="text/css">
+         a:hover {text-decoration: underline !important;}
+      </style>
+   </head>
+   <body marginheight="0" topmargin="0" marginwidth="0" style="margin: 0px; background-color: #f2f3f8;" leftmargin="0">
+      <table cellspacing="0" border="0" cellpadding="0" width="100%" bgcolor="#f2f3f8"
+         style="@import url(https://fonts.googleapis.com/css?family=Rubik:300,400,500,700|Open+Sans:300,400,600,700); font-family: Open Sans, sans-serif;">
+         <tr>
+            <td>
+               <table style="background-color: #f2f3f8; max-width:670px; margin:0 auto;" width="100%" border="0"
+                  align="center" cellpadding="0" cellspacing="0">
+                  <tr>
+                     <td style="height:80px;">&nbsp;</td>
+                  </tr>
+                  <tr>
+                     <td style="text-align:center;">
+                        <a href="https://estate.az" title="logo" target="_blank">
+                        <img width="110" src="'.base_url('uploads/frontend/images/logo1.png').'" title="logo" alt="logo">
+                        </a>
+                     </td>
+                  </tr>
+                  <tr>
+                     <td style="height:20px;">&nbsp;</td>
+                  </tr>
+                  <tr>
+                     <td>
+                        <table width="95%" border="0" align="center" cellpadding="0" cellspacing="0"
+                           style="max-width:670px; background:#fff; border-radius:3px; text-align:center;-webkit-box-shadow:0 6px 18px 0 rgba(0,0,0,.06);-moz-box-shadow:0 6px 18px 0 rgba(0,0,0,.06);box-shadow:0 6px 18px 0 rgba(0,0,0,.06);">
+                           <tr>
+                              <td style="height:40px;">&nbsp;</td>
+                           </tr>
+                           <tr>
+                              <td style="padding:0 35px;">
+                                 <h1 style="color:#1e1e2d; font-weight:500; margin:0;font-size:32px;font-family:Rubik,sans-serif;">Hörmətli '.$announcement_owner.', xoş gəldiniz.
+                                 </h1>
+                                 <p style="font-size:15px; color:#455056; margin:8px 0 0; line-height:24px;">
+                                    Saytımızdakı qeydiyyatınızı təsdiq etmək üçün, zəhmət olmasa aşağıdakı linkdən <br/>və ya <a href="https://estate.az">bu keçiddən</a> istifadə edərək, qeydiyyatınızı təsdiq edərək hesabınızı aktivləşdirin</strong>.
+                                 </p>
+                                 <span
+                                    style="display:inline-block; vertical-align:middle; margin:29px 0 26px; border-bottom:1px solid #cecece; width:100px;"></span>
+                                 <p style="color:#455056; font-size:18px;line-height:20px; margin:0; font-weight: 500;">
+                                    <strong style="display: block;font-size: 13px; margin: 0 0 4px; color:rgba(0,0,0,.64); font-weight:normal;">Qeydiyyat üçün istifadə etdiyiniz mobil nömrə</strong>'.$mobile.'
+                                   
+                                 </p>
+                                 <a href="login.html" style="background:#dca73d;text-decoration:none !important; display:inline-block; font-weight:500; margin-top:24px; color:#fff;text-transform:uppercase; font-size:14px;padding:10px 24px;display:inline-block;border-radius:50px;">
+                                    Təsdiq et
+                                </a>
                               </td>
-                            </tr>
-                            <tr>
-                              <td align="center" bgcolor="#e9ecef">
-                                <table border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width: 600px;">
-                                  <tr>
-                                    <td align="left" bgcolor="#ffffff" style="padding: 36px 24px 0; font-family: Source Sans Pro, Helvetica, Arial, sans-serif; border-top: 3px solid #d4dadf;">
-                                      <h4 style="margin: 0; font-size: 22px; font-weight: 700; letter-spacing: -1px; line-height: 48px;">Hörmətli '.$announcement_owner.', qeydiyyatınız üçün təşəkkürlər</h4>
-                                    </td>
-                                  </tr>
-                                </table>
-                              </td>
-                            </tr>
-                            <tr>
-                              <td align="center" bgcolor="#e9ecef">
-                                <table border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width: 600px;">
-                                  <tr>
-                                    <td align="left" bgcolor="#ffffff" style="padding: 24px; font-family: Source Sans Pro, Helvetica, Arial, sans-serif; font-size: 16px; line-height: 24px;">
-                                      <p style="margin: 0;">Aşağıdakı düyməyə klik edərək qeydiyyatınızı tamamlayın. </p>
-                                    </td>
-                                  </tr>
-                                  <tr>
-                                    <td align="left" bgcolor="#ffffff">
-                                      <table border="0" cellpadding="0" cellspacing="0" width="100%">
-                                        <tr>
-                                          <td align="center" bgcolor="#ffffff" style="padding: 12px;">
-                                            <table border="0" cellpadding="0" cellspacing="0">
-                                              <tr>
-                                                <td align="center" bgcolor="#1a82e2" style="border-radius: 6px;">
-                                                  <a href="https://sendgrid.com" target="_blank" style="display: inline-block; padding: 16px 36px; font-family: Source Sans Pro, Helvetica, Arial, sans-serif; font-size: 16px; color: #ffffff; text-decoration: none; border-radius: 6px;">Qeydiyyatı tamamla</a>
-                                                </td>
-                                              </tr>
-                                            </table>
-                                          </td>
-                                        </tr>
-                                      </table>
-                                    </td>
-                                  </tr>
-                                  <tr>
-                                    <td align="left" bgcolor="#ffffff" style="padding: 24px; font-family: Source Sans Pro, Helvetica, Arial, sans-serif; font-size: 16px; line-height: 24px;">
-                                      <p style="margin: 0;">Əgər hər hansı bir səbəbdən təsdiq etmə işləməzsə aşağıdakı linkdən davam edə bilərsiniz:</p>
-                                      <p style="margin: 0;"><a href="https://blogdesire.com" target="_blank">https://estate.az</a></p>
-                                    </td>
-                                  </tr>
-                                  
-                                </table>
-                              </td>
-                            </tr>
-                            <tr>
-                              <td align="center" bgcolor="#e9ecef" style="padding: 24px;">
-                                <table border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width: 600px;">
-                                  
-                                  <tr>
-                                    <td align="center" bgcolor="#e9ecef" style="padding: 12px 24px; font-family: Source Sans Pro, Helvetica, Arial, sans-serif; font-size: 14px; line-height: 20px; color: #666;">
-                                      <p style="margin: 0;">Copyright © 2022 </p>
-                                      <p style="margin: 0;">Estate.az | Bütün hüquqlar qorunur.</p>
-                                    </td>
-                                  </tr>
-
-                                </table>
-                                </td>
-                                </tr>
-                                </table>
-                              </td>
-                            </tr>
-                          </table>
-                        </body>
-                        </html>';
+                           </tr>
+                           <tr>
+                              <td style="height:40px;">&nbsp;</td>
+                           </tr>
+                        </table>
+                     </td>
+                  </tr>
+                  <tr>
+                     <td style="height:20px;">&nbsp;</td>
+                  </tr>
+                  <tr>
+                     <td style="text-align:center;">
+                        <p style="font-size:14px; color:rgba(69, 80, 86, 0.7411764705882353); line-height:18px; margin:0 0 0;"> Powered by &hearts; <strong>WeBoX Agency</strong> &hearts;</p>
+                     </td>
+                  </tr>
+                  <tr>
+                     <td style="height:80px;">&nbsp;</td>
+                  </tr>
+               </table>
+            </td>
+         </tr>
+      </table>
+   </body>
+</html>';
                         $this->em->sendEmail($msgData);
                         $response = [
                             "status"        => "success",

@@ -93,7 +93,7 @@ class Frontend_Controller extends MY_Controller
         parent::__construct();
         $this->load->model('home_model');
         $branchID = $this->home_model->getDefaultBranch();
-        $cms_setting = $this->db->get_where('front_cms_setting', array('branch_id' => $branchID))->row_array();
+        $cms_setting = $this->db->get_where('front_cms_setting', array('branch_id' => 1))->row_array();
         if (!$cms_setting['cms_active']) {
             redirect(site_url('authentication'));
         }
