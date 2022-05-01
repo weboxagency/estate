@@ -34,6 +34,7 @@
     <link rel="stylesheet" href="<?= base_url('assets/site/css/lightslider.css') ?>">
     <link rel="stylesheet" href="<?= base_url('assets/site/css/app.min.css') ?>">
     <link rel="stylesheet" href="<?= base_url('assets/site/css/semantic.min.css') ?>">
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script type="text/javascript">
 
     	var base_url = "<?php echo base_url(); ?>";
@@ -51,7 +52,7 @@
   </div>
    <div id="ad_ph_1" style="display: block; width: 100%; height: 120px;">
       <div style="display:block;width:100%;height:100%;margin:0 auto;line-height:100%;text-align:center;">
-        <a href="https://ad.adriver.ru/cgi-bin/click.cgi?sid=220686&amp;ad=724514&amp;bid=7391282&amp;bt=43&amp;bn=1&amp;pz=0&amp;nid=0&amp;ref=https:%2f%2fbina.az%2f&amp;custom=&amp;xpid=DLyK-583lyfURhR8_dbMy_h5tV8xuMzw57MiJf5A3roVvIaoTPcCXfeq6EulgE2CXUliUFKFNA7SDS8Q2-BcW9FVyNAzN&amp;rleurl=" onclick="ar_clickCoord.calc(event, this, document.getElementById('ad_ph_1')); return ar_sendPix('');" target="_blank"><img id="ar_cr_1460892" src="https://servers2.adriver.ru/images/0007391/0007391282/0/yasamdesc.png" border="0" alt="AdRiver" style="display:inline;height:100%;max-width:1903px">
+        <a href="https://ad.adriver.ru/cgi-bin/click.cgi?sid=220686&amp;ad=724514&amp;bid=7391282&amp;bt=43&amp;bn=1&amp;pz=0&amp;nid=0&amp;ref=<?= base_url() ?>" onclick="ar_clickCoord.calc(event, this, document.getElementById('ad_ph_1')); return ar_sendPix('');" target="_blank"><img id="ar_cr_1460892" src="https://servers2.adriver.ru/images/0007391/0007391282/0/yasamdesc.png" border="0" alt="AdRiver" style="display:inline;height:100%;max-width:1903px">
         </a>
       </div>
    </div>
@@ -64,7 +65,11 @@
     </div>
 		<?php $this->load->view('home/layout/header'); ?>
 		<?php echo $main_contents; ?>
-		<?php $this->load->view('home/layout/footer'); ?>
+    <?php if(@end($this->uri->segment_array())=='add_listing'){ ?>
+		<?php $this->load->view('home/layout/footer2'); ?>
+  <?php }else{ ?>
+    <?php $this->load->view('home/layout/footer'); ?>
+  <?php } ?>
 	</body>
 </html>
 

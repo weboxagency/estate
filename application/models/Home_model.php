@@ -94,6 +94,17 @@ class Home_model extends MY_Model
         return $query->result_array();
     }
 
+    public function estateTypes($active = 1)
+    {
+        $this->db->select('*');
+        $this->db->from('estate_type');
+        $this->db->where('status', $active);
+        $query = $this->db->get();
+        $this->db->order_by("id", "asc");
+        
+        return $query->result_array();
+    }
+
     public function getWishCount($id, $sess)
     {
         $this->db->select('id');

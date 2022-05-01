@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 23, 2022 at 12:36 PM
+-- Generation Time: Apr 28, 2022 at 12:29 AM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 8.0.14
 
@@ -62,6 +62,37 @@ INSERT INTO `ads_type` (`id`, `type_name`, `seo_link`, `status`, `created_at`, `
 (1, 'Satış', 'satish', 1, '2022-04-21 00:15:27', '2022-04-21 00:15:27', '2022-04-21 00:15:27'),
 (2, 'Kirayə', 'kiraye', 1, '2022-04-21 00:15:27', '2022-04-21 00:15:27', '2022-04-21 00:15:27'),
 (3, 'Kirayə günlük', 'kiraye_gunluk', 1, '2022-04-21 00:15:27', '2022-04-21 00:15:27', '2022-04-21 00:15:27');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `ads_users`
+--
+
+CREATE TABLE `ads_users` (
+  `id` int(11) NOT NULL,
+  `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `email` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `password` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `register_token` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `mobile` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `balance` varchar(10) COLLATE utf8_unicode_ci NOT NULL,
+  `status` int(11) NOT NULL,
+  `last_active` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `ip` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `soft` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `browser_name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `register_at` datetime NOT NULL DEFAULT current_timestamp(),
+  `updated_at` int(11) DEFAULT NULL,
+  `deleted_at` datetime DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `ads_users`
+--
+
+INSERT INTO `ads_users` (`id`, `name`, `email`, `password`, `register_token`, `mobile`, `balance`, `status`, `last_active`, `ip`, `soft`, `browser_name`, `register_at`, `updated_at`, `deleted_at`) VALUES
+(1, 'Solmaz', 'aghakarimsolmaz@gmail.com', '$2y$10$WAUAR0AI8w4NORrWeEspkOBQ7Fed7l0YaTZlEqukR/FJC7n/Ht9mm', '04553c32c50de3ef52231a53a2084c48e718bd60974909f860c257e4e1dcb73a', '0705015595', '0', 2, '', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/101.0.4951.41 Safari/537.36', 'Google Chrome', '2022-04-28 01:32:17', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -610,6 +641,13 @@ CREATE TABLE `email_config` (
   `branch_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Dumping data for table `email_config`
+--
+
+INSERT INTO `email_config` (`id`, `email`, `protocol`, `smtp_host`, `smtp_user`, `smtp_pass`, `smtp_port`, `smtp_encryption`, `branch_id`) VALUES
+(1, 'noreply@estate.az', 'smtp', 'smtp.hostinger.com', 'noreply@estate.az', '@iogiDuD25@', '465', 'ssl', 1);
+
 -- --------------------------------------------------------
 
 --
@@ -672,6 +710,36 @@ CREATE TABLE `enroll` (
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
   `updated_at` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `estate_type`
+--
+
+CREATE TABLE `estate_type` (
+  `id` int(11) NOT NULL,
+  `estate_type_name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `seo_link` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `status` int(11) NOT NULL DEFAULT 1 COMMENT '0 - Deaktiv\r\n1 - Aktiv',
+  `created_at` datetime NOT NULL,
+  `updated_at` datetime NOT NULL,
+  `deleted_at` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `estate_type`
+--
+
+INSERT INTO `estate_type` (`id`, `estate_type_name`, `seo_link`, `status`, `created_at`, `updated_at`, `deleted_at`) VALUES
+(1, 'Yeni tikili', 'yeni-tikili', 1, '2022-04-23 22:25:40', '2022-04-23 22:25:40', '2022-04-23 22:25:40'),
+(2, 'Köhnə tikili', 'kohne-tikili', 1, '2022-04-23 22:25:40', '2022-04-23 22:25:40', '2022-04-23 22:25:40'),
+(3, 'Həyət evi / Bağ', 'heyet-evi-bag', 1, '2022-04-23 22:26:22', '2022-04-23 22:26:22', '2022-04-23 22:26:22'),
+(4, 'Villa', 'vila', 1, '2022-04-23 22:26:22', '2022-04-23 22:26:22', '2022-04-23 22:26:22'),
+(5, 'Ofis', 'ofis', 1, '2022-04-23 22:26:22', '2022-04-23 22:26:22', '2022-04-23 22:26:22'),
+(6, 'Torpaq', 'torpaq', 1, '2022-04-23 22:26:22', '2022-04-23 22:26:22', '2022-04-23 22:26:22'),
+(7, 'Obyekt', 'obyekt', 1, '2022-04-23 22:26:22', '2022-04-23 22:26:22', '2022-04-23 22:26:22'),
+(8, 'Qaraj', 'qaraj', 1, '2022-04-23 22:26:22', '2022-04-23 22:26:22', '2022-04-23 22:26:22');
 
 -- --------------------------------------------------------
 
@@ -1790,7 +1858,7 @@ INSERT INTO `languages` (`id`, `word`, `english`, `arabic`, `turkish`, `lang_32`
 (147, 'events', 'Events', 'اللافتة', 'noticeboard', ''),
 (148, 'message', 'Message', 'الرسالة', 'Mesaj', ''),
 (149, 'translations', 'Translations', 'ترجمة', 'çeviriler', ''),
-(150, 'account', 'Account', 'حساب', 'hesap', ''),
+(150, 'account', 'Account', 'حساب', 'hesap', 'Hesabım'),
 (151, 'selected_session', 'Selected Session', 'جلسة مختارة', 'seçilen oturum', ''),
 (152, 'change_password', 'Change Password', 'تغيير كلمة السر', 'Şifre değiştir', ''),
 (153, 'section', 'Section', 'قسم', 'Bölüm', ''),
@@ -1810,7 +1878,7 @@ INSERT INTO `languages` (`id`, `word`, `english`, `arabic`, `turkish`, `lang_32`
 (167, 'address', 'Address', 'عنوان', 'adres', ''),
 (168, 'phone', 'Phone', 'هاتف', 'Telefon', ''),
 (169, 'email', 'Email', 'البريد الإلكتروني', 'E-posta', ''),
-(170, 'password', 'Password', 'كلمه السر', 'Parola', ''),
+(170, 'password', 'Password', 'كلمه السر', 'Parola', 'Şifrə'),
 (171, 'transport_route', 'Transport Route', 'النقل الطريق', 'Ulaştırma Rota', ''),
 (172, 'photo', 'Photo', 'صورة فوتوغرافية', 'fotoğraf', ''),
 (173, 'select_class', 'Select Class', 'حدد فئة', 'seçin Sınıf', ''),
@@ -1818,7 +1886,7 @@ INSERT INTO `languages` (`id`, `word`, `english`, `arabic`, `turkish`, `lang_32`
 (175, 'select_section', 'Select Section', 'حدد القسم', 'seç Bölüm', ''),
 (176, 'options', 'Options', 'خيارات', 'Seçenekler', ''),
 (177, 'mark_sheet', 'Mark Sheet', 'ورقة علامة', 'İşareti levha', ''),
-(178, 'profile', 'Profile', 'الملف الشخصي', 'Profil', ''),
+(178, 'profile', 'Profile', 'الملف الشخصي', 'Profil', 'Hesabım'),
 (179, 'select_all', 'Select All', 'اختر الكل', 'Hepsini seç', ''),
 (180, 'select_none', 'Select None', 'حدد بلا', 'Hiçbir şey seçilmedi', ''),
 (181, 'average', 'Average', 'متوسط', 'Ortalama', ''),
@@ -2340,9 +2408,9 @@ INSERT INTO `languages` (`id`, `word`, `english`, `arabic`, `turkish`, `lang_32`
 (697, 'my_attendance_overview', 'My Attendance Overview', 'نظرة عامة على الحضور', 'Katılımım Genel Bakış', ''),
 (698, 'total_present', 'Total Present', 'المجموع الحالي', 'Toplam Hediye', ''),
 (699, 'total_absent', 'Total Absent', 'المجموع الكلي', 'Toplam Yok', ''),
-(700, 'total_late', 'Total Late', 'المجموع المتأخر', 'Toplam Geç', ''),
-(701, 'class_teacher_list', 'Class Teacher List', 'قائمة مدرس الفصل', 'Sınıf Öğretmeni Listesi', '');
+(700, 'total_late', 'Total Late', 'المجموع المتأخر', 'Toplam Geç', '');
 INSERT INTO `languages` (`id`, `word`, `english`, `arabic`, `turkish`, `lang_32`) VALUES
+(701, 'class_teacher_list', 'Class Teacher List', 'قائمة مدرس الفصل', 'Sınıf Öğretmeni Listesi', ''),
 (702, 'section_control', 'Section Control', 'التحكم بالقسم', 'Bölüm Kontrolü', ''),
 (703, 'capacity ', 'Capacity', 'سعة', 'Kapasite', ''),
 (704, 'request', 'Request', 'طلب', 'İstek', ''),
@@ -2398,7 +2466,7 @@ INSERT INTO `languages` (`id`, `word`, `english`, `arabic`, `turkish`, `lang_32`
 (754, 'credit_ledger_account', 'Credit Ledger Account', 'حساب دفتر الأستاذ الائتماني', 'Kredi Defteri Hesabı', ''),
 (755, 'debit_ledger_account', 'Debit Ledger Account', 'حساب دفتر الأستاذ المدين', 'Borç Defteri Hesabı', ''),
 (756, 'voucher_no', 'Voucher No', 'رقم القسيمة', 'Fiş numarası', ''),
-(757, 'balance', 'Balance', 'توازن', 'Denge', ''),
+(757, 'balance', 'Balance', 'توازن', 'Denge', 'Balans'),
 (758, 'event_details', 'Event Details', 'تفاصيل الحدث', 'etkinlik detayları', ''),
 (759, 'welcome_to', 'Welcome To', 'مرحبا بك في', 'Hoşgeldiniz', ''),
 (760, 'report_card', 'Report Card', 'بطاقة تقرير', 'Karne', ''),
@@ -2688,7 +2756,7 @@ INSERT INTO `languages` (`id`, `word`, `english`, `arabic`, `turkish`, `lang_32`
 (1044, 'class_schedule', 'Class Schedule', '', '', ''),
 (1045, 'cms_default_branch', 'Cms Default Branch', '', '', ''),
 (1046, 'website_page', 'Website Page', '', '', ''),
-(1047, 'welcome', 'Welcome', '', '', ''),
+(1047, 'welcome', 'Welcome', '', '', 'Xoş gəlmisiniz'),
 (1048, 'services', 'Services', '', '', ''),
 (1049, 'call_to_action_section', 'Call To Action Section', '', '', ''),
 (1050, 'subtitle', 'Subtitle', '', '', ''),
@@ -2807,7 +2875,7 @@ INSERT INTO `languages` (`id`, `word`, `english`, `arabic`, `turkish`, `lang_32`
 (1163, 'area', 'Area', '', '', 'Sahə'),
 (1164, 'region', 'Region', '', '', 'Rayon'),
 (1165, 'district', 'District', '', '', 'Qəsəbə'),
-(1166, 'statistics', 'Statistics', '', '', ''),
+(1166, 'statistics', 'Statistics', '', '', 'Statistika'),
 (1167, 'employees', 'Employees', '', '', ''),
 (1168, 'classes', 'Classes', '', '', ''),
 (1169, 'follow_us_on_social_networks', 'Follow Us On Social Networks', '', '', 'Bizi sosial şəbəkələrdə izləyin'),
@@ -2834,7 +2902,28 @@ INSERT INTO `languages` (`id`, `word`, `english`, `arabic`, `turkish`, `lang_32`
 (1190, 'mobile_number_is_incorrect', 'Mobile Number Is Incorrect', '', '', 'Mobil nömrə düzgün deyil'),
 (1191, 'notifications', 'Notifications', '', '', 'Bildirişlər'),
 (1192, 'my_ads', 'My Ads', '', '', 'Elanlarım'),
-(1193, 'my_account', 'My Account', '', '', 'Hesabım');
+(1193, 'my_account', 'My Account', '', '', 'Hesabım'),
+(1194, 'estate_types', 'Estate Types', '', '', 'Əmlakın növü'),
+(1195, 'phone_number', 'Phone Number', '', '', 'Telefon nömrəsi'),
+(1196, 'repeat_password', 'Repeat Password', '', '', 'Təkrar şifrə'),
+(1197, 'relevant_person', 'Relevant Person', '', '', 'Əlaqədar şəxs'),
+(1198, 'email_already_used', 'Email Already Used', '', '', 'Email artıq istifadə olunur'),
+(1199, 'phone_number_already_used', 'Phone Number Already Used', '', '', 'Telefon nömrəsi artıq istifadə olunur'),
+(1200, 'email_address_is_already_used', 'Email Address Is Already Used', '', '', 'Email adresi artıq istifadə olunur'),
+(1201, 'mobile_number_is_used', 'Mobile Number Is Used', '', '', 'Mobil nömrə artıq istifadə olunur'),
+(1202, 'the_announcement_owner_field_is_required', 'The Announcement Owner Field Is Required', '', '', 'Əlaqədar şəxs qeyd edilməyib'),
+(1203, 'the_name_must_consist_of_at_least_3_letters', 'The Name Must Consist Of At Least 3 Letters', '', '', 'Ad ən azı 3 hərfdən ibarət olmalıdır'),
+(1204, 'the_email_address_is_not_valid', 'The Email Address Is Not Valid', '', '', 'E-Poçt ünvanı doğru deyil'),
+(1205, 'the_email_address_already_used', 'The Email Address Already Used', '', '', 'E-Poçt ünvanı artıq istifadə olunur'),
+(1206, 'the_mobile_number_field_is_required', 'The Mobile Number Field Is Required', '', '', 'Telefon nömrəsi qeyd edilməyib'),
+(1207, 'the_phone_number_is_not_valid', 'The Phone Number Is Not Valid', '', '', 'Telefon nömrəsi doğru deyil'),
+(1208, 'the_phone_number_already_used', 'The Phone Number Already Used', '', '', 'Telefon nömrəsi artıq istifadə olunur'),
+(1209, 'the_password_must_be_at_least_8_characters_long', 'The Password Must Be At Least 8 Characters Long', '', '', 'Şifrə ən azı 8 simvoldan ibarət olmalıdır'),
+(1210, 'the_passwords_do_not_match', 'The Passwords Do Not Match', '', '', 'Şifrələr uyğun gəlmir'),
+(1211, 'user_agreement_field_is_required', 'User Agreement Field Is Required', '', '', 'İstifadəçi razılaşması qəbul edilməyib'),
+(1212, 'the_email_field_is_required', 'The Email Field Is Required', '', '', 'E-Poçt ünvanı qeyd edilməyib'),
+(1213, 'the_password_field_is_required', 'The Password Field Is Required', '', '', 'Şifrə qeyd edilməyib'),
+(1214, 'username_or_password_incorrect', 'Username Or Password Incorrect', '', '', '');
 
 -- --------------------------------------------------------
 
@@ -2859,7 +2948,7 @@ INSERT INTO `language_list` (`id`, `name`, `lang_field`, `status`, `created_at`,
 (1, 'English', 'english', 1, '2018-11-15 11:36:31', '2020-04-18 20:05:12'),
 (3, 'Arabic', 'arabic', 1, '2018-11-15 11:36:31', '2019-01-20 03:04:53'),
 (13, 'Türkçe', 'turkish', 1, '2018-11-15 11:36:31', '2022-04-23 00:30:20'),
-(32, 'Azərbaycan dili', 'lang_32', 1, '2022-04-21 17:46:15', '2022-04-23 04:15:24');
+(32, 'Azərbaycan dili', 'lang_32', 1, '2022-04-21 17:46:15', '2022-04-28 00:57:35');
 
 -- --------------------------------------------------------
 
@@ -2982,7 +3071,7 @@ CREATE TABLE `login_credential` (
 --
 
 INSERT INTO `login_credential` (`id`, `user_id`, `username`, `password`, `role`, `active`, `last_login`, `created_at`, `updated_at`) VALUES
-(1, 1, 'admin@gmail.com', '$2y$10$EjHNS.iSKnai72IICIACSe7mlurHBOrM5u1HXu2zwfTYwknyU/lkW', 1, 1, '2022-04-22 22:25:58', '2022-04-19 20:01:34', NULL);
+(1, 1, 'admin@gmail.com', '$2y$10$EjHNS.iSKnai72IICIACSe7mlurHBOrM5u1HXu2zwfTYwknyU/lkW', 1, 1, '2022-04-28 00:51:43', '2022-04-19 20:01:34', NULL);
 
 -- --------------------------------------------------------
 
@@ -3642,23 +3731,37 @@ CREATE TABLE `rm_sessions` (
 --
 
 INSERT INTO `rm_sessions` (`id`, `ip_address`, `timestamp`, `data`) VALUES
-('1ebp3hs70sja0egdinirrec7dtapp4q5', '::1', 1650671535, 0x5f5f63695f6c6173745f726567656e65726174657c693a313635303637313533353b7365745f6c616e677c733a373a226c616e675f3332223b776973685f736573737c733a33323a223537383936376530336366623938303666636262363939356639633863343830223b6e616d657c733a353a224361766964223b6c6f676765725f70686f746f7c4e3b6c6f67676564696e5f6272616e63687c4e3b6c6f67676564696e5f69647c733a313a2231223b6c6f67676564696e5f7573657269647c733a313a2231223b6c6f67676564696e5f726f6c655f69647c733a313a2231223b6c6f67676564696e5f747970657c733a353a227374616666223b7365745f73657373696f6e5f69647c733a313a2233223b6c6f67676564696e7c623a313b),
-('22n0ci5udlkbd3k9ptjdvjkq94teto3i', '::1', 1650708442, 0x5f5f63695f6c6173745f726567656e65726174657c693a313635303730383434323b),
-('2j968a9msgnioll5ra6j5ana6sn7bod7', '::1', 1650669888, 0x5f5f63695f6c6173745f726567656e65726174657c693a313635303636393838383b7365745f6c616e677c733a373a226c616e675f3332223b776973685f736573737c733a33323a223537383936376530336366623938303666636262363939356639633863343830223b6e616d657c733a353a224361766964223b6c6f676765725f70686f746f7c4e3b6c6f67676564696e5f6272616e63687c4e3b6c6f67676564696e5f69647c733a313a2231223b6c6f67676564696e5f7573657269647c733a313a2231223b6c6f67676564696e5f726f6c655f69647c733a313a2231223b6c6f67676564696e5f747970657c733a353a227374616666223b7365745f73657373696f6e5f69647c733a313a2233223b6c6f67676564696e7c623a313b),
-('2v966i1pcnsfoi59df4h99k1tc51tepn', '::1', 1650672658, 0x5f5f63695f6c6173745f726567656e65726174657c693a313635303637323635383b7365745f6c616e677c733a373a226c616e675f3332223b776973685f736573737c733a33323a223537383936376530336366623938303666636262363939356639633863343830223b6e616d657c733a353a224361766964223b6c6f676765725f70686f746f7c4e3b6c6f67676564696e5f6272616e63687c4e3b6c6f67676564696e5f69647c733a313a2231223b6c6f67676564696e5f7573657269647c733a313a2231223b6c6f67676564696e5f726f6c655f69647c733a313a2231223b6c6f67676564696e5f747970657c733a353a227374616666223b7365745f73657373696f6e5f69647c733a313a2233223b6c6f67676564696e7c623a313b),
-('4mioette91sd9omkrpdhb4va5lec58ru', '::1', 1650668420, 0x5f5f63695f6c6173745f726567656e65726174657c693a313635303636383432303b7365745f6c616e677c733a373a227475726b697368223b776973685f736573737c733a33323a223537383936376530336366623938303666636262363939356639633863343830223b6e616d657c733a353a224361766964223b6c6f676765725f70686f746f7c4e3b6c6f67676564696e5f6272616e63687c4e3b6c6f67676564696e5f69647c733a313a2231223b6c6f67676564696e5f7573657269647c733a313a2231223b6c6f67676564696e5f726f6c655f69647c733a313a2231223b6c6f67676564696e5f747970657c733a353a227374616666223b7365745f73657373696f6e5f69647c733a313a2233223b6c6f67676564696e7c623a313b),
-('738pvdbqi90un9eebi2a01vb9duqso5f', '::1', 1650708095, 0x5f5f63695f6c6173745f726567656e65726174657c693a313635303730383039353b),
-('7mrvbj8lt4bt756averej3jcjg8c78u9', '::1', 1650710149, 0x5f5f63695f6c6173745f726567656e65726174657c693a313635303731303134383b7365745f6c616e677c733a373a227475726b697368223b),
-('7pmmp6fjv5bs9ii6jtnu49knv2u8n3cr', '::1', 1650671216, 0x5f5f63695f6c6173745f726567656e65726174657c693a313635303637313231363b7365745f6c616e677c733a373a226c616e675f3332223b776973685f736573737c733a33323a223537383936376530336366623938303666636262363939356639633863343830223b6e616d657c733a353a224361766964223b6c6f676765725f70686f746f7c4e3b6c6f67676564696e5f6272616e63687c4e3b6c6f67676564696e5f69647c733a313a2231223b6c6f67676564696e5f7573657269647c733a313a2231223b6c6f67676564696e5f726f6c655f69647c733a313a2231223b6c6f67676564696e5f747970657c733a353a227374616666223b7365745f73657373696f6e5f69647c733a313a2233223b6c6f67676564696e7c623a313b),
-('8lcli0l9988hb9a9ut523lm7qak88nfh', '::1', 1650669392, 0x5f5f63695f6c6173745f726567656e65726174657c693a313635303636393338383b72656469726563745f75726c7c733a33373a22687474703a2f2f6c6f63616c686f73742f6576656c616e692f7472616e736c6174696f6e73223b),
-('em9vpoeqloi9kgng9e0s71dui3m8638r', '::1', 1650672933, 0x5f5f63695f6c6173745f726567656e65726174657c693a313635303637323635383b7365745f6c616e677c733a373a226c616e675f3332223b776973685f736573737c733a33323a223537383936376530336366623938303666636262363939356639633863343830223b6e616d657c733a353a224361766964223b6c6f676765725f70686f746f7c4e3b6c6f67676564696e5f6272616e63687c4e3b6c6f67676564696e5f69647c733a313a2231223b6c6f67676564696e5f7573657269647c733a313a2231223b6c6f67676564696e5f726f6c655f69647c733a313a2231223b6c6f67676564696e5f747970657c733a353a227374616666223b7365745f73657373696f6e5f69647c733a313a2233223b6c6f67676564696e7c623a313b),
-('etvrgi8ihngajk1534noftmeu7jaok0p', '::1', 1650669273, 0x5f5f63695f6c6173745f726567656e65726174657c693a313635303636393237333b7365745f6c616e677c733a373a226c616e675f3332223b776973685f736573737c733a33323a223537383936376530336366623938303666636262363939356639633863343830223b6e616d657c733a353a224361766964223b6c6f676765725f70686f746f7c4e3b6c6f67676564696e5f6272616e63687c4e3b6c6f67676564696e5f69647c733a313a2231223b6c6f67676564696e5f7573657269647c733a313a2231223b6c6f67676564696e5f726f6c655f69647c733a313a2231223b6c6f67676564696e5f747970657c733a353a227374616666223b7365745f73657373696f6e5f69647c733a313a2233223b6c6f67676564696e7c623a313b),
-('faaculn8tmgmr14qbr5skptli3oiu5gq', '::1', 1650670206, 0x5f5f63695f6c6173745f726567656e65726174657c693a313635303637303230363b7365745f6c616e677c733a373a226c616e675f3332223b776973685f736573737c733a33323a223537383936376530336366623938303666636262363939356639633863343830223b6e616d657c733a353a224361766964223b6c6f676765725f70686f746f7c4e3b6c6f67676564696e5f6272616e63687c4e3b6c6f67676564696e5f69647c733a313a2231223b6c6f67676564696e5f7573657269647c733a313a2231223b6c6f67676564696e5f726f6c655f69647c733a313a2231223b6c6f67676564696e5f747970657c733a353a227374616666223b7365745f73657373696f6e5f69647c733a313a2233223b6c6f67676564696e7c623a313b),
-('fekererns0b26rejiova5id591qaknb9', '::1', 1650671840, 0x5f5f63695f6c6173745f726567656e65726174657c693a313635303637313834303b7365745f6c616e677c733a373a226c616e675f3332223b776973685f736573737c733a33323a223537383936376530336366623938303666636262363939356639633863343830223b6e616d657c733a353a224361766964223b6c6f676765725f70686f746f7c4e3b6c6f67676564696e5f6272616e63687c4e3b6c6f67676564696e5f69647c733a313a2231223b6c6f67676564696e5f7573657269647c733a313a2231223b6c6f67676564696e5f726f6c655f69647c733a313a2231223b6c6f67676564696e5f747970657c733a353a227374616666223b7365745f73657373696f6e5f69647c733a313a2233223b6c6f67676564696e7c623a313b),
-('gec99jbo1rmobnruedcujs1ukh45kijv', '::1', 1650670863, 0x5f5f63695f6c6173745f726567656e65726174657c693a313635303637303836333b7365745f6c616e677c733a373a226c616e675f3332223b776973685f736573737c733a33323a223537383936376530336366623938303666636262363939356639633863343830223b6e616d657c733a353a224361766964223b6c6f676765725f70686f746f7c4e3b6c6f67676564696e5f6272616e63687c4e3b6c6f67676564696e5f69647c733a313a2231223b6c6f67676564696e5f7573657269647c733a313a2231223b6c6f67676564696e5f726f6c655f69647c733a313a2231223b6c6f67676564696e5f747970657c733a353a227374616666223b7365745f73657373696f6e5f69647c733a313a2233223b6c6f67676564696e7c623a313b),
-('kdlfo3nfiq35n7aem052utsllr74doch', '::1', 1650710148, 0x5f5f63695f6c6173745f726567656e65726174657c693a313635303731303134383b7365745f6c616e677c733a373a227475726b697368223b),
-('nnhci9lfsgm9fbbo9q7mjmvter735e56', '::1', 1650670534, 0x5f5f63695f6c6173745f726567656e65726174657c693a313635303637303533343b7365745f6c616e677c733a373a226c616e675f3332223b776973685f736573737c733a33323a223537383936376530336366623938303666636262363939356639633863343830223b6e616d657c733a353a224361766964223b6c6f676765725f70686f746f7c4e3b6c6f67676564696e5f6272616e63687c4e3b6c6f67676564696e5f69647c733a313a2231223b6c6f67676564696e5f7573657269647c733a313a2231223b6c6f67676564696e5f726f6c655f69647c733a313a2231223b6c6f67676564696e5f747970657c733a353a227374616666223b7365745f73657373696f6e5f69647c733a313a2233223b6c6f67676564696e7c623a313b),
-('nudel4urdsiviire0vai2qfrpbh6p21v', '::1', 1650672183, 0x5f5f63695f6c6173745f726567656e65726174657c693a313635303637323138333b7365745f6c616e677c733a373a226c616e675f3332223b776973685f736573737c733a33323a223537383936376530336366623938303666636262363939356639633863343830223b6e616d657c733a353a224361766964223b6c6f676765725f70686f746f7c4e3b6c6f67676564696e5f6272616e63687c4e3b6c6f67676564696e5f69647c733a313a2231223b6c6f67676564696e5f7573657269647c733a313a2231223b6c6f67676564696e5f726f6c655f69647c733a313a2231223b6c6f67676564696e5f747970657c733a353a227374616666223b7365745f73657373696f6e5f69647c733a313a2233223b6c6f67676564696e7c623a313b);
+('0572ssk54sfe94bkjtrol94p5qtp9dvh', '::1', 1651076869, 0x5f5f63695f6c6173745f726567656e65726174657c693a313635313037363836393b),
+('0k6ammrf6vqn52k7kksnld505sudrvje', '::1', 1651074079, 0x5f5f63695f6c6173745f726567656e65726174657c693a313635313037343037393b),
+('18a6b1o1v022731kaaiqqh602dbsin71', '::1', 1651096769, 0x5f5f63695f6c6173745f726567656e65726174657c693a313635313039363736393b66725f6e616d657c733a363a22536f6c6d617a223b66725f656d61696c7c733a32353a22616768616b6172696d736f6c6d617a40676d61696c2e636f6d223b7365745f6c616e677c733a373a226c616e675f3332223b66725f6c6f67676564696e7c623a313b66725f6c6f676765725f69647c733a313a2231223b66725f7365745f73657373696f6e5f69647c733a313a2233223b),
+('3h61gl6mkmfahuk1s7eboju6sfhf3sb0', '::1', 1651094701, 0x5f5f63695f6c6173745f726567656e65726174657c693a313635313039343730313b6e616d657c733a353a224361766964223b6c6f676765725f70686f746f7c4e3b6c6f67676564696e5f6272616e63687c4e3b6c6f67676564696e5f69647c733a313a2231223b6c6f67676564696e5f7573657269647c733a313a2231223b6c6f67676564696e5f726f6c655f69647c733a313a2231223b6c6f67676564696e5f747970657c733a353a227374616666223b7365745f6c616e677c733a373a226c616e675f3332223b7365745f73657373696f6e5f69647c733a313a2233223b6c6f67676564696e7c623a313b),
+('4t32vmv4crhrfc3av3sth5tcoh5e5dm1', '::1', 1651083059, 0x5f5f63695f6c6173745f726567656e65726174657c693a313635313038333035393b),
+('6g03ujv5naaabm0q949267ucdc7vno0e', '::1', 1651095903, 0x5f5f63695f6c6173745f726567656e65726174657c693a313635313039353930333b),
+('6qmt40e035p4t6a24uimo9lp3nt7ng90', '::1', 1651079051, 0x5f5f63695f6c6173745f726567656e65726174657c693a313635313037393035313b),
+('73537d0b1e53kpmnbe9obs5d0ti5u344', '::1', 1651097478, 0x5f5f63695f6c6173745f726567656e65726174657c693a313635313039373437383b66725f6e616d657c733a363a22536f6c6d617a223b66725f656d61696c7c733a32353a22616768616b6172696d736f6c6d617a40676d61696c2e636f6d223b7365745f6c616e677c733a373a226c616e675f3332223b66725f6c6f67676564696e7c623a313b66725f6c6f676765725f69647c733a313a2231223b66725f7365745f73657373696f6e5f69647c733a313a2233223b),
+('745bn6mtft63k9fbhu0k50u7fc6hni8j', '::1', 1651078056, 0x5f5f63695f6c6173745f726567656e65726174657c693a313635313037383035363b),
+('81qa8s9ppgvtrtnfo900aq5imir650ao', '::1', 1651077616, 0x5f5f63695f6c6173745f726567656e65726174657c693a313635313037373631363b),
+('8hj5jivg4iqvdjlu8gd1li2g5m9hs9o0', '::1', 1651098046, 0x5f5f63695f6c6173745f726567656e65726174657c693a313635313039383034363b72656469726563745f75726c7c733a33373a22687474703a2f2f6c6f63616c686f73742f6576656c616e692f757365722f70726f66696c65223b),
+('c6oig4m4bmgdgkconll02recr0ds3ce8', '::1', 1651078709, 0x5f5f63695f6c6173745f726567656e65726174657c693a313635313037383730393b),
+('fqgbobji0p4h8j3m1cgubp6d4mqj0ln3', '::1', 1651080411, 0x5f5f63695f6c6173745f726567656e65726174657c693a313635313038303136383b),
+('g9a18lbht1jf3o8nsk4cdbqm55pjlfls', '::1', 1651098282, 0x5f5f63695f6c6173745f726567656e65726174657c693a313635313039383034363b72656469726563745f75726c7c733a33383a22687474703a2f2f6c6f63616c686f73742f6576656c616e692f757365722f7265676973746572223b776973685f736573737c733a33323a226434633230623065323035343839643236643336363166323862303365663962223b7365745f6c616e677c733a373a226c616e675f3332223b),
+('hhtenq3hman05mobe9vnlipatl2gn5b7', '::1', 1651086021, 0x5f5f63695f6c6173745f726567656e65726174657c693a313635313038363032313b),
+('kbnsg2upqrhinj0aaucgcqrtij6ognir', '::1', 1651093054, 0x5f5f63695f6c6173745f726567656e65726174657c693a313635313039333035343b6e616d657c733a353a224361766964223b6c6f676765725f70686f746f7c4e3b6c6f67676564696e5f6272616e63687c4e3b6c6f67676564696e5f69647c733a313a2231223b6c6f67676564696e5f7573657269647c733a313a2231223b6c6f67676564696e5f726f6c655f69647c733a313a2231223b6c6f67676564696e5f747970657c733a353a227374616666223b7365745f6c616e677c733a373a226c616e675f3332223b7365745f73657373696f6e5f69647c733a313a2233223b6c6f67676564696e7c623a313b),
+('kmkg30ek179o1oqrcicdhrhlvqf0i472', '::1', 1651085305, 0x5f5f63695f6c6173745f726567656e65726174657c693a313635313038353330353b),
+('l0j5aj758qi0lcvtu31kb9qt6a1ft2h9', '::1', 1651080796, 0x5f5f63695f6c6173745f726567656e65726174657c693a313635313038303739363b),
+('lr3vpm6r8pr16t2io74orr6ftpb1f3m7', '::1', 1651092690, 0x5f5f63695f6c6173745f726567656e65726174657c693a313635313039323639303b),
+('msct2hq8j68jvqh4toiplcp7tt4qg2dc', '::1', 1651083414, 0x5f5f63695f6c6173745f726567656e65726174657c693a313635313038333431343b),
+('n32d26fhi30219ps4hchaglip462fjup', '::1', 1651078358, 0x5f5f63695f6c6173745f726567656e65726174657c693a313635313037383335383b),
+('nrt87q4lsm5b3g5nunakib0c4abh0of6', '::1', 1651084118, 0x5f5f63695f6c6173745f726567656e65726174657c693a313635313038343131383b),
+('nuo47ct68ner4b3fg6f24m9rulks5ons', '::1', 1651084801, 0x5f5f63695f6c6173745f726567656e65726174657c693a313635313038343830313b),
+('o57d9fk8b14l193hnmjssr2851bqbe5a', '::1', 1651080168, 0x5f5f63695f6c6173745f726567656e65726174657c693a313635313038303136383b),
+('pum87v61s24udb9fhsho9foasaunlrvu', '::1', 1651081361, 0x5f5f63695f6c6173745f726567656e65726174657c693a313635313038313336313b),
+('qjg9ss1vija8tghohpffss60b3usrb0m', '::1', 1651093999, 0x5f5f63695f6c6173745f726567656e65726174657c693a313635313039333939393b6e616d657c733a353a224361766964223b6c6f676765725f70686f746f7c4e3b6c6f67676564696e5f6272616e63687c4e3b6c6f67676564696e5f69647c733a313a2231223b6c6f67676564696e5f7573657269647c733a313a2231223b6c6f67676564696e5f726f6c655f69647c733a313a2231223b6c6f67676564696e5f747970657c733a353a227374616666223b7365745f6c616e677c733a373a226c616e675f3332223b7365745f73657373696f6e5f69647c733a313a2233223b6c6f67676564696e7c623a313b),
+('qrolnhv1fi7jgrbs9eovjvd0sm17qr0r', '::1', 1651079616, 0x5f5f63695f6c6173745f726567656e65726174657c693a313635313037393631363b),
+('qss2fjpv8j1iu1h20qci5h29gm8ub7ie', '::1', 1651076565, 0x5f5f63695f6c6173745f726567656e65726174657c693a313635313037363536353b),
+('s1ri2hq1jottmdks0vd6k962jh5ln6id', '::1', 1651098502, 0x5f5f63695f6c6173745f726567656e65726174657c693a313635313039383330383b72656469726563745f75726c7c733a33363a22687474703a2f2f6c6f63616c686f73742f6576656c616e692f757365722f7369676e696e223b),
+('s6pdv9887iejta4tbt6b7ns2mcm34q7a', '::1', 1651081671, 0x5f5f63695f6c6173745f726567656e65726174657c693a313635313038313637313b),
+('t5d6f71einid52em674q1b3h7325n568', '::1', 1651095103, 0x5f5f63695f6c6173745f726567656e65726174657c693a313635313039353130333b6e616d657c733a353a224361766964223b6c6f676765725f70686f746f7c4e3b6c6f67676564696e5f6272616e63687c4e3b6c6f67676564696e5f69647c733a313a2231223b6c6f67676564696e5f7573657269647c733a313a2231223b6c6f67676564696e5f726f6c655f69647c733a313a2231223b6c6f67676564696e5f747970657c733a353a227374616666223b7365745f6c616e677c733a373a226c616e675f3332223b7365745f73657373696f6e5f69647c733a313a2233223b6c6f67676564696e7c623a313b);
 
 -- --------------------------------------------------------
 
@@ -5287,7 +5390,7 @@ CREATE TABLE `wishlists` (
 --
 
 INSERT INTO `wishlists` (`id`, `session_id`, `data_id`) VALUES
-(16, '578967e03cfb9806fcbb6995f9c8c480', 32978);
+(1, 'd4c20b0e205489d26d3661f28b03ef9b', 32978);
 
 -- --------------------------------------------------------
 
@@ -5317,6 +5420,12 @@ ALTER TABLE `accounts`
 -- Indexes for table `ads_type`
 --
 ALTER TABLE `ads_type`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `ads_users`
+--
+ALTER TABLE `ads_users`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -5445,6 +5554,12 @@ ALTER TABLE `email_templates_details`
 -- Indexes for table `enroll`
 --
 ALTER TABLE `enroll`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `estate_type`
+--
+ALTER TABLE `estate_type`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -6096,6 +6211,12 @@ ALTER TABLE `ads_type`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
+-- AUTO_INCREMENT for table `ads_users`
+--
+ALTER TABLE `ads_users`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
 -- AUTO_INCREMENT for table `advance_salary`
 --
 ALTER TABLE `advance_salary`
@@ -6201,7 +6322,7 @@ ALTER TABLE `districts`
 -- AUTO_INCREMENT for table `email_config`
 --
 ALTER TABLE `email_config`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `email_templates`
@@ -6220,6 +6341,12 @@ ALTER TABLE `email_templates_details`
 --
 ALTER TABLE `enroll`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `estate_type`
+--
+ALTER TABLE `estate_type`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `event`
@@ -6489,7 +6616,7 @@ ALTER TABLE `hostel_room`
 -- AUTO_INCREMENT for table `languages`
 --
 ALTER TABLE `languages`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1194;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1215;
 
 --
 -- AUTO_INCREMENT for table `language_list`
@@ -6837,7 +6964,7 @@ ALTER TABLE `voucher_head`
 -- AUTO_INCREMENT for table `wishlists`
 --
 ALTER TABLE `wishlists`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `zoom_own_api`

@@ -3,10 +3,10 @@
       <div class="account account-personal">
          <div class="account-left">
             <div class="account-welcome">
-               <span>A</span>
+               <span><?= mb_substr(is_logged_name(), 0, 1); ?></span>
                <div class="account-welcome--desc">
                   <h6><?= translate('welcome') ?>,</h6>
-                  <h5>Ağakərim</h5>
+                  <h5><?= is_logged_name(); ?></h5>
                </div>
             </div>
             <div class="account-desc">
@@ -46,16 +46,16 @@
                   </li>
                </ul>
             </div>
-            <div class="find-home">
-               <a href="https://evelani.az/az/my-homes"><span>Mənə ev tap</span></a>
-               <div class="pretty p-switch p-fill newclass">
-                  <input x-activate-url="https://evelani.az/az/activate-find-me-home-function" type="checkbox" />
-                  <div class="state"><label></label></div>
-               </div>
-               <div class="find-home--desc">
-                  <p>Sizin istəklərinizə uyğun ev tövsiyyələri edilir.</p>
-               </div>
-            </div>
+               <!-- <div class="find-home">
+                  <a href="https://evelani.az/az/my-homes"><span>Mənə ev tap</span></a>
+                  <div class="pretty p-switch p-fill newclass">
+                     <input x-activate-url="https://evelani.az/az/activate-find-me-home-function" type="checkbox" />
+                     <div class="state"><label></label></div>
+                  </div>
+                  <div class="find-home--desc">
+                     <p>Sizin istəklərinizə uyğun ev tövsiyyələri edilir.</p>
+                  </div>
+               </div> -->
          </div>
          <div class="account-right profil-right">
             <h4>Profil</h4>

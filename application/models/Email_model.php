@@ -223,9 +223,9 @@ class Email_model extends CI_Model
 
     public function sendEmail($data)
     {
-        if (empty($data['branch_id'])) {
-            $data['branch_id'] = $this->application_model->get_branch_id();
-        }
+        // if (empty($data['branch_id'])) {
+        //     $data['branch_id'] = $this->application_model->get_branch_id();
+        // }
         if ($this->mailer->send($data)) {
             return true;
         } else {

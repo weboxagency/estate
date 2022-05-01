@@ -44,35 +44,76 @@ class Add_listing extends Frontend_Controller
         $this->form_validation->set_rules('announcement_owner', translate('announcement_owner'), 'trim|required');
         $this->form_validation->set_rules('user_type', translate('user_type'), 'trim|required');
         $this->form_validation->set_rules('mobile', translate('mobile'), 'trim|required');
-        $this->form_validation->set_rules('whatsapp', translate('whatsapp'), 'trim');
-        $this->form_validation->set_rules('email', translate('email'), 'trim|required|valid_email');
+        // $this->form_validation->set_rules('whatsapp', translate('whatsapp'), 'trim');
+        $this->form_validation->set_rules('email', translate('email'), 'trim|required');
+
+        $owner      = $this->input->post('announcement_owner');
+        $user_type  = $this->input->post('user_type');
+        $mobile     = $this->input->post('mobile');
+        $whatsapp   = $this->input->post('whatsapp');
+        $email      = $this->input->post('email');
+
+        $email_errors   = [];
+        $pass_errors    = [];
+        $owner_errors   = [];
+        $agree_errors   = []; 
+        $mobile_errors  = [];
+        // dd(validation_errors());
         if ($this->form_validation->run() == true) 
         {
-            $data = [
-                "status"        => "success",
-                "validations"   => [],
-                "message"       => ""
-                // "text"          => "Cavid",
-                // "title"         => "Kerim"
-            ];
+            if (!preg_match('/^[0-9]{9}+$/', $mobile)) 
+            {
+                $response = [
+                    "status"        => "success",
+                    "text"          => "",
+                    "validations"   => [
+                        "password"    => [translate("mobile_number_is_incorrect")]                           
+                        ]
+                    ];
+                    
+                echo json_encode($response);
+                exit();
+            }
+            elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) 
+            {
+                $response = [
+                    "status"        => "success",
+                    "text"          => "",
+                    "validations"   => [
+                        "password"   => [translate("email_address_is_incorrect")]                           
+                        ]
+                    ];
+                    
+                echo json_encode($response);
+                exit();
+            }
+            else
+            {
+                $response = [
+                    "status"        => "success",
+                    "validations"   => [],
+                    "message"       => ""
+                ];
+                echo json_encode($response);
+                exit();
+            }
+            
         }
         else
         {
-            $data = [
+            $response = [
                 "status"        => "success",
                 "validations"   => [
-                    "announcement_owner" => ["Əlaqədar şəxs qeyd edilməyib"],
-                    "email"              => ["Elektron poçt qeyd edilməyib"],
-                    "mobile"              => ["Mobil nömrə qeyd edilməyib"],
+                    "announcement_owner" => (empty($owner)) ? [translate("no_contact_person_specified")] : '',
+                    "email"              => (empty($email)) ? [translate("email_address_not_entered")] : '',
+                    "mobile"             => (empty($mobile)) ? [translate("mobile_number_is_not_specified")] : '',
                 ],
                 "message"       => ""
             ];
             
-        }
-            echo json_encode($data);
+            echo json_encode($response);
             die();
-       
-        
+        }
        
     }
 

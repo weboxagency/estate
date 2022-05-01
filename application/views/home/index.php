@@ -1,3 +1,7 @@
+<?php 
+// session_destroy();
+// dd($_SESSION); 
+?>
 <main class="main">
 <section class="main-header">
    <div class="main-header__content container  ">
@@ -60,77 +64,23 @@
                            <div class="form-item form-item--small">
                               <div class="dropdown dropdown-select" id="propertyType">
                                  <div class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <span>Əmlakın növü<strong></strong></span>
+                                    <span><?= translate('estate_types') ?><strong></strong></span>
                                     <svg class="icon icon-down">
                                        <use xlink:href="<?= base_url() ?>assets/site/img/icons/icons.svg#icon-down"></use>
                                     </svg>
                                  </div>
                                  <div class="dropdown-menu">
                                     <div class="dropdown-menu__group">
-                                       <div class="pretty pretty-checkbox p-icon p-curve p-jelly" x-property_type="1" x-type-1 x-type-2 x-type-3>
-                                          <input checked type="checkbox" name="property_type[1]" />
+                                       <?php foreach ($estate_types as $value): ?>
+                                       <div class="pretty pretty-checkbox p-icon p-curve p-jelly" x-property_type="<?= $value['id'] ?>" x-type-1 x-type-2 x-type-3>
+                                          <input <?= ($value['id']<3) ? 'checked' : 'disabled="disabled"' ?> type="checkbox" name="property_type[<?= $value['id'] ?>]" />
                                           <div class="state p-primary">
                                              <i class="icon fa fa-check"></i>
                                              <label></label>
-                                             <span>Yeni tikili</span>
+                                             <span><?= $value['estate_type_name'] ?></span>
                                           </div>
                                        </div>
-                                       <div class="pretty pretty-checkbox p-icon p-curve p-jelly" x-property_type="2" x-type-1 x-type-2 x-type-3>
-                                          <input checked type="checkbox" name="property_type[2]" />
-                                          <div class="state p-primary">
-                                             <i class="icon fa fa-check"></i>
-                                             <label></label>
-                                             <span>Köhnə tikili</span>
-                                          </div>
-                                       </div>
-                                       <div class="pretty pretty-checkbox p-icon p-curve p-jelly" x-property_type="3" x-type-1 x-type-2 x-type-3>
-                                          <input type="checkbox" name="property_type[3]" />
-                                          <div class="state p-primary">
-                                             <i class="icon fa fa-check"></i>
-                                             <label></label>
-                                             <span>Həyət evi / Bağ</span>
-                                          </div>
-                                       </div>
-                                       <div class="pretty pretty-checkbox p-icon p-curve p-jelly" x-property_type="5" x-type-1 x-type-2 x-type-3>
-                                          <input type="checkbox" name="property_type[5]" />
-                                          <div class="state p-primary">
-                                             <i class="icon fa fa-check"></i>
-                                             <label></label>
-                                             <span>Villa</span>
-                                          </div>
-                                       </div>
-                                       <div class="pretty pretty-checkbox p-icon p-curve p-jelly" x-property_type="6" x-type-1 x-type-2 x-type-3>
-                                          <input type="checkbox" name="property_type[6]" />
-                                          <div class="state p-primary">
-                                             <i class="icon fa fa-check"></i>
-                                             <label></label>
-                                             <span>Ofis</span>
-                                          </div>
-                                       </div>
-                                       <div class="pretty pretty-checkbox p-icon p-curve p-jelly" x-property_type="8" x-type-1 x-type-2>
-                                          <input type="checkbox" name="property_type[8]" />
-                                          <div class="state p-primary">
-                                             <i class="icon fa fa-check"></i>
-                                             <label></label>
-                                             <span>Torpaq</span>
-                                          </div>
-                                       </div>
-                                       <div class="pretty pretty-checkbox p-icon p-curve p-jelly" x-property_type="9" x-type-1 x-type-2>
-                                          <input type="checkbox" name="property_type[9]" />
-                                          <div class="state p-primary">
-                                             <i class="icon fa fa-check"></i>
-                                             <label></label>
-                                             <span>Obyekt</span>
-                                          </div>
-                                       </div>
-                                       <div class="pretty pretty-checkbox p-icon p-curve p-jelly" x-property_type="10" x-type-1 x-type-2>
-                                          <input type="checkbox" name="property_type[10]" />
-                                          <div class="state p-primary">
-                                             <i class="icon fa fa-check"></i>
-                                             <label></label>
-                                             <span>Qaraj</span>
-                                          </div>
-                                       </div>
+                                       <?php endforeach; ?>
                                     </div>
                                  </div>
                               </div>
@@ -202,7 +152,7 @@
                         </div>
                         <div class="form-row">
                            <div class="form-item form-item--large">
-                              <label for="">Qiymət, AZN</label>
+                              <label for=""><?= translate('price') ?>, AZN</label>
                               <div class="input-block">
                                  <input data-type="currency" inputmode="numeric" name="price_min" placeholder="min">
                                  <input data-type="currency" inputmode="numeric" name="price_max" placeholder="maks">

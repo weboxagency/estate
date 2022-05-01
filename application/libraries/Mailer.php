@@ -12,7 +12,7 @@ class Mailer
 
     public function send($data = array())
     {
-        $getConfig = $this->CI->db->get_where('email_config', array('branch_id' => $data['branch_id']))->row_array();
+        $getConfig = $this->CI->db->get_where('email_config', array('branch_id' => 1))->row_array();
 		$school_name = get_global_setting('institute_name');
         $config = array();
         if ($getConfig['protocol'] == 'smtp') {

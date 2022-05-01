@@ -18,9 +18,10 @@ class User extends Frontend_Controller
     {
         parent::__construct();
         $this->load->helpers('custom_fields');
-        $this->load->model('email_model');
+        $this->load->model('email_model','em');
         $this->load->model('testimonial_model');
         $this->load->model('gallery_model');
+        $this->load->model('user_model','um');
         $this->load->library('mailer');
     }
 
@@ -40,41 +41,89 @@ class User extends Frontend_Controller
             if ($_POST) 
             {
                 // Validations
-                $this->form_validation->set_rules("email", translate("email"), "trim|required|valid_email");
-                $this->form_validation->set_rules("password", translate("password"), "trim|required");
+                $this->form_validation->set_rules("email", translate("email"), "trim|required|valid_email",
+                    [
+                        "required"      => ucfirst(translate("the_email_field_is_required")),
+                        "valid_email"   => ucfirst(translate("the_email_address_is_not_valid"))
+                    ]
+                );
+                $this->form_validation->set_rules("password", translate("password"), "trim|required",
+                    [
+                        "required"      => ucfirst(translate("the_password_field_is_required"))
+                    ]
+                );
                 
-                $email      = $this->input->post('email');
-                $password   = $this->input->post('password');
+                $email      = $this->input->post('email',TRUE);
+                $password   = $this->input->post('password',TRUE);
                 
-                if ($this->form_validation->run() !== false) 
+                if ($this->form_validation->run() === TRUE) 
                 {
-                    // post
+                    $login_credential = $this->um->login_credential($email, $password);
+                    if ($login_credential) 
+                    {
+                        if ($login_credential->status) 
+                        {
+                            $getUser    = $this->um->getUserInfo($login_credential->id);
+                            $getConfig  = $this->db->get_where('global_settings', array('id' => 1))->row_array();
+                            $sessionData = array(
+                                'fr_name'           => $getUser['name'],
+                                'fr_email'          => $getUser['email'],
+                                'set_lang'          => $getConfig['translation'],
+                                'fr_loggedin'       => true,
+                                'fr_logger_id'      => $login_credential->id,
+                                'fr_set_session_id' => $getConfig['session_id'],
+                            );
+                        $this->session->set_userdata($sessionData);
+                        $response = [
+                             "status"    => "success",
+                             "text"      => "ok"    
+                        ];
+                        echo json_encode($response);
+                        
+                        // $this->db->update('ads_users', array('last_login' => date('Y-m-d H:i:s')), array('id' => $login_credential->id));
+                        }
+                        else
+                        {
+                            $output['email'] = [ucfirst(translate('inactive_account'))];
+                            
+                            $response = [
+                                "status"        => "success",
+                                "validations"   => $output
+                            ];
+                            echo json_encode($response);
+                        }
+                    }
+                    else 
+                    {
+                        $output['email'] = [ucfirst(translate('username_or_password_incorrect'))];
+
+                        $response = [
+                            "status"        => "success",
+                            "validations"   => $output
+                        ];
+                        echo json_encode($response);
+                    }
+
+                    
                 }
                 else
                 {
-                    $email_errors = [];
-                    $pass_errors = [];
-                    if (empty($email)) 
+                    $output = array();
+                    foreach ($_POST as $key => $value)
                     {
-                        $email_errors = translate("email_address_not_entered");
+                        $text   =   str_ireplace('<p>','',form_error($key));
+                        $text   =   str_ireplace('</p>','',$text); 
+                        if ($key!='_token' AND !empty($text)) 
+                        {
+                            
+                             $output[$key] = [$text];
+                        }
                     }
-                    elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) 
-                    {
-                        $email_errors = translate("email_address_is_incorrect");
-                    }
-                    if (empty($password)) 
-                    {
-                        $pass_errors = translate("password_not_entered");
-                    }
-                    
                     $response = [
                         "status"        => "success",
-                        "validations"   => [
-                             "email"     => (!empty($email_errors)) ? [$email_errors] : '',
-                             "password"  => (!empty($pass_errors)) ? [$pass_errors] : ''
-                            ]
+                        "text"          => "",
+                        "validations"   => $output
                     ];
-
                     echo json_encode($response);
                 }   
             }       
@@ -91,86 +140,284 @@ class User extends Frontend_Controller
             if ($_POST) 
             {
                 // Validations
-                $this->form_validation->set_rules("announcement_owner", translate("announcement_owner"), "trim|required|valid_email");
-                $this->form_validation->set_rules("email", translate("email"), "trim|required");
-                $this->form_validation->set_rules("mobile", translate("mobile"), "trim|required");
-                $this->form_validation->set_rules("password", translate("password"), "trim|required");
-                $this->form_validation->set_rules("repassword", translate("retry_password"), "trim|required");
-                $this->form_validation->set_rules("user_agreement", translate("user_agreement"), "trim|required");
-                
-                $announcement_owner     = $this->input->post('announcement_owner');
-                $email                  = $this->input->post('email');
-                $mobile                 = $this->input->post('mobile');
-                $password               = $this->input->post('password');
-                $repassword             = $this->input->post('repassword');
-                $user_agreement         = $this->input->post('user_agreement');
+                $this->form_validation->set_rules("announcement_owner", translate("announcement_owner"), "trim|required|min_length[3]|xss_clean", 
+                    [
+                        "required"      => ucfirst(translate("the_announcement_owner_field_is_required")),
+                        "min_length"    => ucfirst(translate("the_name_must_consist_of_at_least_3_letters")),
+                    ]
+                );
+                $this->form_validation->set_rules("email", translate("email"), "trim|required|valid_email|is_unique[ads_users.email]|xss_clean", 
+                    [
+                        "required"      => ucfirst(translate("the_email_field_is_required")),
+                        "valid_email"   => ucfirst(translate("the_email_address_is_not_valid")),
+                        "is_unique"     => ucfirst(translate("the_email_address_already_used"))
+                    ]
+                );
+                $this->form_validation->set_rules("mobile", translate("mobile"), "trim|required|min_length[10]|max_length[10]|is_unique[ads_users.mobile]|xss_clean", 
+                    [
+                        "required"      => ucfirst(translate("the_mobile_number_field_is_required")),
+                        "max_length"    => ucfirst(translate("the_phone_number_is_not_valid")),
+                        "min_length"    => ucfirst(translate("the_phone_number_is_not_valid")),
+                        "is_unique"     => ucfirst(translate("the_phone_number_already_used"))
+                    ]
+                );
+                $this->form_validation->set_rules("password", translate("password"), "trim|required|min_length[8]|xss_clean",
+                    [
+                        "required"      => ucfirst(translate("the_password_field_is_required")),
+                        "min_length"    => ucfirst(translate("the_password_must_be_at_least_8_characters_long"))
+                    ]
+                );
+                $this->form_validation->set_rules("repassword", translate("retry_password"), "trim|required|matches[password]|xss_clean",
+                     [
+                        "required"      => ucfirst(translate("the_password_field_is_required")),
+                        "matches"       => ucfirst(translate("the_passwords_do_not_match"))
+                    ]
+                );                
 
-                
-                if ($this->form_validation->run() !== false) 
+                $announcement_owner     = $this->input->post('announcement_owner',TRUE);
+                $email                  = $this->input->post('email',TRUE);
+                $mobile                 = $this->input->post('mobile',TRUE);
+                $password               = $this->input->post('password',TRUE);
+                $repassword             = $this->input->post('repassword',TRUE);
+                $user_agreement         = $this->input->post('user_agreement',TRUE);
+
+                if ($this->form_validation->run() === TRUE)         
                 {
-                    // post
-                }
+                        $insertData = [
+                            "name"              => $announcement_owner,
+                            "email"             => $email,
+                            "password"          => $this->app_lib->pass_hashed($password),
+                            "register_token"    => hash('sha256', $announcement_owner . $email . app_generate_hash()),
+                            "mobile"            => $mobile,
+                            "balance"           => 0,
+                            "status"            => 2,
+                            "ip"                => getIP(),
+                            "soft"              => getBrowser()['userAgent'],
+                            "browser_name"      => getBrowser()['name'],
+                            "register_at"       => date("Y-m-d H:i:s")
+                        ];
+                        $this->db->insert('ads_users', $insertData);
+                        $user_id = $this->db->insert_id();
+                        
+
+                        $msgData['recipient'] = $email;
+                        $msgData['subject'] = "Estate.az qeydiyyatınız tamamlandı.";
+                        $msgData['message'] = '<!DOCTYPE html>
+                        <html>
+                        <head>
+
+                          <meta charset="utf-8">
+                          <meta http-equiv="x-ua-compatible" content="ie=edge">
+                          <title>Email Confirmation</title>
+                          <meta name="viewport" content="width=device-width, initial-scale=1">
+                          <style type="text/css">
+                          @media screen {
+                            @font-face {
+                              font-family: "Source Sans Pro";
+                              font-style: normal;
+                              font-weight: 400;
+                              src: local("Source Sans Pro Regular"), local("SourceSansPro-Regular"), url(https://fonts.gstatic.com/s/sourcesanspro/v10/ODelI1aHBYDBqgeIAH2zlBM0YzuT7MdOe03otPbuUS0.woff) format("woff");
+                            }
+                            @font-face {
+                              font-family: "Source Sans Pro";
+                              font-style: normal;
+                              font-weight: 700;
+                              src: local("Source Sans Pro Bold"), local("SourceSansPro-Bold"), url(https://fonts.gstatic.com/s/sourcesanspro/v10/toadOcfmlt9b38dHJxOBGFkQc6VGVFSmCnC_l7QZG60.woff) format("woff");
+                            }
+                          }
+                          body,
+                          table,
+                          td,
+                          a {
+                            -ms-text-size-adjust: 100%; /* 1 */
+                            -webkit-text-size-adjust: 100%; /* 2 */
+                          }
+                          table,
+                          td {
+                            mso-table-rspace: 0pt;
+                            mso-table-lspace: 0pt;
+                          }
+                          img {
+                            -ms-interpolation-mode: bicubic;
+                          }
+                          a[x-apple-data-detectors] {
+                            font-family: inherit !important;
+                            font-size: inherit !important;
+                            font-weight: inherit !important;
+                            line-height: inherit !important;
+                            color: inherit !important;
+                            text-decoration: none !important;
+                          }
+                          div[style*="margin: 16px 0;"] {
+                            margin: 0 !important;
+                          }
+                          body {
+                            width: 100% !important;
+                            height: 100% !important;
+                            padding: 0 !important;
+                            margin: 0 !important;
+                          }
+                          table {
+                            border-collapse: collapse !important;
+                          }
+                          a {
+                            color: #1a82e2;
+                          }
+                          img {
+                            height: auto;
+                            line-height: 100%;
+                            text-decoration: none;
+                            border: 0;
+                            outline: none;
+                          }
+                          </style>
+
+                        </head>
+                        <body style="background-color: #e9ecef;">
+                          <div class="preheader" style="display: none; max-width: 0; max-height: 0; overflow: hidden; font-size: 1px; line-height: 1px; color: #fff; opacity: 0;">
+                            A preheader is the short summary text that follows the subject line when an email is viewed in the inbox.
+                          </div>
+                          <table border="0" cellpadding="0" cellspacing="0" width="100%">
+                            <tr>
+                              <td align="center" bgcolor="#e9ecef">
+                                <table border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width: 600px;">
+                                  <tr>
+                                    <td align="center" valign="top" style="padding: 36px 24px;">
+                                      <a href="https://sendgrid.com" target="_blank" style="display: inline-block;">
+                                        <img src="https://estate.az/assets/uploads/logo/logo354.png" alt="Logo" border="0" style="display: block; width: 108px; max-width: 108px; min-width: 98px;">
+                                      </a>
+                                    </td>
+                                  </tr>
+                                </table>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td align="center" bgcolor="#e9ecef">
+                                <table border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width: 600px;">
+                                  <tr>
+                                    <td align="left" bgcolor="#ffffff" style="padding: 36px 24px 0; font-family: Source Sans Pro, Helvetica, Arial, sans-serif; border-top: 3px solid #d4dadf;">
+                                      <h4 style="margin: 0; font-size: 22px; font-weight: 700; letter-spacing: -1px; line-height: 48px;">Hörmətli '.$announcement_owner.', qeydiyyatınız üçün təşəkkürlər</h4>
+                                    </td>
+                                  </tr>
+                                </table>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td align="center" bgcolor="#e9ecef">
+                                <table border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width: 600px;">
+                                  <tr>
+                                    <td align="left" bgcolor="#ffffff" style="padding: 24px; font-family: Source Sans Pro, Helvetica, Arial, sans-serif; font-size: 16px; line-height: 24px;">
+                                      <p style="margin: 0;">Aşağıdakı düyməyə klik edərək qeydiyyatınızı tamamlayın. </p>
+                                    </td>
+                                  </tr>
+                                  <tr>
+                                    <td align="left" bgcolor="#ffffff">
+                                      <table border="0" cellpadding="0" cellspacing="0" width="100%">
+                                        <tr>
+                                          <td align="center" bgcolor="#ffffff" style="padding: 12px;">
+                                            <table border="0" cellpadding="0" cellspacing="0">
+                                              <tr>
+                                                <td align="center" bgcolor="#1a82e2" style="border-radius: 6px;">
+                                                  <a href="https://sendgrid.com" target="_blank" style="display: inline-block; padding: 16px 36px; font-family: Source Sans Pro, Helvetica, Arial, sans-serif; font-size: 16px; color: #ffffff; text-decoration: none; border-radius: 6px;">Qeydiyyatı tamamla</a>
+                                                </td>
+                                              </tr>
+                                            </table>
+                                          </td>
+                                        </tr>
+                                      </table>
+                                    </td>
+                                  </tr>
+                                  <tr>
+                                    <td align="left" bgcolor="#ffffff" style="padding: 24px; font-family: Source Sans Pro, Helvetica, Arial, sans-serif; font-size: 16px; line-height: 24px;">
+                                      <p style="margin: 0;">Əgər hər hansı bir səbəbdən təsdiq etmə işləməzsə aşağıdakı linkdən davam edə bilərsiniz:</p>
+                                      <p style="margin: 0;"><a href="https://blogdesire.com" target="_blank">https://estate.az</a></p>
+                                    </td>
+                                  </tr>
+                                  
+                                </table>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td align="center" bgcolor="#e9ecef" style="padding: 24px;">
+                                <table border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width: 600px;">
+                                  
+                                  <tr>
+                                    <td align="center" bgcolor="#e9ecef" style="padding: 12px 24px; font-family: Source Sans Pro, Helvetica, Arial, sans-serif; font-size: 14px; line-height: 20px; color: #666;">
+                                      <p style="margin: 0;">Copyright © 2022 </p>
+                                      <p style="margin: 0;">Estate.az | Bütün hüquqlar qorunur.</p>
+                                    </td>
+                                  </tr>
+
+                                </table>
+                                </td>
+                                </tr>
+                                </table>
+                              </td>
+                            </tr>
+                          </table>
+                        </body>
+                        </html>';
+                        $this->em->sendEmail($msgData);
+                        $response = [
+                            "status"        => "success",
+                            "text"          => $email." ünvanına təsdiq mesajı göndərildi.",
+                            "validations"   => []
+                            ];
+                            
+                        echo json_encode($response);
+                        exit();
+                }  
                 else
                 {
-                    $email_errors   = [];
-                    $pass_errors    = [];
-                    $owner_errors   = [];
-                    $agree_errors   = []; 
-                    $mobile_errors  = []; 
-                    if (empty($email)) 
+                    $output = array();
+                    foreach ($_POST as $key => $value)
                     {
-                        $email_errors = translate("email_address_not_entered");
+                        $text   =   str_ireplace('<p>','',form_error($key));
+                        $text   =   str_ireplace('</p>','',$text); 
+                        if ($key!='_token' AND !empty($text)) 
+                        {
+                            
+                             $output[$key] = [$text];
+                        }
                     }
-                    elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) 
-                    {
-                        $email_errors = translate("email_address_is_incorrect");
-                    }
-                    if (empty($password)) 
-                    {
-                        $pass_errors = translate("password_not_entered");
-                    }
-                    elseif ($password!=$repassword) 
-                    {
-                        $pass_errors = translate("password_do_not_match");
-                    }
-                    if (empty($announcement_owner)) 
-                    {
-                        $owner_errors = translate("no_contact_person_specified");
-                    }
+                   
                     if (!isset($user_agreement)) 
                     {
-                        $agree_errors = translate("user_rules_not_accepted");
+                        $output['user_agreement'] = [ucfirst(translate("user_rules_not_accepted"))];
                     }
-                    if (empty($mobile)) 
-                    {
-                        $mobile_errors = translate("mobile_number_is_not_specified");
-                    }
-                    elseif (!preg_match('/^[0-9]{10}+$/', $mobile)) 
-                    {
-                        $mobile_errors = translate("mobile_number_is_incorrect");
-                    }
-                    
-
+                   
                     $response = [
                         "status"        => "success",
                         "text"          => "",
-                        "validations"   => [
-                             "announcement_owner"   => (!empty($owner_errors)) ? [$owner_errors] : '',
-                             "email"                => (!empty($email_errors)) ? [$email_errors] : '',
-                             "mobile"               => (!empty($mobile_errors)) ? [$mobile_errors] : '',
-                             "password"             => (!empty($pass_errors)) ? [$pass_errors] : '',
-                             "user_agreement"       => (!empty($agree_errors)) ? [$agree_errors] : ''
-                            ]
+                        "validations"   => $output
                     ];
-
                     echo json_encode($response);
                 }   
             } 
         }
     }
 
+    public function logout()
+    {
+        if (is_user_loggedin()) 
+        {
+            $this->session->unset_userdata('fr_name');
+            $this->session->unset_userdata('fr_email');
+            $this->session->unset_userdata('set_lang');
+            $this->session->unset_userdata('fr_loggedin');
+            $this->session->unset_userdata('fr_logger_id');
+            $this->session->unset_userdata('fr_set_session_id');
+            
+            // $this->session->sess_destroy();
+            redirect(base_url(), 'refresh');
+        }
+    }
     public function profile()
     {
+        if (!is_user_loggedin()) {
+            $this->session->set_userdata('redirect_url', current_url());
+            redirect(base_url(), 'refresh');
+        }
         $this->data['page_data'] = $this->home_model->get('front_cms_home_seo', array('branch_id' => 1), true);
         $this->data['main_contents'] = $this->load->view('user/profile', $this->data, true);
         $this->load->view('home/layout/index', $this->data);
@@ -178,6 +425,10 @@ class User extends Frontend_Controller
 
     public function account()
     {
+        if (!is_user_loggedin()) {
+            $this->session->set_userdata('redirect_url', current_url());
+            redirect(base_url(), 'refresh');
+        }
         $this->data['page_data'] = $this->home_model->get('front_cms_home_seo', array('branch_id' => 1), true);
         $this->data['main_contents'] = $this->load->view('user/account', $this->data, true);
         $this->load->view('home/layout/index', $this->data);
@@ -185,6 +436,10 @@ class User extends Frontend_Controller
 
     public function balance()
     {
+        if (!is_user_loggedin()) {
+            $this->session->set_userdata('redirect_url', current_url());
+            redirect(base_url(), 'refresh');
+        }
         $this->data['page_data'] = $this->home_model->get('front_cms_home_seo', array('branch_id' => 1), true);
         $this->data['main_contents'] = $this->load->view('user/balance', $this->data, true);
         $this->load->view('home/layout/index', $this->data);
@@ -192,28 +447,15 @@ class User extends Frontend_Controller
 
     public function statistics()
     {
+        if (!is_user_loggedin()) {
+            $this->session->set_userdata('redirect_url', current_url());
+            redirect(base_url(), 'refresh');
+        }
         $this->data['page_data'] = $this->home_model->get('front_cms_home_seo', array('branch_id' => 1), true);
         $this->data['main_contents'] = $this->load->view('user/statistics', $this->data, true);
         $this->load->view('home/layout/index', $this->data);
     }
 
-
-
-    
-
-
-
-
-
-    public function set_language($action = '')
-    {
-        $this->session->set_userdata('set_lang', $action);
-        if (!empty($_SERVER['HTTP_REFERER'])) {
-            redirect($_SERVER['HTTP_REFERER']);
-        } else {
-            redirect(base_url(), 'refresh');
-        } 
-    }
 
     public function wishlist()
     {
@@ -300,16 +542,6 @@ class User extends Frontend_Controller
         $this->data['ads_type']     = $this->home_model->adsType();
         $this->data['district']     = $this->home_model->allDistricts();
         $this->data['targets']      = $this->home_model->allTargets();
-
-        // $branchID = $this->home_model->getDefaultBranch();
-        // $this->data['branchID'] = $branchID;
-        // $this->data['sliders'] = $this->home_model->getCmsHome('slider', $branchID, 1, false);
-        // $this->data['features'] = $this->home_model->getCmsHome('features', $branchID, 1, false);
-        // $this->data['wellcome'] = $this->home_model->getCmsHome('wellcome', $branchID);
-        // $this->data['testimonial'] = $this->home_model->getCmsHome('testimonial', $branchID);
-        // $this->data['services'] = $this->home_model->getCmsHome('services', $branchID);
-        // $this->data['cta_box'] = $this->home_model->getCmsHome('cta', $branchID);
-        // $this->data['statistics'] = $this->home_model->getCmsHome('statistics', $branchID);
         $this->data['page_data'] = $this->home_model->get('front_cms_home_seo', array('branch_id' => 1), true);
         $this->data['main_contents'] = $this->load->view('home/index', $this->data, true);
         $this->load->view('home/layout/index', $this->data);
