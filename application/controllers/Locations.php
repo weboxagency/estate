@@ -95,8 +95,18 @@ class Locations extends Admin_Controller
     public function city_delete($id = '')
     {
         if (is_superadmin_loggedin()) {
+
+            $this->db->select('*');
+            $this->db->where('parent_city', $id);
+            $this->db->get()->row_array();
+
+
+            $this->db->where('parent_city', $id);
+            $this->db->delete('regions');
             $this->db->where('id', $id);
             $this->db->delete('cities');
+
+
         } else {
             redirect(base_url(), 'refresh');
         }
@@ -180,6 +190,10 @@ class Locations extends Admin_Controller
     public function region_delete($id = '')
     {
         if (is_superadmin_loggedin()) {
+
+            $this->db->where('parent_region', $id);
+            $this->db->delete('districts');
+
             $this->db->where('id', $id);
             $this->db->delete('regions');
         } else {

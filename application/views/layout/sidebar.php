@@ -1441,7 +1441,9 @@
                     get_permission('cron_job', 'is_view') ||
                     get_permission('system_update', 'is_add') ||
                     get_permission('custom_field', 'is_view') ||
-                    get_permission('backup', 'is_view')) {
+                    get_permission('backup', 'is_view') ||
+                    get_permission('user_agreement', 'is_view')
+                    ) {
                     ?>
                     <!-- setting -->
                     <li class="nav-parent <?php if ($main_menu == 'settings' || $main_menu == 'school_m') echo 'nav-expanded nav-active';?>">
@@ -1453,6 +1455,12 @@
                             <li class="<?php if($sub_page == 'settings/universal') echo 'nav-active';?>">
                                 <a href="<?=base_url('settings/universal')?>">
                                     <span><i class="fas fa-caret-right" aria-hidden="true"></i><?=translate('global_settings')?></span>
+                                </a>
+                            </li>
+                            <?php } if(get_permission('user_agreement', 'is_view')){ ?>
+                            <li class="<?php if($sub_page == 'settings/user_agreement') echo 'nav-active';?>">
+                                <a href="<?=base_url('settings/user_agreement')?>">
+                                    <span><i class="fas fa-caret-right" aria-hidden="true"></i><?=translate('user_agreement')?></span>
                                 </a>
                             </li>
                             <?php } if($schoolSettings == true){ ?>
