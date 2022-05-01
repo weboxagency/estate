@@ -17,6 +17,7 @@ class Settings extends Admin_Controller
     public function __construct()
     {
         parent::__construct();
+        $this->load->model('useragreements_model','ua');
     }
 
     public function index()
@@ -24,7 +25,20 @@ class Settings extends Admin_Controller
         redirect(base_url(), 'refresh');
     }
 
+
+
     /* global settings controller */
+    
+    /* user agreement */
+    public function user_agreement()
+    {
+        $this->data['user_agreement']  = $this->ua->getUserAgreements()[0];
+        $this->data['title']            = translate('user_agreement');
+        $this->data['sub_page']         = 'settings/user_agreement';
+        $this->data['main_menu']        = 'locations';
+        $this->load->view('layout/index', $this->data);
+    }
+
     public function universal()
     {
         if (!get_permission('global_settings', 'is_view')) {
