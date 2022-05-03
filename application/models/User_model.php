@@ -63,6 +63,23 @@ class User_model extends MY_Model
         $sql = "SELECT name,email,mobile,status,last_active,ip,soft,browser_name FROM ads_users WHERE id = " . $this->db->escape($userID);
         return $this->db->query($sql)->row_array(); 
     }
+
+    public function getRegisterKey($par)
+    {
+        $this->db->select('*');
+        $this->db->from('ads_users');
+        $this->db->where('register_token', $par);
+        $this->db->limit(1);
+        $query = $this->db->get();
+        if ($query->num_rows() == 1) 
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
     
     
 }

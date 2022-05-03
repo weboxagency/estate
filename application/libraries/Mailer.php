@@ -36,9 +36,12 @@ class Mailer
         $this->CI->email->to($data['recipient']);
         $this->CI->email->subject($data['subject']);
         $this->CI->email->message($data['message']);	
-        if ($this->CI->email->send(true)) {
+        if ($this->CI->email->send(true)) 
+        {
             return true;
-        } else {
+        } 
+        else 
+        {
             return false;
         }
     }
