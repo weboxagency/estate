@@ -313,6 +313,15 @@ function is_logged_name()
     return false;
 }
 
+function logged_user_id()
+{
+    $CI = &get_instance();
+    if ($CI->session->has_userdata('fr_logger_id')) {
+        return $CI->session->userdata('fr_logger_id');
+    }
+    return false;
+}
+
 /*********************** DASHBOARD ***************************/
 
 
