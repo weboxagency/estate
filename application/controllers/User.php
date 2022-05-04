@@ -62,7 +62,27 @@ class User extends Frontend_Controller
                     $login_credential = $this->um->login_credential($email, $password);
                     if ($login_credential) 
                     {
-                        if ($login_credential->status) 
+                        if($login_credential->status == 2)
+                        {
+                            $output['email'] = [ucfirst(translate('unverified_account'))];
+                            
+                            $response = [
+                                "status"        => "success",
+                                "validations"   => $output
+                            ];
+                            echo json_encode($response);
+                        }
+                        elseif ($login_credential->status == 0) 
+                        {
+                           $output['email'] = [ucfirst(translate('inactive_account'))];
+                            
+                            $response = [
+                                "status"        => "success",
+                                "validations"   => $output
+                            ];
+                            echo json_encode($response);
+                        }
+                        elseif ($login_credential->status == 1) 
                         {
                             $getUser    = $this->um->getUserInfo($login_credential->id);
                             $getConfig  = $this->db->get_where('global_settings', array('id' => 1))->row_array();
@@ -83,16 +103,7 @@ class User extends Frontend_Controller
                         
                         // $this->db->update('ads_users', array('last_login' => date('Y-m-d H:i:s')), array('id' => $login_credential->id));
                         }
-                        else
-                        {
-                            $output['email'] = [ucfirst(translate('inactive_account'))];
-                            
-                            $response = [
-                                "status"        => "success",
-                                "validations"   => $output
-                            ];
-                            echo json_encode($response);
-                        }
+                        
                     }
                     else 
                     {
@@ -201,94 +212,97 @@ class User extends Frontend_Controller
                         $user_id = $this->db->insert_id();
                         
 
-                        $msgData['recipient'] = $email;
-                        $msgData['subject'] = "Estate.az qeydiyyatınız tamamlandı.";
-                        $msgData['message'] = '<!DOCTYPE html>
-   <head>
-      <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
-      <title>New Account Email Template</title>
-      <meta name="description" content="New Account Email Template.">
-      <style type="text/css">
-         a:hover {text-decoration: underline !important;}
-      </style>
-   </head>
-   <body marginheight="0" topmargin="0" marginwidth="0" style="margin: 0px; background-color: #f2f3f8;" leftmargin="0">
-      <table cellspacing="0" border="0" cellpadding="0" width="100%" bgcolor="#f2f3f8"
-         style="@import url(https://fonts.googleapis.com/css?family=Rubik:300,400,500,700|Open+Sans:300,400,600,700); font-family: Open Sans, sans-serif;">
-         <tr>
-            <td>
-               <table style="background-color: #f2f3f8; max-width:670px; margin:0 auto;" width="100%" border="0"
-                  align="center" cellpadding="0" cellspacing="0">
-                  <tr>
-                     <td style="height:80px;">&nbsp;</td>
-                  </tr>
-                  <tr>
-                     <td style="text-align:center;">
-                        <a href="https://estate.az" title="logo" target="_blank">
-                        <img width="110" src="'.base_url('uploads/frontend/images/logo1.png').'" title="logo" alt="logo">
-                        </a>
-                     </td>
-                  </tr>
-                  <tr>
-                     <td style="height:20px;">&nbsp;</td>
-                  </tr>
-                  <tr>
-                     <td>
-                        <table width="95%" border="0" align="center" cellpadding="0" cellspacing="0"
-                           style="max-width:670px; background:#fff; border-radius:3px; text-align:center;-webkit-box-shadow:0 6px 18px 0 rgba(0,0,0,.06);-moz-box-shadow:0 6px 18px 0 rgba(0,0,0,.06);box-shadow:0 6px 18px 0 rgba(0,0,0,.06);">
-                           <tr>
-                              <td style="height:40px;">&nbsp;</td>
-                           </tr>
-                           <tr>
-                              <td style="padding:0 35px;">
-                                 <h1 style="color:#1e1e2d; font-weight:500; margin:0;font-size:32px;font-family:Rubik,sans-serif;">Hörmətli '.$announcement_owner.', xoş gəldiniz.
-                                 </h1>
-                                 <p style="font-size:15px; color:#455056; margin:8px 0 0; line-height:24px;">
-                                    Saytımızdakı qeydiyyatınızı təsdiq etmək üçün, zəhmət olmasa aşağıdakı linkdən <br/>və ya <a href="https://estate.az">bu keçiddən</a> istifadə edərək, qeydiyyatınızı təsdiq edərək hesabınızı aktivləşdirin</strong>.
-                                 </p>
-                                 <span
-                                    style="display:inline-block; vertical-align:middle; margin:29px 0 26px; border-bottom:1px solid #cecece; width:100px;"></span>
-                                 <p style="color:#455056; font-size:18px;line-height:20px; margin:0; font-weight: 500;">
-                                    <strong style="display: block;font-size: 13px; margin: 0 0 4px; color:rgba(0,0,0,.64); font-weight:normal;">Qeydiyyat üçün istifadə etdiyiniz mobil nömrə</strong>'.$mobile.'
-                                   
-                                 </p>
-                                 <a href="login.html" style="background:#dca73d;text-decoration:none !important; display:inline-block; font-weight:500; margin-top:24px; color:#fff;text-transform:uppercase; font-size:14px;padding:10px 24px;display:inline-block;border-radius:50px;">
-                                    Təsdiq et
-                                </a>
-                              </td>
-                           </tr>
-                           <tr>
-                              <td style="height:40px;">&nbsp;</td>
-                           </tr>
-                        </table>
-                     </td>
-                  </tr>
-                  <tr>
-                     <td style="height:20px;">&nbsp;</td>
-                  </tr>
-                  <tr>
-                     <td style="text-align:center;">
-                        <p style="font-size:14px; color:rgba(69, 80, 86, 0.7411764705882353); line-height:18px; margin:0 0 0;"> Powered by &hearts; <strong>WeBoX Agency</strong> &hearts;</p>
-                     </td>
-                  </tr>
-                  <tr>
-                     <td style="height:80px;">&nbsp;</td>
-                  </tr>
-               </table>
-            </td>
-         </tr>
-      </table>
-   </body>
-</html>';
+                        $msgData['recipient']   = $email;
+                        $msgData['subject']     = "Estate.az qeydiyyatınız tamamlandı.";
+                        $msgData['message']     = '<!DOCTYPE html>
+                       <head>
+                          <meta charset="utf-8">
+                          <meta http-equiv="x-ua-compatible" content="ie=edge">
+                          <title>Email Confirmation</title>
+                          <meta name="viewport" content="width=device-width, initial-scale=1">
+                          <style type="text/css">
+                             a:hover {text-decoration: underline !important;}
+                          </style>
+                       </head>
+                       <body marginheight="0" topmargin="0" marginwidth="0" style="margin: 0px; background-color: #f2f3f8;" leftmargin="0">
+                          <table cellspacing="0" border="0" cellpadding="0" width="100%" bgcolor="#f2f3f8"
+                             style="@import url(https://fonts.googleapis.com/css?family=Rubik:300,400,500,700|Open+Sans:300,400,600,700); font-family: Open Sans, sans-serif;">
+                             <tr>
+                                <td>
+                                   <table style="background-color: #f2f3f8; max-width:670px; margin:0 auto;" width="100%" border="0"
+                                      align="center" cellpadding="0" cellspacing="0">
+                                      <tr>
+                                         <td style="height:80px;">&nbsp;</td>
+                                      </tr>
+                                      <tr>
+                                         <td style="text-align:center;">
+                                            <a href="https://estate.az" title="logo" target="_blank">
+                                            <img width="110" src="'.base_url().'uploads/frontend/images/logo1.png" title="logo" alt="logo">
+                                            </a>
+                                         </td>
+                                      </tr>
+                                      <tr>
+                                         <td style="height:20px;">&nbsp;</td>
+                                      </tr>
+                                      <tr>
+                                         <td>
+                                            <table width="95%" border="0" align="center" cellpadding="0" cellspacing="0"
+                                               style="max-width:670px; background:#fff; border-radius:3px; text-align:center;-webkit-box-shadow:0 6px 18px 0 rgba(0,0,0,.06);-moz-box-shadow:0 6px 18px 0 rgba(0,0,0,.06);box-shadow:0 6px 18px 0 rgba(0,0,0,.06);">
+                                               <tr>
+                                                  <td style="height:40px;">&nbsp;</td>
+                                               </tr>
+                                               <tr>
+                                                  <td style="padding:0 35px;">
+                                                     <h1 style="color:#1e1e2d; font-weight:500; margin:0;font-size:32px;font-family:Rubik,sans-serif;">Hörmətli '.$announcement_owner.', xoş gəldiniz.
+                                                     </h1>
+                                                     <p style="font-size:15px; color:#455056; margin:8px 0 0; line-height:24px;">
+                                                        Zəhmət olmazsa, aşağıdakı linkdən <br/>və ya <a href="'.base_url().'user/finish_registration/'.$insertData['register_token'].'">bu linkdən</a> istifadə edərək, saytımızdakı hesabınızı aktivləşdirin</strong>.
+                                                     </p>
+                                                     <span
+                                                        style="display:inline-block; vertical-align:middle; margin:29px 0 26px; border-bottom:1px solid #cecece; width:100px;"></span>
+                                                     <p style="color:#455056; font-size:18px;line-height:20px; margin:0; font-weight: 500;">
+                                                        <strong style="display: block;font-size: 13px; margin: 0 0 4px; color:rgba(0,0,0,.64); font-weight:normal;">Qeydiyyat üçün istifadə etdiyiniz mobil nömrə</strong>'.$mobile.'
+                                                       
+                                                     </p>
+                                                     <a href="'.base_url().'user/finish_registration/'.$insertData['register_token'].'" style="background:#dca73d;text-decoration:none !important; display:inline-block; font-weight:500; margin-top:24px; color:#fff;text-transform:uppercase; font-size:14px;padding:10px 24px;display:inline-block;border-radius:50px;">
+                                                        Təsdiq et
+                                                    </a>
+                                                  </td>
+                                               </tr>
+                                               <tr>
+                                                  <td style="height:40px;">&nbsp;</td>
+                                               </tr>
+                                            </table>
+                                         </td>
+                                      </tr>
+                                      <tr>
+                                         <td style="height:20px;">&nbsp;</td>
+                                      </tr>
+                                      <tr>
+                                         <td style="text-align:center;">
+                                            <p style="font-size:14px; color:rgba(69, 80, 86, 0.7411764705882353); line-height:18px; margin:0 0 0;"> Powered by &hearts; <strong>WeBoX Agency</strong> &hearts;</p>
+                                         </td>
+                                      </tr>
+                                      <tr>
+                                         <td style="height:80px;">&nbsp;</td>
+                                      </tr>
+                                   </table>
+                                </td>
+                             </tr>
+                          </table>
+                       </body>
+                    </html>';
                         $this->em->sendEmail($msgData);
+                       
                         $response = [
-                            "status"        => "success",
-                            "text"          => $email." ünvanına təsdiq mesajı göndərildi.",
-                            "validations"   => []
-                            ];
-                            
+                        "status"        => "success",
+                        "text"          => $email." ünvanına təsdiq mesajı göndərildi.",
+                        "validations"   => []
+                        ];
+                        
                         echo json_encode($response);
                         exit();
+
                 }  
                 else
                 {
@@ -320,6 +334,259 @@ class User extends Frontend_Controller
         }
     }
 
+    public function finish_registration($par = '')
+    {
+        $par = (isset($par)) ? $par : '';
+        if (!empty($par)) 
+        {
+            $responseKey = $this->um->getRegisterKey($par);
+            if ($responseKey) 
+            {
+                $config = [
+                    'status'         => 1,
+                    'register_token' => ''
+                ];
+                $this->db->where('register_token', $par);
+                $this->db->update('ads_users', $config);
+                redirect(base_url().'?finish=1', 'refresh');
+            }
+            else
+            {
+                redirect(base_url(), 'refresh');
+            }
+        }
+        else
+        {
+            redirect(base_url(), 'refresh');
+        }
+    }
+
+    public function lose_password()
+    {
+        if (!$this->input->is_ajax_request()) 
+        {
+            exit('No direct script access allowed');
+        }
+        else
+        {
+            if ($_POST) 
+            {
+                $this->form_validation->set_rules("email", translate("email"), "trim|required|valid_email|xss_clean", 
+                        [
+                            "required"      => ucfirst(translate("the_email_field_is_required")),
+                            "valid_email"   => ucfirst(translate("the_email_address_is_not_valid"))
+                        ]
+                    );
+
+                if ($this->form_validation->run() === TRUE)         
+                {
+                    $email = $this->input->post('email');
+                    if (!empty($email)) 
+                    {
+                        $this->db->select('*');
+                        $this->db->from('ads_users');
+                        $this->db->where('email', $email);
+                        $this->db->limit(1);
+                        $query = $this->db->get();
+
+                        if ($query->num_rows() > 0) 
+                        {
+                            $login_credential = $query->row();
+                            // $getUser = $this->application_model->getUserNameByRoleID($login_credential->role, $login_credential->id);
+                            $key = hash('sha512', $login_credential->id . $login_credential->email . app_generate_hash());
+                            $query = $this->db->get_where('ads_users_reset_password', array('credential_id' => $login_credential->id));
+                            if ($query->num_rows() > 0) {
+                                $this->db->where('credential_id', $login_credential->id);
+                                $this->db->delete('ads_users_reset_password');
+                            }
+                            $arrayReset = array(
+                                'key'           => $key,
+                                'credential_id' => $login_credential->id,
+                                'email'         => $login_credential->email,
+                            );
+                            $this->db->insert('ads_users_reset_password', $arrayReset);
+                            // send email for forgot password
+                            $this->load->model('email_model');
+                            $msgData['recipient']   = $email;
+                        $msgData['subject']     = "Estate.az şifrə sıfırlanması.";
+                        $msgData['message']     = '<!DOCTYPE html>
+                       <head>
+                          <meta charset="utf-8">
+                          <meta http-equiv="x-ua-compatible" content="ie=edge">
+                          <title>Email Confirmation</title>
+                          <meta name="viewport" content="width=device-width, initial-scale=1">
+                          <style type="text/css">
+                             a:hover {text-decoration: underline !important;}
+                          </style>
+                       </head>
+                       <body marginheight="0" topmargin="0" marginwidth="0" style="margin: 0px; background-color: #f2f3f8;" leftmargin="0">
+                          <table cellspacing="0" border="0" cellpadding="0" width="100%" bgcolor="#f2f3f8"
+                             style="@import url(https://fonts.googleapis.com/css?family=Rubik:300,400,500,700|Open+Sans:300,400,600,700); font-family: Open Sans, sans-serif;">
+                             <tr>
+                                <td>
+                                   <table style="background-color: #f2f3f8; max-width:670px; margin:0 auto;" width="100%" border="0"
+                                      align="center" cellpadding="0" cellspacing="0">
+                                      <tr>
+                                         <td style="height:80px;">&nbsp;</td>
+                                      </tr>
+                                      <tr>
+                                         <td style="text-align:center;">
+                                            <a href="'.base_url().'" title="logo" target="_blank">
+                                            <img width="110" src="'.base_url().'uploads/frontend/images/logo1.png" title="logo" alt="logo">
+                                            </a>
+                                         </td>
+                                      </tr>
+                                      <tr>
+                                         <td style="height:20px;">&nbsp;</td>
+                                      </tr>
+                                      <tr>
+                                         <td>
+                                            <table width="95%" border="0" align="center" cellpadding="0" cellspacing="0"
+                                               style="max-width:670px; background:#fff; border-radius:3px; text-align:center;-webkit-box-shadow:0 6px 18px 0 rgba(0,0,0,.06);-moz-box-shadow:0 6px 18px 0 rgba(0,0,0,.06);box-shadow:0 6px 18px 0 rgba(0,0,0,.06);">
+                                               <tr>
+                                                  <td style="height:40px;">&nbsp;</td>
+                                               </tr>
+                                               <tr>
+                                                  <td style="padding:0 35px;">
+                                                     <h1 style="color:#1e1e2d; font-weight:500; margin:0;font-size:32px;font-family:Rubik,sans-serif;">Hörmətli '.$login_credential->name.', şifrənizi unutmusunuz?
+                                                     </h1>
+                                                     <p style="font-size:15px; color:#455056; margin:8px 0 0; line-height:24px;">
+                                                        Zəhmət olmazsa, aşağıdakı linkdən <br/>və ya <a href="'.base_url().'user/finish_registration/">bu linkdən</a> istifadə edərək, şifrənizi sıfırlayın</strong>.
+                                                     </p>
+                                                     <span
+                                                        style="display:inline-block; vertical-align:middle; margin:29px 0 26px; border-bottom:1px solid #cecece; width:100px;"></span>
+                                                     <p style="color:#455056; font-size:18px;line-height:20px; margin:0; font-weight: 500;">
+                                                        <strong style="display: block;font-size: 13px; margin: 0 0 4px; color:rgba(0,0,0,.64); font-weight:normal;">Saytımızda istifadə etdiyiniz mobil nömrə</strong>'.$login_credential->mobile.'
+                                                       
+                                                     </p>
+                                                     <a href="'.base_url().'user/finish_registration" style="background:#dca73d;text-decoration:none !important; display:inline-block; font-weight:500; margin-top:24px; color:#fff;text-transform:uppercase; font-size:14px;padding:10px 24px;display:inline-block;border-radius:50px;">
+                                                        Şifrəni sıfırla
+                                                    </a>
+                                                  </td>
+                                               </tr>
+                                               <tr>
+                                                  <td style="height:40px;">&nbsp;</td>
+                                               </tr>
+                                            </table>
+                                         </td>
+                                      </tr>
+                                      <tr>
+                                         <td style="height:20px;">&nbsp;</td>
+                                      </tr>
+                                      <tr>
+                                         <td style="text-align:center;">
+                                            <p style="font-size:14px; color:rgba(69, 80, 86, 0.7411764705882353); line-height:18px; margin:0 0 0;"> Powered by &hearts; <strong>WeBoX Agency</strong> &hearts;</p>
+                                         </td>
+                                      </tr>
+                                      <tr>
+                                         <td style="height:80px;">&nbsp;</td>
+                                      </tr>
+                                   </table>
+                                </td>
+                             </tr>
+                          </table>
+                       </body>
+                    </html>';
+                        $this->em->sendEmail($msgData);
+                       
+                        $response = [
+                        "status"        => "success",
+                        "text"          => $email." e-mail adresinə şifrə yeniləmə linki göndərildi.",
+                        "validations"   => []
+                        ];
+                        
+                        echo json_encode($response);
+                        exit();
+                            // $arrayData = array(
+                            //     'role'      => $login_credential->role, 
+                            //     'branch_id' => $getUser['branch_id'], 
+                            //     'username'  => $login_credential->username, 
+                            //     'name'      => $getUser['name'], 
+                            //     'reset_url' => base_url('authentication/pwreset?key=' . $key), 
+                            //     'email'     => $getUser['email'], 
+                            // );
+                            // $this->email_model->sentForgotPassword($arrayData);
+                            return true;
+                        }
+                        else
+                        {
+                            $response = [
+                                "status"        => "success",
+                                "text"          => "",
+                                "validations"   => [ "email" => [ucfirst(translate("the_email_address_is_not_valid"))] ]
+                            ];
+                            echo json_encode($response);
+                        }
+                    }
+                }  
+                else
+                {
+                    $output = array();
+                    foreach ($_POST as $key => $value)
+                    {
+                        $text   =   str_ireplace('<p>','',form_error($key));
+                        $text   =   str_ireplace('</p>','',$text); 
+                        if ($key!='_token' AND !empty($text)) 
+                        {
+                            
+                             $output[$key] = [$text];
+                        }
+                    }
+                              
+                    $response = [
+                        "status"        => "success",
+                        "text"          => "",
+                        "validations"   => $output
+                    ];
+                    echo json_encode($response);
+                }
+            }
+        } 
+    }
+
+    public function reset_password()
+    {
+        if (!$this->input->is_ajax_request()) 
+        {
+            exit('No direct script access allowed');
+        }
+        else
+        {
+            $key = $this->input->get('key');
+            if (!empty($key)) 
+            {
+                $query = $this->db->get_where('ads_users_reset_password', array('key' => $key));
+                if ($query->num_rows() > 0) 
+                {
+                    if ($this->input->post()) 
+                    {
+                        $this->form_validation->set_rules('password', 'Password', 'trim|required|min_length[4]|matches[c_password]');
+                        $this->form_validation->set_rules('c_password', 'Confirm Password', 'trim|required|min_length[4]');
+                        if ($this->form_validation->run() !== false) 
+                        {
+                            $password = $this->app_lib->pass_hashed($this->input->post('password'));
+                            $this->db->where('id', $query->row()->credential_id);
+                            $this->db->update('ads_users', array('password' => $password));
+                            $this->db->where('credential_id', $query->row()->credential_id);
+                            $this->db->delete('ads_users_reset_password');
+                            
+                        }
+                    }
+                } 
+                else 
+                {
+                    set_alert('error', 'Token Has Expired');
+                    redirect(base_url('authentication'));
+                }
+            } 
+            else 
+            {
+                set_alert('error', 'Token Has Expired');
+                redirect(base_url('authentication'));
+            }
+        }  
+    }
+
     public function logout()
     {
         if (is_user_loggedin()) 
@@ -335,9 +602,11 @@ class User extends Frontend_Controller
             redirect(base_url(), 'refresh');
         }
     }
+
     public function profile()
     {
-        if (!is_user_loggedin()) {
+        if (!is_user_loggedin()) 
+        {
             $this->session->set_userdata('redirect_url', current_url());
             redirect(base_url(), 'refresh');
         }
@@ -348,7 +617,8 @@ class User extends Frontend_Controller
 
     public function account()
     {
-        if (!is_user_loggedin()) {
+        if (!is_user_loggedin()) 
+        {
             $this->session->set_userdata('redirect_url', current_url());
             redirect(base_url(), 'refresh');
         }
@@ -359,7 +629,8 @@ class User extends Frontend_Controller
 
     public function balance()
     {
-        if (!is_user_loggedin()) {
+        if (!is_user_loggedin()) 
+        {
             $this->session->set_userdata('redirect_url', current_url());
             redirect(base_url(), 'refresh');
         }
@@ -370,7 +641,8 @@ class User extends Frontend_Controller
 
     public function statistics()
     {
-        if (!is_user_loggedin()) {
+        if (!is_user_loggedin()) 
+        {
             $this->session->set_userdata('redirect_url', current_url());
             redirect(base_url(), 'refresh');
         }
@@ -382,7 +654,8 @@ class User extends Frontend_Controller
 
     public function wishlist()
     {
-        if (!$this->input->is_ajax_request()) {
+        if (!$this->input->is_ajax_request()) 
+        {
             exit('No direct script access allowed');
         }
         else
@@ -457,6 +730,7 @@ class User extends Frontend_Controller
         $this->data['main_contents'] = $this->load->view('home/user_agreement', $this->data, true);
         $this->load->view('home/layout/index', $this->data);
     }
+
     public function home()
     {
         $this->data['cities']       = $this->home_model->allCities();

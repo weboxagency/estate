@@ -263,7 +263,8 @@
                   </div>
                 </div>
                 <div class="modal-body">
-                  <form action="https://evelani.az/az/forgot-password" x-edit-form method="post" x-target-with-data="afterForgotPassword">
+                  <form action="<?= base_url() ?>user/lose_password" x-edit-form method="post" x-target-with-data="afterForgotPassword">
+                    <input type="hidden" name="<?php echo $this->security->get_csrf_token_name();?>" value="<?php echo $this->security->get_csrf_hash();?>">
                     <fieldset>
                       <div class="form-row">
                         <div class="form-item form-item--large">
@@ -288,7 +289,32 @@
             </div>
           </div>
           <!-- FORGOT PASSWORD END -->
+           <?php if ((isset($_GET['finish'])) AND ($_GET['finish']==1)){ ?>
+          <!-- SUCCESS VERIFIED START -->
+          <div class="modal modal--small modal-message" id="finish-register">
+             <div class="modal-dialog">
+                <div class="modal-content">
+                   <div class="modal-header">
+                      <div class="modal-close" data-dismiss="modal">
+                         <svg class="icon icon-close">
+                            <use xlink:href="<?= base_url() ?>assets/site/img/icons/icons.svg#icon-close"></use>
+                         </svg>
+                      </div>
+                   </div>
+                   <div class="modal-body">
+                      <svg class="icon icon-success-circle">
+                         <use xlink:href="<?= base_url() ?>assets/site/img/icons/icons.svg#icon-success-circle"></use>
+                      </svg>
+                      <h6><?= translate('your_registration_has_been_successfully_completed') ?>!</h6>
+                      <button class="link-button link-button--primary" data-dismiss="modal"><?= translate('close') ?></button>
+                   </div>
+                </div>
+             </div>
+          </div>
+          <!-- SUCCESS VERIFIED END -->
+          <?php } ?>
         </div>
+          
 
         <!-- SECOND HEADER START -->
         <div class="header-secondary" id="headerSecondary">

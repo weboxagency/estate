@@ -2699,7 +2699,7 @@
        }
    
    });
-   
+  
 </script>
 <script type="text/template" x-validation>
    <p class="form-message form-message--error">
@@ -3040,6 +3040,14 @@
            $("#mortgagemodal .modal-body").height(window.innerHeight - 60);
        }
    });
+    <?php if ((isset($_GET['finish'])) AND ($_GET['finish']==1)){ ?>
+       $(document).ready( function()
+        {
+            $('#finish-register').modal('show');
+            history.replaceState( '' , '' , '<?= base_url() ?>' );
+            loading();
+        });
+    <?php } ?>
 </script>
 </body>
 </html>

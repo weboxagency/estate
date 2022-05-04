@@ -1,7 +1,3 @@
-<?php 
-// session_destroy();
-// dd($_SESSION); 
-?>
 <main class="main">
 <section class="main-header">
    <div class="main-header__content container  ">
