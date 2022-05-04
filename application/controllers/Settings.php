@@ -32,12 +32,66 @@ class Settings extends Admin_Controller
     /* user agreement */
     public function user_agreement()
     {
+         if ($this->input->post('submit') == 'edit') {
+                $this->form_validation->set_rules('content', translate('content'), 'required');
+                $this->form_validation->set_rules('status', translate('status'), 'required');
+                
+                if ($this->form_validation->run() == true) 
+                {
+                    $post = $this->input->post();
+                    // dd($post);
+                    $data_model = [
+                        "content" => $this->input->post('content'),
+                        "status"  => $this->input->post('status')
+                    ];
+
+                    $response = $this->ua->user_agreement_edit($data_model);
+                    if ($response) {
+                        set_alert('success', translate('information_has_been_updated_successfully'));
+                    }
+                    redirect(base_url('settings/user_agreement'));
+                } 
+                else 
+                {
+                    $this->data['validation_error'] = true;
+                }
+        }
+        // dd($this->input->post());
         $this->data['user_agreement']  = $this->ua->getUserAgreements()[0];
         $this->data['title']            = translate('user_agreement');
         $this->data['sub_page']         = 'settings/user_agreement';
         $this->data['main_menu']        = 'locations';
         $this->load->view('layout/index', $this->data);
     }
+
+    public function user_agreement_edit()
+    {
+        dd($this->input->post());
+        //  if ($this->input->post('submit') == 'edit') {
+        //         $this->form_validation->set_rules('content', translate('content'), 'required');
+        //         $this->form_validation->set_rules('status', translate('status'), 'required');
+                
+        //         if ($this->form_validation->run() == true) 
+        //         {
+        //             $post = $this->input->post();
+        //             $response = $this->ua->user_agreement_edit($post);
+        //             if ($response) {
+        //                 set_alert('success', translate('information_has_been_updated_successfully'));
+        //             }
+        //             redirect(base_url('settings/user_agreement'));
+        //         } 
+        //         else 
+        //         {
+        //             $this->data['validation_error'] = true;
+        //         }
+        // }
+        // $this->data['user_agreement']  = $this->ua->getUserAgreements()[0];
+        // $this->data['title']            = translate('user_agreement');
+        // $this->data['sub_page']         = 'settings/user_agreement';
+        // $this->data['main_menu']        = 'locations';
+        // $this->load->view('layout/index', $this->data);
+    }
+
 
     public function universal()
     {

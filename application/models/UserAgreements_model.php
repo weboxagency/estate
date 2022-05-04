@@ -17,4 +17,20 @@ class UserAgreements_model extends MY_Model
         return $query->result_array();
     }
 
+    public function user_agreement_edit($data)
+    {
+        $user_agreement = array(
+            'content' => $data['content'],
+            'status' => $data['status']
+        );
+
+        $this->db->update('user_agreements', $user_agreement);
+      
+        if ($this->db->affected_rows() > 0) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
 }
