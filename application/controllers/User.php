@@ -614,7 +614,72 @@ class User extends Frontend_Controller
         $this->data['main_contents'] = $this->load->view('user/profile', $this->data, true);
         $this->load->view('home/layout/index', $this->data);
     }
+    public function profile_edit()
+    {
+        if (!is_user_loggedin()) 
+        {
+            $this->session->set_userdata('redirect_url', current_url());
+            redirect(base_url(), 'refresh');
+        }
+        if($_POST)
+        {
+            if ($_POST['form']==1) 
+            {
+                $this->form_validation->set_rules("name", translate("name"), "trim|required|min_length[3]|xss_clean", 
+                    [
+                        "required"      => ucfirst(translate("the_name_field_is_required")),
+                        "min_length"    => ucfirst(translate("the_name_must_consist_of_at_least_3_letters"))
+                    ]
+                );
+                $name = $this->input->post('name', TRUE);
+                if ($this->form_validation->run() === TRUE)         
+                {
+                    $config = [
+                    'name'   => $name
+                    ];
+                    $this->db->where('id',logged_user_id());
+                    $this->db->update('ads_users', $config);
+                }
+                else
+                {
+                    $output = array();
+                    foreach ($_POST as $key => $value)
+                    {
+                        $text   =   str_ireplace('<p>','',form_error($key));
+                        $text   =   str_ireplace('</p>','',$text); 
+                        if ($key!='_token' AND $key!='form' AND !empty($text)) 
+                        {
+                            $output[$key] = [$text];
+                        }
+                    }
+                       
+                    $response = [
+                        "status"        => "success",
+                        "user"          => [
+                            "agency_id"         => null,
+                            "balance"           => 0,
+                            "created_at"        => "2022-04-19 21:52:57",
+                            "email"             => "weboxagency@gmail.com",
+                            "id"                => logged_user_id(),
+                            "isAgencyEmployee"  => false,
+                            "isDirectior"       => false,
+                            "mobile"            => "+994708544301",
+                            "mobile2"           => null,
+                            "mobileBeautified"  => "(070) 854-43-01",
+                            "name"              => $name,
+                            "present"           => 0,
+                            "type"              => "customer",
+                            "updated_at"        => date("Y-m-d H:i:s")
+                        ],
+                        "validations"   => $output
+                    ];
+                    echo json_encode($response);
+                }
+                
 
+            }
+        }
+    }
     public function account()
     {
         if (!is_user_loggedin()) 
