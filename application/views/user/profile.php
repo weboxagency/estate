@@ -1,3 +1,5 @@
+<?php 
+// dd($_SESSION); ?>
 <main class="account-bg">
    <div class="container page-container account-container">
       <div class="account account-personal">
@@ -46,7 +48,7 @@
                   </li>
                </ul>
             </div>
-               <!-- <div class="find-home">
+               <div class="find-home">
                   <a href="https://evelani.az/az/my-homes"><span>Mənə ev tap</span></a>
                   <div class="pretty p-switch p-fill newclass">
                      <input x-activate-url="https://evelani.az/az/activate-find-me-home-function" type="checkbox" />
@@ -55,7 +57,7 @@
                   <div class="find-home--desc">
                      <p>Sizin istəklərinizə uyğun ev tövsiyyələri edilir.</p>
                   </div>
-               </div> -->
+               </div>
          </div>
          <div class="account-right profil-right">
             <h4>Profil</h4>
@@ -63,7 +65,7 @@
                <div class="profile-items--item">
                   <div class="profile-item__left">
                      <span>Ad</span>
-                     <p x-name>Ağakərim</p>
+                     <p x-name><?= $_SESSION['fr_name'] ?></p>
                   </div>
                   <div class="profile-item__right">
                      <a href="#" class="link-edit" data-toggle="modal" data-toggle="modal" data-target="#edit-name">
@@ -84,12 +86,13 @@
                                  </div>
                               </div>
                               <div class="modal-body">
-                                 <form method="post" action="https://evelani.az/az/profile/edit" x-edit-form x-target-with-data="afterEditName">
+                                 <form method="post" action="<?= base_url() ?>user/profile_edit" x-edit-form x-target-with-data="afterEditName">
+                                    <input type="hidden" name="<?php echo $this->security->get_csrf_token_name();?>" value="<?php echo $this->security->get_csrf_hash();?>">
                                     <input type="hidden" name="form" value="1">
                                     <div class="form-row">
                                        <div class="form-item form-item--large">
                                           <label for="name"><strong>Yeni istifadəçi adınız</strong></label>
-                                          <input x-name-input name="name" class="form-item__element" value="Ağakərim">
+                                          <input x-name-input name="name" class="form-item__element" value="<?= $_SESSION['fr_name'] ?>">
                                        </div>
                                     </div>
                                     <div x-validations></div>
@@ -147,7 +150,7 @@
                                  </div>
                               </div>
                               <div class="modal-body">
-                                 <form method="post" action="https://evelani.az/az/profile/edit" x-edit-form x-target="afterEditEmail_1">
+                                 <form method="post" action="<?= base_url() ?>user/profile_edit" x-edit-form x-target="afterEditEmail_1">
                                     <input type="hidden" name="form" value="2">
                                     <div class="form-row">
                                        <div class="form-item form-item--large">
@@ -162,7 +165,7 @@
                                        </div>
                                     </div>
                                  </form>
-                                 <form method="post" action="https://evelani.az/az/profile/edit" x-edit-form x-target-with-data="afterEditEmail_2" style="display: none;">
+                                 <form method="post" action="<?= base_url() ?>user/profile_edit" x-edit-form x-target-with-data="afterEditEmail_2" style="display: none;">
                                     <input type="hidden" name="form" value="5">
                                     <div class="form-row">
                                        <div class="form-item form-item--large">
@@ -225,7 +228,7 @@
                                  </div>
                               </div>
                               <div class="modal-body">
-                                 <form method="post" action="https://evelani.az/az/profile/edit" x-edit-form x-target-with-data="afterEditMobile">
+                                 <form method="post" action="<?= base_url() ?>user/profile_edit" x-edit-form x-target-with-data="afterEditMobile">
                                     <input type="hidden" name="form" value="3">
                                     <div class="form-row">
                                        <div class="form-item form-item--large">
@@ -290,7 +293,7 @@
                                  </div>
                               </div>
                               <div class="modal-body">
-                                 <form method="post" action="https://evelani.az/az/profile/edit" x-edit-form x-target="afterEditPassword">
+                                 <form method="post" action="<?= base_url() ?>user/profile_edit" x-edit-form x-target="afterEditPassword">
                                     <input type="hidden" name="form" value="4">
                                     <div class="form-row">
                                        <div class="form-item form-item--large">
