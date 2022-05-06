@@ -91,7 +91,7 @@
                    <svg class="icon icon-down">
                       <use xlink:href="<?= base_url() ?>assets/site/img/icons/icons.svg#icon-down"></use>
                    </svg>
-                   <?= is_logged_name(); ?>
+                   <span class="profile_name"><?= $user_info['name']; ?></span>
                 </div>
                 <div class="dropdown-menu dropdown-menu--right login-dropdown" aria-labelledby="navDropdown">
                    <ul>

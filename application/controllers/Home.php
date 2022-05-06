@@ -19,6 +19,7 @@ class Home extends Frontend_Controller
         parent::__construct();
         $this->load->helpers('custom_fields');
         $this->load->model('email_model');
+        $this->load->model('user_model','um');
         $this->load->model('testimonial_model');
         $this->load->model('gallery_model');
         $this->load->library('mailer');
@@ -31,6 +32,10 @@ class Home extends Frontend_Controller
 
     public function home()
     {
+        if (is_user_loggedin()) 
+        {
+            $this->data['user_info']        = $this->um->getUserInfo(logged_user_id());
+        }
         $this->data['cities']           = $this->home_model->allCities();
         $this->data['regions']          = $this->home_model->allRegions();
         $this->data['metros']           = $this->home_model->allMetros();

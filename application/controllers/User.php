@@ -196,17 +196,20 @@ class User extends Frontend_Controller
                 if ($this->form_validation->run() === TRUE)         
                 {
                         $insertData = [
-                            "name"              => $announcement_owner,
-                            "email"             => $email,
-                            "password"          => $this->app_lib->pass_hashed($password),
-                            "register_token"    => hash('sha256', $announcement_owner . $email . app_generate_hash()),
-                            "mobile"            => $mobile,
-                            "balance"           => 0,
-                            "status"            => 2,
-                            "ip"                => getIP(),
-                            "soft"              => getBrowser()['userAgent'],
-                            "browser_name"      => getBrowser()['name'],
-                            "register_at"       => date("Y-m-d H:i:s")
+                            "name"                  => $announcement_owner,
+                            "email"                 => $email,
+                            "password"              => $this->app_lib->pass_hashed($password),
+                            "register_token"        => hash('sha256', $announcement_owner . $email . app_generate_hash()),
+                            "mobile"                => formatPhoneNumber("",$mobile)['international'],
+                            "mobile_format_second"  => formatPhoneNumber("",$mobile)['second_format'],
+                            "mobileBeautified"      => formatPhoneNumber("",$mobile)['national'],
+                            "provider_name"         => provider_name(formatPhoneNumber("",$mobile)['provider']),
+                            "balance"               => 0,
+                            "status"                => 2,
+                            "ip"                    => getIP(),
+                            "soft"                  => getBrowser()['userAgent'],
+                            "browser_name"          => getBrowser()['name'],
+                            "register_at"           => date("Y-m-d H:i:s")
                         ];
                         $this->db->insert('ads_users', $insertData);
                         $user_id = $this->db->insert_id();
@@ -451,7 +454,7 @@ class User extends Frontend_Controller
                                                      <h1 style="color:#1e1e2d; font-weight:500; margin:0;font-size:32px;font-family:Rubik,sans-serif;">Hörmətli '.$login_credential->name.', şifrənizi unutmusunuz?
                                                      </h1>
                                                      <p style="font-size:15px; color:#455056; margin:8px 0 0; line-height:24px;">
-                                                        Zəhmət olmazsa, aşağıdakı linkdən <br/>və ya <a href="'.base_url().'user/finish_registration/">bu linkdən</a> istifadə edərək, şifrənizi sıfırlayın</strong>.
+                                                        Zəhmət olmazsa, aşağıdakı keçiddən <br/>və ya <a href="'.base_url().'user/finish_registration/">bu linkdən</a> istifadə edərək, şifrənizi sıfırlayın</strong>.
                                                      </p>
                                                      <span
                                                         style="display:inline-block; vertical-align:middle; margin:29px 0 26px; border-bottom:1px solid #cecece; width:100px;"></span>
@@ -610,8 +613,9 @@ class User extends Frontend_Controller
             $this->session->set_userdata('redirect_url', current_url());
             redirect(base_url(), 'refresh');
         }
-        $this->data['page_data'] = $this->home_model->get('front_cms_home_seo', array('branch_id' => 1), true);
-        $this->data['main_contents'] = $this->load->view('user/profile', $this->data, true);
+        $this->data['user_info']        = $this->um->getUserInfo(logged_user_id());
+        $this->data['page_data']        = $this->home_model->get('front_cms_home_seo', array('branch_id' => 1), true);
+        $this->data['main_contents']    = $this->load->view('user/profile', $this->data, true);
         $this->load->view('home/layout/index', $this->data);
     }
     public function profile_edit()
@@ -632,13 +636,37 @@ class User extends Frontend_Controller
                     ]
                 );
                 $name = $this->input->post('name', TRUE);
+
                 if ($this->form_validation->run() === TRUE)         
                 {
+                    $user_info = $this->um->getUserInfo(logged_user_id());
+                    
                     $config = [
-                    'name'   => $name
+                        'name'   => $name
                     ];
                     $this->db->where('id',logged_user_id());
                     $this->db->update('ads_users', $config);
+
+                    $response = [
+                        "status"        => "success",
+                        "user"          => [
+                            "agency_id"         => null,
+                            "balance"           => 0,
+                            "register_at"       => $user_info['register_at'],
+                            "email"             => $user_info['email'],
+                            "id"                => (int)logged_user_id(),
+                            "isAgencyEmployee"  => false,
+                            "isDirectior"       => false,
+                            "mobile"            => $user_info['mobile'],
+                            "mobileBeautified"  => $user_info['mobileBeautified'],
+                            "name"              => $name,
+                            "present"           => 0,
+                            "type"              => "customer",
+                            "updated_at"        => date("Y-m-d H:i:s")
+                        ],
+                        "validations"   => []
+                    ];
+                    echo json_encode($response);
                 }
                 else
                 {
@@ -656,27 +684,24 @@ class User extends Frontend_Controller
                     $response = [
                         "status"        => "success",
                         "user"          => [
-                            "agency_id"         => null,
+                            // "agency_id"         => null,
                             "balance"           => 0,
-                            "created_at"        => "2022-04-19 21:52:57",
-                            "email"             => "weboxagency@gmail.com",
+                            // "created_at"        => "2022-04-19 21:52:57",
+                            "email"             => $user_info['email'],
                             "id"                => logged_user_id(),
-                            "isAgencyEmployee"  => false,
-                            "isDirectior"       => false,
-                            "mobile"            => "+994708544301",
-                            "mobile2"           => null,
-                            "mobileBeautified"  => "(070) 854-43-01",
+                            // "isAgencyEmployee"  => false,
+                            // "isDirectior"       => false,
+                            "mobile"            => $user_info['mobile'],
+                            "mobileBeautified"  => $user_info['mobile'],
                             "name"              => $name,
-                            "present"           => 0,
-                            "type"              => "customer",
+                            // "present"           => 0,
+                            // "type"              => "customer",
                             "updated_at"        => date("Y-m-d H:i:s")
                         ],
                         "validations"   => $output
                     ];
                     echo json_encode($response);
                 }
-                
-
             }
         }
     }
