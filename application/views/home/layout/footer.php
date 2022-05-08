@@ -1037,12 +1037,13 @@
                        } 
                        else
                        {
-                        console.log('targetWithData' + targetWithData);
+                        console.log('targetWithData' + targetWithData + ' - ' + res );
                         console.log('target' + target);
                            if( targetWithData && typeof window[ targetWithData ] === 'function' )
                            {
                                window[ targetWithData ]( res );
-                           } else if( target && typeof window[ target ] === 'function' )
+                           } 
+                           else if( target && typeof window[ target ] === 'function' )
                            {
                                window[ target ]();
                            } 
@@ -1075,22 +1076,26 @@
                                if( t.attr( 'x-redirect-url' ) !== undefined )
                                {
                                    location.href = t.attr( 'x-redirect-url' );
-                               } else if( t.closest( '.modal' ).length )
+                               } 
+                               else if( t.closest( '.modal' ).length )
                                {
                                    $( '[x-list-form="' + list + '"]' ).submit();
    
                                    if( !addNew ) t.closest( '.modal' ).modal( 'hide' );
-                               } else
+                               } 
+                               else
                                {
                                    //
                                }
                            }
                        }
    
-                        loading( 0 , t );                         } else
-                   {
+                        loading( 0 , t );                         
+                    } 
+                    else
+                    {
                        error( res.exception !== undefined ? ( res.exception.message + ' | Line: ' + res.exception.line + ' | File: ' + res.exception.file ) : ( res.warning !== undefined ? res.warning : '' ) );
-                   }
+                    }
                } ,
                error : function( res )
                {
@@ -3048,6 +3053,59 @@
             loading();
         });
     <?php } ?>
+
 </script>
+<script>
+        function afterEditName( data )
+        {
+            $( '#edit-name .modal-close' ).click();
+            $( '[x-after-edit-name]' ).click();
+            $( '[x-name]' ).text( data.user.name );
+            $( '.ad' ).text( data.user.name );
+            $( '.profile_name' ).text( data.user.name );
+            $( '[x-name-input]' ).val( data.user.name );
+        }
+
+
+        function afterEditEmail_1()
+        {
+            $( '[x-target="afterEditEmail_1"]' ).hide();
+            $( '[x-target-with-data="afterEditEmail_2"]' ).show();
+        }
+
+
+        function afterEditEmail_2( data )
+        {
+            $( '#edit-email .modal-close' ).click();
+            $( '[x-after-edit-email]' ).click();
+
+            $( '[x-target="afterEditEmail_1"]' ).show();
+            $( '[x-target-with-data="afterEditEmail_2"]' ).hide();
+
+            $( '[x-email]' ).text( data.user.email );
+            $( '[x-email-input]' ).val( data.user.email );
+
+            $( '[x-code-input]' ).val( '' );
+        }
+
+
+        function afterEditMobile( data )
+        {
+            $( '#edit-mobile .modal-close' ).click();
+            $( '[x-after-edit-mobile]' ).click();
+
+            $( '[x-mobile]' ).text( data.user.mobileBeautified );
+            $( '[x-mobile-input]' ).val( data.user.mobile.replace( '+994' , '' ) );
+        }
+
+
+        function afterEditPassword()
+        {
+            $( '#edit-password .modal-close' ).click();
+            $( '[x-after-edit-password]' ).click();
+
+            $( '[type="password"]' ).val('');
+        }
+    </script>
 </body>
 </html>

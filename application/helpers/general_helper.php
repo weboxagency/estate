@@ -9,6 +9,52 @@ function dd($par)
     die();
 }
 
+function formatPhoneNumber($par='',$number='') 
+{
+    // 070 854 43 01
+    $without_zero   = substr($number, 1, 9); // 708544301
+    $after_pr_code  = substr($number, 3, 3); // 854
+    $first_twoDigit = $number[6].''.$number[7]; // 43
+    $last_twoDigit  = $number[8].''.$number[9]; // 43
+    $provider       = substr($number, 0, 3);
+    $provider_two   = '('.$provider.')'; 
+    $beauty_number  = $provider_two.' '.$after_pr_code.'-'.$first_twoDigit.'-'.$last_twoDigit;
+    $international  = "+994".$without_zero;
+    if ($par=='beauty') 
+    {
+        return $beauty_number;
+    }
+    else
+    {
+        $ar = [
+            'international' => $international,
+            'provider'      => $provider,
+            'national'      => $beauty_number,
+            'second_format' => $without_zero
+        ];
+        return $ar;
+    }
+
+    
+    
+}
+
+function provider_name($par='')
+{
+    if ($par=='070' || $par == '077') 
+    {
+        return 'Narmobile';
+    }
+    elseif ($par=='055' || $par == '099') 
+    {
+        return 'Bakcell';
+    }
+    elseif($par=='010' || $par == '050' || $par == '051')
+    {
+        return 'Azercell';
+    }
+}
+
 function seo_link($str, $options = array())
  {
      $str = mb_convert_encoding((string)$str, 'UTF-8', mb_list_encodings());
@@ -309,6 +355,15 @@ function is_logged_name()
     $CI = &get_instance();
     if ($CI->session->has_userdata('fr_name')) {
         return $CI->session->userdata('fr_name');
+    }
+    return false;
+}
+
+function logged_user_id()
+{
+    $CI = &get_instance();
+    if ($CI->session->has_userdata('fr_logger_id')) {
+        return $CI->session->userdata('fr_logger_id');
     }
     return false;
 }
