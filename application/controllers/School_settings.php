@@ -530,7 +530,7 @@ class School_settings extends Admin_Controller
             $arrayTemplate = array(
                 'template_id' => $templateID,
                 'subject' => $this->input->post('subject'),
-                'template_body' => $this->input->post('template_body'),
+                'template_body' => $_POST['template_body'],
                 'notified' => $notified,
                 'branch_id' => $branchID,
             );

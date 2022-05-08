@@ -1,3 +1,4 @@
+
 <header class="header">
       <div class="header-primary">
         <div class="header-primary__container container">
@@ -289,6 +290,59 @@
             </div>
           </div>
           <!-- FORGOT PASSWORD END -->
+          <?php if ((isset($_GET['reset'])) AND ($_GET['reset']==1) AND (sess_reset_tkn())){ ?>
+          <a style="display: none;" data-toggle="modal" data-target="#reset-password" data-dismiss="modal"></a>
+          <div class="modal modal--small" id="reset-password">
+             <div class="modal-dialog">
+                <div class="modal-content">
+                   <div class="modal-header">
+                      <h6 class="modal-title">Şifrənizi yeniləyin</h6>
+                      <div class="modal-close" data-dismiss="modal">
+                         <svg class="icon icon-close">
+                            <use xlink:href="<?= base_url() ?>assets/site/img/icons/icons.svg#icon-close"></use>
+                         </svg>
+                      </div>
+                   </div>
+                   <div class="modal-body">
+                      <form action="<?= base_url() ?>user/reset_password" x-edit-form method="post" x-target="afterResetPassword">
+                         <input type="hidden" name="<?php echo $this->security->get_csrf_token_name();?>" value="<?php echo $this->security->get_csrf_hash();?>">
+                         <div class="form-row">
+                            <div class="form-item form-item--large">
+                               <label for="password">Yeni şifrə</label>
+                               <div class="form-item__password">
+                                  <input class="form-item__element" type="password" name="password" placeholder="∗∗∗∗∗∗">
+                                  <svg class="icon icon-eye">
+                                     <use xlink:href="<?= base_url() ?>assets/site/img/icons/icons.svg#icon-eye"></use>
+                                  </svg>
+                                  <svg class="icon icon-eye-close d-none">
+                                     <use xlink:href="<?= base_url() ?>assets/site/img/icons/icons.svg#icon-eye-close"></use>
+                                  </svg>
+                               </div>
+                            </div>
+                            <div class="form-item form-item--large">
+                               <label for="passwordRepeat">Yeni şifrə təkrar</label>
+                               <div class="form-item__password">
+                                  <input class="form-item__element" type="password" name="passwordRepeat" placeholder="∗∗∗∗∗∗">
+                                  <svg class="icon icon-eye">
+                                     <use xlink:href="<?= base_url() ?>assets/site/img/icons/icons.svg#icon-eye"></use>
+                                  </svg>
+                                  <svg class="icon icon-eye-close d-none">
+                                     <use xlink:href="<?= base_url() ?>assets/site/img/icons/icons.svg#icon-eye-close"></use>
+                                  </svg>
+                               </div>
+                            </div>
+                            <div x-validations></div>
+                            <div class="form-item form-item--large">
+                               <button type="submit" class="link-button link-button--primary">Şifrənizi yeniləyin</button>
+                            </div>
+                         </div>
+                      </form>
+                   </div>
+                </div>
+             </div>
+          </div>
+          </div>
+          <?php } ?>
            <?php if ((isset($_GET['finish'])) AND ($_GET['finish']==1)){ ?>
           <!-- SUCCESS VERIFIED START -->
           <div class="modal modal--small modal-message" id="finish-register">

@@ -350,6 +350,15 @@ function is_user_loggedin()
     return false;
 }
 
+function sess_reset_tkn()
+{
+    $CI = &get_instance();
+    if ($CI->session->has_userdata('sess_reset_tkn')) {
+        return true;
+    }
+    return false;
+}
+
 function is_logged_name()
 {
     $CI = &get_instance();

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 28, 2022 at 12:29 AM
+-- Generation Time: May 08, 2022 at 06:54 PM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 8.0.14
 
@@ -27,15 +27,16 @@ SET time_zone = "+00:00";
 -- Table structure for table `accounts`
 --
 
-CREATE TABLE `accounts` (
-  `id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `accounts` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL,
   `number` varchar(255) NOT NULL,
   `description` text NOT NULL,
   `balance` double(18,2) NOT NULL DEFAULT 0.00,
   `branch_id` int(11) NOT NULL,
   `created_at` timestamp NULL DEFAULT current_timestamp(),
-  `updated_at` datetime DEFAULT NULL
+  `updated_at` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -44,15 +45,16 @@ CREATE TABLE `accounts` (
 -- Table structure for table `ads_type`
 --
 
-CREATE TABLE `ads_type` (
-  `id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `ads_type` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `type_name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `seo_link` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `status` int(11) NOT NULL DEFAULT 1,
   `created_at` datetime NOT NULL,
   `updated_at` datetime NOT NULL,
-  `deleted_at` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  `deleted_at` datetime NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `ads_type`
@@ -69,30 +71,56 @@ INSERT INTO `ads_type` (`id`, `type_name`, `seo_link`, `status`, `created_at`, `
 -- Table structure for table `ads_users`
 --
 
-CREATE TABLE `ads_users` (
-  `id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `ads_users` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `email` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `password` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `register_token` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `mobile` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `mobile_format_second` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `mobileBeautified` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `provider_name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `balance` varchar(10) COLLATE utf8_unicode_ci NOT NULL,
   `status` int(11) NOT NULL,
   `last_active` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `ip` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `soft` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `browser_name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `second_email` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `email_verify_code` int(11) DEFAULT NULL,
   `register_at` datetime NOT NULL DEFAULT current_timestamp(),
   `updated_at` int(11) DEFAULT NULL,
-  `deleted_at` datetime DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  `deleted_at` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `ads_users`
 --
 
-INSERT INTO `ads_users` (`id`, `name`, `email`, `password`, `register_token`, `mobile`, `balance`, `status`, `last_active`, `ip`, `soft`, `browser_name`, `register_at`, `updated_at`, `deleted_at`) VALUES
-(1, 'Solmaz', 'aghakarimsolmaz@gmail.com', '$2y$10$WAUAR0AI8w4NORrWeEspkOBQ7Fed7l0YaTZlEqukR/FJC7n/Ht9mm', '04553c32c50de3ef52231a53a2084c48e718bd60974909f860c257e4e1dcb73a', '0705015595', '0', 2, '', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/101.0.4951.41 Safari/537.36', 'Google Chrome', '2022-04-28 01:32:17', NULL, NULL);
+INSERT INTO `ads_users` (`id`, `name`, `email`, `password`, `register_token`, `mobile`, `mobile_format_second`, `mobileBeautified`, `provider_name`, `balance`, `status`, `last_active`, `ip`, `soft`, `browser_name`, `second_email`, `email_verify_code`, `register_at`, `updated_at`, `deleted_at`) VALUES
+(1, 'Ağakərim', 'weboxagency@gmail.com', '$2y$10$p1I.7WEQUNuQRWJdZMMCHejIymE9SjradsTrCK0ep.p4c4PRWySFm', '', '+994708544301', '708544301', '(070) 854-43-01', 'Narmobile', '0', 1, '', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/101.0.4951.54 Safari/537.36', 'Google Chrome', NULL, NULL, '2022-05-07 20:35:59', NULL, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `ads_users_reset_password`
+--
+
+CREATE TABLE IF NOT EXISTS `ads_users_reset_password` (
+  `key` longtext NOT NULL,
+  `email` varchar(100) NOT NULL,
+  `credential_id` varchar(100) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `ads_users_reset_password`
+--
+
+INSERT INTO `ads_users_reset_password` (`key`, `email`, `credential_id`, `created_at`) VALUES
+('cbb5cd5d82aa6d4745fc68e66ff77c5af3b8ad5c0c96050c396e867d2345b6d6b987508480251ffd347c2b5af2e54cb291509201edbfb29d17a073d09a085a2f', 'weboxagency@gmail.com', '1', '2022-05-08 01:25:13');
 
 -- --------------------------------------------------------
 
@@ -100,8 +128,8 @@ INSERT INTO `ads_users` (`id`, `name`, `email`, `password`, `register_token`, `m
 -- Table structure for table `advance_salary`
 --
 
-CREATE TABLE `advance_salary` (
-  `id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `advance_salary` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `staff_id` int(11) NOT NULL,
   `amount` decimal(18,2) NOT NULL,
   `deduct_month` varchar(20) DEFAULT NULL,
@@ -113,7 +141,8 @@ CREATE TABLE `advance_salary` (
   `create_at` timestamp NOT NULL DEFAULT current_timestamp(),
   `issued_by` varchar(200) DEFAULT NULL,
   `comments` varchar(255) DEFAULT NULL,
-  `branch_id` int(11) DEFAULT 0
+  `branch_id` int(11) DEFAULT 0,
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -122,8 +151,8 @@ CREATE TABLE `advance_salary` (
 -- Table structure for table `attachments`
 --
 
-CREATE TABLE `attachments` (
-  `id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `attachments` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `title` varchar(255) NOT NULL,
   `remarks` text NOT NULL,
   `type_id` int(11) NOT NULL,
@@ -136,7 +165,8 @@ CREATE TABLE `attachments` (
   `date` date NOT NULL,
   `branch_id` int(11) DEFAULT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
-  `updated_at` datetime DEFAULT NULL
+  `updated_at` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -145,12 +175,13 @@ CREATE TABLE `attachments` (
 -- Table structure for table `attachments_type`
 --
 
-CREATE TABLE `attachments_type` (
-  `id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `attachments_type` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` longtext NOT NULL,
   `branch_id` int(11) DEFAULT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
-  `updated_at` datetime DEFAULT NULL
+  `updated_at` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -159,8 +190,8 @@ CREATE TABLE `attachments_type` (
 -- Table structure for table `award`
 --
 
-CREATE TABLE `award` (
-  `id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `award` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL,
   `user_id` int(11) NOT NULL,
   `role_id` int(11) DEFAULT NULL,
@@ -169,7 +200,8 @@ CREATE TABLE `award` (
   `award_reason` text NOT NULL,
   `given_date` date NOT NULL,
   `session_id` int(11) NOT NULL,
-  `branch_id` int(11) DEFAULT NULL
+  `branch_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -178,8 +210,8 @@ CREATE TABLE `award` (
 -- Table structure for table `book`
 --
 
-CREATE TABLE `book` (
-  `id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `book` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `title` varchar(255) NOT NULL,
   `cover` varchar(255) DEFAULT NULL,
   `author` varchar(255) NOT NULL,
@@ -194,7 +226,8 @@ CREATE TABLE `book` (
   `issued_copies` varchar(20) NOT NULL DEFAULT '0',
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
   `updated_at` datetime DEFAULT NULL,
-  `branch_id` int(11) DEFAULT NULL
+  `branch_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -203,10 +236,11 @@ CREATE TABLE `book` (
 -- Table structure for table `book_category`
 --
 
-CREATE TABLE `book_category` (
-  `id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `book_category` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` longtext NOT NULL,
-  `branch_id` int(11) DEFAULT NULL
+  `branch_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -215,8 +249,8 @@ CREATE TABLE `book_category` (
 -- Table structure for table `book_issues`
 --
 
-CREATE TABLE `book_issues` (
-  `id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `book_issues` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `book_id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
   `role_id` int(11) NOT NULL,
@@ -229,7 +263,8 @@ CREATE TABLE `book_issues` (
   `return_by` int(11) DEFAULT NULL,
   `session_id` int(11) NOT NULL,
   `branch_id` int(11) DEFAULT NULL,
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -238,8 +273,8 @@ CREATE TABLE `book_issues` (
 -- Table structure for table `branch`
 --
 
-CREATE TABLE `branch` (
-  `id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `branch` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) DEFAULT NULL,
   `school_name` varchar(255) NOT NULL,
   `email` varchar(100) NOT NULL,
@@ -257,8 +292,9 @@ CREATE TABLE `branch` (
   `grd_default_password` varchar(255) NOT NULL,
   `teacher_restricted` tinyint(1) NOT NULL DEFAULT 1,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
-  `updated_at` datetime DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `updated_at` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `branch`
@@ -273,12 +309,13 @@ INSERT INTO `branch` (`id`, `name`, `school_name`, `email`, `mobileno`, `currenc
 -- Table structure for table `bulk_msg_category`
 --
 
-CREATE TABLE `bulk_msg_category` (
-  `id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `bulk_msg_category` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL,
   `body` longtext NOT NULL,
   `type` tinyint(4) NOT NULL COMMENT 'sms=1, email=2',
-  `branch_id` int(11) DEFAULT NULL
+  `branch_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -287,8 +324,8 @@ CREATE TABLE `bulk_msg_category` (
 -- Table structure for table `bulk_sms_email`
 --
 
-CREATE TABLE `bulk_sms_email` (
-  `id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `bulk_sms_email` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `campaign_name` varchar(255) DEFAULT NULL,
   `sms_gateway` varchar(55) DEFAULT '0',
   `message` text DEFAULT NULL,
@@ -302,7 +339,8 @@ CREATE TABLE `bulk_sms_email` (
   `total_thread` int(11) NOT NULL,
   `successfully_sent` int(11) NOT NULL,
   `branch_id` int(11) DEFAULT NULL,
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -311,8 +349,8 @@ CREATE TABLE `bulk_sms_email` (
 -- Table structure for table `card_templete`
 --
 
-CREATE TABLE `card_templete` (
-  `id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `card_templete` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `card_type` tinyint(1) NOT NULL DEFAULT 0,
   `name` varchar(255) NOT NULL,
   `user_type` tinyint(1) NOT NULL,
@@ -330,7 +368,8 @@ CREATE TABLE `card_templete` (
   `left_space` varchar(25) NOT NULL,
   `qr_code` varchar(25) NOT NULL,
   `branch_id` int(11) NOT NULL,
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -339,8 +378,8 @@ CREATE TABLE `card_templete` (
 -- Table structure for table `certificates_templete`
 --
 
-CREATE TABLE `certificates_templete` (
-  `id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `certificates_templete` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL,
   `user_type` tinyint(1) NOT NULL,
   `background` varchar(355) DEFAULT NULL,
@@ -356,7 +395,8 @@ CREATE TABLE `certificates_templete` (
   `left_space` varchar(25) NOT NULL,
   `qr_code` varchar(25) NOT NULL,
   `branch_id` int(11) NOT NULL,
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -365,15 +405,16 @@ CREATE TABLE `certificates_templete` (
 -- Table structure for table `cities`
 --
 
-CREATE TABLE `cities` (
-  `id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `cities` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `city_name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `seo_link` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `status` int(11) NOT NULL DEFAULT 1 COMMENT '0 - Deaktiv\r\n1 - Aktiv',
   `created_at` datetime NOT NULL,
   `updated_at` datetime NOT NULL,
-  `deleted_at` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  `deleted_at` datetime NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=58 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `cities`
@@ -444,13 +485,14 @@ INSERT INTO `cities` (`id`, `city_name`, `seo_link`, `status`, `created_at`, `up
 -- Table structure for table `class`
 --
 
-CREATE TABLE `class` (
-  `id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `class` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL,
   `name_numeric` varchar(255) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
   `updated_at` datetime DEFAULT NULL,
-  `branch_id` int(11) DEFAULT NULL
+  `branch_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -459,8 +501,8 @@ CREATE TABLE `class` (
 -- Table structure for table `custom_field`
 --
 
-CREATE TABLE `custom_field` (
-  `id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `custom_field` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `form_to` varchar(50) DEFAULT NULL,
   `field_label` varchar(100) NOT NULL,
   `default_value` text DEFAULT NULL,
@@ -471,7 +513,8 @@ CREATE TABLE `custom_field` (
   `field_order` int(11) NOT NULL,
   `bs_column` int(11) NOT NULL,
   `branch_id` int(11) NOT NULL,
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -480,11 +523,14 @@ CREATE TABLE `custom_field` (
 -- Table structure for table `custom_fields_values`
 --
 
-CREATE TABLE `custom_fields_values` (
-  `id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `custom_fields_values` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `relid` int(11) NOT NULL,
   `field_id` int(11) NOT NULL,
-  `value` text NOT NULL
+  `value` text NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `relid` (`relid`),
+  KEY `fieldid` (`field_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -493,16 +539,17 @@ CREATE TABLE `custom_fields_values` (
 -- Table structure for table `districts`
 --
 
-CREATE TABLE `districts` (
-  `id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `districts` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `district_name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `seo_link` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `parent_region` int(11) NOT NULL,
   `status` int(11) NOT NULL DEFAULT 1 COMMENT '0 - Deaktiv\r\n1 -Aktiv',
   `created_at` datetime NOT NULL,
   `updated_at` datetime NOT NULL,
-  `deleted_at` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  `deleted_at` datetime NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=114 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `districts`
@@ -629,8 +676,8 @@ INSERT INTO `districts` (`id`, `district_name`, `seo_link`, `parent_region`, `st
 -- Table structure for table `email_config`
 --
 
-CREATE TABLE `email_config` (
-  `id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `email_config` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `email` varchar(255) DEFAULT NULL,
   `protocol` varchar(255) NOT NULL,
   `smtp_host` varchar(255) DEFAULT NULL,
@@ -638,15 +685,16 @@ CREATE TABLE `email_config` (
   `smtp_pass` varchar(255) DEFAULT NULL,
   `smtp_port` varchar(100) DEFAULT NULL,
   `smtp_encryption` varchar(10) DEFAULT NULL,
-  `branch_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `branch_id` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `email_config`
 --
 
 INSERT INTO `email_config` (`id`, `email`, `protocol`, `smtp_host`, `smtp_user`, `smtp_pass`, `smtp_port`, `smtp_encryption`, `branch_id`) VALUES
-(1, 'noreply@estate.az', 'smtp', 'smtp.hostinger.com', 'noreply@estate.az', '@iogiDuD25@', '465', 'ssl', 1);
+(1, 'noreply@estate.az', 'smtp', 'smtp.hostinger.com', 'noreply@estate.az', 'Komputer0101001@', '465', 'ssl', 1);
 
 -- --------------------------------------------------------
 
@@ -654,11 +702,12 @@ INSERT INTO `email_config` (`id`, `email`, `protocol`, `smtp_host`, `smtp_user`,
 -- Table structure for table `email_templates`
 --
 
-CREATE TABLE `email_templates` (
-  `id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `email_templates` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL,
-  `tags` text NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `tags` text NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `email_templates`
@@ -676,7 +725,10 @@ INSERT INTO `email_templates` (`id`, `name`, `tags`) VALUES
 (9, 'advance_salary_approve', '{institute_name}, {applicant_name}, {deduct_motnh}, {amount}, {comments}'),
 (10, 'advance_salary_reject', '{institute_name}, {applicant_name}, {deduct_motnh}, {amount}, {comments}'),
 (11, 'apply_online_admission', '{institute_name}, {admission_id}, {applicant_name}, {applicant_mobile}, {class}, {section}, {apply_date}, {payment_url}, {admission_copy_url}, {paid_amount}'),
-(12, 'student_admission', '{institute_name}, {academic_year}, {admission_date}, {admission_no}, {roll}, {category}, {student_name}, {student_mobile}, {class}, {section}, {login_username}, {password}, {login_url}');
+(12, 'student_admission', '{institute_name}, {academic_year}, {admission_date}, {admission_no}, {roll}, {category}, {student_name}, {student_mobile}, {class}, {section}, {login_username}, {password}, {login_url}'),
+(13, 'registration', '{logo}, {url}, {name}, {activation_url}, {mobile}'),
+(14, 'user_reset_password', '{logo}, {url}, {name}, {reset_url}, {mobile}'),
+(15, 'change_email_verification', '{logo}, {url}, {name}, {rand}');
 
 -- --------------------------------------------------------
 
@@ -684,14 +736,24 @@ INSERT INTO `email_templates` (`id`, `name`, `tags`) VALUES
 -- Table structure for table `email_templates_details`
 --
 
-CREATE TABLE `email_templates_details` (
-  `id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `email_templates_details` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `template_id` int(11) NOT NULL,
   `subject` varchar(255) NOT NULL,
   `template_body` text NOT NULL,
   `notified` tinyint(1) NOT NULL DEFAULT 1,
-  `branch_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `branch_id` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `email_templates_details`
+--
+
+INSERT INTO `email_templates_details` (`id`, `template_id`, `subject`, `template_body`, `notified`, `branch_id`) VALUES
+(1, 13, 'Estate.az - Qeydiyyatınız tamamlandı', '  \n     <meta charset=\"utf-8\">\n     <meta http-equiv=\"x-ua-compatible\" content=\"ie=edge\">\n     <title>Email Confirmation</title>\n     <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n     <style type=\"text/css\">\n        a:hover {text-decoration: underline !important;}\n     </style>\n  \n  \n     <table cellspacing=\"0\" border=\"0\" cellpadding=\"0\" width=\"100%\" bgcolor=\"#f2f3f8\" style=\"@import url(https://fonts.googleapis.com/css?family=Rubik:300,400,500,700|Open+Sans:300,400,600,700); font-family: Open Sans, sans-serif;\">\n        <tbody><tr>\n           <td>\n              <table style=\"background-color: #f2f3f8; max-width:670px; margin:0 auto;\" width=\"100%\" border=\"0\" align=\"center\" cellpadding=\"0\" cellspacing=\"0\">\n                 <tbody><tr>\n                    <td style=\"height:80px;\">&nbsp;</td>\n                 </tr>\n                 <tr>\n                    <td style=\"text-align:center;\">\n                       <a href=\"{url}\" title=\"{url}\" target=\"_blank\">\n                       <img width=\"110\" src=\"{logo}\" title=\"{url}\" alt=\"{url}\">\n                       </a>\n                    </td>\n                 </tr>\n                 <tr>\n                    <td style=\"height:20px;\">&nbsp;</td>\n                 </tr>\n                 <tr>\n                    <td>\n                       <table width=\"95%\" border=\"0\" align=\"center\" cellpadding=\"0\" cellspacing=\"0\" style=\"max-width:670px; background:#fff; border-radius:3px; text-align:center;-webkit-box-shadow:0 6px 18px 0 rgba(0,0,0,.06);-moz-box-shadow:0 6px 18px 0 rgba(0,0,0,.06);box-shadow:0 6px 18px 0 rgba(0,0,0,.06);\">\n                          <tbody><tr>\n                             <td style=\"height:40px;\">&nbsp;</td>\n                          </tr>\n                          <tr>\n                             <td style=\"padding:0 35px;\">\n                                <h1 style=\"color:#1e1e2d; font-weight:500; margin:0;font-size:32px;font-family:Rubik,sans-serif;\">Hörmətli {name}, xoş gəldiniz.\n                                </h1>\n                                <p style=\"font-size:15px; color:#455056; margin:8px 0 0; line-height:24px;\">\n                                   Zəhmət olmazsa, aşağıdakı linkdən <br>və ya <a href=\"{activation_url}\">bu linkdən</a> istifadə edərək, saytımızdakı hesabınızı aktivləşdirin.\n                                </p>\n                                <span style=\"display:inline-block; vertical-align:middle; margin:29px 0 26px; border-bottom:1px solid #cecece; width:100px;\"></span>\n                                <p style=\"color:#455056; font-size:18px;line-height:20px; margin:0; font-weight: 500;\">\n                                   <strong style=\"display: block;font-size: 13px; margin: 0 0 4px; color:rgba(0,0,0,.64); font-weight:normal;\">Qeydiyyat üçün istifadə etdiyiniz mobil nömrə</strong>{mobile}\n                                  \n                                </p>\n                                <a href=\"{activation_url}\" style=\"background:#dca73d;text-decoration:none !important; display:inline-block; font-weight:500; margin-top:24px; color:#fff;text-transform:uppercase; font-size:14px;padding:10px 24px;display:inline-block;border-radius:50px;\">\n                                   Təsdiq et\n                               </a>\n                             </td>\n                          </tr>\n                          <tr>\n                             <td style=\"height:40px;\">&nbsp;</td>\n                          </tr>\n                       </tbody></table>\n                    </td>\n                 </tr>\n                 <tr>\n                    <td style=\"height:20px;\">&nbsp;</td>\n                 </tr>\n                 <tr>\n                    <td style=\"text-align:center;\">\n                       <p style=\"font-size:14px; color:rgba(69, 80, 86, 0.7411764705882353); line-height:18px; margin:0 0 0;\"> Powered by ♥ <strong>WeBoX Agency</strong> ♥</p>\n                    </td>\n                 </tr>\n                 <tr>\n                    <td style=\"height:80px;\">&nbsp;</td>\n                 </tr>\n              </tbody></table>\n           </td>\n        </tr>\n     </tbody></table>\n  \n', 1, 1),
+(3, 14, 'Estate.az - Şifrə bərpası', '\n  <meta charset=\"utf-8\">\n  <meta http-equiv=\"x-ua-compatible\" content=\"ie=edge\">\n  <title>Email Confirmation</title>\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n  <style type=\"text/css\">\n     a:hover {text-decoration: underline !important;}\n  </style>\n\n\n  <table cellspacing=\"0\" border=\"0\" cellpadding=\"0\" width=\"100%\" bgcolor=\"#f2f3f8\" style=\"@import url(https://fonts.googleapis.com/css?family=Rubik:300,400,500,700|Open+Sans:300,400,600,700); font-family: Open Sans, sans-serif;\">\n     <tbody><tr>\n        <td>\n           <table style=\"background-color: #f2f3f8; max-width:670px; margin:0 auto;\" width=\"100%\" border=\"0\" align=\"center\" cellpadding=\"0\" cellspacing=\"0\">\n              <tbody><tr>\n                 <td style=\"height:80px;\">&nbsp;</td>\n              </tr>\n              <tr>\n                 <td style=\"text-align:center;\">\n                    <a href=\"{url}\" title=\"{url}\" target=\"_blank\">\n                    <img width=\"110\" src=\"{logo}\" title=\"{url}\" alt=\"{url}\">\n                    </a>\n                 </td>\n              </tr>\n              <tr>\n                 <td style=\"height:20px;\">&nbsp;</td>\n              </tr>\n              <tr>\n                 <td>\n                    <table width=\"95%\" border=\"0\" align=\"center\" cellpadding=\"0\" cellspacing=\"0\" style=\"max-width:670px; background:#fff; border-radius:3px; text-align:center;-webkit-box-shadow:0 6px 18px 0 rgba(0,0,0,.06);-moz-box-shadow:0 6px 18px 0 rgba(0,0,0,.06);box-shadow:0 6px 18px 0 rgba(0,0,0,.06);\">\n                       <tbody><tr>\n                          <td style=\"height:40px;\">&nbsp;</td>\n                       </tr>\n                       <tr>\n                          <td style=\"padding:0 35px;\">\n                             <h1 style=\"color:#1e1e2d; font-weight:500; margin:0;font-size:32px;font-family:Rubik,sans-serif;\">Hörmətli {name}, şifrənizi unutmusunuz?\n                             </h1>\n                             <p style=\"font-size:15px; color:#455056; margin:8px 0 0; line-height:24px;\">\n                                Zəhmət olmazsa, aşağıdakı keçiddən <br>və ya <a href=\"{reset_url}\">bu linkdən</a> istifadə edərək, şifrənizi sıfırlayın.\n                             </p>\n                             <span style=\"display:inline-block; vertical-align:middle; margin:29px 0 26px; border-bottom:1px solid #cecece; width:100px;\"></span>\n                             <p style=\"color:#455056; font-size:18px;line-height:20px; margin:0; font-weight: 500;\">\n                                <strong style=\"display: block;font-size: 13px; margin: 0 0 4px; color:rgba(0,0,0,.64); font-weight:normal;\">Saytımızda istifadə etdiyiniz mobil nömrə</strong>{mobile}\n                               \n                             </p>\n                             <a href=\"{reset_url}\" style=\"background:#dca73d;text-decoration:none !important; display:inline-block; font-weight:500; margin-top:24px; color:#fff;text-transform:uppercase; font-size:14px;padding:10px 24px;display:inline-block;border-radius:50px;\">\n                                Şifrəni sıfırla\n                            </a>\n                          </td>\n                       </tr>\n                       <tr>\n                          <td style=\"height:40px;\">&nbsp;</td>\n                       </tr>\n                    </tbody></table>\n                 </td>\n              </tr>\n              <tr>\n                 <td style=\"height:20px;\">&nbsp;</td>\n              </tr>\n              <tr>\n                 <td style=\"text-align:center;\">\n                    <p style=\"font-size:14px; color:rgba(69, 80, 86, 0.7411764705882353); line-height:18px; margin:0 0 0;\"> Powered by ♥ <strong>WeBoX Agency</strong> ♥</p>\n                 </td>\n              </tr>\n              <tr>\n                 <td style=\"height:80px;\">&nbsp;</td>\n              </tr>\n           </tbody></table>\n        </td>\n     </tr>\n  </tbody></table>\n\n', 1, 1),
+(4, 15, 'Estate.az - Təsdiq kodu', '   \r\n      <meta charset=\"utf-8\">\r\n      <meta http-equiv=\"x-ua-compatible\" content=\"ie=edge\">\r\n      <title>Email Confirmation</title>\r\n      <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\r\n      <style type=\"text/css\">\r\n         a:hover {text-decoration: underline !important;}\r\n      </style>\r\n   \r\n   \r\n      <table cellspacing=\"0\" border=\"0\" cellpadding=\"0\" width=\"100%\" bgcolor=\"#f2f3f8\" style=\"@import url(https://fonts.googleapis.com/css?family=Rubik:300,400,500,700|Open+Sans:300,400,600,700); font-family: Open Sans, sans-serif;\">\r\n         <tbody><tr>\r\n            <td>\r\n               <table style=\"background-color: #f2f3f8; max-width:670px; margin:0 auto;\" width=\"100%\" border=\"0\" align=\"center\" cellpadding=\"0\" cellspacing=\"0\">\r\n                  <tbody><tr>\r\n                     <td style=\"height:80px;\"> </td>\r\n                  </tr>\r\n                  <tr>\r\n                     <td style=\"text-align:center;\">\r\n                        <a href=\"{url}\" title=\"{url}\" target=\"_blank\">\r\n                        <img width=\"110\" src=\"{logo}\" title=\"{url}\" alt=\"{url}\">\r\n                        </a>\r\n                     </td>\r\n                  </tr>\r\n                  <tr>\r\n                     <td style=\"height:20px;\"> </td>\r\n                  </tr>\r\n                  <tr>\r\n                     <td>\r\n                        <table width=\"95%\" border=\"0\" align=\"center\" cellpadding=\"0\" cellspacing=\"0\" style=\"max-width:670px; background:#fff; border-radius:3px; text-align:center;-webkit-box-shadow:0 6px 18px 0 rgba(0,0,0,.06);-moz-box-shadow:0 6px 18px 0 rgba(0,0,0,.06);box-shadow:0 6px 18px 0 rgba(0,0,0,.06);\">\r\n                           <tbody><tr>\r\n                              <td style=\"height:40px;\"> </td>\r\n                           </tr>\r\n                           <tr>\r\n                              <td style=\"padding:0 35px;\">\r\n                                 <h1 style=\"color:#1e1e2d; font-weight:500; margin:0;font-size:32px;font-family:Rubik,sans-serif;\">Hörmətli {name}, \r\n                                 </h1>\r\n                                 <p style=\"font-size:15px; color:#455056; margin:8px 0 0; line-height:24px;\">\r\n                                    Zəhmət olmazsa, aşağıdakı kodu saytımızdakı lazımlı xanaya yazaraq təsdiq edin.\r\n                                 </p>\r\n                                 <span style=\"display:inline-block; vertical-align:middle; margin:29px 0 26px; border-bottom:1px solid #cecece; width:100px;\"></span>\r\n                                 <p style=\"color:#455056; font-size:18px;line-height:20px; margin:0; font-weight: 700;\">\r\n                                    <strong style=\"display: block;font-size: 23px; margin: 0 0 4px; color:rgba(0,0,0,.64); font-weight:normal;\">Təsdiq Kodu</strong>\r\n                                    <span style=\"color:#dca73d;text-decoration:none !important; display:inline-block; font-weight:1000; margin-top:14px; text-transform:uppercase; font-size:34px;padding:10px 24px;display:inline-block;\">{rand}</span>\r\n                                 </p>\r\n                              </td>\r\n                           </tr>\r\n                           <tr>\r\n                              <td style=\"height:40px;\"> </td>\r\n                           </tr>\r\n                        </tbody></table>\r\n                     </td>\r\n                  </tr>\r\n                  <tr>\r\n                     <td style=\"height:20px;\"> </td>\r\n                  </tr>\r\n                  <tr>\r\n                     <td style=\"text-align:center;\">\r\n                        <p style=\"font-size:14px; color:rgba(69, 80, 86, 0.7411764705882353); line-height:18px; margin:0 0 0;\"> Powered by ♥ <strong>WeBoX Agency</strong> ♥</p>\r\n                     </td>\r\n                  </tr>\r\n                  <tr>\r\n                     <td style=\"height:80px;\"> </td>\r\n                  </tr>\r\n               </tbody></table>\r\n            </td>\r\n         </tr>\r\n      </tbody></table>\r\n   \r\n', 1, 1);
 
 -- --------------------------------------------------------
 
@@ -699,8 +761,8 @@ CREATE TABLE `email_templates_details` (
 -- Table structure for table `enroll`
 --
 
-CREATE TABLE `enroll` (
-  `id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `enroll` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `student_id` int(11) NOT NULL,
   `class_id` int(11) NOT NULL,
   `section_id` int(11) NOT NULL,
@@ -708,7 +770,8 @@ CREATE TABLE `enroll` (
   `session_id` int(11) NOT NULL,
   `branch_id` tinyint(3) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
-  `updated_at` datetime DEFAULT NULL
+  `updated_at` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -717,15 +780,16 @@ CREATE TABLE `enroll` (
 -- Table structure for table `estate_type`
 --
 
-CREATE TABLE `estate_type` (
-  `id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `estate_type` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `estate_type_name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `seo_link` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `status` int(11) NOT NULL DEFAULT 1 COMMENT '0 - Deaktiv\r\n1 - Aktiv',
   `created_at` datetime NOT NULL,
   `updated_at` datetime NOT NULL,
-  `deleted_at` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  `deleted_at` datetime NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `estate_type`
@@ -747,8 +811,8 @@ INSERT INTO `estate_type` (`id`, `estate_type_name`, `seo_link`, `status`, `crea
 -- Table structure for table `event`
 --
 
-CREATE TABLE `event` (
-  `id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `event` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `title` varchar(255) NOT NULL,
   `remark` text NOT NULL,
   `status` tinyint(1) NOT NULL,
@@ -762,7 +826,8 @@ CREATE TABLE `event` (
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
   `updated_at` datetime DEFAULT NULL,
   `branch_id` int(11) DEFAULT NULL,
-  `show_web` tinyint(3) NOT NULL DEFAULT 1
+  `show_web` tinyint(3) NOT NULL DEFAULT 1,
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -771,11 +836,12 @@ CREATE TABLE `event` (
 -- Table structure for table `event_types`
 --
 
-CREATE TABLE `event_types` (
-  `id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `event_types` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL,
   `icon` varchar(200) NOT NULL,
-  `branch_id` int(11) NOT NULL
+  `branch_id` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -784,8 +850,8 @@ CREATE TABLE `event_types` (
 -- Table structure for table `exam`
 --
 
-CREATE TABLE `exam` (
-  `id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `exam` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` longtext NOT NULL,
   `term_id` int(11) DEFAULT NULL,
   `type_id` tinyint(4) NOT NULL COMMENT '1=mark,2=gpa,3=both',
@@ -794,7 +860,8 @@ CREATE TABLE `exam` (
   `remark` text NOT NULL,
   `mark_distribution` text NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
-  `updated_at` datetime DEFAULT NULL
+  `updated_at` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -803,8 +870,8 @@ CREATE TABLE `exam` (
 -- Table structure for table `exam_attendance`
 --
 
-CREATE TABLE `exam_attendance` (
-  `id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `exam_attendance` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `student_id` int(11) NOT NULL,
   `exam_id` int(11) NOT NULL,
   `subject_id` int(11) NOT NULL,
@@ -812,7 +879,8 @@ CREATE TABLE `exam_attendance` (
   `remark` varchar(255) DEFAULT NULL,
   `branch_id` int(11) DEFAULT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
-  `updated_at` datetime DEFAULT NULL
+  `updated_at` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -821,11 +889,12 @@ CREATE TABLE `exam_attendance` (
 -- Table structure for table `exam_hall`
 --
 
-CREATE TABLE `exam_hall` (
-  `id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `exam_hall` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `hall_no` longtext NOT NULL,
   `seats` int(11) NOT NULL,
-  `branch_id` int(11) DEFAULT NULL
+  `branch_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -834,10 +903,11 @@ CREATE TABLE `exam_hall` (
 -- Table structure for table `exam_mark_distribution`
 --
 
-CREATE TABLE `exam_mark_distribution` (
-  `id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `exam_mark_distribution` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` longtext NOT NULL,
-  `branch_id` int(11) DEFAULT NULL
+  `branch_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -846,11 +916,12 @@ CREATE TABLE `exam_mark_distribution` (
 -- Table structure for table `exam_term`
 --
 
-CREATE TABLE `exam_term` (
-  `id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `exam_term` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` longtext NOT NULL,
   `branch_id` int(11) DEFAULT NULL,
-  `session_id` int(11) NOT NULL
+  `session_id` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -859,15 +930,16 @@ CREATE TABLE `exam_term` (
 -- Table structure for table `fees_reminder`
 --
 
-CREATE TABLE `fees_reminder` (
-  `id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `fees_reminder` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `frequency` varchar(255) NOT NULL,
   `days` varchar(20) NOT NULL,
   `message` text NOT NULL,
   `student` tinyint(3) NOT NULL,
   `guardian` tinyint(3) NOT NULL,
   `branch_id` int(11) NOT NULL,
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -876,13 +948,14 @@ CREATE TABLE `fees_reminder` (
 -- Table structure for table `fees_type`
 --
 
-CREATE TABLE `fees_type` (
-  `id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `fees_type` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL,
   `fee_code` varchar(255) NOT NULL,
   `description` text NOT NULL,
   `branch_id` int(11) NOT NULL DEFAULT 0,
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -891,13 +964,14 @@ CREATE TABLE `fees_type` (
 -- Table structure for table `fee_allocation`
 --
 
-CREATE TABLE `fee_allocation` (
-  `id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `fee_allocation` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `student_id` int(11) NOT NULL,
   `group_id` int(11) NOT NULL,
   `branch_id` int(11) NOT NULL,
   `session_id` int(11) NOT NULL,
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -906,15 +980,16 @@ CREATE TABLE `fee_allocation` (
 -- Table structure for table `fee_fine`
 --
 
-CREATE TABLE `fee_fine` (
-  `id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `fee_fine` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `group_id` int(11) NOT NULL,
   `type_id` int(11) NOT NULL,
   `fine_value` varchar(20) NOT NULL,
   `fine_type` varchar(20) NOT NULL,
   `fee_frequency` varchar(20) NOT NULL,
   `branch_id` int(11) NOT NULL,
-  `session_id` int(11) NOT NULL
+  `session_id` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -923,13 +998,14 @@ CREATE TABLE `fee_fine` (
 -- Table structure for table `fee_groups`
 --
 
-CREATE TABLE `fee_groups` (
-  `id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `fee_groups` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) DEFAULT NULL,
   `description` text DEFAULT NULL,
   `session_id` int(11) NOT NULL,
   `branch_id` int(11) NOT NULL,
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -938,13 +1014,14 @@ CREATE TABLE `fee_groups` (
 -- Table structure for table `fee_groups_details`
 --
 
-CREATE TABLE `fee_groups_details` (
-  `id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `fee_groups_details` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `fee_groups_id` int(11) NOT NULL,
   `fee_type_id` int(11) NOT NULL,
   `amount` decimal(18,2) NOT NULL,
   `due_date` date DEFAULT NULL,
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -953,8 +1030,8 @@ CREATE TABLE `fee_groups_details` (
 -- Table structure for table `fee_payment_history`
 --
 
-CREATE TABLE `fee_payment_history` (
-  `id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `fee_payment_history` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `allocation_id` int(11) NOT NULL,
   `type_id` int(11) NOT NULL,
   `collect_by` varchar(20) DEFAULT NULL,
@@ -963,7 +1040,8 @@ CREATE TABLE `fee_payment_history` (
   `fine` decimal(18,2) NOT NULL,
   `pay_via` varchar(20) NOT NULL,
   `remarks` longtext NOT NULL,
-  `date` date DEFAULT NULL
+  `date` date DEFAULT NULL,
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -972,8 +1050,8 @@ CREATE TABLE `fee_payment_history` (
 -- Table structure for table `front_cms_about`
 --
 
-CREATE TABLE `front_cms_about` (
-  `id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `front_cms_about` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `title` varchar(255) DEFAULT NULL,
   `subtitle` varchar(255) DEFAULT NULL,
   `page_title` varchar(255) NOT NULL,
@@ -983,8 +1061,9 @@ CREATE TABLE `front_cms_about` (
   `elements` mediumtext NOT NULL,
   `meta_description` text NOT NULL,
   `meta_keyword` text NOT NULL,
-  `branch_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `branch_id` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `front_cms_about`
@@ -999,8 +1078,8 @@ INSERT INTO `front_cms_about` (`id`, `title`, `subtitle`, `page_title`, `content
 -- Table structure for table `front_cms_admission`
 --
 
-CREATE TABLE `front_cms_admission` (
-  `id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `front_cms_admission` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `title` varchar(255) DEFAULT NULL,
   `description` text DEFAULT NULL,
   `page_title` varchar(255) DEFAULT NULL,
@@ -1010,8 +1089,9 @@ CREATE TABLE `front_cms_admission` (
   `banner_image` varchar(255) DEFAULT NULL,
   `meta_description` text NOT NULL,
   `meta_keyword` text NOT NULL,
-  `branch_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `branch_id` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `front_cms_admission`
@@ -1026,16 +1106,17 @@ INSERT INTO `front_cms_admission` (`id`, `title`, `description`, `page_title`, `
 -- Table structure for table `front_cms_admitcard`
 --
 
-CREATE TABLE `front_cms_admitcard` (
-  `id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `front_cms_admitcard` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `page_title` varchar(255) DEFAULT NULL,
   `templete_id` int(11) NOT NULL,
   `banner_image` varchar(255) DEFAULT NULL,
   `description` text NOT NULL,
   `meta_description` text NOT NULL,
   `meta_keyword` text NOT NULL,
-  `branch_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `branch_id` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `front_cms_admitcard`
@@ -1050,15 +1131,16 @@ INSERT INTO `front_cms_admitcard` (`id`, `page_title`, `templete_id`, `banner_im
 -- Table structure for table `front_cms_certificates`
 --
 
-CREATE TABLE `front_cms_certificates` (
-  `id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `front_cms_certificates` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `page_title` varchar(255) DEFAULT NULL,
   `banner_image` varchar(255) DEFAULT NULL,
   `description` text NOT NULL,
   `meta_description` text NOT NULL,
   `meta_keyword` text NOT NULL,
-  `branch_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `branch_id` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `front_cms_certificates`
@@ -1073,8 +1155,8 @@ INSERT INTO `front_cms_certificates` (`id`, `page_title`, `banner_image`, `descr
 -- Table structure for table `front_cms_contact`
 --
 
-CREATE TABLE `front_cms_contact` (
-  `id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `front_cms_contact` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `box_title` varchar(255) DEFAULT NULL,
   `box_description` varchar(500) DEFAULT NULL,
   `box_image` varchar(255) DEFAULT NULL,
@@ -1088,8 +1170,9 @@ CREATE TABLE `front_cms_contact` (
   `banner_image` varchar(255) DEFAULT NULL,
   `meta_description` text NOT NULL,
   `meta_keyword` text NOT NULL,
-  `branch_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `branch_id` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `front_cms_contact`
@@ -1104,16 +1187,17 @@ INSERT INTO `front_cms_contact` (`id`, `box_title`, `box_description`, `box_imag
 -- Table structure for table `front_cms_events`
 --
 
-CREATE TABLE `front_cms_events` (
-  `id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `front_cms_events` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `title` varchar(255) NOT NULL,
   `description` text NOT NULL,
   `page_title` varchar(255) DEFAULT NULL,
   `banner_image` varchar(255) DEFAULT NULL,
   `meta_description` text NOT NULL,
   `meta_keyword` text NOT NULL,
-  `branch_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `branch_id` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `front_cms_events`
@@ -1128,8 +1212,8 @@ INSERT INTO `front_cms_events` (`id`, `title`, `description`, `page_title`, `ban
 -- Table structure for table `front_cms_exam_results`
 --
 
-CREATE TABLE `front_cms_exam_results` (
-  `id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `front_cms_exam_results` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `page_title` varchar(255) DEFAULT NULL,
   `grade_scale` tinyint(1) NOT NULL,
   `attendance` tinyint(1) NOT NULL,
@@ -1137,8 +1221,9 @@ CREATE TABLE `front_cms_exam_results` (
   `description` text NOT NULL,
   `meta_description` text NOT NULL,
   `meta_keyword` text NOT NULL,
-  `branch_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `branch_id` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `front_cms_exam_results`
@@ -1153,16 +1238,17 @@ INSERT INTO `front_cms_exam_results` (`id`, `page_title`, `grade_scale`, `attend
 -- Table structure for table `front_cms_faq`
 --
 
-CREATE TABLE `front_cms_faq` (
-  `id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `front_cms_faq` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `title` varchar(255) DEFAULT NULL,
   `description` text DEFAULT NULL,
   `page_title` varchar(255) DEFAULT NULL,
   `banner_image` varchar(255) DEFAULT NULL,
   `meta_description` text NOT NULL,
   `meta_keyword` text NOT NULL,
-  `branch_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `branch_id` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `front_cms_faq`
@@ -1177,12 +1263,13 @@ INSERT INTO `front_cms_faq` (`id`, `title`, `description`, `page_title`, `banner
 -- Table structure for table `front_cms_faq_list`
 --
 
-CREATE TABLE `front_cms_faq_list` (
-  `id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `front_cms_faq_list` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `title` varchar(255) DEFAULT NULL,
   `description` text DEFAULT NULL,
-  `branch_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `branch_id` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `front_cms_faq_list`
@@ -1201,14 +1288,15 @@ INSERT INTO `front_cms_faq_list` (`id`, `title`, `description`, `branch_id`) VAL
 -- Table structure for table `front_cms_gallery`
 --
 
-CREATE TABLE `front_cms_gallery` (
-  `id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `front_cms_gallery` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `page_title` varchar(255) DEFAULT NULL,
   `banner_image` varchar(255) DEFAULT NULL,
   `meta_description` text NOT NULL,
   `meta_keyword` text NOT NULL,
-  `branch_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `branch_id` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `front_cms_gallery`
@@ -1223,10 +1311,11 @@ INSERT INTO `front_cms_gallery` (`id`, `page_title`, `banner_image`, `meta_descr
 -- Table structure for table `front_cms_gallery_category`
 --
 
-CREATE TABLE `front_cms_gallery_category` (
-  `id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `front_cms_gallery_category` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL,
-  `branch_id` int(11) NOT NULL
+  `branch_id` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -1235,8 +1324,8 @@ CREATE TABLE `front_cms_gallery_category` (
 -- Table structure for table `front_cms_gallery_content`
 --
 
-CREATE TABLE `front_cms_gallery_content` (
-  `id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `front_cms_gallery_content` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `title` varchar(255) NOT NULL,
   `alias` varchar(255) NOT NULL,
   `description` varchar(255) NOT NULL,
@@ -1248,7 +1337,8 @@ CREATE TABLE `front_cms_gallery_content` (
   `elements` longtext NOT NULL,
   `show_web` tinyint(4) NOT NULL DEFAULT 0,
   `branch_id` int(11) NOT NULL,
-  `created_at` date NOT NULL
+  `created_at` date NOT NULL,
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -1257,16 +1347,17 @@ CREATE TABLE `front_cms_gallery_content` (
 -- Table structure for table `front_cms_home`
 --
 
-CREATE TABLE `front_cms_home` (
-  `id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `front_cms_home` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `title` varchar(255) DEFAULT NULL,
   `subtitle` varchar(255) DEFAULT NULL,
   `item_type` varchar(20) NOT NULL,
   `description` text CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   `elements` mediumtext NOT NULL,
   `branch_id` int(11) NOT NULL,
-  `active` tinyint(3) NOT NULL DEFAULT 1
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `active` tinyint(3) NOT NULL DEFAULT 1,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `front_cms_home`
@@ -1292,13 +1383,14 @@ INSERT INTO `front_cms_home` (`id`, `title`, `subtitle`, `item_type`, `descripti
 -- Table structure for table `front_cms_home_seo`
 --
 
-CREATE TABLE `front_cms_home_seo` (
-  `id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `front_cms_home_seo` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `page_title` varchar(255) NOT NULL,
   `meta_keyword` text NOT NULL,
   `meta_description` text NOT NULL,
-  `branch_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `branch_id` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `front_cms_home_seo`
@@ -1313,8 +1405,8 @@ INSERT INTO `front_cms_home_seo` (`id`, `page_title`, `meta_keyword`, `meta_desc
 -- Table structure for table `front_cms_menu`
 --
 
-CREATE TABLE `front_cms_menu` (
-  `id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `front_cms_menu` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `title` varchar(100) NOT NULL,
   `alias` varchar(100) NOT NULL,
   `ordering` int(11) NOT NULL,
@@ -1325,8 +1417,9 @@ CREATE TABLE `front_cms_menu` (
   `publish` tinyint(3) NOT NULL,
   `system` tinyint(3) NOT NULL,
   `branch_id` int(11) NOT NULL,
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `front_cms_menu`
@@ -1352,15 +1445,16 @@ INSERT INTO `front_cms_menu` (`id`, `title`, `alias`, `ordering`, `parent_id`, `
 -- Table structure for table `front_cms_menu_visible`
 --
 
-CREATE TABLE `front_cms_menu_visible` (
-  `id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `front_cms_menu_visible` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(100) DEFAULT NULL,
   `menu_id` int(11) NOT NULL,
   `parent_id` varchar(11) DEFAULT NULL,
   `ordering` varchar(20) DEFAULT NULL,
   `invisible` tinyint(2) NOT NULL DEFAULT 1,
-  `branch_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `branch_id` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -1368,8 +1462,8 @@ CREATE TABLE `front_cms_menu_visible` (
 -- Table structure for table `front_cms_pages`
 --
 
-CREATE TABLE `front_cms_pages` (
-  `id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `front_cms_pages` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `page_title` varchar(255) NOT NULL,
   `content` longtext CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   `menu_id` int(11) NOT NULL,
@@ -1377,7 +1471,8 @@ CREATE TABLE `front_cms_pages` (
   `meta_description` text NOT NULL,
   `meta_keyword` text NOT NULL,
   `branch_id` int(11) NOT NULL,
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -1386,13 +1481,14 @@ CREATE TABLE `front_cms_pages` (
 -- Table structure for table `front_cms_services`
 --
 
-CREATE TABLE `front_cms_services` (
-  `id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `front_cms_services` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `title` varchar(255) DEFAULT NULL,
   `subtitle` varchar(255) DEFAULT NULL,
   `parallax_image` varchar(255) DEFAULT NULL,
-  `branch_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `branch_id` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `front_cms_services`
@@ -1407,13 +1503,14 @@ INSERT INTO `front_cms_services` (`id`, `title`, `subtitle`, `parallax_image`, `
 -- Table structure for table `front_cms_services_list`
 --
 
-CREATE TABLE `front_cms_services_list` (
-  `id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `front_cms_services_list` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `title` varchar(255) DEFAULT NULL,
   `description` text DEFAULT NULL,
   `icon` varchar(255) DEFAULT NULL,
-  `branch_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `branch_id` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `front_cms_services_list`
@@ -1433,8 +1530,8 @@ INSERT INTO `front_cms_services_list` (`id`, `title`, `description`, `icon`, `br
 -- Table structure for table `front_cms_setting`
 --
 
-CREATE TABLE `front_cms_setting` (
-  `id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `front_cms_setting` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `application_title` varchar(255) NOT NULL,
   `url_alias` varchar(255) DEFAULT NULL,
   `cms_active` tinyint(4) NOT NULL DEFAULT 0,
@@ -1460,8 +1557,9 @@ CREATE TABLE `front_cms_setting` (
   `linkedin_url` varchar(100) NOT NULL,
   `pinterest_url` varchar(100) NOT NULL,
   `instagram_url` varchar(100) NOT NULL,
-  `branch_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `branch_id` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `front_cms_setting`
@@ -1476,14 +1574,15 @@ INSERT INTO `front_cms_setting` (`id`, `application_title`, `url_alias`, `cms_ac
 -- Table structure for table `front_cms_teachers`
 --
 
-CREATE TABLE `front_cms_teachers` (
-  `id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `front_cms_teachers` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `page_title` varchar(255) DEFAULT NULL,
   `banner_image` varchar(255) DEFAULT NULL,
   `meta_description` text NOT NULL,
   `meta_keyword` text NOT NULL,
-  `branch_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `branch_id` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `front_cms_teachers`
@@ -1498,8 +1597,8 @@ INSERT INTO `front_cms_teachers` (`id`, `page_title`, `banner_image`, `meta_desc
 -- Table structure for table `front_cms_testimonial`
 --
 
-CREATE TABLE `front_cms_testimonial` (
-  `id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `front_cms_testimonial` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL,
   `surname` varchar(355) NOT NULL,
   `image` varchar(255) NOT NULL,
@@ -1507,8 +1606,9 @@ CREATE TABLE `front_cms_testimonial` (
   `rank` int(5) NOT NULL,
   `branch_id` int(11) NOT NULL,
   `created_by` int(11) NOT NULL,
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `front_cms_testimonial`
@@ -1527,8 +1627,8 @@ INSERT INTO `front_cms_testimonial` (`id`, `name`, `surname`, `image`, `descript
 -- Table structure for table `global_settings`
 --
 
-CREATE TABLE `global_settings` (
-  `id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `global_settings` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `institute_name` varchar(255) NOT NULL,
   `institution_code` varchar(255) NOT NULL,
   `reg_prefix` varchar(255) NOT NULL,
@@ -1552,15 +1652,16 @@ CREATE TABLE `global_settings` (
   `preloader_backend` tinyint(1) NOT NULL DEFAULT 1,
   `cms_default_branch` int(11) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
-  `updated_at` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `updated_at` datetime NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `global_settings`
 --
 
 INSERT INTO `global_settings` (`id`, `institute_name`, `institution_code`, `reg_prefix`, `institute_email`, `address`, `mobileno`, `currency`, `currency_symbol`, `sms_service_provider`, `session_id`, `translation`, `footer_text`, `animations`, `timezone`, `date_format`, `facebook_url`, `twitter_url`, `linkedin_url`, `youtube_url`, `cron_secret_key`, `preloader_backend`, `cms_default_branch`, `created_at`, `updated_at`) VALUES
-(1, 'estate', 'RSM-', 'on', 'ramom@example.com', '', '', 'USD', '$', 'disabled', 3, 'lang_32', '© 2020 Ramom School Management - Developed by RamomCoder', 'fadeInUp', 'Asia/Baku', 'd.M.Y', '', '', '', '', '', 2, 1, '2018-10-22 09:07:49', '2020-05-01 22:37:06');
+(1, 'Estate.az', 'RSM-', 'on', 'ramom@example.com', '', '', 'USD', '$', 'disabled', 3, 'lang_32', '© 2020 Ramom School Management - Developed by RamomCoder', 'fadeInUp', 'Asia/Baku', 'd.M.Y', '', '', '', '', '', 2, 1, '2018-10-22 09:07:49', '2020-05-01 22:37:06');
 
 -- --------------------------------------------------------
 
@@ -1568,14 +1669,15 @@ INSERT INTO `global_settings` (`id`, `institute_name`, `institution_code`, `reg_
 -- Table structure for table `grade`
 --
 
-CREATE TABLE `grade` (
-  `id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `grade` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL,
   `grade_point` varchar(255) NOT NULL,
   `lower_mark` int(11) NOT NULL,
   `upper_mark` int(11) NOT NULL,
   `remark` text NOT NULL,
-  `branch_id` int(11) DEFAULT NULL
+  `branch_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -1584,8 +1686,8 @@ CREATE TABLE `grade` (
 -- Table structure for table `hall_allocation`
 --
 
-CREATE TABLE `hall_allocation` (
-  `id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `hall_allocation` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `student_id` int(11) NOT NULL,
   `hall_no` int(11) NOT NULL,
   `class_id` int(11) NOT NULL,
@@ -1593,7 +1695,8 @@ CREATE TABLE `hall_allocation` (
   `exam_id` int(11) NOT NULL,
   `branch_id` int(11) NOT NULL,
   `session_id` int(11) NOT NULL,
-  `timestamp` timestamp NOT NULL DEFAULT current_timestamp()
+  `timestamp` timestamp NOT NULL DEFAULT current_timestamp(),
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -1602,8 +1705,8 @@ CREATE TABLE `hall_allocation` (
 -- Table structure for table `homework`
 --
 
-CREATE TABLE `homework` (
-  `id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `homework` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `class_id` int(11) NOT NULL,
   `section_id` int(11) NOT NULL,
   `session_id` int(11) NOT NULL,
@@ -1619,7 +1722,8 @@ CREATE TABLE `homework` (
   `document` varchar(255) NOT NULL,
   `evaluation_date` date DEFAULT NULL,
   `evaluated_by` int(11) NOT NULL,
-  `branch_id` int(11) NOT NULL
+  `branch_id` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -1628,14 +1732,15 @@ CREATE TABLE `homework` (
 -- Table structure for table `homework_evaluation`
 --
 
-CREATE TABLE `homework_evaluation` (
-  `id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `homework_evaluation` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `homework_id` int(11) NOT NULL,
   `student_id` int(11) NOT NULL,
   `remark` text NOT NULL,
   `rank` int(11) NOT NULL,
   `date` date NOT NULL,
-  `status` varchar(100) NOT NULL
+  `status` varchar(100) NOT NULL,
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -1644,8 +1749,8 @@ CREATE TABLE `homework_evaluation` (
 -- Table structure for table `hostel`
 --
 
-CREATE TABLE `hostel` (
-  `id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `hostel` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` longtext NOT NULL,
   `category_id` int(11) NOT NULL,
   `address` longtext NOT NULL,
@@ -1653,7 +1758,8 @@ CREATE TABLE `hostel` (
   `remarks` longtext DEFAULT NULL,
   `branch_id` int(11) DEFAULT 0,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
-  `updated_at` datetime DEFAULT NULL
+  `updated_at` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -1662,14 +1768,15 @@ CREATE TABLE `hostel` (
 -- Table structure for table `hostel_category`
 --
 
-CREATE TABLE `hostel_category` (
-  `id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `hostel_category` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` longtext NOT NULL,
   `description` longtext DEFAULT NULL,
   `branch_id` int(11) DEFAULT NULL,
   `type` text DEFAULT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
-  `updated_at` datetime DEFAULT NULL
+  `updated_at` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -1678,15 +1785,16 @@ CREATE TABLE `hostel_category` (
 -- Table structure for table `hostel_room`
 --
 
-CREATE TABLE `hostel_room` (
-  `id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `hostel_room` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` longtext NOT NULL,
   `hostel_id` int(11) NOT NULL,
   `no_beds` int(11) NOT NULL,
   `category_id` int(11) DEFAULT NULL,
   `bed_fee` decimal(18,2) NOT NULL,
   `remarks` longtext NOT NULL,
-  `branch_id` int(11) DEFAULT NULL
+  `branch_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -1695,14 +1803,15 @@ CREATE TABLE `hostel_room` (
 -- Table structure for table `languages`
 --
 
-CREATE TABLE `languages` (
-  `id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `languages` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `word` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `english` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `arabic` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `turkish` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `lang_32` longtext COLLATE utf8_unicode_ci DEFAULT ''
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  `lang_32` longtext COLLATE utf8_unicode_ci DEFAULT '',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=1243 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `languages`
@@ -2923,7 +3032,35 @@ INSERT INTO `languages` (`id`, `word`, `english`, `arabic`, `turkish`, `lang_32`
 (1211, 'user_agreement_field_is_required', 'User Agreement Field Is Required', '', '', 'İstifadəçi razılaşması qəbul edilməyib'),
 (1212, 'the_email_field_is_required', 'The Email Field Is Required', '', '', 'E-Poçt ünvanı qeyd edilməyib'),
 (1213, 'the_password_field_is_required', 'The Password Field Is Required', '', '', 'Şifrə qeyd edilməyib'),
-(1214, 'username_or_password_incorrect', 'Username Or Password Incorrect', '', '', '');
+(1214, 'username_or_password_incorrect', 'Username Or Password Incorrect', '', '', 'İstifadəçi adı və ya şifrə yalnışdır'),
+(1215, 'locations', 'Locations', '', '', 'Yerlər'),
+(1216, 'unverified_account', 'Unverified Account', '', '', 'Hesabınız təsdiqlənməyib'),
+(1217, 'your_registration_has_been_successfully_completed', 'Your Registration Has Been Successfully Completed', '', '', 'Qeydiyyatınız müvəffəqiyyətlə tamamlandı'),
+(1218, 'the_name_field_is_required', 'The Name Field Is Required', '', '', 'Ad mütləq qeyd edilməlidir'),
+(1219, 'new_name', 'New Name', '', '', 'Yeni ad'),
+(1220, 'the_name_was_successfully_changed', 'The Name Was Successfully Changed', '', '', 'Ad müvəffəqiyyətlə dəyişdirildi'),
+(1221, 'new_email', 'New Email', '', '', 'Yeni E-Poçt adresi'),
+(1222, 'code', 'Code', '', '', 'Kod'),
+(1223, 'the_code_field_is_required', 'The Code Field Is Required', '', '', 'Kod mütləq doldurulmalıdır'),
+(1224, 'the_code_must_consist_of_at_least_4_letters', 'The Code Must Consist Of At Least 4 Letters', '', '', 'Kod mütləq 4 simvoldan ibarət olmalıdır'),
+(1225, 'code_is_not_valid', 'Code Is Not Valid', '', '', 'Kod yalnışdır'),
+(1226, 'apply_online_admission', 'Apply Online Admission', '', '', ''),
+(1227, 'registration', 'Registration', '', '', ''),
+(1228, 'user_reset_password', 'User Reset Password', '', '', ''),
+(1229, 'change_email_verification', 'Change Email Verification', '', '', ''),
+(1230, 'all_cities', 'All Cities', '', '', ''),
+(1231, 'add_city', 'Add City', '', '', ''),
+(1232, 'city_name', 'City Name', '', '', ''),
+(1233, 'seo_link', 'Seo Link', '', '', ''),
+(1234, 'please_select_one_item', 'Please Select One Item', '', '', ''),
+(1235, 'deactive', 'Deactive', '', '', ''),
+(1236, 'active', 'Active', '', '', ''),
+(1237, 'all_regions', 'All Regions', '', '', ''),
+(1238, 'add_region', 'Add Region', '', '', ''),
+(1239, 'region_name', 'Region Name', '', '', ''),
+(1240, 'all_metros', 'All Metros', '', '', ''),
+(1241, 'add_metro', 'Add Metro', '', '', ''),
+(1242, 'metro_name', 'Metro Name', '', '', '');
 
 -- --------------------------------------------------------
 
@@ -2931,14 +3068,15 @@ INSERT INTO `languages` (`id`, `word`, `english`, `arabic`, `turkish`, `lang_32`
 -- Table structure for table `language_list`
 --
 
-CREATE TABLE `language_list` (
-  `id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `language_list` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(600) NOT NULL,
   `lang_field` varchar(600) NOT NULL,
   `status` tinyint(1) NOT NULL DEFAULT 1,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
-  `updated_at` datetime DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `updated_at` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=33 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `language_list`
@@ -2948,7 +3086,7 @@ INSERT INTO `language_list` (`id`, `name`, `lang_field`, `status`, `created_at`,
 (1, 'English', 'english', 1, '2018-11-15 11:36:31', '2020-04-18 20:05:12'),
 (3, 'Arabic', 'arabic', 1, '2018-11-15 11:36:31', '2019-01-20 03:04:53'),
 (13, 'Türkçe', 'turkish', 1, '2018-11-15 11:36:31', '2022-04-23 00:30:20'),
-(32, 'Azərbaycan dili', 'lang_32', 1, '2022-04-21 17:46:15', '2022-04-28 00:57:35');
+(32, 'Azərbaycan dili', 'lang_32', 1, '2022-04-21 17:46:15', '2022-05-07 19:45:44');
 
 -- --------------------------------------------------------
 
@@ -2956,8 +3094,8 @@ INSERT INTO `language_list` (`id`, `name`, `lang_field`, `status`, `created_at`,
 -- Table structure for table `leave_application`
 --
 
-CREATE TABLE `leave_application` (
-  `id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `leave_application` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `user_id` int(11) NOT NULL,
   `role_id` int(11) NOT NULL,
   `category_id` int(2) NOT NULL,
@@ -2974,7 +3112,8 @@ CREATE TABLE `leave_application` (
   `session_id` int(11) DEFAULT NULL,
   `branch_id` int(11) DEFAULT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
-  `updated_at` datetime DEFAULT NULL
+  `updated_at` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -2983,12 +3122,13 @@ CREATE TABLE `leave_application` (
 -- Table structure for table `leave_category`
 --
 
-CREATE TABLE `leave_category` (
-  `id` int(2) NOT NULL,
+CREATE TABLE IF NOT EXISTS `leave_category` (
+  `id` int(2) NOT NULL AUTO_INCREMENT,
   `name` longtext CHARACTER SET utf32 COLLATE utf32_unicode_ci NOT NULL,
   `role_id` tinyint(1) NOT NULL,
   `days` int(11) NOT NULL,
-  `branch_id` int(11) DEFAULT NULL
+  `branch_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -2997,8 +3137,8 @@ CREATE TABLE `leave_category` (
 -- Table structure for table `live_class`
 --
 
-CREATE TABLE `live_class` (
-  `id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `live_class` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `live_class_method` tinyint(1) NOT NULL DEFAULT 1,
   `title` varchar(255) NOT NULL,
   `meeting_id` varchar(255) NOT NULL,
@@ -3015,7 +3155,8 @@ CREATE TABLE `live_class` (
   `created_by` int(11) NOT NULL,
   `status` tinyint(1) NOT NULL DEFAULT 0,
   `created_at` timestamp NULL DEFAULT current_timestamp(),
-  `branch_id` int(11) NOT NULL
+  `branch_id` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -3024,15 +3165,16 @@ CREATE TABLE `live_class` (
 -- Table structure for table `live_class_config`
 --
 
-CREATE TABLE `live_class_config` (
-  `id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `live_class_config` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `zoom_api_key` varchar(255) DEFAULT NULL,
   `zoom_api_secret` varchar(255) DEFAULT NULL,
   `bbb_salt_key` varchar(355) DEFAULT NULL,
   `bbb_server_base_url` varchar(355) DEFAULT NULL,
   `staff_api_credential` tinyint(1) NOT NULL DEFAULT 0,
   `student_api_credential` tinyint(1) NOT NULL DEFAULT 0,
-  `branch_id` int(11) NOT NULL
+  `branch_id` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -3041,11 +3183,12 @@ CREATE TABLE `live_class_config` (
 -- Table structure for table `live_class_reports`
 --
 
-CREATE TABLE `live_class_reports` (
-  `id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `live_class_reports` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `live_class_id` int(11) NOT NULL,
   `student_id` int(11) NOT NULL,
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -3054,8 +3197,8 @@ CREATE TABLE `live_class_reports` (
 -- Table structure for table `login_credential`
 --
 
-CREATE TABLE `login_credential` (
-  `id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `login_credential` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `user_id` int(11) NOT NULL,
   `username` varchar(100) NOT NULL,
   `password` varchar(250) NOT NULL,
@@ -3063,15 +3206,16 @@ CREATE TABLE `login_credential` (
   `active` tinyint(1) NOT NULL DEFAULT 1 COMMENT '1(active) 0(deactivate)',
   `last_login` datetime DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT current_timestamp(),
-  `updated_at` datetime DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `updated_at` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `login_credential`
 --
 
 INSERT INTO `login_credential` (`id`, `user_id`, `username`, `password`, `role`, `active`, `last_login`, `created_at`, `updated_at`) VALUES
-(1, 1, 'admin@gmail.com', '$2y$10$EjHNS.iSKnai72IICIACSe7mlurHBOrM5u1HXu2zwfTYwknyU/lkW', 1, 1, '2022-04-28 00:51:43', '2022-04-19 20:01:34', NULL);
+(1, 1, 'admin@gmail.com', '$2y$10$EjHNS.iSKnai72IICIACSe7mlurHBOrM5u1HXu2zwfTYwknyU/lkW', 1, 1, '2022-05-08 20:27:20', '2022-04-19 20:01:34', NULL);
 
 -- --------------------------------------------------------
 
@@ -3079,8 +3223,8 @@ INSERT INTO `login_credential` (`id`, `user_id`, `username`, `password`, `role`,
 -- Table structure for table `mark`
 --
 
-CREATE TABLE `mark` (
-  `id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `mark` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `student_id` int(11) NOT NULL,
   `subject_id` int(11) NOT NULL,
   `class_id` int(11) NOT NULL,
@@ -3089,7 +3233,8 @@ CREATE TABLE `mark` (
   `mark` text DEFAULT NULL,
   `absent` varchar(4) DEFAULT NULL,
   `session_id` int(11) NOT NULL,
-  `branch_id` int(11) DEFAULT NULL
+  `branch_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -3098,8 +3243,8 @@ CREATE TABLE `mark` (
 -- Table structure for table `message`
 --
 
-CREATE TABLE `message` (
-  `id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `message` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `body` longtext NOT NULL,
   `subject` varchar(255) NOT NULL,
   `file_name` text DEFAULT NULL,
@@ -3113,7 +3258,8 @@ CREATE TABLE `message` (
   `read_status` tinyint(1) NOT NULL DEFAULT 0 COMMENT '0 unread 1 read',
   `reply_status` tinyint(1) NOT NULL DEFAULT 0 COMMENT '0 unread 1 read',
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
-  `updated_at` datetime DEFAULT NULL
+  `updated_at` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -3122,14 +3268,15 @@ CREATE TABLE `message` (
 -- Table structure for table `message_reply`
 --
 
-CREATE TABLE `message_reply` (
-  `id` int(11) UNSIGNED NOT NULL,
+CREATE TABLE IF NOT EXISTS `message_reply` (
+  `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT,
   `message_id` int(11) NOT NULL,
   `body` text NOT NULL,
   `file_name` text NOT NULL,
   `enc_name` text NOT NULL,
   `identity` int(11) NOT NULL,
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -3138,14 +3285,15 @@ CREATE TABLE `message_reply` (
 -- Table structure for table `metros`
 --
 
-CREATE TABLE `metros` (
-  `id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `metros` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `metro_name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `status` int(11) NOT NULL DEFAULT 1 COMMENT '0 - Deaktiv\r\n1 - Aktiv',
   `created_at` datetime NOT NULL,
   `updated_at` datetime NOT NULL,
-  `deleted_at` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  `deleted_at` datetime NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `metros`
@@ -3183,7 +3331,7 @@ INSERT INTO `metros` (`id`, `metro_name`, `status`, `created_at`, `updated_at`, 
 -- Table structure for table `migrations`
 --
 
-CREATE TABLE `migrations` (
+CREATE TABLE IF NOT EXISTS `migrations` (
   `version` bigint(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -3200,8 +3348,8 @@ INSERT INTO `migrations` (`version`) VALUES
 -- Table structure for table `online_admission`
 --
 
-CREATE TABLE `online_admission` (
-  `id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `online_admission` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `first_name` varchar(255) NOT NULL,
   `last_name` varchar(255) NOT NULL,
   `gender` varchar(25) NOT NULL,
@@ -3227,7 +3375,8 @@ CREATE TABLE `online_admission` (
   `class_id` int(11) NOT NULL,
   `section_id` int(11) NOT NULL,
   `apply_date` datetime NOT NULL,
-  `created_date` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+  `created_date` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -3236,8 +3385,8 @@ CREATE TABLE `online_admission` (
 -- Table structure for table `parent`
 --
 
-CREATE TABLE `parent` (
-  `id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `parent` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL,
   `relation` varchar(255) NOT NULL,
   `father_name` varchar(255) DEFAULT NULL,
@@ -3257,7 +3406,8 @@ CREATE TABLE `parent` (
   `twitter_url` varchar(255) DEFAULT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
   `updated_at` datetime DEFAULT NULL,
-  `active` tinyint(2) NOT NULL DEFAULT 0 COMMENT '0(active) 1(deactivate)'
+  `active` tinyint(2) NOT NULL DEFAULT 0 COMMENT '0(active) 1(deactivate)',
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -3266,8 +3416,8 @@ CREATE TABLE `parent` (
 -- Table structure for table `payment_config`
 --
 
-CREATE TABLE `payment_config` (
-  `id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `payment_config` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `paypal_username` varchar(255) DEFAULT NULL,
   `paypal_password` varchar(255) DEFAULT NULL,
   `paypal_signature` varchar(255) DEFAULT NULL,
@@ -3303,7 +3453,8 @@ CREATE TABLE `payment_config` (
   `midtrans_status` tinyint(1) NOT NULL,
   `branch_id` int(11) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
-  `updated_at` datetime DEFAULT NULL
+  `updated_at` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -3312,12 +3463,13 @@ CREATE TABLE `payment_config` (
 -- Table structure for table `payment_salary_stipend`
 --
 
-CREATE TABLE `payment_salary_stipend` (
-  `id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `payment_salary_stipend` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `payslip_id` int(11) NOT NULL,
   `name` longtext NOT NULL,
   `amount` int(11) NOT NULL,
-  `type` varchar(20) NOT NULL
+  `type` varchar(20) NOT NULL,
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -3326,12 +3478,13 @@ CREATE TABLE `payment_salary_stipend` (
 -- Table structure for table `payment_types`
 --
 
-CREATE TABLE `payment_types` (
-  `id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `payment_types` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL,
   `branch_id` int(11) NOT NULL DEFAULT 0,
-  `timestamp` datetime DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `timestamp` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `payment_types`
@@ -3358,8 +3511,8 @@ INSERT INTO `payment_types` (`id`, `name`, `branch_id`, `timestamp`) VALUES
 -- Table structure for table `payslip`
 --
 
-CREATE TABLE `payslip` (
-  `id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `payslip` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `staff_id` int(11) NOT NULL,
   `month` varchar(200) DEFAULT NULL,
   `year` varchar(20) NOT NULL,
@@ -3373,7 +3526,8 @@ CREATE TABLE `payslip` (
   `hash` varchar(200) DEFAULT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
   `paid_by` varchar(200) DEFAULT NULL,
-  `branch_id` int(11) DEFAULT NULL
+  `branch_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -3382,12 +3536,13 @@ CREATE TABLE `payslip` (
 -- Table structure for table `payslip_details`
 --
 
-CREATE TABLE `payslip_details` (
-  `id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `payslip_details` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `payslip_id` int(11) NOT NULL,
   `name` varchar(255) NOT NULL,
   `amount` decimal(18,2) NOT NULL,
-  `type` tinyint(1) NOT NULL
+  `type` tinyint(1) NOT NULL,
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -3396,8 +3551,8 @@ CREATE TABLE `payslip_details` (
 -- Table structure for table `permission`
 --
 
-CREATE TABLE `permission` (
-  `id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `permission` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `module_id` int(11) NOT NULL,
   `name` varchar(100) NOT NULL,
   `prefix` varchar(100) NOT NULL,
@@ -3405,8 +3560,9 @@ CREATE TABLE `permission` (
   `show_add` tinyint(1) DEFAULT 1,
   `show_edit` tinyint(1) DEFAULT 1,
   `show_delete` tinyint(1) DEFAULT 1,
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=134 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `permission`
@@ -3553,14 +3709,16 @@ INSERT INTO `permission` (`id`, `module_id`, `name`, `prefix`, `show_view`, `sho
 -- Table structure for table `permission_modules`
 --
 
-CREATE TABLE `permission_modules` (
-  `id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `permission_modules` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(50) NOT NULL,
   `prefix` varchar(50) NOT NULL,
   `system` tinyint(1) NOT NULL,
   `sorted` tinyint(10) NOT NULL,
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  PRIMARY KEY (`id`),
+  KEY `id` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `permission_modules`
@@ -3596,16 +3754,17 @@ INSERT INTO `permission_modules` (`id`, `name`, `prefix`, `system`, `sorted`, `c
 -- Table structure for table `regions`
 --
 
-CREATE TABLE `regions` (
-  `id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `regions` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `region_name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `seo_link` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `parent_city` int(11) NOT NULL,
   `status` int(11) NOT NULL DEFAULT 1 COMMENT '0 - Deaktiv\r\n1 - Aktiv',
   `created_at` datetime NOT NULL,
   `updated_at` datetime NOT NULL,
-  `deleted_at` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  `deleted_at` datetime NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=88 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `regions`
@@ -3706,7 +3865,7 @@ INSERT INTO `regions` (`id`, `region_name`, `seo_link`, `parent_city`, `status`,
 -- Table structure for table `reset_password`
 --
 
-CREATE TABLE `reset_password` (
+CREATE TABLE IF NOT EXISTS `reset_password` (
   `key` longtext NOT NULL,
   `username` varchar(100) NOT NULL,
   `login_credential_id` varchar(100) NOT NULL,
@@ -3719,11 +3878,13 @@ CREATE TABLE `reset_password` (
 -- Table structure for table `rm_sessions`
 --
 
-CREATE TABLE `rm_sessions` (
+CREATE TABLE IF NOT EXISTS `rm_sessions` (
   `id` varchar(40) NOT NULL,
   `ip_address` varchar(45) NOT NULL,
   `timestamp` int(10) UNSIGNED NOT NULL DEFAULT 0,
-  `data` blob NOT NULL
+  `data` blob NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `ci_sessions_timestamp` (`timestamp`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -3731,37 +3892,28 @@ CREATE TABLE `rm_sessions` (
 --
 
 INSERT INTO `rm_sessions` (`id`, `ip_address`, `timestamp`, `data`) VALUES
-('0572ssk54sfe94bkjtrol94p5qtp9dvh', '::1', 1651076869, 0x5f5f63695f6c6173745f726567656e65726174657c693a313635313037363836393b),
-('0k6ammrf6vqn52k7kksnld505sudrvje', '::1', 1651074079, 0x5f5f63695f6c6173745f726567656e65726174657c693a313635313037343037393b),
-('18a6b1o1v022731kaaiqqh602dbsin71', '::1', 1651096769, 0x5f5f63695f6c6173745f726567656e65726174657c693a313635313039363736393b66725f6e616d657c733a363a22536f6c6d617a223b66725f656d61696c7c733a32353a22616768616b6172696d736f6c6d617a40676d61696c2e636f6d223b7365745f6c616e677c733a373a226c616e675f3332223b66725f6c6f67676564696e7c623a313b66725f6c6f676765725f69647c733a313a2231223b66725f7365745f73657373696f6e5f69647c733a313a2233223b),
-('3h61gl6mkmfahuk1s7eboju6sfhf3sb0', '::1', 1651094701, 0x5f5f63695f6c6173745f726567656e65726174657c693a313635313039343730313b6e616d657c733a353a224361766964223b6c6f676765725f70686f746f7c4e3b6c6f67676564696e5f6272616e63687c4e3b6c6f67676564696e5f69647c733a313a2231223b6c6f67676564696e5f7573657269647c733a313a2231223b6c6f67676564696e5f726f6c655f69647c733a313a2231223b6c6f67676564696e5f747970657c733a353a227374616666223b7365745f6c616e677c733a373a226c616e675f3332223b7365745f73657373696f6e5f69647c733a313a2233223b6c6f67676564696e7c623a313b),
-('4t32vmv4crhrfc3av3sth5tcoh5e5dm1', '::1', 1651083059, 0x5f5f63695f6c6173745f726567656e65726174657c693a313635313038333035393b),
-('6g03ujv5naaabm0q949267ucdc7vno0e', '::1', 1651095903, 0x5f5f63695f6c6173745f726567656e65726174657c693a313635313039353930333b),
-('6qmt40e035p4t6a24uimo9lp3nt7ng90', '::1', 1651079051, 0x5f5f63695f6c6173745f726567656e65726174657c693a313635313037393035313b),
-('73537d0b1e53kpmnbe9obs5d0ti5u344', '::1', 1651097478, 0x5f5f63695f6c6173745f726567656e65726174657c693a313635313039373437383b66725f6e616d657c733a363a22536f6c6d617a223b66725f656d61696c7c733a32353a22616768616b6172696d736f6c6d617a40676d61696c2e636f6d223b7365745f6c616e677c733a373a226c616e675f3332223b66725f6c6f67676564696e7c623a313b66725f6c6f676765725f69647c733a313a2231223b66725f7365745f73657373696f6e5f69647c733a313a2233223b),
-('745bn6mtft63k9fbhu0k50u7fc6hni8j', '::1', 1651078056, 0x5f5f63695f6c6173745f726567656e65726174657c693a313635313037383035363b),
-('81qa8s9ppgvtrtnfo900aq5imir650ao', '::1', 1651077616, 0x5f5f63695f6c6173745f726567656e65726174657c693a313635313037373631363b),
-('8hj5jivg4iqvdjlu8gd1li2g5m9hs9o0', '::1', 1651098046, 0x5f5f63695f6c6173745f726567656e65726174657c693a313635313039383034363b72656469726563745f75726c7c733a33373a22687474703a2f2f6c6f63616c686f73742f6576656c616e692f757365722f70726f66696c65223b),
-('c6oig4m4bmgdgkconll02recr0ds3ce8', '::1', 1651078709, 0x5f5f63695f6c6173745f726567656e65726174657c693a313635313037383730393b),
-('fqgbobji0p4h8j3m1cgubp6d4mqj0ln3', '::1', 1651080411, 0x5f5f63695f6c6173745f726567656e65726174657c693a313635313038303136383b),
-('g9a18lbht1jf3o8nsk4cdbqm55pjlfls', '::1', 1651098282, 0x5f5f63695f6c6173745f726567656e65726174657c693a313635313039383034363b72656469726563745f75726c7c733a33383a22687474703a2f2f6c6f63616c686f73742f6576656c616e692f757365722f7265676973746572223b776973685f736573737c733a33323a226434633230623065323035343839643236643336363166323862303365663962223b7365745f6c616e677c733a373a226c616e675f3332223b),
-('hhtenq3hman05mobe9vnlipatl2gn5b7', '::1', 1651086021, 0x5f5f63695f6c6173745f726567656e65726174657c693a313635313038363032313b),
-('kbnsg2upqrhinj0aaucgcqrtij6ognir', '::1', 1651093054, 0x5f5f63695f6c6173745f726567656e65726174657c693a313635313039333035343b6e616d657c733a353a224361766964223b6c6f676765725f70686f746f7c4e3b6c6f67676564696e5f6272616e63687c4e3b6c6f67676564696e5f69647c733a313a2231223b6c6f67676564696e5f7573657269647c733a313a2231223b6c6f67676564696e5f726f6c655f69647c733a313a2231223b6c6f67676564696e5f747970657c733a353a227374616666223b7365745f6c616e677c733a373a226c616e675f3332223b7365745f73657373696f6e5f69647c733a313a2233223b6c6f67676564696e7c623a313b),
-('kmkg30ek179o1oqrcicdhrhlvqf0i472', '::1', 1651085305, 0x5f5f63695f6c6173745f726567656e65726174657c693a313635313038353330353b),
-('l0j5aj758qi0lcvtu31kb9qt6a1ft2h9', '::1', 1651080796, 0x5f5f63695f6c6173745f726567656e65726174657c693a313635313038303739363b),
-('lr3vpm6r8pr16t2io74orr6ftpb1f3m7', '::1', 1651092690, 0x5f5f63695f6c6173745f726567656e65726174657c693a313635313039323639303b),
-('msct2hq8j68jvqh4toiplcp7tt4qg2dc', '::1', 1651083414, 0x5f5f63695f6c6173745f726567656e65726174657c693a313635313038333431343b),
-('n32d26fhi30219ps4hchaglip462fjup', '::1', 1651078358, 0x5f5f63695f6c6173745f726567656e65726174657c693a313635313037383335383b),
-('nrt87q4lsm5b3g5nunakib0c4abh0of6', '::1', 1651084118, 0x5f5f63695f6c6173745f726567656e65726174657c693a313635313038343131383b),
-('nuo47ct68ner4b3fg6f24m9rulks5ons', '::1', 1651084801, 0x5f5f63695f6c6173745f726567656e65726174657c693a313635313038343830313b),
-('o57d9fk8b14l193hnmjssr2851bqbe5a', '::1', 1651080168, 0x5f5f63695f6c6173745f726567656e65726174657c693a313635313038303136383b),
-('pum87v61s24udb9fhsho9foasaunlrvu', '::1', 1651081361, 0x5f5f63695f6c6173745f726567656e65726174657c693a313635313038313336313b),
-('qjg9ss1vija8tghohpffss60b3usrb0m', '::1', 1651093999, 0x5f5f63695f6c6173745f726567656e65726174657c693a313635313039333939393b6e616d657c733a353a224361766964223b6c6f676765725f70686f746f7c4e3b6c6f67676564696e5f6272616e63687c4e3b6c6f67676564696e5f69647c733a313a2231223b6c6f67676564696e5f7573657269647c733a313a2231223b6c6f67676564696e5f726f6c655f69647c733a313a2231223b6c6f67676564696e5f747970657c733a353a227374616666223b7365745f6c616e677c733a373a226c616e675f3332223b7365745f73657373696f6e5f69647c733a313a2233223b6c6f67676564696e7c623a313b),
-('qrolnhv1fi7jgrbs9eovjvd0sm17qr0r', '::1', 1651079616, 0x5f5f63695f6c6173745f726567656e65726174657c693a313635313037393631363b),
-('qss2fjpv8j1iu1h20qci5h29gm8ub7ie', '::1', 1651076565, 0x5f5f63695f6c6173745f726567656e65726174657c693a313635313037363536353b),
-('s1ri2hq1jottmdks0vd6k962jh5ln6id', '::1', 1651098502, 0x5f5f63695f6c6173745f726567656e65726174657c693a313635313039383330383b72656469726563745f75726c7c733a33363a22687474703a2f2f6c6f63616c686f73742f6576656c616e692f757365722f7369676e696e223b),
-('s6pdv9887iejta4tbt6b7ns2mcm34q7a', '::1', 1651081671, 0x5f5f63695f6c6173745f726567656e65726174657c693a313635313038313637313b),
-('t5d6f71einid52em674q1b3h7325n568', '::1', 1651095103, 0x5f5f63695f6c6173745f726567656e65726174657c693a313635313039353130333b6e616d657c733a353a224361766964223b6c6f676765725f70686f746f7c4e3b6c6f67676564696e5f6272616e63687c4e3b6c6f67676564696e5f69647c733a313a2231223b6c6f67676564696e5f7573657269647c733a313a2231223b6c6f67676564696e5f726f6c655f69647c733a313a2231223b6c6f67676564696e5f747970657c733a353a227374616666223b7365745f6c616e677c733a373a226c616e675f3332223b7365745f73657373696f6e5f69647c733a313a2233223b6c6f67676564696e7c623a313b);
+('115qp1l0spc12hiv9gdko8f53pr0jj58', '::1', 1651974650, 0x5f5f63695f6c6173745f726567656e65726174657c693a313635313937343635303b),
+('15a0qufjg1idjl8o88110laauu322j1g', '::1', 1652015326, 0x5f5f63695f6c6173745f726567656e65726174657c693a313635323031353332363b736573735f72657365745f746b6e7c733a3132383a226362623563643564383261613664343734356663363865363666663737633561663362386164356330633936303530633339366538363764323334356236643662393837353038343830323531666664333437633262356166326535346362323931353039323031656462666232396431376130373364303961303835613266223b),
+('179nn9jbf10d5k4g7qcgk2s1hmsql0iv', '::1', 1651973195, 0x5f5f63695f6c6173745f726567656e65726174657c693a313635313937333139353b),
+('6ag3epjch61tb4du6fkb2qskdo488sdh', '::1', 1652015654, 0x5f5f63695f6c6173745f726567656e65726174657c693a313635323031353635343b616c6572742d6d6573736167652d6572726f727c733a31373a22546f6b656e204861732045787069726564223b5f5f63695f766172737c613a313a7b733a31393a22616c6572742d6d6573736167652d6572726f72223b733a333a226f6c64223b7d),
+('6s4nmdu6pmbog44vqqrr0amqtura8ke3', '::1', 1652026896, 0x5f5f63695f6c6173745f726567656e65726174657c693a313635323032363839363b66725f6e616d657c733a31303a2241c49f616bc99972696d223b66725f656d61696c7c733a32313a227765626f786167656e637940676d61696c2e636f6d223b7365745f6c616e677c733a373a226c616e675f3332223b66725f6c6f67676564696e7c623a313b66725f6c6f676765725f69647c733a313a2231223b66725f7365745f73657373696f6e5f69647c733a313a2233223b),
+('72l3igms7p9ar53pg7rvaksnaltmumn9', '::1', 1651975673, 0x5f5f63695f6c6173745f726567656e65726174657c693a313635313937353632323b),
+('9ompsqbqsr8ufmh2n63bd0tuu07170m1', '::1', 1652014228, 0x5f5f63695f6c6173745f726567656e65726174657c693a313635323031343232383b),
+('dbghoqu5i8hurs7b3783itmfb7klsmvh', '::1', 1652028169, 0x5f5f63695f6c6173745f726567656e65726174657c693a313635323032383136393b66725f6e616d657c733a31303a2241c49f616bc99972696d223b66725f656d61696c7c733a32353a226368617061726f676c75636176696440676d61696c2e636f6d223b7365745f6c616e677c733a373a226c616e675f3332223b66725f6c6f67676564696e7c623a313b66725f6c6f676765725f69647c733a313a2231223b66725f7365745f73657373696f6e5f69647c733a313a2233223b72656469726563745f75726c7c733a33343a22687474703a2f2f6c6f63616c686f73742f6576656c616e692f64617368626f617264223b6e616d657c733a353a224361766964223b6c6f676765725f70686f746f7c4e3b6c6f67676564696e5f6272616e63687c4e3b6c6f67676564696e5f69647c733a313a2231223b6c6f67676564696e5f7573657269647c733a313a2231223b6c6f67676564696e5f726f6c655f69647c733a313a2231223b6c6f67676564696e5f747970657c733a353a227374616666223b7365745f73657373696f6e5f69647c733a313a2233223b6c6f67676564696e7c623a313b),
+('egofo9m6rd84gretejlmalmoavqvhgm0', '::1', 1651973889, 0x5f5f63695f6c6173745f726567656e65726174657c693a313635313937333838393b),
+('eopnrp1igt2t3dkopi183m2q8f250i5u', '::1', 1651971896, 0x5f5f63695f6c6173745f726567656e65726174657c693a313635313937313839363b6e616d657c733a353a224361766964223b6c6f676765725f70686f746f7c4e3b6c6f67676564696e5f6272616e63687c4e3b6c6f67676564696e5f69647c733a313a2231223b6c6f67676564696e5f7573657269647c733a313a2231223b6c6f67676564696e5f726f6c655f69647c733a313a2231223b6c6f67676564696e5f747970657c733a353a227374616666223b7365745f6c616e677c733a373a226c616e675f3332223b7365745f73657373696f6e5f69647c733a313a2233223b6c6f67676564696e7c623a313b66725f6e616d657c733a31303a2241c49f616bc99972696d223b66725f656d61696c7c733a32313a227765626f786167656e637940676d61696c2e636f6d223b66725f6c6f67676564696e7c623a313b66725f6c6f676765725f69647c733a313a2231223b66725f7365745f73657373696f6e5f69647c733a313a2233223b),
+('fq4vurovu28udr7pknog9npqircgvv97', '::1', 1651972640, 0x5f5f63695f6c6173745f726567656e65726174657c693a313635313937323634303b6e616d657c733a353a224361766964223b6c6f676765725f70686f746f7c4e3b6c6f67676564696e5f6272616e63687c4e3b6c6f67676564696e5f69647c733a313a2231223b6c6f67676564696e5f7573657269647c733a313a2231223b6c6f67676564696e5f726f6c655f69647c733a313a2231223b6c6f67676564696e5f747970657c733a353a227374616666223b7365745f6c616e677c733a373a226c616e675f3332223b7365745f73657373696f6e5f69647c733a313a2233223b6c6f67676564696e7c623a313b66725f6e616d657c733a31303a2241c49f616bc99972696d223b66725f656d61696c7c733a32313a227765626f786167656e637940676d61696c2e636f6d223b66725f6c6f67676564696e7c623a313b66725f6c6f676765725f69647c733a313a2231223b66725f7365745f73657373696f6e5f69647c733a313a2233223b),
+('g6vdtikd79cgn6svv0rdg507iee5fgrm', '::1', 1652028786, 0x5f5f63695f6c6173745f726567656e65726174657c693a313635323032383539323b66725f6e616d657c733a31303a2241c49f616bc99972696d223b66725f656d61696c7c733a32353a226368617061726f676c75636176696440676d61696c2e636f6d223b7365745f6c616e677c733a373a226c616e675f3332223b66725f6c6f67676564696e7c623a313b66725f6c6f676765725f69647c733a313a2231223b66725f7365745f73657373696f6e5f69647c733a313a2233223b72656469726563745f75726c7c733a33343a22687474703a2f2f6c6f63616c686f73742f6576656c616e692f64617368626f617264223b6e616d657c733a353a224361766964223b6c6f676765725f70686f746f7c4e3b6c6f67676564696e5f6272616e63687c4e3b6c6f67676564696e5f69647c733a313a2231223b6c6f67676564696e5f7573657269647c733a313a2231223b6c6f67676564696e5f726f6c655f69647c733a313a2231223b6c6f67676564696e5f747970657c733a353a227374616666223b7365745f73657373696f6e5f69647c733a313a2233223b6c6f67676564696e7c623a313b),
+('g9i0pid6nlt47jodrv0bj1l58qavl2ln', '::1', 1652028592, 0x5f5f63695f6c6173745f726567656e65726174657c693a313635323032383539323b66725f6e616d657c733a31303a2241c49f616bc99972696d223b66725f656d61696c7c733a32353a226368617061726f676c75636176696440676d61696c2e636f6d223b7365745f6c616e677c733a373a226c616e675f3332223b66725f6c6f67676564696e7c623a313b66725f6c6f676765725f69647c733a313a2231223b66725f7365745f73657373696f6e5f69647c733a313a2233223b72656469726563745f75726c7c733a33343a22687474703a2f2f6c6f63616c686f73742f6576656c616e692f64617368626f617264223b6e616d657c733a353a224361766964223b6c6f676765725f70686f746f7c4e3b6c6f67676564696e5f6272616e63687c4e3b6c6f67676564696e5f69647c733a313a2231223b6c6f67676564696e5f7573657269647c733a313a2231223b6c6f67676564696e5f726f6c655f69647c733a313a2231223b6c6f67676564696e5f747970657c733a353a227374616666223b7365745f73657373696f6e5f69647c733a313a2233223b6c6f67676564696e7c623a313b),
+('go625pl1ckbk09c5grp8eij5ld7cipq7', '::1', 1651978765, 0x5f5f63695f6c6173745f726567656e65726174657c693a313635313937383735353b72656469726563745f75726c7c733a35343a22687474703a2f2f6c6f63616c686f73742f6576656c616e692f7363686f6f6c5f73657474696e67732f656d61696c74656d706c617465223b),
+('hk8jq5bhpfeqbk8vvirkfad53j4s4blm', '::1', 1651975622, 0x5f5f63695f6c6173745f726567656e65726174657c693a313635313937353632323b),
+('mja8i1v9p3d41oevau69ccrtlvsfriou', '::1', 1652014697, 0x5f5f63695f6c6173745f726567656e65726174657c693a313635323031343639373b),
+('moupm4k0r48ir34ldt3tvam1ocu3hhkv', '::1', 1651975050, 0x5f5f63695f6c6173745f726567656e65726174657c693a313635313937353035303b),
+('o7gr8f35tbrp5f2ncri8egsrpn5a4bcq', '::1', 1652013824, 0x5f5f63695f6c6173745f726567656e65726174657c693a313635323031333832343b),
+('okp3omljmdqc9iapg6odmn972mcs432a', '::1', 1652014999, 0x5f5f63695f6c6173745f726567656e65726174657c693a313635323031343939393b736573735f72657365745f746b6e7c733a3132383a226362623563643564383261613664343734356663363865363666663737633561663362386164356330633936303530633339366538363764323334356236643662393837353038343830323531666664333437633262356166326535346362323931353039323031656462666232396431376130373364303961303835613266223b),
+('or8i8ugtc1bpe7004fl8r558ij2lb871', '::1', 1651973515, 0x5f5f63695f6c6173745f726567656e65726174657c693a313635313937333531353b),
+('ppdn2h4ca50uvptqr0si859ad87jf7e5', '::1', 1652027236, 0x5f5f63695f6c6173745f726567656e65726174657c693a313635323032373233363b66725f6e616d657c733a31303a2241c49f616bc99972696d223b66725f656d61696c7c733a32353a226368617061726f676c75636176696440676d61696c2e636f6d223b7365745f6c616e677c733a373a226c616e675f3332223b66725f6c6f67676564696e7c623a313b66725f6c6f676765725f69647c733a313a2231223b66725f7365745f73657373696f6e5f69647c733a313a2233223b),
+('vd7r0l9bqqn5p8qjj62dpobvk37r9sp9', '::1', 1652015846, 0x5f5f63695f6c6173745f726567656e65726174657c693a313635323031353635343b736573735f72657365745f746b6e7c733a3132383a226362623563643564383261613664343734356663363865363666663737633561663362386164356330633936303530633339366538363764323334356236643662393837353038343830323531666664333437633262356166326535346362323931353039323031656462666232396431376130373364303961303835613266223b);
 
 -- --------------------------------------------------------
 
@@ -3769,12 +3921,13 @@ INSERT INTO `rm_sessions` (`id`, `ip_address`, `timestamp`, `data`) VALUES
 -- Table structure for table `roles`
 --
 
-CREATE TABLE `roles` (
-  `id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `roles` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(50) NOT NULL,
   `prefix` varchar(50) DEFAULT NULL,
-  `is_system` varchar(10) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `is_system` varchar(10) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `roles`
@@ -3795,12 +3948,13 @@ INSERT INTO `roles` (`id`, `name`, `prefix`, `is_system`) VALUES
 -- Table structure for table `salary_template`
 --
 
-CREATE TABLE `salary_template` (
-  `id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `salary_template` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL,
   `basic_salary` decimal(18,2) NOT NULL,
   `overtime_salary` varchar(100) NOT NULL DEFAULT '0',
-  `branch_id` tinyint(3) NOT NULL
+  `branch_id` tinyint(3) NOT NULL,
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -3809,12 +3963,13 @@ CREATE TABLE `salary_template` (
 -- Table structure for table `salary_template_details`
 --
 
-CREATE TABLE `salary_template_details` (
-  `id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `salary_template_details` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `salary_template_id` varchar(20) NOT NULL,
   `name` varchar(200) NOT NULL,
   `amount` decimal(18,2) NOT NULL DEFAULT 0.00,
-  `type` tinyint(2) NOT NULL
+  `type` tinyint(2) NOT NULL,
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -3823,13 +3978,14 @@ CREATE TABLE `salary_template_details` (
 -- Table structure for table `schoolyear`
 --
 
-CREATE TABLE `schoolyear` (
-  `id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `schoolyear` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `school_year` varchar(255) NOT NULL,
   `created_by` int(11) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
-  `updated_at` datetime DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `updated_at` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `schoolyear`
@@ -3850,11 +4006,12 @@ INSERT INTO `schoolyear` (`id`, `school_year`, `created_by`, `created_at`, `upda
 -- Table structure for table `section`
 --
 
-CREATE TABLE `section` (
-  `id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `section` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL,
   `capacity` varchar(20) DEFAULT NULL,
-  `branch_id` int(11) DEFAULT NULL
+  `branch_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -3863,10 +4020,11 @@ CREATE TABLE `section` (
 -- Table structure for table `sections_allocation`
 --
 
-CREATE TABLE `sections_allocation` (
-  `id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `sections_allocation` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `class_id` int(11) NOT NULL,
-  `section_id` int(11) NOT NULL
+  `section_id` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -3875,10 +4033,11 @@ CREATE TABLE `sections_allocation` (
 -- Table structure for table `sms_api`
 --
 
-CREATE TABLE `sms_api` (
-  `id` int(11) NOT NULL,
-  `name` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+CREATE TABLE IF NOT EXISTS `sms_api` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `sms_api`
@@ -3898,8 +4057,8 @@ INSERT INTO `sms_api` (`id`, `name`) VALUES
 -- Table structure for table `sms_credential`
 --
 
-CREATE TABLE `sms_credential` (
-  `id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `sms_credential` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `sms_api_id` int(11) NOT NULL,
   `field_one` varchar(300) NOT NULL,
   `field_two` varchar(300) NOT NULL,
@@ -3908,7 +4067,8 @@ CREATE TABLE `sms_credential` (
   `branch_id` int(11) NOT NULL,
   `is_active` tinyint(1) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
-  `updated_at` datetime DEFAULT NULL
+  `updated_at` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -3917,11 +4077,12 @@ CREATE TABLE `sms_credential` (
 -- Table structure for table `sms_template`
 --
 
-CREATE TABLE `sms_template` (
-  `id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `sms_template` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL,
-  `tags` text NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `tags` text NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `sms_template`
@@ -3942,14 +4103,15 @@ INSERT INTO `sms_template` (`id`, `name`, `tags`) VALUES
 -- Table structure for table `sms_template_details`
 --
 
-CREATE TABLE `sms_template_details` (
-  `id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `sms_template_details` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `template_id` int(11) NOT NULL,
   `notify_student` tinyint(3) NOT NULL DEFAULT 1,
   `notify_parent` tinyint(3) NOT NULL DEFAULT 1,
   `template_body` longtext NOT NULL,
   `branch_id` int(11) NOT NULL,
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -3958,8 +4120,8 @@ CREATE TABLE `sms_template_details` (
 -- Table structure for table `staff`
 --
 
-CREATE TABLE `staff` (
-  `id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `staff` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `staff_id` varchar(25) NOT NULL,
   `name` varchar(255) NOT NULL,
   `department` int(11) NOT NULL,
@@ -3983,8 +4145,9 @@ CREATE TABLE `staff` (
   `linkedin_url` varchar(255) DEFAULT NULL,
   `twitter_url` varchar(255) DEFAULT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
-  `updated_at` datetime DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `updated_at` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `staff`
@@ -3999,13 +4162,14 @@ INSERT INTO `staff` (`id`, `staff_id`, `name`, `department`, `qualification`, `e
 -- Table structure for table `staff_attendance`
 --
 
-CREATE TABLE `staff_attendance` (
-  `id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `staff_attendance` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `staff_id` int(11) NOT NULL,
   `status` varchar(11) DEFAULT NULL COMMENT 'P=Present, A=Absent, H=Holiday, L=Late',
   `remark` varchar(255) NOT NULL,
   `date` date DEFAULT NULL,
-  `branch_id` int(11) DEFAULT NULL
+  `branch_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -4014,8 +4178,8 @@ CREATE TABLE `staff_attendance` (
 -- Table structure for table `staff_bank_account`
 --
 
-CREATE TABLE `staff_bank_account` (
-  `id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `staff_bank_account` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `staff_id` int(11) NOT NULL,
   `bank_name` varchar(200) NOT NULL,
   `holder_name` varchar(255) NOT NULL,
@@ -4024,7 +4188,8 @@ CREATE TABLE `staff_bank_account` (
   `ifsc_code` varchar(200) NOT NULL,
   `account_no` varchar(200) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
-  `updated_at` datetime DEFAULT NULL
+  `updated_at` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -4033,12 +4198,13 @@ CREATE TABLE `staff_bank_account` (
 -- Table structure for table `staff_department`
 --
 
-CREATE TABLE `staff_department` (
-  `id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `staff_department` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` longtext NOT NULL,
   `branch_id` int(11) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
-  `updated_at` datetime DEFAULT NULL
+  `updated_at` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -4047,12 +4213,13 @@ CREATE TABLE `staff_department` (
 -- Table structure for table `staff_designation`
 --
 
-CREATE TABLE `staff_designation` (
-  `id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `staff_designation` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` longtext NOT NULL,
   `branch_id` int(11) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
-  `updated_at` datetime DEFAULT NULL
+  `updated_at` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -4061,8 +4228,8 @@ CREATE TABLE `staff_designation` (
 -- Table structure for table `staff_documents`
 --
 
-CREATE TABLE `staff_documents` (
-  `id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `staff_documents` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `staff_id` int(11) NOT NULL,
   `title` varchar(255) NOT NULL,
   `category_id` varchar(20) NOT NULL,
@@ -4070,7 +4237,8 @@ CREATE TABLE `staff_documents` (
   `file_name` varchar(255) NOT NULL,
   `enc_name` varchar(255) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
-  `updated_at` datetime DEFAULT NULL
+  `updated_at` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -4079,15 +4247,16 @@ CREATE TABLE `staff_documents` (
 -- Table structure for table `staff_privileges`
 --
 
-CREATE TABLE `staff_privileges` (
-  `id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `staff_privileges` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `role_id` int(11) NOT NULL,
   `permission_id` int(11) NOT NULL,
   `is_add` tinyint(1) NOT NULL,
   `is_edit` tinyint(1) NOT NULL,
   `is_view` tinyint(1) NOT NULL,
-  `is_delete` tinyint(1) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `is_delete` tinyint(1) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=609 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `staff_privileges`
@@ -4704,8 +4873,8 @@ INSERT INTO `staff_privileges` (`id`, `role_id`, `permission_id`, `is_add`, `is_
 -- Table structure for table `student`
 --
 
-CREATE TABLE `student` (
-  `id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `student` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `register_no` varchar(100) NOT NULL,
   `admission_date` varchar(100) NOT NULL,
   `first_name` varchar(255) NOT NULL,
@@ -4731,7 +4900,8 @@ CREATE TABLE `student` (
   `previous_details` text NOT NULL,
   `photo` varchar(100) DEFAULT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
-  `updated_at` datetime DEFAULT NULL
+  `updated_at` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -4740,15 +4910,16 @@ CREATE TABLE `student` (
 -- Table structure for table `student_attendance`
 --
 
-CREATE TABLE `student_attendance` (
-  `id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `student_attendance` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `student_id` int(11) NOT NULL,
   `date` date NOT NULL,
   `status` varchar(4) DEFAULT NULL COMMENT 'P=Present, A=Absent, H=Holiday, L=Late',
   `remark` text DEFAULT NULL,
   `branch_id` int(11) DEFAULT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
-  `updated_at` datetime DEFAULT NULL
+  `updated_at` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -4757,10 +4928,11 @@ CREATE TABLE `student_attendance` (
 -- Table structure for table `student_category`
 --
 
-CREATE TABLE `student_category` (
-  `id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `student_category` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `branch_id` int(11) NOT NULL DEFAULT 0,
-  `name` varchar(255) NOT NULL
+  `name` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -4769,8 +4941,8 @@ CREATE TABLE `student_category` (
 -- Table structure for table `student_documents`
 --
 
-CREATE TABLE `student_documents` (
-  `id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `student_documents` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `student_id` int(11) NOT NULL,
   `title` varchar(255) NOT NULL,
   `type` varchar(100) NOT NULL,
@@ -4778,7 +4950,8 @@ CREATE TABLE `student_documents` (
   `file_name` varchar(255) NOT NULL,
   `enc_name` varchar(255) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
-  `updated_at` datetime DEFAULT NULL
+  `updated_at` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -4787,13 +4960,14 @@ CREATE TABLE `student_documents` (
 -- Table structure for table `subject`
 --
 
-CREATE TABLE `subject` (
-  `id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `subject` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL,
   `subject_code` varchar(200) NOT NULL,
   `subject_type` varchar(255) CHARACTER SET utf32 COLLATE utf32_unicode_ci NOT NULL,
   `subject_author` varchar(255) NOT NULL,
-  `branch_id` int(11) DEFAULT NULL
+  `branch_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -4802,8 +4976,8 @@ CREATE TABLE `subject` (
 -- Table structure for table `subject_assign`
 --
 
-CREATE TABLE `subject_assign` (
-  `id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `subject_assign` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `class_id` int(11) NOT NULL,
   `section_id` int(11) NOT NULL,
   `subject_id` longtext NOT NULL,
@@ -4811,7 +4985,8 @@ CREATE TABLE `subject_assign` (
   `branch_id` int(11) NOT NULL,
   `session_id` int(11) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
-  `updated_at` datetime DEFAULT NULL
+  `updated_at` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -4820,12 +4995,13 @@ CREATE TABLE `subject_assign` (
 -- Table structure for table `targets`
 --
 
-CREATE TABLE `targets` (
-  `id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `targets` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `target_name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `seo_link` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `status` int(11) NOT NULL DEFAULT 1 COMMENT '0 - Deaktiv\r\n1 - Aktiv'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  `status` int(11) NOT NULL DEFAULT 1 COMMENT '0 - Deaktiv\r\n1 - Aktiv',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=322 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `targets`
@@ -5160,13 +5336,14 @@ INSERT INTO `targets` (`id`, `target_name`, `seo_link`, `status`) VALUES
 -- Table structure for table `teacher_allocation`
 --
 
-CREATE TABLE `teacher_allocation` (
-  `id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `teacher_allocation` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `class_id` int(11) NOT NULL,
   `section_id` int(11) NOT NULL,
   `teacher_id` int(11) NOT NULL,
   `session_id` int(11) NOT NULL,
-  `branch_id` int(11) DEFAULT NULL
+  `branch_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -5175,8 +5352,8 @@ CREATE TABLE `teacher_allocation` (
 -- Table structure for table `teacher_note`
 --
 
-CREATE TABLE `teacher_note` (
-  `id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `teacher_note` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `title` longtext NOT NULL,
   `description` longtext NOT NULL,
   `file_name` longtext NOT NULL,
@@ -5186,7 +5363,8 @@ CREATE TABLE `teacher_note` (
   `teacher_id` int(11) NOT NULL,
   `branch_id` int(11) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
-  `updated_at` datetime DEFAULT NULL
+  `updated_at` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -5195,13 +5373,14 @@ CREATE TABLE `teacher_note` (
 -- Table structure for table `theme_settings`
 --
 
-CREATE TABLE `theme_settings` (
-  `id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `theme_settings` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `border_mode` varchar(200) NOT NULL,
   `dark_skin` varchar(200) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
-  `updated_at` datetime DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `updated_at` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `theme_settings`
@@ -5216,8 +5395,8 @@ INSERT INTO `theme_settings` (`id`, `border_mode`, `dark_skin`, `created_at`, `u
 -- Table structure for table `timetable_class`
 --
 
-CREATE TABLE `timetable_class` (
-  `id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `timetable_class` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `class_id` int(11) NOT NULL,
   `section_id` int(11) NOT NULL,
   `break` varchar(11) DEFAULT 'false',
@@ -5228,7 +5407,8 @@ CREATE TABLE `timetable_class` (
   `time_end` time NOT NULL,
   `day` varchar(20) NOT NULL,
   `session_id` int(11) NOT NULL,
-  `branch_id` int(11) DEFAULT NULL
+  `branch_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -5237,8 +5417,8 @@ CREATE TABLE `timetable_class` (
 -- Table structure for table `timetable_exam`
 --
 
-CREATE TABLE `timetable_exam` (
-  `id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `timetable_exam` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `exam_id` int(11) NOT NULL,
   `class_id` int(11) NOT NULL,
   `section_id` int(11) NOT NULL,
@@ -5251,7 +5431,8 @@ CREATE TABLE `timetable_exam` (
   `branch_id` int(11) NOT NULL,
   `session_id` int(11) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
-  `updated_at` datetime DEFAULT NULL
+  `updated_at` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -5260,8 +5441,8 @@ CREATE TABLE `timetable_exam` (
 -- Table structure for table `transactions`
 --
 
-CREATE TABLE `transactions` (
-  `id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `transactions` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `account_id` varchar(20) NOT NULL,
   `voucher_head_id` int(11) NOT NULL,
   `type` varchar(100) NOT NULL,
@@ -5278,7 +5459,8 @@ CREATE TABLE `transactions` (
   `branch_id` int(11) NOT NULL,
   `system` tinyint(1) NOT NULL DEFAULT 0,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
-  `updated_at` datetime DEFAULT NULL
+  `updated_at` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -5287,12 +5469,13 @@ CREATE TABLE `transactions` (
 -- Table structure for table `transactions_links`
 --
 
-CREATE TABLE `transactions_links` (
-  `id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `transactions_links` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `status` tinyint(3) DEFAULT NULL,
   `deposit` tinyint(3) DEFAULT NULL,
   `expense` tinyint(3) DEFAULT NULL,
-  `branch_id` int(11) DEFAULT NULL
+  `branch_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -5301,13 +5484,14 @@ CREATE TABLE `transactions_links` (
 -- Table structure for table `transport_assign`
 --
 
-CREATE TABLE `transport_assign` (
-  `id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `transport_assign` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `route_id` int(11) NOT NULL,
   `stoppage_id` int(11) NOT NULL,
   `vehicle_id` int(11) NOT NULL,
   `branch_id` int(11) NOT NULL,
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -5316,13 +5500,14 @@ CREATE TABLE `transport_assign` (
 -- Table structure for table `transport_route`
 --
 
-CREATE TABLE `transport_route` (
-  `id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `transport_route` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` longtext NOT NULL,
   `start_place` longtext NOT NULL,
   `remarks` longtext NOT NULL,
   `stop_place` longtext NOT NULL,
-  `branch_id` int(11) DEFAULT NULL
+  `branch_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -5331,13 +5516,14 @@ CREATE TABLE `transport_route` (
 -- Table structure for table `transport_stoppage`
 --
 
-CREATE TABLE `transport_stoppage` (
-  `id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `transport_stoppage` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `stop_position` varchar(255) NOT NULL,
   `stop_time` time NOT NULL,
   `route_fare` decimal(18,2) NOT NULL,
   `branch_id` int(11) NOT NULL,
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -5346,8 +5532,8 @@ CREATE TABLE `transport_stoppage` (
 -- Table structure for table `transport_vehicle`
 --
 
-CREATE TABLE `transport_vehicle` (
-  `id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `transport_vehicle` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `vehicle_no` longtext NOT NULL,
   `capacity` longtext NOT NULL,
   `insurance_renewal` longtext NOT NULL,
@@ -5356,7 +5542,8 @@ CREATE TABLE `transport_vehicle` (
   `driver_license` longtext NOT NULL,
   `branch_id` int(11) DEFAULT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
-  `updated_at` datetime DEFAULT NULL
+  `updated_at` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -5365,12 +5552,13 @@ CREATE TABLE `transport_vehicle` (
 -- Table structure for table `voucher_head`
 --
 
-CREATE TABLE `voucher_head` (
-  `id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `voucher_head` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL,
   `type` varchar(20) NOT NULL,
   `system` tinyint(1) DEFAULT 0,
-  `branch_id` int(11) NOT NULL
+  `branch_id` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -5379,11 +5567,12 @@ CREATE TABLE `voucher_head` (
 -- Table structure for table `wishlists`
 --
 
-CREATE TABLE `wishlists` (
-  `id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `wishlists` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `session_id` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `data_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  `data_id` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `wishlists`
@@ -5398,1579 +5587,14 @@ INSERT INTO `wishlists` (`id`, `session_id`, `data_id`) VALUES
 -- Table structure for table `zoom_own_api`
 --
 
-CREATE TABLE `zoom_own_api` (
-  `id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `zoom_own_api` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `user_type` tinyint(1) NOT NULL,
   `user_id` int(11) NOT NULL,
   `zoom_api_key` varchar(255) NOT NULL,
-  `zoom_api_secret` varchar(255) NOT NULL
+  `zoom_api_secret` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Indexes for dumped tables
---
-
---
--- Indexes for table `accounts`
---
-ALTER TABLE `accounts`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `ads_type`
---
-ALTER TABLE `ads_type`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `ads_users`
---
-ALTER TABLE `ads_users`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `advance_salary`
---
-ALTER TABLE `advance_salary`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `attachments`
---
-ALTER TABLE `attachments`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `attachments_type`
---
-ALTER TABLE `attachments_type`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `award`
---
-ALTER TABLE `award`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `book`
---
-ALTER TABLE `book`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `book_category`
---
-ALTER TABLE `book_category`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `book_issues`
---
-ALTER TABLE `book_issues`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `branch`
---
-ALTER TABLE `branch`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `bulk_msg_category`
---
-ALTER TABLE `bulk_msg_category`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `bulk_sms_email`
---
-ALTER TABLE `bulk_sms_email`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `card_templete`
---
-ALTER TABLE `card_templete`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `certificates_templete`
---
-ALTER TABLE `certificates_templete`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `cities`
---
-ALTER TABLE `cities`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `class`
---
-ALTER TABLE `class`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `custom_field`
---
-ALTER TABLE `custom_field`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `custom_fields_values`
---
-ALTER TABLE `custom_fields_values`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `relid` (`relid`),
-  ADD KEY `fieldid` (`field_id`);
-
---
--- Indexes for table `districts`
---
-ALTER TABLE `districts`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `email_config`
---
-ALTER TABLE `email_config`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `email_templates`
---
-ALTER TABLE `email_templates`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `email_templates_details`
---
-ALTER TABLE `email_templates_details`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `enroll`
---
-ALTER TABLE `enroll`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `estate_type`
---
-ALTER TABLE `estate_type`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `event`
---
-ALTER TABLE `event`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `event_types`
---
-ALTER TABLE `event_types`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `exam`
---
-ALTER TABLE `exam`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `exam_attendance`
---
-ALTER TABLE `exam_attendance`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `exam_hall`
---
-ALTER TABLE `exam_hall`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `exam_mark_distribution`
---
-ALTER TABLE `exam_mark_distribution`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `exam_term`
---
-ALTER TABLE `exam_term`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `fees_reminder`
---
-ALTER TABLE `fees_reminder`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `fees_type`
---
-ALTER TABLE `fees_type`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `fee_allocation`
---
-ALTER TABLE `fee_allocation`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `fee_fine`
---
-ALTER TABLE `fee_fine`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `fee_groups`
---
-ALTER TABLE `fee_groups`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `fee_groups_details`
---
-ALTER TABLE `fee_groups_details`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `fee_payment_history`
---
-ALTER TABLE `fee_payment_history`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `front_cms_about`
---
-ALTER TABLE `front_cms_about`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `front_cms_admission`
---
-ALTER TABLE `front_cms_admission`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `front_cms_admitcard`
---
-ALTER TABLE `front_cms_admitcard`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `front_cms_certificates`
---
-ALTER TABLE `front_cms_certificates`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `front_cms_contact`
---
-ALTER TABLE `front_cms_contact`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `front_cms_events`
---
-ALTER TABLE `front_cms_events`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `front_cms_exam_results`
---
-ALTER TABLE `front_cms_exam_results`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `front_cms_faq`
---
-ALTER TABLE `front_cms_faq`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `front_cms_faq_list`
---
-ALTER TABLE `front_cms_faq_list`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `front_cms_gallery`
---
-ALTER TABLE `front_cms_gallery`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `front_cms_gallery_category`
---
-ALTER TABLE `front_cms_gallery_category`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `front_cms_gallery_content`
---
-ALTER TABLE `front_cms_gallery_content`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `front_cms_home`
---
-ALTER TABLE `front_cms_home`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `front_cms_home_seo`
---
-ALTER TABLE `front_cms_home_seo`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `front_cms_menu`
---
-ALTER TABLE `front_cms_menu`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `front_cms_menu_visible`
---
-ALTER TABLE `front_cms_menu_visible`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `front_cms_pages`
---
-ALTER TABLE `front_cms_pages`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `front_cms_services`
---
-ALTER TABLE `front_cms_services`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `front_cms_services_list`
---
-ALTER TABLE `front_cms_services_list`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `front_cms_setting`
---
-ALTER TABLE `front_cms_setting`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `front_cms_teachers`
---
-ALTER TABLE `front_cms_teachers`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `front_cms_testimonial`
---
-ALTER TABLE `front_cms_testimonial`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `global_settings`
---
-ALTER TABLE `global_settings`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `grade`
---
-ALTER TABLE `grade`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `hall_allocation`
---
-ALTER TABLE `hall_allocation`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `homework`
---
-ALTER TABLE `homework`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `homework_evaluation`
---
-ALTER TABLE `homework_evaluation`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `hostel`
---
-ALTER TABLE `hostel`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `hostel_category`
---
-ALTER TABLE `hostel_category`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `hostel_room`
---
-ALTER TABLE `hostel_room`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `languages`
---
-ALTER TABLE `languages`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `language_list`
---
-ALTER TABLE `language_list`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `leave_application`
---
-ALTER TABLE `leave_application`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `leave_category`
---
-ALTER TABLE `leave_category`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `live_class`
---
-ALTER TABLE `live_class`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `live_class_config`
---
-ALTER TABLE `live_class_config`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `live_class_reports`
---
-ALTER TABLE `live_class_reports`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `login_credential`
---
-ALTER TABLE `login_credential`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `mark`
---
-ALTER TABLE `mark`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `message`
---
-ALTER TABLE `message`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `message_reply`
---
-ALTER TABLE `message_reply`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `metros`
---
-ALTER TABLE `metros`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `online_admission`
---
-ALTER TABLE `online_admission`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `parent`
---
-ALTER TABLE `parent`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `payment_config`
---
-ALTER TABLE `payment_config`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `payment_salary_stipend`
---
-ALTER TABLE `payment_salary_stipend`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `payment_types`
---
-ALTER TABLE `payment_types`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `payslip`
---
-ALTER TABLE `payslip`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `payslip_details`
---
-ALTER TABLE `payslip_details`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `permission`
---
-ALTER TABLE `permission`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `permission_modules`
---
-ALTER TABLE `permission_modules`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `id` (`id`);
-
---
--- Indexes for table `regions`
---
-ALTER TABLE `regions`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `rm_sessions`
---
-ALTER TABLE `rm_sessions`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `ci_sessions_timestamp` (`timestamp`);
-
---
--- Indexes for table `roles`
---
-ALTER TABLE `roles`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `salary_template`
---
-ALTER TABLE `salary_template`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `salary_template_details`
---
-ALTER TABLE `salary_template_details`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `schoolyear`
---
-ALTER TABLE `schoolyear`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `section`
---
-ALTER TABLE `section`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `sections_allocation`
---
-ALTER TABLE `sections_allocation`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `sms_api`
---
-ALTER TABLE `sms_api`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `sms_credential`
---
-ALTER TABLE `sms_credential`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `sms_template`
---
-ALTER TABLE `sms_template`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `sms_template_details`
---
-ALTER TABLE `sms_template_details`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `staff`
---
-ALTER TABLE `staff`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `staff_attendance`
---
-ALTER TABLE `staff_attendance`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `staff_bank_account`
---
-ALTER TABLE `staff_bank_account`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `staff_department`
---
-ALTER TABLE `staff_department`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `staff_designation`
---
-ALTER TABLE `staff_designation`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `staff_documents`
---
-ALTER TABLE `staff_documents`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `staff_privileges`
---
-ALTER TABLE `staff_privileges`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `student`
---
-ALTER TABLE `student`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `student_attendance`
---
-ALTER TABLE `student_attendance`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `student_category`
---
-ALTER TABLE `student_category`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `student_documents`
---
-ALTER TABLE `student_documents`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `subject`
---
-ALTER TABLE `subject`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `subject_assign`
---
-ALTER TABLE `subject_assign`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `targets`
---
-ALTER TABLE `targets`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `teacher_allocation`
---
-ALTER TABLE `teacher_allocation`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `teacher_note`
---
-ALTER TABLE `teacher_note`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `theme_settings`
---
-ALTER TABLE `theme_settings`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `timetable_class`
---
-ALTER TABLE `timetable_class`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `timetable_exam`
---
-ALTER TABLE `timetable_exam`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `transactions`
---
-ALTER TABLE `transactions`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `transactions_links`
---
-ALTER TABLE `transactions_links`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `transport_assign`
---
-ALTER TABLE `transport_assign`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `transport_route`
---
-ALTER TABLE `transport_route`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `transport_stoppage`
---
-ALTER TABLE `transport_stoppage`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `transport_vehicle`
---
-ALTER TABLE `transport_vehicle`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `voucher_head`
---
-ALTER TABLE `voucher_head`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `wishlists`
---
-ALTER TABLE `wishlists`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `zoom_own_api`
---
-ALTER TABLE `zoom_own_api`
-  ADD PRIMARY KEY (`id`);
-
---
--- AUTO_INCREMENT for dumped tables
---
-
---
--- AUTO_INCREMENT for table `accounts`
---
-ALTER TABLE `accounts`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `ads_type`
---
-ALTER TABLE `ads_type`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
-
---
--- AUTO_INCREMENT for table `ads_users`
---
-ALTER TABLE `ads_users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
---
--- AUTO_INCREMENT for table `advance_salary`
---
-ALTER TABLE `advance_salary`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `attachments`
---
-ALTER TABLE `attachments`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `attachments_type`
---
-ALTER TABLE `attachments_type`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `award`
---
-ALTER TABLE `award`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `book`
---
-ALTER TABLE `book`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `book_category`
---
-ALTER TABLE `book_category`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `book_issues`
---
-ALTER TABLE `book_issues`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `branch`
---
-ALTER TABLE `branch`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
---
--- AUTO_INCREMENT for table `bulk_msg_category`
---
-ALTER TABLE `bulk_msg_category`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `bulk_sms_email`
---
-ALTER TABLE `bulk_sms_email`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `card_templete`
---
-ALTER TABLE `card_templete`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `certificates_templete`
---
-ALTER TABLE `certificates_templete`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `cities`
---
-ALTER TABLE `cities`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=58;
-
---
--- AUTO_INCREMENT for table `class`
---
-ALTER TABLE `class`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `custom_field`
---
-ALTER TABLE `custom_field`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `custom_fields_values`
---
-ALTER TABLE `custom_fields_values`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `districts`
---
-ALTER TABLE `districts`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=114;
-
---
--- AUTO_INCREMENT for table `email_config`
---
-ALTER TABLE `email_config`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
---
--- AUTO_INCREMENT for table `email_templates`
---
-ALTER TABLE `email_templates`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
-
---
--- AUTO_INCREMENT for table `email_templates_details`
---
-ALTER TABLE `email_templates_details`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `enroll`
---
-ALTER TABLE `enroll`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `estate_type`
---
-ALTER TABLE `estate_type`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
-
---
--- AUTO_INCREMENT for table `event`
---
-ALTER TABLE `event`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `event_types`
---
-ALTER TABLE `event_types`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `exam`
---
-ALTER TABLE `exam`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `exam_attendance`
---
-ALTER TABLE `exam_attendance`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `exam_hall`
---
-ALTER TABLE `exam_hall`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `exam_mark_distribution`
---
-ALTER TABLE `exam_mark_distribution`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `exam_term`
---
-ALTER TABLE `exam_term`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `fees_reminder`
---
-ALTER TABLE `fees_reminder`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `fees_type`
---
-ALTER TABLE `fees_type`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `fee_allocation`
---
-ALTER TABLE `fee_allocation`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `fee_fine`
---
-ALTER TABLE `fee_fine`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `fee_groups`
---
-ALTER TABLE `fee_groups`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `fee_groups_details`
---
-ALTER TABLE `fee_groups_details`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `fee_payment_history`
---
-ALTER TABLE `fee_payment_history`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `front_cms_about`
---
-ALTER TABLE `front_cms_about`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
---
--- AUTO_INCREMENT for table `front_cms_admission`
---
-ALTER TABLE `front_cms_admission`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
---
--- AUTO_INCREMENT for table `front_cms_admitcard`
---
-ALTER TABLE `front_cms_admitcard`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
---
--- AUTO_INCREMENT for table `front_cms_certificates`
---
-ALTER TABLE `front_cms_certificates`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
---
--- AUTO_INCREMENT for table `front_cms_contact`
---
-ALTER TABLE `front_cms_contact`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
---
--- AUTO_INCREMENT for table `front_cms_events`
---
-ALTER TABLE `front_cms_events`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
---
--- AUTO_INCREMENT for table `front_cms_exam_results`
---
-ALTER TABLE `front_cms_exam_results`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
---
--- AUTO_INCREMENT for table `front_cms_faq`
---
-ALTER TABLE `front_cms_faq`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
---
--- AUTO_INCREMENT for table `front_cms_faq_list`
---
-ALTER TABLE `front_cms_faq_list`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
-
---
--- AUTO_INCREMENT for table `front_cms_gallery`
---
-ALTER TABLE `front_cms_gallery`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
---
--- AUTO_INCREMENT for table `front_cms_gallery_category`
---
-ALTER TABLE `front_cms_gallery_category`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `front_cms_gallery_content`
---
-ALTER TABLE `front_cms_gallery_content`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `front_cms_home`
---
-ALTER TABLE `front_cms_home`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
-
---
--- AUTO_INCREMENT for table `front_cms_home_seo`
---
-ALTER TABLE `front_cms_home_seo`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
---
--- AUTO_INCREMENT for table `front_cms_menu`
---
-ALTER TABLE `front_cms_menu`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
-
---
--- AUTO_INCREMENT for table `front_cms_menu_visible`
---
-ALTER TABLE `front_cms_menu_visible`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
---
--- AUTO_INCREMENT for table `front_cms_pages`
---
-ALTER TABLE `front_cms_pages`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `front_cms_services`
---
-ALTER TABLE `front_cms_services`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
---
--- AUTO_INCREMENT for table `front_cms_services_list`
---
-ALTER TABLE `front_cms_services_list`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
-
---
--- AUTO_INCREMENT for table `front_cms_setting`
---
-ALTER TABLE `front_cms_setting`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
---
--- AUTO_INCREMENT for table `front_cms_teachers`
---
-ALTER TABLE `front_cms_teachers`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
---
--- AUTO_INCREMENT for table `front_cms_testimonial`
---
-ALTER TABLE `front_cms_testimonial`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
-
---
--- AUTO_INCREMENT for table `global_settings`
---
-ALTER TABLE `global_settings`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
---
--- AUTO_INCREMENT for table `grade`
---
-ALTER TABLE `grade`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `hall_allocation`
---
-ALTER TABLE `hall_allocation`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `homework`
---
-ALTER TABLE `homework`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `homework_evaluation`
---
-ALTER TABLE `homework_evaluation`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `hostel`
---
-ALTER TABLE `hostel`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `hostel_category`
---
-ALTER TABLE `hostel_category`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `hostel_room`
---
-ALTER TABLE `hostel_room`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `languages`
---
-ALTER TABLE `languages`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1215;
-
---
--- AUTO_INCREMENT for table `language_list`
---
-ALTER TABLE `language_list`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
-
---
--- AUTO_INCREMENT for table `leave_application`
---
-ALTER TABLE `leave_application`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `leave_category`
---
-ALTER TABLE `leave_category`
-  MODIFY `id` int(2) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `live_class`
---
-ALTER TABLE `live_class`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `live_class_config`
---
-ALTER TABLE `live_class_config`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `live_class_reports`
---
-ALTER TABLE `live_class_reports`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `login_credential`
---
-ALTER TABLE `login_credential`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
---
--- AUTO_INCREMENT for table `mark`
---
-ALTER TABLE `mark`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `message`
---
-ALTER TABLE `message`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `message_reply`
---
-ALTER TABLE `message_reply`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `metros`
---
-ALTER TABLE `metros`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
-
---
--- AUTO_INCREMENT for table `online_admission`
---
-ALTER TABLE `online_admission`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `parent`
---
-ALTER TABLE `parent`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `payment_config`
---
-ALTER TABLE `payment_config`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `payment_salary_stipend`
---
-ALTER TABLE `payment_salary_stipend`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `payment_types`
---
-ALTER TABLE `payment_types`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
-
---
--- AUTO_INCREMENT for table `payslip`
---
-ALTER TABLE `payslip`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `payslip_details`
---
-ALTER TABLE `payslip_details`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `permission`
---
-ALTER TABLE `permission`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=134;
-
---
--- AUTO_INCREMENT for table `permission_modules`
---
-ALTER TABLE `permission_modules`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
-
---
--- AUTO_INCREMENT for table `regions`
---
-ALTER TABLE `regions`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=88;
-
---
--- AUTO_INCREMENT for table `roles`
---
-ALTER TABLE `roles`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
-
---
--- AUTO_INCREMENT for table `salary_template`
---
-ALTER TABLE `salary_template`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `salary_template_details`
---
-ALTER TABLE `salary_template_details`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `schoolyear`
---
-ALTER TABLE `schoolyear`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
-
---
--- AUTO_INCREMENT for table `section`
---
-ALTER TABLE `section`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `sections_allocation`
---
-ALTER TABLE `sections_allocation`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `sms_api`
---
-ALTER TABLE `sms_api`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
-
---
--- AUTO_INCREMENT for table `sms_credential`
---
-ALTER TABLE `sms_credential`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `sms_template`
---
-ALTER TABLE `sms_template`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
-
---
--- AUTO_INCREMENT for table `sms_template_details`
---
-ALTER TABLE `sms_template_details`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `staff`
---
-ALTER TABLE `staff`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
---
--- AUTO_INCREMENT for table `staff_attendance`
---
-ALTER TABLE `staff_attendance`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `staff_bank_account`
---
-ALTER TABLE `staff_bank_account`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `staff_department`
---
-ALTER TABLE `staff_department`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `staff_designation`
---
-ALTER TABLE `staff_designation`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `staff_documents`
---
-ALTER TABLE `staff_documents`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `staff_privileges`
---
-ALTER TABLE `staff_privileges`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=609;
-
---
--- AUTO_INCREMENT for table `student`
---
-ALTER TABLE `student`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `student_attendance`
---
-ALTER TABLE `student_attendance`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `student_category`
---
-ALTER TABLE `student_category`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `student_documents`
---
-ALTER TABLE `student_documents`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `subject`
---
-ALTER TABLE `subject`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `subject_assign`
---
-ALTER TABLE `subject_assign`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `targets`
---
-ALTER TABLE `targets`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=322;
-
---
--- AUTO_INCREMENT for table `teacher_allocation`
---
-ALTER TABLE `teacher_allocation`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `teacher_note`
---
-ALTER TABLE `teacher_note`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `theme_settings`
---
-ALTER TABLE `theme_settings`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
---
--- AUTO_INCREMENT for table `timetable_class`
---
-ALTER TABLE `timetable_class`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `timetable_exam`
---
-ALTER TABLE `timetable_exam`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `transactions`
---
-ALTER TABLE `transactions`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `transactions_links`
---
-ALTER TABLE `transactions_links`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `transport_assign`
---
-ALTER TABLE `transport_assign`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `transport_route`
---
-ALTER TABLE `transport_route`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `transport_stoppage`
---
-ALTER TABLE `transport_stoppage`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `transport_vehicle`
---
-ALTER TABLE `transport_vehicle`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `voucher_head`
---
-ALTER TABLE `voucher_head`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `wishlists`
---
-ALTER TABLE `wishlists`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
---
--- AUTO_INCREMENT for table `zoom_own_api`
---
-ALTER TABLE `zoom_own_api`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
