@@ -1731,27 +1731,38 @@
    }
 </script>
 <script>
-   function afterRegister( data )
-   {
+    function afterRegister( data )
+    {
        let modal = $( '[x-target-with-data="afterRegister"]' ).closest( '.modal' );
    
        modal.html( _.template( $( 'script[x-email-success]' ).html() )( { title : 'Qeydiyyat təsdiq linki göndərildi' , text : data.text } ) );
    
        modal.addClass( 'modal--small modal-message' );
-   }
+    }
    
    
    function afterForgotPassword( data )
-   {
+    {
        let modal = $( '[x-target-with-data="afterForgotPassword"]' ).closest( '.modal' );
    
        modal.html( _.template( $( 'script[x-email-success]' ).html() )( { title : 'Şifrə yeniləmə linki göndərildi' , text : data.text } ) );
    
        modal.addClass( 'modal--small modal-message' );
-   }
-   
-   
-   
+    }
+    <?php if ((isset($_GET['reset'])) AND ($_GET['reset']==1) AND (sess_reset_tkn())){ ?>
+    function afterResetPassword()
+    {
+        let modal = $( '[x-target="afterResetPassword"]' ).closest( '.modal' );
+        modal.html( _.template( $( 'script[x-success]' ).html() )( { message : 'Şifrə uğurla dəyişdirildi' } ) );
+        modal.addClass( 'editmodal' );
+    }
+    $( document ).ready( function()
+    {            
+        $( '[data-target="#reset-password"]' ).click();
+        history.replaceState( '' , '' , '<?= base_url() ?>' );
+        loading();
+    });
+    <?php } ?>
    
    function afterLogin( data ) { location.reload(); }
    
@@ -1797,8 +1808,6 @@
                                        <?= translate('wishlist') ?>
        `);
    }
-   
-   
    
    
    $(document).ready( function()

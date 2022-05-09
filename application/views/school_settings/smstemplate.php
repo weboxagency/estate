@@ -22,6 +22,7 @@
 									$this->db->where('branch_id', $branch_id);
 									$this->db->where('template_id', $template['id']);
 									$getRow = $this->db->get('sms_template_details')->row_array();
+									
 									?>		
 								<div class="panel panel-accordion">
 									<div class="panel-heading">

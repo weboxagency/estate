@@ -221,6 +221,66 @@ class Email_model extends CI_Model
         }
     }
 
+    /* ESTATE EMAILS */
+
+    public function userRegistration($data)
+    {
+        $emailTemplate = $this->getEmailTemplates(13);
+        if ($emailTemplate['notified'] == 1) {
+            if (!empty($data['email'])) {
+                $message = $emailTemplate['template_body'];
+                $message = str_replace("{name}", $data['name'], $message);
+                $message = str_replace("{url}", $data['url'], $message);
+                $message = str_replace("{logo}", $data['logo'], $message);
+                $message = str_replace("{mobile}", $data['mobile'], $message);
+                $message = str_replace("{activation_url}", $data['activation_url'], $message);
+                $msgData['recipient']   = $data['email'];
+                $msgData['subject']     = $emailTemplate['subject'];
+                $msgData['message']     = $message;
+                $this->sendEmail($msgData);
+            }
+        }
+    }
+
+    public function userForgotPassword($data)
+    {
+        $emailTemplate = $this->getEmailTemplates(14);
+        if ($emailTemplate['notified'] == 1) {
+            if (!empty($data['email'])) {
+                $message = $emailTemplate['template_body'];
+                $message = str_replace("{name}", $data['name'], $message);
+                $message = str_replace("{url}", $data['url'], $message);
+                $message = str_replace("{logo}", $data['logo'], $message);
+                $message = str_replace("{mobile}", $data['mobile'], $message);
+                $message = str_replace("{reset_url}", $data['reset_url'], $message);
+                $msgData['recipient']   = $data['email'];
+                $msgData['subject']     = $emailTemplate['subject'];
+                $msgData['message']     = $message;
+                $this->sendEmail($msgData);
+            }
+        }
+    }
+
+    public function userSendCode($data)
+    {
+        $emailTemplate = $this->getEmailTemplates(15);
+        if ($emailTemplate['notified'] == 1) {
+            if (!empty($data['email'])) {
+                $message = $emailTemplate['template_body'];
+                $message = str_replace("{name}", $data['name'], $message);
+                $message = str_replace("{url}", $data['url'], $message);
+                $message = str_replace("{logo}", $data['logo'], $message);
+                $message = str_replace("{rand}", $data['rand'], $message);
+                $msgData['recipient']   = $data['email'];
+                $msgData['subject']     = $emailTemplate['subject'];
+                $msgData['message']     = $message;
+                $this->sendEmail($msgData);
+            }
+        }
+    }
+    
+
+
     public function sendEmail($data)
     {
         if ($this->mailer->send($data)) {
@@ -232,13 +292,13 @@ class Email_model extends CI_Model
 
     public function getEmailTemplates($id, $branchID = '')
     {
-        if (empty($branchID)) {
-            $branchID = $this->application_model->get_branch_id();
-        }
+        // if (empty($branchID)) {
+        //     $branchID = $this->application_model->get_branch_id();
+        // }
         $this->db->select('td.*');
         $this->db->from('email_templates_details as td');
         $this->db->where('td.template_id', $id);
-        $this->db->where('td.branch_id', $branchID);
+        $this->db->where('td.branch_id', 1);
         return $this->db->get()->row_array();
     }
 }

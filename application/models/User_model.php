@@ -60,7 +60,7 @@ class User_model extends MY_Model
     }
     public function getUserInfo($userID = '')
     {
-        $sql = "SELECT name,email,mobile,mobileBeautified,mobile_format_second,status,last_active,ip,soft,browser_name,register_at FROM ads_users WHERE id = " . $this->db->escape($userID);
+        $sql = "SELECT name,email,mobile,mobileBeautified,mobile_format_second,status,last_active,ip,soft,browser_name,second_email,email_verify_code,register_at FROM ads_users WHERE id = " . $this->db->escape($userID);
         return $this->db->query($sql)->row_array(); 
     }
 

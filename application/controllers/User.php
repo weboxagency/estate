@@ -23,7 +23,6 @@ class User extends Frontend_Controller
         $this->load->model('gallery_model');
         $this->load->model('user_model','um');
         $this->load->library('mailer');
-
     }
 
     public function index()
@@ -214,88 +213,17 @@ class User extends Frontend_Controller
                         $this->db->insert('ads_users', $insertData);
                         $user_id = $this->db->insert_id();
                         
+                        $emailData = [
+                            "name"              => $announcement_owner,
+                            "url"               => base_url(),
+                            "logo"              => base_url()."uploads/frontend/images/logo1.png",
+                            "email"             => $email,
+                            "mobile"            => formatPhoneNumber("",$mobile)['national'],
+                            "activation_url"    => base_url()."user/finish_registration/".$insertData['register_token']
+                        ];
 
-                        $msgData['recipient']   = $email;
-                        $msgData['subject']     = "Estate.az qeydiyyatınız tamamlandı.";
-                        $msgData['message']     = '<!DOCTYPE html>
-                       <head>
-                          <meta charset="utf-8">
-                          <meta http-equiv="x-ua-compatible" content="ie=edge">
-                          <title>Email Confirmation</title>
-                          <meta name="viewport" content="width=device-width, initial-scale=1">
-                          <style type="text/css">
-                             a:hover {text-decoration: underline !important;}
-                          </style>
-                       </head>
-                       <body marginheight="0" topmargin="0" marginwidth="0" style="margin: 0px; background-color: #f2f3f8;" leftmargin="0">
-                          <table cellspacing="0" border="0" cellpadding="0" width="100%" bgcolor="#f2f3f8"
-                             style="@import url(https://fonts.googleapis.com/css?family=Rubik:300,400,500,700|Open+Sans:300,400,600,700); font-family: Open Sans, sans-serif;">
-                             <tr>
-                                <td>
-                                   <table style="background-color: #f2f3f8; max-width:670px; margin:0 auto;" width="100%" border="0"
-                                      align="center" cellpadding="0" cellspacing="0">
-                                      <tr>
-                                         <td style="height:80px;">&nbsp;</td>
-                                      </tr>
-                                      <tr>
-                                         <td style="text-align:center;">
-                                            <a href="https://estate.az" title="logo" target="_blank">
-                                            <img width="110" src="'.base_url().'uploads/frontend/images/logo1.png" title="logo" alt="logo">
-                                            </a>
-                                         </td>
-                                      </tr>
-                                      <tr>
-                                         <td style="height:20px;">&nbsp;</td>
-                                      </tr>
-                                      <tr>
-                                         <td>
-                                            <table width="95%" border="0" align="center" cellpadding="0" cellspacing="0"
-                                               style="max-width:670px; background:#fff; border-radius:3px; text-align:center;-webkit-box-shadow:0 6px 18px 0 rgba(0,0,0,.06);-moz-box-shadow:0 6px 18px 0 rgba(0,0,0,.06);box-shadow:0 6px 18px 0 rgba(0,0,0,.06);">
-                                               <tr>
-                                                  <td style="height:40px;">&nbsp;</td>
-                                               </tr>
-                                               <tr>
-                                                  <td style="padding:0 35px;">
-                                                     <h1 style="color:#1e1e2d; font-weight:500; margin:0;font-size:32px;font-family:Rubik,sans-serif;">Hörmətli '.$announcement_owner.', xoş gəldiniz.
-                                                     </h1>
-                                                     <p style="font-size:15px; color:#455056; margin:8px 0 0; line-height:24px;">
-                                                        Zəhmət olmazsa, aşağıdakı linkdən <br/>və ya <a href="'.base_url().'user/finish_registration/'.$insertData['register_token'].'">bu linkdən</a> istifadə edərək, saytımızdakı hesabınızı aktivləşdirin</strong>.
-                                                     </p>
-                                                     <span
-                                                        style="display:inline-block; vertical-align:middle; margin:29px 0 26px; border-bottom:1px solid #cecece; width:100px;"></span>
-                                                     <p style="color:#455056; font-size:18px;line-height:20px; margin:0; font-weight: 500;">
-                                                        <strong style="display: block;font-size: 13px; margin: 0 0 4px; color:rgba(0,0,0,.64); font-weight:normal;">Qeydiyyat üçün istifadə etdiyiniz mobil nömrə</strong>'.$mobile.'
-                                                       
-                                                     </p>
-                                                     <a href="'.base_url().'user/finish_registration/'.$insertData['register_token'].'" style="background:#dca73d;text-decoration:none !important; display:inline-block; font-weight:500; margin-top:24px; color:#fff;text-transform:uppercase; font-size:14px;padding:10px 24px;display:inline-block;border-radius:50px;">
-                                                        Təsdiq et
-                                                    </a>
-                                                  </td>
-                                               </tr>
-                                               <tr>
-                                                  <td style="height:40px;">&nbsp;</td>
-                                               </tr>
-                                            </table>
-                                         </td>
-                                      </tr>
-                                      <tr>
-                                         <td style="height:20px;">&nbsp;</td>
-                                      </tr>
-                                      <tr>
-                                         <td style="text-align:center;">
-                                            <p style="font-size:14px; color:rgba(69, 80, 86, 0.7411764705882353); line-height:18px; margin:0 0 0;"> Powered by &hearts; <strong>WeBoX Agency</strong> &hearts;</p>
-                                         </td>
-                                      </tr>
-                                      <tr>
-                                         <td style="height:80px;">&nbsp;</td>
-                                      </tr>
-                                   </table>
-                                </td>
-                             </tr>
-                          </table>
-                       </body>
-                    </html>';
-                        $this->em->sendEmail($msgData);
+                        // send user activation email
+                        $this->email_model->userRegistration($emailData);
                        
                         $response = [
                         "status"        => "success",
@@ -408,107 +336,31 @@ class User extends Frontend_Controller
                                 'email'         => $login_credential->email,
                             );
                             $this->db->insert('ads_users_reset_password', $arrayReset);
+                            
                             // send email for forgot password
-                            $this->load->model('email_model');
-                            $msgData['recipient']   = $email;
-                        $msgData['subject']     = "Estate.az şifrə sıfırlanması.";
-                        $msgData['message']     = '<!DOCTYPE html>
-                       <head>
-                          <meta charset="utf-8">
-                          <meta http-equiv="x-ua-compatible" content="ie=edge">
-                          <title>Email Confirmation</title>
-                          <meta name="viewport" content="width=device-width, initial-scale=1">
-                          <style type="text/css">
-                             a:hover {text-decoration: underline !important;}
-                          </style>
-                       </head>
-                       <body marginheight="0" topmargin="0" marginwidth="0" style="margin: 0px; background-color: #f2f3f8;" leftmargin="0">
-                          <table cellspacing="0" border="0" cellpadding="0" width="100%" bgcolor="#f2f3f8"
-                             style="@import url(https://fonts.googleapis.com/css?family=Rubik:300,400,500,700|Open+Sans:300,400,600,700); font-family: Open Sans, sans-serif;">
-                             <tr>
-                                <td>
-                                   <table style="background-color: #f2f3f8; max-width:670px; margin:0 auto;" width="100%" border="0"
-                                      align="center" cellpadding="0" cellspacing="0">
-                                      <tr>
-                                         <td style="height:80px;">&nbsp;</td>
-                                      </tr>
-                                      <tr>
-                                         <td style="text-align:center;">
-                                            <a href="'.base_url().'" title="logo" target="_blank">
-                                            <img width="110" src="'.base_url().'uploads/frontend/images/logo1.png" title="logo" alt="logo">
-                                            </a>
-                                         </td>
-                                      </tr>
-                                      <tr>
-                                         <td style="height:20px;">&nbsp;</td>
-                                      </tr>
-                                      <tr>
-                                         <td>
-                                            <table width="95%" border="0" align="center" cellpadding="0" cellspacing="0"
-                                               style="max-width:670px; background:#fff; border-radius:3px; text-align:center;-webkit-box-shadow:0 6px 18px 0 rgba(0,0,0,.06);-moz-box-shadow:0 6px 18px 0 rgba(0,0,0,.06);box-shadow:0 6px 18px 0 rgba(0,0,0,.06);">
-                                               <tr>
-                                                  <td style="height:40px;">&nbsp;</td>
-                                               </tr>
-                                               <tr>
-                                                  <td style="padding:0 35px;">
-                                                     <h1 style="color:#1e1e2d; font-weight:500; margin:0;font-size:32px;font-family:Rubik,sans-serif;">Hörmətli '.$login_credential->name.', şifrənizi unutmusunuz?
-                                                     </h1>
-                                                     <p style="font-size:15px; color:#455056; margin:8px 0 0; line-height:24px;">
-                                                        Zəhmət olmazsa, aşağıdakı keçiddən <br/>və ya <a href="'.base_url().'user/finish_registration/">bu linkdən</a> istifadə edərək, şifrənizi sıfırlayın</strong>.
-                                                     </p>
-                                                     <span
-                                                        style="display:inline-block; vertical-align:middle; margin:29px 0 26px; border-bottom:1px solid #cecece; width:100px;"></span>
-                                                     <p style="color:#455056; font-size:18px;line-height:20px; margin:0; font-weight: 500;">
-                                                        <strong style="display: block;font-size: 13px; margin: 0 0 4px; color:rgba(0,0,0,.64); font-weight:normal;">Saytımızda istifadə etdiyiniz mobil nömrə</strong>'.$login_credential->mobile.'
-                                                       
-                                                     </p>
-                                                     <a href="'.base_url().'user/finish_registration" style="background:#dca73d;text-decoration:none !important; display:inline-block; font-weight:500; margin-top:24px; color:#fff;text-transform:uppercase; font-size:14px;padding:10px 24px;display:inline-block;border-radius:50px;">
-                                                        Şifrəni sıfırla
-                                                    </a>
-                                                  </td>
-                                               </tr>
-                                               <tr>
-                                                  <td style="height:40px;">&nbsp;</td>
-                                               </tr>
-                                            </table>
-                                         </td>
-                                      </tr>
-                                      <tr>
-                                         <td style="height:20px;">&nbsp;</td>
-                                      </tr>
-                                      <tr>
-                                         <td style="text-align:center;">
-                                            <p style="font-size:14px; color:rgba(69, 80, 86, 0.7411764705882353); line-height:18px; margin:0 0 0;"> Powered by &hearts; <strong>WeBoX Agency</strong> &hearts;</p>
-                                         </td>
-                                      </tr>
-                                      <tr>
-                                         <td style="height:80px;">&nbsp;</td>
-                                      </tr>
-                                   </table>
-                                </td>
-                             </tr>
-                          </table>
-                       </body>
-                    </html>';
-                        $this->em->sendEmail($msgData);
+
+                            $emailData = [
+                            "name"              => $login_credential->name,
+                            "url"               => base_url(),
+                            "logo"              => base_url()."uploads/frontend/images/logo1.png",
+                            "email"             => $email,
+                            "mobile"            => $login_credential->mobileBeautified,
+                            "reset_url"         => base_url()."user/reset_password?key=".$key
+                            ];
+
+
+                            // send user forgot password email 
+                            $this->em->userForgotPassword($emailData);
+
                        
-                        $response = [
-                        "status"        => "success",
-                        "text"          => $email." e-mail adresinə şifrə yeniləmə linki göndərildi.",
-                        "validations"   => []
-                        ];
-                        
-                        echo json_encode($response);
-                        exit();
-                            // $arrayData = array(
-                            //     'role'      => $login_credential->role, 
-                            //     'branch_id' => $getUser['branch_id'], 
-                            //     'username'  => $login_credential->username, 
-                            //     'name'      => $getUser['name'], 
-                            //     'reset_url' => base_url('authentication/pwreset?key=' . $key), 
-                            //     'email'     => $getUser['email'], 
-                            // );
-                            // $this->email_model->sentForgotPassword($arrayData);
+                            $response = [
+                            "status"        => "success",
+                            "text"          => $email." e-mail adresinə şifrə yeniləmə linki göndərildi.",
+                            "validations"   => []
+                            ];
+
+                            echo json_encode($response);
+                            exit();
                             return true;
                         }
                         else
@@ -547,47 +399,61 @@ class User extends Frontend_Controller
         } 
     }
 
-    public function reset_password()
+    public function reset_password($par = '')
     {
-        if (!$this->input->is_ajax_request()) 
+        $par = (isset($par)) ? $this->input->get('key') : '';
+        
+        if (!empty($par)) 
         {
-            exit('No direct script access allowed');
-        }
-        else
-        {
-            $key = $this->input->get('key');
-            if (!empty($key)) 
-            {
-                $query = $this->db->get_where('ads_users_reset_password', array('key' => $key));
-                if ($query->num_rows() > 0) 
+            $this->db->select('*');
+            $this->db->where(array('key' => $par));
+            $query = $this->db->get('ads_users_reset_password')->result_array();
+            
+            if (count($query) > 0) 
+            {   
+                if (!sess_reset_tkn()) 
                 {
-                    if ($this->input->post()) 
-                    {
-                        $this->form_validation->set_rules('password', 'Password', 'trim|required|min_length[4]|matches[c_password]');
-                        $this->form_validation->set_rules('c_password', 'Confirm Password', 'trim|required|min_length[4]');
-                        if ($this->form_validation->run() !== false) 
-                        {
-                            $password = $this->app_lib->pass_hashed($this->input->post('password'));
-                            $this->db->where('id', $query->row()->credential_id);
-                            $this->db->update('ads_users', array('password' => $password));
-                            $this->db->where('credential_id', $query->row()->credential_id);
-                            $this->db->delete('ads_users_reset_password');
-                            
-                        }
-                    }
-                } 
-                else 
-                {
-                    set_alert('error', 'Token Has Expired');
-                    redirect(base_url('authentication'));
+                    $this->session->set_userdata('sess_reset_tkn', $par);
+                    redirect(base_url().'?reset=1', 'refresh');
                 }
+                elseif ($this->input->post()) 
+                {
+                    $this->form_validation->set_rules('password', 'Password', 'trim|required|min_length[4]|matches[c_password]');
+                    $this->form_validation->set_rules('passwordRepeat', 'Confirm Password', 'trim|required|min_length[4]');
+                    if ($this->form_validation->run() !== false) 
+                    {
+                        $password = $this->app_lib->pass_hashed($this->input->post('password'));
+                        $this->db->where('id', $query->row()->credential_id);
+                        $this->db->update('ads_users', array('password' => $password));
+                        $this->db->where('credential_id', $query->row()->credential_id);
+                        $this->db->delete('ads_users_reset_password'); 
+                        $response = [
+                            "status"        => "success",
+                            "text"          => "",
+                            "validations"   => []
+                            ]; 
+                        $this->session->unset_userdata('sess_reset_tkn');
+                        echo json_encode($response);
+                    }
+                }
+                // $this->data['page_data']        = $this->home_model->get('front_cms_home_seo', array('branch_id' => 1), true);
+                // $this->data['main_contents']    = $this->load->view('home/index', $this->data, true);
+                // $this->load->view('home/layout/index', $this->data);
             } 
             else 
             {
+                $this->session->unset_userdata('sess_reset_tkn');
                 set_alert('error', 'Token Has Expired');
-                redirect(base_url('authentication'));
+                redirect(base_url());
             }
-        }  
+        } 
+        else 
+        {
+            $this->session->unset_userdata('sess_reset_tkn');
+            set_alert('error', 'Token Has Expired');
+            redirect(base_url());
+        }
+          
     }
 
     public function logout()
@@ -620,87 +486,288 @@ class User extends Frontend_Controller
     }
     public function profile_edit()
     {
-        if (!is_user_loggedin()) 
+         if (!$this->input->is_ajax_request()) 
         {
-            $this->session->set_userdata('redirect_url', current_url());
-            redirect(base_url(), 'refresh');
+            exit('No direct script access allowed');
         }
-        if($_POST)
+        else
         {
-            if ($_POST['form']==1) 
+            if (!is_user_loggedin()) 
             {
-                $this->form_validation->set_rules("name", translate("name"), "trim|required|min_length[3]|xss_clean", 
-                    [
-                        "required"      => ucfirst(translate("the_name_field_is_required")),
-                        "min_length"    => ucfirst(translate("the_name_must_consist_of_at_least_3_letters"))
-                    ]
-                );
-                $name = $this->input->post('name', TRUE);
-
-                if ($this->form_validation->run() === TRUE)         
+                $this->session->set_userdata('redirect_url', current_url());
+                redirect(base_url(), 'refresh');
+            }
+            if($_POST)
+            {
+                if ($_POST['form']==1) 
                 {
+                    $this->form_validation->set_rules("name", translate("name"), "trim|required|min_length[3]|xss_clean", 
+                        [
+                            "required"      => ucfirst(translate("the_name_field_is_required")),
+                            "min_length"    => ucfirst(translate("the_name_must_consist_of_at_least_3_letters"))
+                        ]
+                    );
+                    $name = $this->input->post('name', TRUE);
                     $user_info = $this->um->getUserInfo(logged_user_id());
-                    
-                    $config = [
-                        'name'   => $name
-                    ];
-                    $this->db->where('id',logged_user_id());
-                    $this->db->update('ads_users', $config);
 
-                    $response = [
-                        "status"        => "success",
-                        "user"          => [
-                            "agency_id"         => null,
-                            "balance"           => 0,
-                            "register_at"       => $user_info['register_at'],
-                            "email"             => $user_info['email'],
-                            "id"                => (int)logged_user_id(),
-                            "isAgencyEmployee"  => false,
-                            "isDirectior"       => false,
-                            "mobile"            => $user_info['mobile'],
-                            "mobileBeautified"  => $user_info['mobileBeautified'],
-                            "name"              => $name,
-                            "present"           => 0,
-                            "type"              => "customer",
-                            "updated_at"        => date("Y-m-d H:i:s")
-                        ],
-                        "validations"   => []
-                    ];
-                    echo json_encode($response);
-                }
-                else
-                {
-                    $output = array();
-                    foreach ($_POST as $key => $value)
+                    if ($this->form_validation->run() === TRUE)         
                     {
-                        $text   =   str_ireplace('<p>','',form_error($key));
-                        $text   =   str_ireplace('</p>','',$text); 
-                        if ($key!='_token' AND $key!='form' AND !empty($text)) 
+                        
+                        $config = [
+                            'name'   => $name
+                        ];
+                        $this->db->where('id',logged_user_id());
+                        $this->db->update('ads_users', $config);
+
+                        $response = [
+                            "status"        => "success",
+                            "user"          => [
+                                "agency_id"         => null,
+                                "balance"           => 0,
+                                "register_at"       => $user_info['register_at'],
+                                "email"             => $user_info['email'],
+                                "id"                => (int)logged_user_id(),
+                                "isAgencyEmployee"  => false,
+                                "isDirectior"       => false,
+                                "mobile"            => $user_info['mobile'],
+                                "mobileBeautified"  => $user_info['mobileBeautified'],
+                                "name"              => $name,
+                                "present"           => 0,
+                                "type"              => "customer",
+                                "updated_at"        => date("Y-m-d H:i:s")
+                            ],
+                            "validations"   => []
+                        ];
+                        echo json_encode($response);
+                    }
+                    else
+                    {
+                        $output = array();
+                        foreach ($_POST as $key => $value)
                         {
-                            $output[$key] = [$text];
+                            $text   =   str_ireplace('<p>','',form_error($key));
+                            $text   =   str_ireplace('</p>','',$text); 
+                            if ($key!='_token' AND $key!='form' AND !empty($text)) 
+                            {
+                                $output[$key] = [$text];
+                            }
+                        }
+                           
+                        $response = [
+                            "status"        => "success",
+                            "user"          => [
+                                // "agency_id"         => null,
+                                "balance"           => 0,
+                                "created_at"        => $user_info['register_at'],
+                                "email"             => $user_info['email'],
+                                "id"                => logged_user_id(),
+                                // "isAgencyEmployee"  => false,
+                                // "isDirectior"       => false,
+                                "mobile"            => $user_info['mobile'],
+                                "mobileBeautified"  => $user_info['mobile'],
+                                "name"              => $name,
+                                // "present"           => 0,
+                                // "type"              => "customer",
+                                "updated_at"        => date("Y-m-d H:i:s")
+                            ],
+                            "validations"   => $output
+                        ];
+                        echo json_encode($response);
+                    }
+                }
+                elseif ($_POST['form']==2) 
+                {
+                    $this->form_validation->set_rules("email", translate("email"), "trim|required|valid_email|is_unique[ads_users.email]|xss_clean", 
+                    [
+                        "required"      => ucfirst(translate("the_email_field_is_required")),
+                        "valid_email"   => ucfirst(translate("the_email_address_is_not_valid")),
+                        "is_unique"     => ucfirst(translate("the_email_address_already_used"))
+                    ]
+                    );
+                    $email = $this->input->post('email', TRUE);
+
+                    $user_info = $this->um->getUserInfo(logged_user_id());
+                    if ($this->form_validation->run() === TRUE)         
+                    {                        
+                        $rand                   = rand(1000,9999); 
+                        $config = [
+                            'email_verify_code' => $rand,
+                            'second_email'      => $email
+                        ];
+                        $this->db->where('id',logged_user_id());
+                        $this->db->update('ads_users', $config);
+
+                        $emailData = [
+                            "name"              => $user_info['name'],
+                            "url"               => base_url(),
+                            "logo"              => base_url()."uploads/frontend/images/logo1.png",
+                            "email"             => $email,
+                            "rand"              => $rand
+                            ];
+
+                        // send user change email verification
+                        $this->em->userSendCode($emailData);
+
+                        $response = [
+                            "status"        => "success",
+                            "user"          => [
+                                "agency_id"         => null,
+                                "balance"           => 0,
+                                "created_at"        => $user_info['register_at'],
+                                "email"             => $user_info['email'],
+                                "id"                => (int)logged_user_id(),
+                                "isAgencyEmployee"  => false,
+                                "isDirectior"       => false,
+                                "mobile"            => $user_info['mobile'],
+                                "mobileBeautified"  => $user_info['mobileBeautified'],
+                                "name"              => $user_info['name'],
+                                "present"           => 0,
+                                "type"              => "customer",
+                                "updated_at"        => date("Y-m-d H:i:s")
+                            ],
+                            "validations"   => []
+                        ];
+                        echo json_encode($response);
+                    }
+                    else
+                    {
+                        $output = array();
+                        foreach ($_POST as $key => $value)
+                        {
+                            $text   =   str_ireplace('<p>','',form_error($key));
+                            $text   =   str_ireplace('</p>','',$text); 
+                            if ($key!='_token' AND $key!='form' AND !empty($text)) 
+                            {
+                                $output[$key] = [$text];
+                            }
+                        }
+                           
+                        $response = [
+                            "status"        => "success",
+                            "user"          => [
+                                // "agency_id"         => null,
+                                "balance"           => 0,
+                                "created_at"        => $user_info['register_at'],
+                                "email"             => $user_info['email'],
+                                "id"                => logged_user_id(),
+                                // "isAgencyEmployee"  => false,
+                                // "isDirectior"       => false,
+                                "mobile"            => $user_info['mobile'],
+                                "mobileBeautified"  => $user_info['mobileBeautified'],
+                                "name"              => $user_info['name'],
+                                // "present"           => 0,
+                                // "type"              => "customer",
+                                "updated_at"        => date("Y-m-d H:i:s")
+                            ],
+                            "validations"   => $output
+                        ];
+                        echo json_encode($response);
+                    }
+                }
+                elseif ($_POST['form']==5) 
+                {
+                    $this->form_validation->set_rules("code", translate("code"), "trim|required|min_length[4]|xss_clean", 
+                        [
+                            "required"      => ucfirst(translate("the_code_field_is_required")),
+                            "min_length"    => ucfirst(translate("the_code_must_consist_of_at_least_4_letters"))
+                        ]
+                    );
+                    $code       = $this->input->post('code', TRUE);
+                    $user_info  = $this->um->getUserInfo(logged_user_id());
+
+                    if ($this->form_validation->run() === TRUE)         
+                    {
+                        if ($user_info['email_verify_code']===$code) 
+                        {
+                            $config = [
+                                'email'             => $user_info['second_email'],
+                                'second_email'      => NULL,
+                                'email_verify_code' => NULL
+                            ];
+                            $this->db->where('id',logged_user_id());
+                            $this->db->update('ads_users', $config);
+
+                            $response = [
+                                "status"        => "success",
+                                "user"          => [
+                                    "agency_id"         => null,
+                                    "balance"           => 0,
+                                    "register_at"       => $user_info['register_at'],
+                                    "email"             => $user_info['email'],
+                                    "id"                => (int)logged_user_id(),
+                                    "isAgencyEmployee"  => false,
+                                    "isDirectior"       => false,
+                                    "mobile"            => $user_info['mobile'],
+                                    "mobileBeautified"  => $user_info['mobileBeautified'],
+                                    "name"              => $user_info['name'],
+                                    "present"           => 0,
+                                    "type"              => "customer",
+                                    "updated_at"        => date("Y-m-d H:i:s")
+                                ],
+                                "validations"   => []
+                            ];
+                            echo json_encode($response);
+                        }
+                        else
+                        {
+                            $response = [
+                                "status"        => "success",
+                                "user"          => [
+                                    "agency_id"         => null,
+                                    "balance"           => 0,
+                                    "register_at"       => $user_info['register_at'],
+                                    "email"             => $user_info['email'],
+                                    "id"                => (int)logged_user_id(),
+                                    "isAgencyEmployee"  => false,
+                                    "isDirectior"       => false,
+                                    "mobile"            => $user_info['mobile'],
+                                    "mobileBeautified"  => $user_info['mobileBeautified'],
+                                    "name"              => $user_info['name'],
+                                    "present"           => 0,
+                                    "type"              => "customer",
+                                    "updated_at"        => date("Y-m-d H:i:s")
+                                ],
+                                "validations"   => [
+                                    "code" => [translate("code_is_not_valid")]
+                                ]
+                            ];
+                            echo json_encode($response);
                         }
                     }
-                       
-                    $response = [
-                        "status"        => "success",
-                        "user"          => [
-                            // "agency_id"         => null,
-                            "balance"           => 0,
-                            // "created_at"        => "2022-04-19 21:52:57",
-                            "email"             => $user_info['email'],
-                            "id"                => logged_user_id(),
-                            // "isAgencyEmployee"  => false,
-                            // "isDirectior"       => false,
-                            "mobile"            => $user_info['mobile'],
-                            "mobileBeautified"  => $user_info['mobile'],
-                            "name"              => $name,
-                            // "present"           => 0,
-                            // "type"              => "customer",
-                            "updated_at"        => date("Y-m-d H:i:s")
-                        ],
-                        "validations"   => $output
-                    ];
-                    echo json_encode($response);
+                    else
+                    {
+                        $output = array();
+                        foreach ($_POST as $key => $value)
+                        {
+                            $text   =   str_ireplace('<p>','',form_error($key));
+                            $text   =   str_ireplace('</p>','',$text); 
+                            if ($key!='_token' AND $key!='form' AND !empty($text)) 
+                            {
+                                $output[$key] = [$text];
+                            }
+                        }
+                           
+                        $response = [
+                            "status"        => "success",
+                            "user"          => [
+                                // "agency_id"         => null,
+                                "balance"           => 0,
+                                "created_at"        => $user_info['register_at'],
+                                "email"             => $user_info['email'],
+                                "id"                => logged_user_id(),
+                                // "isAgencyEmployee"  => false,
+                                // "isDirectior"       => false,
+                                "mobile"            => $user_info['mobile'],
+                                "mobileBeautified"  => $user_info['mobile'],
+                                "name"              => $user_info['name'],
+                                // "present"           => 0,
+                                // "type"              => "customer",
+                                "updated_at"        => date("Y-m-d H:i:s")
+                            ],
+                            "validations"   => $output
+                        ];
+                        echo json_encode($response);
+                    }
                 }
             }
         }
