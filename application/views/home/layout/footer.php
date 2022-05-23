@@ -1769,7 +1769,6 @@
    
    function afterWishlist( data )
    {
-        console.log(data);
        let id = data.announcement , result = data.result , favorites = data.favorites ,
            form = $( '[x-target-with-data="afterWishlist"][x-edit-form="' + id + '"]' ) ,
            svg_area = form.find( 'button' ) ,
@@ -3072,6 +3071,7 @@
             $( '[x-name]' ).text( data.user.name );
             $( '.ad' ).text( data.user.name );
             $( '.profile_name' ).text( data.user.name );
+            $( '#nfl' ).text( data.user.name[0] );
             $( '[x-name-input]' ).val( data.user.name );
         }
 

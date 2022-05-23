@@ -5,7 +5,7 @@
       <div class="account account-personal">
          <div class="account-left">
             <div class="account-welcome">
-               <span><?= mb_substr($user_info['name'], 0, 1); ?></span>
+               <span id="nfl"><?= mb_substr($user_info['name'], 0, 1); ?></span>
                <div class="account-welcome--desc">
                   <h6><?= translate('welcome') ?>,</h6>
                   <h5 class="ad"><?= $user_info['name']; ?></h5>

@@ -416,29 +416,6 @@ class User extends Frontend_Controller
                     $this->session->set_userdata('sess_reset_tkn', $par);
                     redirect(base_url().'?reset=1', 'refresh');
                 }
-                elseif ($this->input->post()) 
-                {
-                    $this->form_validation->set_rules('password', 'Password', 'trim|required|min_length[4]|matches[c_password]');
-                    $this->form_validation->set_rules('passwordRepeat', 'Confirm Password', 'trim|required|min_length[4]');
-                    if ($this->form_validation->run() !== false) 
-                    {
-                        $password = $this->app_lib->pass_hashed($this->input->post('password'));
-                        $this->db->where('id', $query->row()->credential_id);
-                        $this->db->update('ads_users', array('password' => $password));
-                        $this->db->where('credential_id', $query->row()->credential_id);
-                        $this->db->delete('ads_users_reset_password'); 
-                        $response = [
-                            "status"        => "success",
-                            "text"          => "",
-                            "validations"   => []
-                            ]; 
-                        $this->session->unset_userdata('sess_reset_tkn');
-                        echo json_encode($response);
-                    }
-                }
-                // $this->data['page_data']        = $this->home_model->get('front_cms_home_seo', array('branch_id' => 1), true);
-                // $this->data['main_contents']    = $this->load->view('home/index', $this->data, true);
-                // $this->load->view('home/layout/index', $this->data);
             } 
             else 
             {
@@ -454,6 +431,27 @@ class User extends Frontend_Controller
             redirect(base_url());
         }
           
+    }
+
+    public function password_reset()
+    {
+        $this->form_validation->set_rules('password', 'Password', 'trim|required|min_length[4]|matches[c_password]');
+        $this->form_validation->set_rules('passwordRepeat', 'Confirm Password', 'trim|required|min_length[4]');
+        if ($this->form_validation->run() !== false) 
+        {
+            $password = $this->app_lib->pass_hashed($this->input->post('password'));
+            $this->db->where('id', $query->row()->credential_id);
+            $this->db->update('ads_users', array('password' => $password));
+            $this->db->where('credential_id', $query->row()->credential_id);
+            $this->db->delete('ads_users_reset_password'); 
+            $response = [
+                "status"        => "success",
+                "text"          => "",
+                "validations"   => []
+                ]; 
+            $this->session->unset_userdata('sess_reset_tkn');
+            echo json_encode($response);
+        }
     }
 
     public function logout()
@@ -484,9 +482,10 @@ class User extends Frontend_Controller
         $this->data['main_contents']    = $this->load->view('user/profile', $this->data, true);
         $this->load->view('home/layout/index', $this->data);
     }
+
     public function profile_edit()
     {
-         if (!$this->input->is_ajax_request()) 
+        if (!$this->input->is_ajax_request()) 
         {
             exit('No direct script access allowed');
         }
@@ -499,6 +498,7 @@ class User extends Frontend_Controller
             }
             if($_POST)
             {
+                $user_info = $this->um->getUserInfo(logged_user_id());
                 if ($_POST['form']==1) 
                 {
                     $this->form_validation->set_rules("name", translate("name"), "trim|required|min_length[3]|xss_clean", 
@@ -584,6 +584,7 @@ class User extends Frontend_Controller
                         "is_unique"     => ucfirst(translate("the_email_address_already_used"))
                     ]
                     );
+
                     $email = $this->input->post('email', TRUE);
 
                     $user_info = $this->um->getUserInfo(logged_user_id());
@@ -628,6 +629,57 @@ class User extends Frontend_Controller
                             "validations"   => []
                         ];
                         echo json_encode($response);
+                    }
+                    else
+                    {
+                        $output = array();
+                        foreach ($_POST as $key => $value)
+                        {
+                            $text   =   str_ireplace('<p>','',form_error($key));
+                            $text   =   str_ireplace('</p>','',$text); 
+                            if ($key!='_token' AND $key!='form' AND !empty($text)) 
+                            {
+                                $output[$key] = [$text];
+                            }
+                        }
+                           
+                        $response = [
+                            "status"        => "success",
+                            "user"          => [
+                                // "agency_id"         => null,
+                                "balance"           => 0,
+                                "created_at"        => $user_info['register_at'],
+                                "email"             => $user_info['email'],
+                                "id"                => logged_user_id(),
+                                // "isAgencyEmployee"  => false,
+                                // "isDirectior"       => false,
+                                "mobile"            => $user_info['mobile'],
+                                "mobileBeautified"  => $user_info['mobileBeautified'],
+                                "name"              => $user_info['name'],
+                                // "present"           => 0,
+                                // "type"              => "customer",
+                                "updated_at"        => date("Y-m-d H:i:s")
+                            ],
+                            "validations"   => $output
+                        ];
+                        echo json_encode($response);
+                    }
+                }
+                elseif ($_POST['form']==3)
+                {
+                    $this->form_validation->set_rules("mobile", translate("mobile"), "trim|required|min_length[9]|max_length[9]|is_unique[ads_users.mobile_format_second]|xss_clean", 
+                        [
+                            "required"      => ucfirst(translate("the_phone_number_field_is_required")),
+                            "min_length"    => ucfirst(translate("the_phone_number_must_consist_of_at_least_10_numbers")),
+                            "max_length"    => ucfirst(translate("the_phone_number_must_consist_of_at_least_10_numbers")),
+                            "is_unique"     => ucfirst(translate("the_phone_number_already_used"))
+                        ]
+                    );
+                    $mobile       = $this->input->post('mobile', TRUE);
+
+                    if ($this->form_validation->run() === TRUE)         
+                    {
+
                     }
                     else
                     {
