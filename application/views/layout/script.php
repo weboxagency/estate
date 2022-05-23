@@ -19,6 +19,7 @@
 <script src="<?php echo base_url('assets/vendor/datatables/extras/TableTools/pdfmake-0.1.32/vfs_fonts.js');?>"></script>
 <script src="<?php echo base_url('assets/vendor/datatables/extras/TableTools/RowGroup-1.0.2/js/dataTables.rowGroup.min.js');?>"></script>
 
+<script type="text/javascript" src="<?php echo base_url('/assets/vendor/summernote/summernote.js') ?>"></script>
 <script src="<?php echo base_url('assets/vendor/jquery-appear/jquery-appear.js');?>"></script>
 <script src="<?php echo base_url('assets/vendor/jquery-validation/jquery.validate.js');?>"></script>
 <script src="<?php echo base_url('assets/vendor/magnific-popup/jquery.magnific-popup.js');?>"></script>
