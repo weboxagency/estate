@@ -129,7 +129,14 @@
                     </li>
                     <?php } ?>
 
-
+                    <?php if (is_superadmin_loggedin()) : ?>
+                    <!-- users -->
+                    <li class="<?php if ($main_menu == 'users') echo 'nav-active';?>">
+                        <a href="<?=base_url('users/index')?>">
+                            <i class="icons icon-user-follow"></i><span><?=translate('users')?></span>
+                        </a>
+                    </li>
+                    <?php endif; ?>
 
 
 
@@ -1461,6 +1468,12 @@
                             <li class="<?php if($sub_page == 'settings/user_agreement') echo 'nav-active';?>">
                                 <a href="<?=base_url('settings/user_agreement')?>">
                                     <span><i class="fas fa-caret-right" aria-hidden="true"></i><?=translate('user_agreement')?></span>
+                                </a>
+                            </li>
+                            <?php } if(get_permission('ads_rules', 'is_view')){ ?>
+                            <li class="<?php if($sub_page == 'settings/ads_rules') echo 'nav-active';?>">
+                                <a href="<?=base_url('settings/ads_rules')?>">
+                                    <span><i class="fas fa-caret-right" aria-hidden="true"></i><?=translate('ads_rules')?></span>
                                 </a>
                             </li>
                             <?php } if($schoolSettings == true){ ?>
