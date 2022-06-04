@@ -1,4 +1,73 @@
 <main>
+   <section class="announcement-agency agency">
+<div class="page-container container">
+<div class="agency-body">
+<div class="agency-body__content">
+<img src="https://evelani.az/uploads/agency/106/c3e7741ce290f0fc66362ced63faa938.jpeg?v=1627300451" alt="Avalon daşınmaz əmlak agentliyi">
+<div class="agency-description agency-main">
+<h1>Avalon daşınmaz əmlak agentliyi</h1>
+<p></p><p>"AVALON REC" Azərbaycan və Türkiyə əmlak bazarlarında daşınmaz əmlakın alqı, satqı, idarə olunması, kirayə və konsaltinq xidmətləri sahəsində ixtisaslaşıb, eyni zamanda da bizim həm Azərbaycanın paytaxtı Bakı şəhərində, həm də Türkiyənin Antalya şəhərində filiallarımız fəaliyyət göstərir.</p><p></p>
+<div class="agency-overview">
+<p>
+<svg class="icon icon-yeni-tikili">
+<use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-06-04 13:39:28#icon-yeni-tikili"></use>
+ </svg>
+<strong>365</strong> təklif
+</p>
+<p>
+<svg class="icon icon-eye">
+<use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-06-04 13:39:28#icon-eye"></use>
+</svg>
+<strong>351</strong> baxış
+</p>
+</div>
+</div>
+<div class="agency-contact agency-main">
+<div class="agency-contact__item agency-location">
+<div class="agency-contact__icon">
+<svg class="icon icon-pin">
+<use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-06-04 13:39:28#icon-pin"></use>
+</svg>
+</div>
+<p>
+<span>Yasamal rayonu, Şəfaet Mehdiyev 96</span>
+</p>
+</div>
+<div class="agency-contact__item">
+<div class="agency-contact__icon">
+<svg class="icon icon-phone">
+<use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-06-04 13:39:28#icon-phone"></use>
+</svg>
+</div>
+<p>
+<a href="tel:(050) 331-03-00">
+<span>(050) 331-03-00</span>
+</a>
+<a href="tel:(055) 331-03-00">
+<span>(055) 331-03-00</span>
+</a>
+<a href="tel:(050) 277-50-10">
+<span>(050) 277-50-10</span>
+</a>
+</p>
+</div>
+<div class="agency-contact__item">
+<div class="agency-contact__icon">
+<svg class="icon icon-mail">
+<use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-06-04 13:39:28#icon-mail"></use>
+</svg>
+</div>
+<p>
+<a href="mailto:avalon@avalon.az">
+<span>avalon@avalon.az</span>
+</a>
+</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
    <div class="announcement-main announcement-section">
       <section class="page-container container pb-0">
          <div class="announcement-inner">

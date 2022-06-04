@@ -25,7 +25,15 @@
    <div class="footer-navbar">
       <ul>
          <li>
-            <a href="az/elan-yerlesdir.html">
+            <a href="az/axtar.html">
+               <svg class="icon icon-home">
+                  <use xlink:href="assets/site/img/icons/icons.svg#icon-home"></use>
+               </svg>
+               <p><?= translate('home') ?></p>
+            </a>
+         </li>
+         <li>
+            <a href="<?= base_url() ?>add_listing">
                <svg class="icon icon-plusnew">
                   <use xlink:href="assets/site/img/icons/icons.svg#icon-plusnew"></use>
                </svg>
@@ -37,17 +45,11 @@
                <svg class="icon icon-loupe">
                   <use xlink:href="assets/site/img/icons/icons.svg#icon-loupe"></use>
                </svg>
-               <p>Axtar</p>
+               <p><?= translate('search') ?></p>
             </a>
          </li>
-         <li>
-            <a href="az/mene-ev-tap.html">
-               <svg class="icon icon-home">
-                  <use xlink:href="assets/site/img/icons/icons.svg#icon-home"></use>
-               </svg>
-               <p>Mənə ev tap</p>
-            </a>
-         </li>
+         
+         
       </ul>
    </div>
    <div class="page-container container">
@@ -94,10 +96,10 @@
       <div class="footer-secondary">
          <div class="footer-secondary__container container">
             <div class="footer-secondary__column footer-secondary--about">
-               <a href="az.html" class="logo">
-               <img src="site/img/logos/logo%402x5760.png?v=2022-04-19%2000:11:03">
+               <a href="<?= base_url() ?>" class="logo">
+               <img src="<?php echo base_url('uploads/frontend/images/' . $cms_setting['logo']); ?>">
                </a>
-               <p>Evelani.az daşınmaz əmlakın satış və kirayəsi xidmətlərini digital sferada təqdim edən platformadır. Evelani.az saytı vasitəsilə daşınmaz əmlakınızın satış və kirayəsini, tez və interaktiv şəkildə təşkil edə, yüksək məhsuldarlıq əldə edə bilərsiniz.</p>
+               <p>Estate.az daşınmaz əmlakın satış və kirayəsi xidmətlərini digital sferada təqdim edən platformadır. Estate.az saytı vasitəsilə daşınmaz əmlakınızın satış və kirayəsini, tez və interaktiv şəkildə təşkil edə, yüksək məhsuldarlıq əldə edə bilərsiniz.</p>
             </div>
             <div class="footer-secondary__column footer-nav  d-lg-flex">
                <h6>Ümumi</h6>

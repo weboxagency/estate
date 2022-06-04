@@ -32,7 +32,8 @@ class Add_listing extends Frontend_Controller
         $this->data['metros']       = $this->home_model->allMetros();
         $this->data['targets']      = $this->home_model->allTargets();
         $this->data['ads_type']     = $this->home_model->adsType();
-
+        $this->data['ads_rules']    = $this->home_model->adsRules();
+        
         $this->data['page_data'] = $this->home_model->get('front_cms_home_seo', array('branch_id' => 1), true);
         $this->data['main_contents'] = $this->load->view('home/add_listing', $this->data, true);
         $this->load->view('home/layout/index', $this->data);
@@ -69,7 +70,7 @@ class Add_listing extends Frontend_Controller
         $whatsapp   = $this->input->post('whatsapp',TRUE);
         $email      = $this->input->post('email',TRUE);
         $adsCount   = $this->home_model->getAdsCountForPhoneNumber($mobile);
-        
+        $provider   = ["99","55","70","77","50","51","10"];
         if ($this->form_validation->run() === TRUE) 
         {
             if ($adsCount>=2) 
@@ -78,6 +79,26 @@ class Add_listing extends Frontend_Controller
                         "status"        => "success",
                         "message"       => "",
                         "validations"   => ["id" => ["Siz artıq ay ərzində 2 pulsuz elan yerləşdirmisiniz"]]
+                    ];
+                echo json_encode($response);
+                die();
+            }
+            elseif (!in_array($mobile[0].''.$mobile[1], $provider)) 
+            {
+                $response = [
+                        "status"        => "success",
+                        "message"       => "",
+                        "validations"   => ["mobile" => ["Telefon nömrəsi doğru deyil"]]
+                    ];
+                echo json_encode($response);
+                die();
+            }
+            elseif ($mobile[2]<2) 
+            {
+                $response = [
+                        "status"        => "success",
+                        "message"       => "",
+                        "validations"   => ["mobile" => ["Telefon nömrəsi doğru deyil"]]
                     ];
                 echo json_encode($response);
                 die();

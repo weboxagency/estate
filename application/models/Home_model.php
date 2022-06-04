@@ -136,6 +136,14 @@ class Home_model extends MY_Model
         
     }
 
+    public function adsRules()
+    {
+        $this->db->select('*');
+        $this->db->from('ads_rules');
+        $query = $this->db->get();
+        return $query->result_array()[0];
+    }
+
     public function getDefaultBranch()
     {
         $school = "";

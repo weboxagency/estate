@@ -431,24 +431,7 @@
                <div class="card-rules">
                   <h3>Qaydalar</h3>
                   <div class="rules-list rules-5">
-                     <p class="rules-list__item  rule-visible ">
-                        <span class="rules-list--number">1.</span>Estate.az saytında bir ay ərzində bir nömrədən 2 pulsuz (təkrar olmayan) elan yerləşdirmək mümkündür. Hər bir növbəti elanın qiyməti - 3 AZN təşkil edir.
-                     </p>
-                     <p class="rules-list__item  rule-visible ">
-                        <span class="rules-list--number">2.</span>Elanınız təqdim edərkən, elektron poçt ünvanı, telefon nömrəsi, əmlakın növünü və digər məlumatları dəqiq qeyd edin.
-                     </p>
-                     <p class="rules-list__item  rule-visible ">
-                        <span class="rules-list--number">3.</span>Daşınmaz əmlakınızı daha aydın təqdim etmək üçün əmlakınızla bağlı fərqli foto şəkillər əlavə edin.
-                     </p>
-                     <p class="rules-list__item  rule-visible ">
-                        <span class="rules-list--number">4.</span>Elanınız dərc edildikdən sonra, telefon nömrəsi, elektron poçt ünvanı, elanın tipi və əmlakın növü bölmələrində dəyişiklik etmək mümkün olmayacaq.
-                     </p>
-                     <p class="rules-list__item  rule-visible ">
-                        <span class="rules-list--number">5.</span>Elanınızla bağlı bütün məlumatlar elektron poçt ünvanınıza göndərilir.
-                     </p>
-                     <p class="rules-list__item ">
-                        <span class="rules-list--number">6.</span>Zəhmət olmasa daşınmaz əmlakınız haqqında məlumatları düzgün qeyd edin.
-                     </p>
+                     <?= $ads_rules['content']; ?>
                   </div>
                   <a class="link-button link-button--tertiary">Bütün qaydalar</a>
                </div>

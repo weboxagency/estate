@@ -1,6 +1,5 @@
 <section class="panel">
 	<div class="tabs-custom">
-		
 		<div class="tab-content">
 			<div class="tab-pane active" id="create">
 				<?php echo form_open($this->uri->uri_string(), array('class' => 'form-horizontal form-bordered validate')); ?>
