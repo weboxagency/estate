@@ -42,10 +42,10 @@ class Users extends Admin_Controller
                 }
         }
 
-        $this->data['users']       =  $this->u->allUsers();
-        $this->data['title']        = translate('users');
-        $this->data['sub_page']     = 'users/index';
-        $this->data['main_menu']    = 'users';
+        $this->data['users']        =  $this->u->allUsers();
+        $this->data['title']        =  translate('users');
+        $this->data['sub_page']     =  'users/index';
+        $this->data['main_menu']    =  'users';
         $this->load->view('layout/index', $this->data);
     }
 

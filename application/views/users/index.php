@@ -19,6 +19,7 @@
                         <th><?= translate('user_email') ?></th>
                         <th><?= translate('user_mobile') ?></th>
                         <th><?= translate('user_balance') ?></th>
+                        <th><?= translate('listings') ?></th>
                         <th><?=translate('status')?></th>
                         <th class="no-sort"><?=translate('action')?></th>
                      </tr>

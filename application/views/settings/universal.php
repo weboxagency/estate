@@ -21,6 +21,12 @@
 				   <span class="hidden-xs"> <?=translate('logo')?></span>
 				</a>
 			</li>
+			<li <?=($this->session->flashdata('active') == 4 ? 'class="active"' : '');?>>
+				<a href="#banner" data-toggle="tab">
+				   <i class="fab fa-uikit"></i>
+				   <span class="hidden-xs"> <?=translate('site_banner')?></span>
+				</a>
+			</li>
 		</ul>
 
 		<div class="tab-content">
@@ -347,12 +353,40 @@
 							<input type="file" name="profile_bg" class="dropify" data-allowed-file-extensions="jpg" data-default-file="<?=base_url('assets/images/profile_bg.jpg')?>" />
 						</div>
 					</div>
+
 				</div>
 				
 				<footer class="panel-footer">
 					<div class="row">
 						<div class="col-md-2 col-sm-offset-10">
 							<button type="submit" class="btn btn btn-default btn-block" name="submit" value="logo">
+								<i class="fas fa-upload"></i> <?=translate('upload')?>
+							</button>
+						</div>
+					</div>
+				</footer>
+				<?php echo form_close(); ?>
+			</div>
+
+			<div class="tab-pane box <?=($this->session->flashdata('active') == 4 ? 'active' : '');?>" id="banner">
+				<?php
+					echo form_open_multipart($this->uri->uri_string(), array('class' 	=> 'validate'));
+				?>
+				<div class="headers-line">
+					<i class="fab fa-envira"></i> <?=translate('Site banners');?>
+				</div>
+				<div class="row">
+					<div class="col-md-3">
+						<div class="form-group">
+							<label class="control-label"><?=translate('header_banner');?></label>
+							<input type="file" name="header_banner" class="dropify" data-allowed-file-extensions="png" data-default-file="<?=base_url('uploads/app_image/header_banner.png')?>" />
+						</div>
+					</div>
+				</div>
+				<footer class="panel-footer">
+					<div class="row">
+						<div class="col-md-2 col-sm-offset-10">
+							<button type="submit" class="btn btn btn-default btn-block" name="submit" value="banner">
 								<i class="fas fa-upload"></i> <?=translate('upload')?>
 							</button>
 						</div>

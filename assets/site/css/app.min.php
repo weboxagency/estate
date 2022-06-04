@@ -1,3 +1,6 @@
+<?php
+    header("Content-type: text/css; charset: UTF-8");
+?>
 @charset "UTF-8";
 @font-face {
     font-family: Gilroy;
@@ -15524,7 +15527,7 @@ a {
 }
 
 .main-header {
-    background-image: url(../img/icons/mh_bg@2x.png);
+    background-image: url(../../../uploads/app_image/header_banner.png);
     background-repeat: no-repeat;
     background-position: bottom;
     -webkit-background-size: auto 246px;
