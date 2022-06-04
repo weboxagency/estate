@@ -2403,7 +2403,7 @@
 <script type="text/template" x-validation>
             <p class="form-message form-message--error">
                 <svg class="icon icon-triangle-error">
-                    <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-26 00:15:21#icon-triangle-error"></use>
+                    <use xlink:href="<?= base_url() ?>assets/site/img/icons/icons.svg?#icon-triangle-error""></use>
                 </svg>
                 <span><%- rc.message %></span>
             </p>

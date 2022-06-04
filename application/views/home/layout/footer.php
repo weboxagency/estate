@@ -2717,7 +2717,7 @@
 <script type="text/template" x-validation>
    <p class="form-message form-message--error">
        <svg class="icon icon-triangle-error">
-           <use xlink:href="<?= base_url() ?>assets/site/img/icons/icons.svg?v=2022-04-21 19:44:49#icon-triangle-error"></use>
+           <use xlink:href="<?= base_url() ?>assets/site/img/icons/icons.svg?#icon-triangle-error"></use>
        </svg>
        <span><%- rc.message %></span>
    </p>
@@ -2734,7 +2734,7 @@
                <% } %>
                <div class="modal-close" data-dismiss="modal">
                    <svg class="icon icon-close">
-                       <use xlink:href="<?= base_url() ?>assets/site/img/icons/icons.svg?v=2022-04-21 19:44:49#icon-close"></use>
+                       <use xlink:href="<?= base_url() ?>assets/site/img/icons/icons.svg#icon-close"></use>
                    </svg>
                </div>
            </div>

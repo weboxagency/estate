@@ -448,7 +448,12 @@
    </div>
 </section>
 <div class="main-all">
-<div class="banner-home"></div>
+<div class="banner-home">
+   <div class="banner-left" style="position: absolute;">
+   <!-- <a x-left-banner="" target="_blank" href="https://evelani.az/az/banner/68"><img src="https://evelani.az/uploads/banner/68/9dd53c6152f11ae142a05822ff55abef.png?v=1654249194" alt="Evelanlari.az"></a> -->
+   <iframe id="_iframe_7819177825195" name="_iframe_7819177825195" src="https://edp2.adriver.ru/images/0007819/0007819177/0/left.html?html_params=xpid%3DDCxcdrfh7pFCXwvTzBLV-KAQpW6no1d7hPL12SGT1B2jVYEaKvKj3bCXtBms5CqaMvciIbBCdj5S3rtul_KTfXvQbNsuraAwm%26target%3D_blank%26bid%3D7819177%26sid%3D220686%26width%3D100%2525%26height%3D100%2525%26rnd%3D8929419%26pz%3D0%26ad%3D735223%26bt%3D52%26bn%3D4%26ar_sliceid%3D3019695%26ntype%3D0%26nid%3D0%26ar_geoid%3D378%26url%3D%252F%252Fad.adriver.ru%252Fcgi-bin%252Fclick.cgi%253Fsid%253D220686%2526ad%253D735223%2526bid%253D7819177%2526bt%253D52%2526bn%253D4%2526pz%253D0%2526xpid%253DDCxcdrfh7pFCXwvTzBLV-KAQpW6no1d7hPL12SGT1B2jVYEaKvKj3bCXtBms5CqaMvciIbBCdj5S3rtul_KTfXvQbNsuraAwm%2526ref%253Dhttps%253A%25252f%25252fbina.az%25252f%2526custom%253D%2526rleurl%253D%26CompPath%3Dhttps%253A%252F%252Fedp2.adriver.ru%252Fimages%252F0007819%252F0007819177%252F0%252F%26ar_pass%3D%26advid%3D" frameborder="0" vspace="0" hspace="0" width="100%" height="100%" marginwidth="0" marginheight="0" scrolling="no"></iframe>
+   </div>
+</div>
 <div id="main-body" class="main-body page-container container">
 <div class="announcement-group">
 <div class="announcement-group__header">
@@ -831,6 +836,12 @@
 
 
 
+</div>
+<div class="banner-home">
+<div class="banner-right" style="position: absolute;">
+<!-- <a x-right-banner="" target="_blank" href="https://evelani.az/az/banner/68"><img src="https://evelani.az/uploads/banner/68/d54fd707d320ca82e1efbdb9bb627417.png?v=1654249194" alt="Evelanlari.az"></a> -->
+<iframe id="_iframe_7819177330356" name="_iframe_7819177330356" src="https://edp2.adriver.ru/images/0007819/0007819177/0/right.html?html_params=xpid%3DDCxcdrfh7pFCXwvTzBLV-KAQpW6no1d7hPL12SGT1B2jVYEaKvKj3bCXtBms5CqaMvciIbBCdj5S3rtul_KTfXvQbNsuraAwm%26target%3D_blank%26bid%3D7819177%26sid%3D220686%26width%3D100%2525%26height%3D100%2525%26rnd%3D8929419%26pz%3D0%26ad%3D735223%26bt%3D52%26bn%3D4%26ar_sliceid%3D3019695%26ntype%3D0%26nid%3D0%26ar_geoid%3D378%26url%3D%252F%252Fad.adriver.ru%252Fcgi-bin%252Fclick.cgi%253Fsid%253D220686%2526ad%253D735223%2526bid%253D7819177%2526bt%253D52%2526bn%253D4%2526pz%253D0%2526xpid%253DDCxcdrfh7pFCXwvTzBLV-KAQpW6no1d7hPL12SGT1B2jVYEaKvKj3bCXtBms5CqaMvciIbBCdj5S3rtul_KTfXvQbNsuraAwm%2526ref%253Dhttps%253A%25252f%25252fbina.az%25252f%2526custom%253D%2526rleurl%253D%26CompPath%3Dhttps%253A%252F%252Fedp2.adriver.ru%252Fimages%252F0007819%252F0007819177%252F0%252F%26ar_pass%3D%26advid%3D" frameborder="0" vspace="0" hspace="0" width="100%" height="100%" marginwidth="0" marginheight="0" scrolling="no"></iframe>
+</div>
 </div>
 </div>
 </main>

@@ -8,6 +8,27 @@ class Home_model extends MY_Model
         parent::__construct();
     }
 
+    public function getAdsCountForPhoneNumber($phone)
+    {
+        $this->db->select('*');
+        $this->db->from('ads_users');
+        $this->db->where('mobile_format_second', $phone);
+        $this->db->limit(1);
+        $query = $this->db->get();
+        if ($query->num_rows() == 1) 
+        {
+            $this->db->select('*');
+            $this->db->from('all_ads');
+            $this->db->where('user_id', $query->row()->id);
+            $ads = $this->db->get();
+            return $ads->num_rows();
+        }
+        else
+        {
+            return false;
+        }
+    }
+
     public function getLangImage($id = '', $thumb = true)
     {
         $file_path = 'uploads/language_flags/flag_' . $id . '_thumb.png';

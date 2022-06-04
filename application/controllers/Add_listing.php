@@ -41,51 +41,46 @@ class Add_listing extends Frontend_Controller
     public function check_info()
     {
 
-        $this->form_validation->set_rules('announcement_owner', translate('announcement_owner'), 'trim|required');
-        $this->form_validation->set_rules('user_type', translate('user_type'), 'trim|required');
-        $this->form_validation->set_rules('mobile', translate('mobile'), 'trim|required');
+        $this->form_validation->set_rules('announcement_owner', translate('announcement_owner'), 'trim|required|min_length[3]|xss_clean', 
+                    [
+                        "required"      => ucfirst(translate("the_announcement_owner_field_is_required")),
+                        "min_length"    => ucfirst(translate("the_name_must_consist_of_at_least_3_letters")),
+                    ]
+                );
+        $this->form_validation->set_rules('user_type', translate('user_type'), 'trim|required|xss_clean');
+        $this->form_validation->set_rules('mobile', translate('mobile'), 'trim|required|min_length[9]|max_length[9]|xss_clean', 
+                    [
+                        "required"      => ucfirst(translate("the_mobile_number_field_is_required")),
+                        "max_length"    => ucfirst(translate("the_phone_number_is_not_valid")),
+                        "min_length"    => ucfirst(translate("the_phone_number_is_not_valid"))
+                    ]
+                );
         // $this->form_validation->set_rules('whatsapp', translate('whatsapp'), 'trim');
-        $this->form_validation->set_rules('email', translate('email'), 'trim|required');
+        $this->form_validation->set_rules('email', translate('email'), 'trim|required|valid_email|xss_clean', 
+                    [
+                        "required"      => ucfirst(translate("the_email_field_is_required")),
+                        "valid_email"   => ucfirst(translate("the_email_address_is_not_valid"))
+                    ]
+                );
 
-        $owner      = $this->input->post('announcement_owner');
-        $user_type  = $this->input->post('user_type');
-        $mobile     = $this->input->post('mobile');
-        $whatsapp   = $this->input->post('whatsapp');
-        $email      = $this->input->post('email');
-
-        $email_errors   = [];
-        $pass_errors    = [];
-        $owner_errors   = [];
-        $agree_errors   = []; 
-        $mobile_errors  = [];
-        // dd(validation_errors());
-        if ($this->form_validation->run() == true) 
+        $owner      = $this->input->post('announcement_owner',TRUE);
+        $user_type  = $this->input->post('user_type',TRUE);
+        $mobile     = $this->input->post('mobile',TRUE);
+        $whatsapp   = $this->input->post('whatsapp',TRUE);
+        $email      = $this->input->post('email',TRUE);
+        $adsCount   = $this->home_model->getAdsCountForPhoneNumber($mobile);
+        
+        if ($this->form_validation->run() === TRUE) 
         {
-            if (!preg_match('/^[0-9]{9}+$/', $mobile)) 
+            if ($adsCount>=2) 
             {
                 $response = [
-                    "status"        => "success",
-                    "text"          => "",
-                    "validations"   => [
-                        "password"    => [translate("mobile_number_is_incorrect")]                           
-                        ]
+                        "status"        => "success",
+                        "message"       => "",
+                        "validations"   => ["id" => ["Siz artıq ay ərzində 2 pulsuz elan yerləşdirmisiniz"]]
                     ];
-                    
                 echo json_encode($response);
-                exit();
-            }
-            elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) 
-            {
-                $response = [
-                    "status"        => "success",
-                    "text"          => "",
-                    "validations"   => [
-                        "password"   => [translate("email_address_is_incorrect")]                           
-                        ]
-                    ];
-                    
-                echo json_encode($response);
-                exit();
+                die();
             }
             else
             {
@@ -97,22 +92,29 @@ class Add_listing extends Frontend_Controller
                 echo json_encode($response);
                 exit();
             }
-            
         }
         else
         {
-            $response = [
-                "status"        => "success",
-                "validations"   => [
-                    "announcement_owner" => (empty($owner)) ? [translate("no_contact_person_specified")] : '',
-                    "email"              => (empty($email)) ? [translate("email_address_not_entered")] : '',
-                    "mobile"             => (empty($mobile)) ? [translate("mobile_number_is_not_specified")] : '',
-                ],
-                "message"       => ""
-            ];
             
-            echo json_encode($response);
-            die();
+            $output = array();
+                foreach ($_POST as $key => $value)
+                {
+                    $text   =   str_ireplace('<p>','',form_error($key));
+                    $text   =   str_ireplace('</p>','',$text); 
+                    if ($key!='_token' AND !empty($text)) 
+                    {
+                        
+                         $output[$key] = [$text];
+                    }
+                }
+
+            $response = [
+                        "status"        => "success",
+                        "message"       => "",
+                        "validations"   => $output
+                    ];
+                echo json_encode($response);
+                die();
         }
        
     }

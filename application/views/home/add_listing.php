@@ -5,7 +5,7 @@
             <h1><span>Yeni elan</span> yerləşdir</h1>
             <h2>
                Hesabınız yoxdur?
-               <a href="#" data-toggle="modal" data-target="#register">Register</a>
+               <a href="#" data-toggle="modal" data-target="#register"><?= translate('register') ?></a>
             </h2>
          </div>
          <div class="addHome-body">
@@ -29,7 +29,7 @@
                      <div class="form-row">
                         <div class="form-item form-item--flex form-item--large">
                            <label for="user_type">
-                           Elan sahibi
+                           <?= translate('announcement_owner') ?>
                            <i class="fas fa-star-of-life"></i>
                            </label>
                            <div class="form-item--radio d-flex formitem--radio">
@@ -118,6 +118,7 @@
                      <input type="hidden" name="mobile">
                      <input type="hidden" name="user_type">
                      <input type="hidden" name="whatsapp">
+                      <input type="hidden" name="<?php echo $this->security->get_csrf_token_name();?>" value="<?php echo $this->security->get_csrf_hash();?>">
                      <fieldset>
                         <div class="form-row">
                            <div class="form-item form-item--flex form-item--large">
@@ -337,9 +338,11 @@
                                  <input type="hidden" name="longitude" id="longitude" value="">
                                  <p class="form-message form-message--info align-items-center">
                                     <svg class="icon icon-pin">
-                                       <use xlink:href="assets/site/img/icons/icons9860.svg?v=2022-04-19%2000:11:16#icon-pin"></use>
+                                       <use xlink:href="<?= base_url() ?>assets/site/img/icons/icons.svg#icon-pin"></use>
                                     </svg>
-                                    <span><a href="#" class="googleMapImg" data-toggle="modal" data-target="#modalMap"><?= translate('show_map') ?></a></span>
+                                    <span>
+                                       <a href="#" class="googleMapImg" data-toggle="modal" data-target="#modalMap"><?= translate('show_map') ?></a>
+                                    </span>
                                  </p>
                                  <div class="modal fade" id="modalMap" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
                                     <div class="modal-dialog">
@@ -367,7 +370,7 @@
                               <label for="property_description">
                               </label>
                               <div class="form-item__labeled">
-                                 <img id="map-id" src="#">
+                                 <img id="map-id" src="">
                               </div>
                            </div>
                         </div>

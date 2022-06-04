@@ -42,6 +42,7 @@ class User_model extends MY_Model
         }
     }
 
+
      // checking login credential
     public function login_credential($email, $password)
     {
