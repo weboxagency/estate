@@ -502,6 +502,28 @@ $.extend(theme.PluginDatePicker.defaults, {
 			}
 		});
 
+		// users status
+		$(".users-switch").on("change", function() {
+			var state = $(this).prop('checked');
+			var id = $(this).data('id');
+			if (state != null) {
+				$.ajax({
+					type: 'POST',
+					url: base_url + "users/user_status",
+					data: {
+						id: id,
+						status: state
+					},
+					dataType: "json",
+					success: function (data) {
+						if(data.status == true) {
+							alertMsg(data.msg);
+						}
+					}
+				});
+			}
+		});
+
 
 		// events status
 		$(".event-switch").on("change", function() {
