@@ -79,6 +79,15 @@
 
                     <!-- ESTATE MENUS START -->
 
+                    <?php if (is_superadmin_loggedin()) : ?>
+                    <!-- users -->
+                    <li class="<?php if ($main_menu == 'ads') echo 'nav-active';?>">
+                        <a href="<?=base_url('ads/index')?>">
+                            <i class="icons icon-list"></i><span><?=translate('ads')?></span>
+                        </a>
+                    </li>
+                    <?php endif; ?>
+
                     <?php
                     if (get_permission('cities', 'is_view') ||
                         get_permission('regions', 'is_view') ||

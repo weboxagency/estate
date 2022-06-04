@@ -219,6 +219,14 @@ class Settings extends Admin_Controller
             redirect(current_url());
         }
 
+        if ($this->input->post('submit') == 'banner') {
+            move_uploaded_file($_FILES['header_banner']['tmp_name'], 'uploads/app_image/header_banner.png');
+            set_alert('success', translate('the_configuration_has_been_updated'));
+            $this->session->set_flashdata('active', 4);
+            redirect(current_url());
+        }
+
+
         $this->data['title'] = translate('global_settings');
         $this->data['sub_page'] = 'settings/universal';
         $this->data['main_menu'] = 'settings';

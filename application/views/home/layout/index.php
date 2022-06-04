@@ -32,7 +32,7 @@
     <link rel="stylesheet" href="<?= base_url('assets/site/css/wave.css') ?>">
     <link rel="stylesheet" href="<?= base_url('assets/site/css/checkbox.css') ?>">
     <link rel="stylesheet" href="<?= base_url('assets/site/css/lightslider.css') ?>">
-    <link rel="stylesheet" href="<?= base_url('assets/site/css/app.min.css') ?>">
+    <link rel="stylesheet" href="<?= base_url('assets/site/css/app.min.php') ?>">
     <link rel="stylesheet" href="<?= base_url('assets/site/css/semantic.min.css') ?>">
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script type="text/javascript">
