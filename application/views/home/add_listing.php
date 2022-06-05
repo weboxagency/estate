@@ -1,4 +1,4 @@
-<main>
+<main id="add_listing">
    <div class="addHome pb-0">
       <div class="container page-container pb-0">
          <div class="addHome-header">

@@ -30,6 +30,7 @@
                         <th><?= translate('repair') ?></th>
                         <th><?= translate('deed') ?></th>
                         <th><?= translate('mortgage') ?></th>
+                        <th><?= translate('description') ?></th>
                         <th><?= translate('user_type') ?></th>
                         <th><?= translate('name') ?></th>
                         <th><?= translate('email') ?></th>
@@ -53,6 +54,7 @@
                         <th><?= translate('deleted_at') ?></th>
                         <th><?= translate('approved_at') ?></th>
                         <th><?= translate('simple_ads_end_date') ?></th>
+                        <th><?=translate('is_active')?></th>
                         <th><?=translate('status')?></th>
                         <th class="no-sort"><?=translate('action')?></th>
                      </tr>
@@ -77,55 +79,91 @@
 	                        	}
                     		?>
                     	</td>
-                        <td><?php echo $row['connection_type'];?></td>
-                        <td><?php echo $row['property_type'];?></td>
-                        <td><?php echo $row['price'];?></td>
-                        <td><?php echo $row['average_price'];?></td>
-                        <td><?php echo $row['room'];?></td>
-                        <td><?php echo $row['area'];?></td>
-                        <td><?php echo $row['land_area'];?></td>
-                        <td><?php echo $row['floor'];?></td>
-                        <td><?php echo $row['max_floor'];?></td>
-                        <td><?php echo $row['repair'];?></td>
-                        <td><?php echo $row['deed'];?></td>
-                        <td><?php echo $row['mortgage'];?></td>
-                        <td><?php echo $row['user_type'];?></td>
-                        <td><?php echo $row['name'];?></td>
-                        <td><?php echo $row['email'];?></td>
-                        <td><?php echo $row['mobile'];?></td>
-                        <td><?php echo $row['has_whatsapp'];?></td>
-                        <td><?php echo $row['city_id'];?></td>
-                        <td><?php echo $row['region_id'];?></td>
-                        <td><?php echo $row['district_id'];?></td>
-                        <td><?php echo $row['metro_id'];?></td>
-                        <td><?php echo $row['business_center'];?></td>
-                        <td><?php echo $row['complex'];?></td>
-                        <td><?php echo $row['is_active'];?></td>
-                        <td><?php echo $row['pull_ads_forward_begin'];?></td>
-                        <td><?php echo $row['pull_ads_forward_end'];?></td>
-                        <td><?php echo $row['vip_begin'];?></td>
-                        <td><?php echo $row['vip_end'];?></td>
-                        <td><?php echo $row['premium_begin'];?></td>
-                        <td><?php echo $row['premium_end'];?></td>
-                        <td><?php echo $row['created_at'];?></td>
-                        <td><?php echo $row['updated_at'];?></td>
-                        <td><?php echo $row['deleted_at'];?></td>
-                        <td><?php echo $row['approved_at'];?></td>
-                        <td><?php echo $row['simple_ads_end_date'];?></td>
+                        <td><?= $row['connection_type'];?></td>
+                        <td><?= $row['property_type'];?></td>
+                        <td><?= $row['price'];?> AZN</td>
+                        <td><?= $row['price']/$row['area'];?> AZN</td>
+                        <td><?= $row['room'];?></td>
+                        <td><?= $row['area'];?> m<sup>2</sup></td>
+                        <td><?= $row['land_area'];?> sot</td>
+                        <td><?= $row['floor'];?></td>
+                        <td><?= $row['max_floor'];?></td>
+                        <td><?= $row['repair']==1 ? 'Təmirli' : 'Təmirsiz';?></td>
+                        <td><?= $row['deed'];?></td>
+                        <td><?= $row['mortgage'];?></td>
+                        <td><?= $row['description'];?></td>
+                        <td><?= $row['user_type']==1 ? 'Mülkiyyətçi' : 'Vasitəçi';?></td>
+                        <td><?= $row['name'];?></td>
+                        <td><?= $row['email'];?></td>
+                        <td><?= $row['mobile'];?></td>
+                        <td><?= $row['has_whatsapp']==1 ? 'Whatsapp aktivdir' : 'Whatsapp aktiv deyil';?></td>
+                        <td><?= $row['city_id'];?></td>
+                        <td><?= $row['region_id'];?></td>
+                        <td><?= $row['district_id'];?></td>
+                        <td><?= $row['metro_id'];?></td>
+                        <td><?= $row['business_center']==1 ? 'Biznes mərkəzi' : '' ;?></td>
+                        <td><?= $row['complex']==1 ? 'Yaşayış kompleksi' : '' ;?></td>
+                        <td><?= $row['is_active'];?></td>
+                        <td><?= $row['pull_ads_forward_begin'];?></td>
+                        <td><?= $row['pull_ads_forward_end'];?></td>
+                        <td><?= $row['vip_begin'];?></td>
+                        <td><?= $row['vip_end'];?></td>
+                        <td><?= $row['premium_begin'];?></td>
+                        <td><?= $row['premium_end'];?></td>
+                        <td><?= $row['created_at'];?></td>
+                        <td><?= $row['updated_at'];?></td>
+                        <td><?= $row['deleted_at'];?></td>
+                        <td><?= $row['approved_at'];?></td>
+                        <td><?= $row['simple_ads_end_date'];?></td>
                         <td>
-                           <div class="material-switch ml-xs">
-                              <input class="users-switch" id="switch_<?=$row['id']?>" data-id="<?=$row['id']?>" name="users_switch<?=$row['id']?>" 
-                              type="checkbox" <?php echo ($row['status'] == 1 ? 'checked' : ''); ?> />
-                              <label for="switch_<?=$row['id'] ?>" class="label-primary"></label>
-                           </div>
+							<div class="material-switch ml-xs">
+								<input class="ads-switch" id="switch_<?=$row['id']?>" data-id="<?=$row['id']?>" name="ads_switch<?=$row['id']?>" 
+								type="checkbox" <?php echo ($row['is_active'] == 1 ? 'checked' : ''); ?> />
+								<label for="switch_<?=$row['id'] ?>" class="label-primary"></label>
+							</div>
+						</td>
+                        <td>
+                           <select name="status" class="ads-status" data-id="<?= $row['id'] ?>">
+	                           	<option value="1" <?= $row['status']==1 ? 'selected' : '' ?>>Dərc edilmiş</option>
+	                           	<option value="2" <?= $row['status']==2 ? 'selected' : '' ?>>Yoxlanışda olan</option>
+	                           	<option value="3" <?= $row['status']==3 ? 'selected' : '' ?>>Qəbul edilməmiş</option>
+	                           	<option value="4" <?= $row['status']==4 ? 'selected' : '' ?>>Vaxtı bitmiş</option>
+	                           	<option value="5" <?= $row['status']==5 ? 'selected' : '' ?>>Silinmiş</option>
+                           </select>
                         </td>
                         <td class="min-w-c">
+                        	<button type="button" class="btn btn-info btn-circle icon" data-toggle="modal" 
+                        	data-target="#exampleModal">
+                              <i class="fas fa-eye"></i>
+                           </button>
+
+                           <!-- Show modal -->
+                           <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+							  <div class="modal-dialog modal-lg" role="document">
+							    <div class="modal-content">
+							      <div class="modal-header">
+							        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+							        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							          <span aria-hidden="true">&times;</span>
+							        </button>
+							      </div>
+							      <div class="modal-body">
+							        ...
+							      </div>
+							      <div class="modal-footer">
+							        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+							        <button type="button" class="btn btn-primary">Save changes</button>
+							      </div>
+							    </div>
+							  </div>
+							</div>
+
                            <!--update link-->
                            <a href="<?=base_url('users/user_edit/'.$row['id'])?>" class="btn btn-default btn-circle icon">
                               <i class="fas fa-pen-nib"></i>
                            </a>
                            <!-- delete link -->
-                           <?php echo btn_delete('users/user_delete/' . $row['id']);?>
+                           <?php echo btn_delete('ads/ads_delete/' . $row['id']);?>
                         </td>
                      </tr>
                      <?php endforeach; ?>
@@ -135,62 +173,221 @@
          </div>
          <div class="tab-pane <?=(!empty($validation_error) ? 'active' : '')?>" id="create">
             <?php echo form_open($this->uri->uri_string(), array('class' => 'form-horizontal form-bordered validate')); ?>
-            
-               <div class="form-group mt-md">
-                  <label class="col-md-3 control-label"><?=translate('name')?> <span class="required">*</span></label>
-                  <div class="col-md-6">
-                     <input type="text" class="form-control" name="name" placeholder="<?= translate('enter_name_surname') ?>" value="<?=set_value('name')?>" />
-                     <span class="error"><?=form_error('name') ?></span>
-                  </div>
-               </div>
+            	
+            		<div class="form-group mt-md">
+						<label class="col-md-3 control-label"><?=translate('related_person')?> <span class="required">*</span></label>
+						<div class="col-md-6">
+							<input type="text" class="form-control" name="name" value="<?=set_value('name')?>" />
+							<span class="error"><?=form_error('name') ?></span>
+						</div>
+					</div>
 
-               <div class="form-group mt-md">
-                  <label class="col-md-3 control-label"><?=translate('email')?> <span class="required">*</span></label>
-                  <div class="col-md-6">
-                     <input type="email" class="form-control" placeholder="<?= translate('enter_email') ?>" name="email" value="<?=set_value('email')?>" />
-                     <span class="error"><?=form_error('email') ?></span>
-                  </div>
-               </div>
+					<div class="form-group mt-md">
+						<label class="col-md-3 control-label"><?=translate('user_type')?> <span class="required">*</span></label>
+						<div class="col-md-6">
+							<select class="form-control" name="user_type" id="user_type">
+								<option value="1"><?= translate('owner') ?></option>
+								<option value="2"><?= translate('mediator') ?></option>
+							</select>
+							<span class="error"><?=form_error('user_type') ?></span>
+						</div>
+					</div>
 
-               <div class="form-group mt-md">
-                  <label class="col-md-3 control-label"><?=translate('phone')?> <span class="required">*</span></label>
-                  <div class="col-md-6">
-                     <input type="text" class="form-control" placeholder="<?= translate('enter_phone_number') ?>" name="mobile" value="<?=set_value('phone')?>" />
-                     <span class="error"><?=form_error('phone') ?></span>
-                  </div>
-               </div>
 
-               <div class="form-group mt-md">
-                  <label class="col-md-3 control-label"><?=translate('balance')?> <span class="required">*</span></label>
-                  <div class="col-md-6">
-                     <input type="number" class="form-control" placeholder="<?= translate('AZN') ?>" name="balance" value="<?=set_value('balance')?>" />
-                     <span class="error"><?=form_error('balance') ?></span>
-                  </div>
-               </div>
+					<div class="form-group mt-md">
+						<label class="col-md-3 control-label"><?=translate('mobile')?> <span class="required">*</span></label>
+						<div class="col-md-6">
+							<input type="text" class="form-control" name="mobile" value="<?=set_value('mobile')?>" />
+							<span class="error"><?=form_error('mobile') ?></span>
+							<label id="has_whatsapp">
+								<input type="checkbox" id="has_whatsapp" name="has_whatsapp">
+								Whatsapp aktivdir 
+							</label>
+						</div>
+					</div>
 
-               <div class="form-group mt-md">
-                  <label class="col-md-3 control-label" for="status"><?=translate('status')?> <span class="required">*</span></label>
 
-                  <div class="col-md-6">
-                     <select class="form-control" name="status" id="status">
-                        <option disabled selected><?= translate('please_select_one_item') ?></option>
-                        <option value="0"><?= translate('deactive') ?></option>
-                        <option value="1"><?= translate('active') ?></option>
-                     </select>
-                     <span class="error"><?=form_error('status') ?></span>
-                  </div>
-               </div>
-               
-               
-               <footer class="panel-footer mt-lg">
-                  <div class="row">
-                     <div class="col-md-2 col-md-offset-3">
-                        <button type="submit" class="btn btn-default btn-block" name="submit" value="save">
-                           <i class="fas fa-plus-circle"></i> <?=translate('save')?>
-                        </button>
-                     </div>
-                  </div>   
-               </footer>
+					<div class="form-group mt-md">
+						<label class="col-md-3 control-label"><?=translate('email')?> <span class="required">*</span></label>
+						<div class="col-md-6">
+							<input type="text" class="form-control" name="email" value="<?=set_value('email')?>" />
+							<span class="error"><?=form_error('email') ?></span>
+						</div>
+					</div>
+
+					<hr>
+
+					<div class="form-group mt-md">
+						<label class="col-md-3 control-label"><?=translate('ads_type')?> <span class="required">*</span></label>
+						<div class="col-md-6">
+							<select class="form-control" name="ads_type" id="ads_type">
+								<?php 
+									foreach($ads_type as $type) {?>
+										<option value="<?= $type['id'] ?>"><?= $type['type_name'] ?></option>
+									<?php } ?>
+							</select>
+							<span class="error"><?=form_error('ads_type') ?></span>
+						</div>
+					</div>
+
+					<div class="form-group mt-md">
+						<label class="col-md-3 control-label"><?=translate('estate_type')?> <span class="required">*</span></label>
+						<div class="col-md-6">
+							<select class="form-control" name="estate_type" id="estate_type">
+								<?php 
+									foreach($estate_type as $etype) {?>
+										<option value="<?= $etype['id'] ?>"><?= $etype['estate_type_name'] ?></option>
+									<?php } ?>
+							</select>
+							<span class="error"><?=form_error('estate_type') ?></span>
+						</div>
+					</div>
+
+					<div class="form-group form-inline mt-md">
+						<label class="col-md-3 control-label"><?=translate('mortgage')?> <span class="required">*</span></label>
+						<div class="col-md-4">
+							<label>
+								<input type="radio" name="mortgage" value="1">
+								Var
+							</label>
+						</div>
+						<div class="col-md-4">
+							<label>
+								<input type="radio" name="mortgage" value="2">
+								Yoxdur
+							</label>
+						</div>
+					</div>
+
+					<div class="form-group mt-md">
+						<label class="col-md-3 control-label"><?=translate('price')?> <span class="required">*</span></label>
+						<div class="col-md-6">
+							<input type="text" class="form-control" name="price" placeholder="AZN" value="<?=set_value('price')?>" />
+							<span class="error"><?=form_error('price') ?></span>
+						</div>
+					</div>
+
+					<div class="form-group mt-md">
+						<label class="col-md-3 control-label"><?=translate('room')?> <span class="required">*</span></label>
+						<div class="col-md-6">
+							<input type="text" class="form-control" name="room" placeholder="<?= translate('room') ?>" value="<?=set_value('room')?>" />
+							<span class="error"><?=form_error('room') ?></span>
+						</div>
+					</div>
+
+					<div class="form-group mt-md">
+						<label class="col-md-3 control-label"><?=translate('floor')?> <span class="required">*</span></label>
+						<div class="col-md-6">
+							<input type="text" class="form-control" name="floor" placeholder="<?= translate('enter_floor') ?>" value="<?=set_value('floor')?>" />
+							<span class="error"><?=form_error('floor') ?></span>
+						</div>
+					</div>
+
+					<div class="form-group mt-md">
+						<label class="col-md-3 control-label"><?=translate('max_floor')?> <span class="required">*</span></label>
+						<div class="col-md-6">
+							<input type="text" class="form-control" name="max_floor" placeholder="<?= translate('enter_max_floor') ?>" value="<?=set_value('max_floor')?>" />
+							<span class="error"><?=form_error('max_floor') ?></span>
+						</div>
+					</div>
+
+					<div class="form-group mt-md">
+						<label class="col-md-3 control-label"><?=translate('area')?> <span class="required">*</span></label>
+						<div class="col-md-6">
+							<input type="text" class="form-control" name="area" placeholder="area" value="<?=set_value('area')?>" />
+							<span class="error"><?=form_error('area') ?></span>
+						</div>
+					</div>
+
+					<div class="form-group mt-md">
+						<label class="col-md-3 control-label"><?=translate('land_area')?> <span class="required">*</span></label>
+						<div class="col-md-6">
+							<input type="text" class="form-control" name="land_area" placeholder="land_area" value="<?=set_value('land_area')?>" />
+							<span class="error"><?=form_error('land_area') ?></span>
+						</div>
+					</div>
+
+					<div class="form-group mt-md">
+						<label class="col-md-3 control-label"><?=translate('cities')?> <span class="required">*</span></label>
+						<div class="col-md-6">
+							<select class="form-control" name="city_id" id="city_id">
+								<?php 
+									foreach($cities as $city) {?>
+										<option value="<?= $city['id'] ?>"><?= $city['city_name'] ?></option>
+									<?php } ?>
+							</select>
+							<span class="error"><?=form_error('cities') ?></span>
+						</div>
+					</div>
+
+					<div class="form-group mt-md">
+						<label class="col-md-3 control-label"><?=translate('regions')?> <span class="required">*</span></label>
+						<div class="col-md-6">
+							<select class="form-control" name="region_id" id="region_id">
+								<?php 
+									foreach($regions as $region) {?>
+										<option value="<?= $region['id'] ?>"><?= $region['region_name'] ?></option>
+									<?php } ?>
+							</select>
+							<span class="error"><?=form_error('regions') ?></span>
+						</div>
+					</div>
+
+					<div class="form-group mt-md">
+						<label class="col-md-3 control-label"><?=translate('districts')?> <span class="required">*</span></label>
+						<div class="col-md-6">
+							<select class="form-control" name="district_id" id="district_id">
+								<?php 
+									foreach($districts as $dis) {?>
+										<option value="<?= $dis['id'] ?>"><?= $dis['district_name'] ?></option>
+									<?php } ?>
+							</select>
+							<span class="error"><?=form_error('districts') ?></span>
+						</div>
+					</div>
+
+					<div class="form-group mt-md">
+						<label class="col-md-3 control-label"><?=translate('address')?> <span class="required">*</span></label>
+						<div class="col-md-6">
+							<input type="text" class="form-control" name="address" placeholder="address" value="<?=set_value('address')?>" />
+							<span class="error"><?=form_error('address') ?></span>
+						</div>
+					</div>
+
+					<div class="form-group mt-md">
+						<label class="col-md-3 control-label"><?=translate('description')?> <span class="required">*</span></label>
+						<div class="col-md-6">
+							<textarea name="description" class="form-control summernote" id="summernote">
+							</textarea>
+							<span class="error"><?=form_error('description') ?></span>
+						</div>
+					</div>
+
+
+
+					<div class="form-group mt-md">
+						<label class="col-md-3 control-label" for="status"><?=translate('status')?> <span class="required">*</span></label>
+						<div class="col-md-6">
+							<select class="form-control" name="status" id="status">
+								<option disabled selected><?= translate('please_select_one_item') ?></option>
+								<option value="0"><?= translate('deactive') ?></option>
+								<option value="1"><?= translate('active') ?></option>
+							</select>
+							<span class="error"><?=form_error('status') ?></span>
+						</div>
+					</div>
+					
+					
+					<footer class="panel-footer mt-lg">
+						<div class="row">
+							<div class="col-md-2 col-md-offset-3">
+								<button type="submit" class="btn btn-default btn-block" name="submit" value="save">
+									<i class="fas fa-plus-circle"></i> <?=translate('save')?>
+								</button>
+							</div>
+						</div>	
+					</footer>
+
             <?php echo form_close();?>
          </div>
       </div>

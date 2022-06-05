@@ -524,6 +524,50 @@ $.extend(theme.PluginDatePicker.defaults, {
 			}
 		});
 
+		//ads active - deactive
+		$(".ads-switch").on("change", function() {
+			var state = $(this).prop('checked');
+			var id = $(this).data('id');
+			if (state != null) {
+				$.ajax({
+					type: 'POST',
+					url: base_url + "ads/is_active",
+					data: {
+						id: id,
+						status: state
+					},
+					dataType: "json",
+					success: function (data) {
+						if(data.status == true) {
+							alertMsg(data.msg);
+						}
+					}
+				});
+			}
+		});
+
+		// ads status
+		$(".ads-status").on("change", function() {
+			var id = $(this).data('id');
+			var status = $(this).val();
+			if (status != null) {
+				$.ajax({
+					type: 'POST',
+					url: base_url + "ads/ads_status",
+					data: {
+						id: id,
+						status: status
+					},
+					dataType: "json",
+					success: function (data) {
+						if(data.status == true) {
+							alertMsg(data.msg);
+						}
+					}
+				});
+			}
+		});
+
 
 		// events status
 		$(".event-switch").on("change", function() {

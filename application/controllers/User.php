@@ -223,7 +223,7 @@ class User extends Frontend_Controller
                         ];
 
                         // send user activation email
-                        $this->email_model->userRegistration($emailData);
+                        $this->em->userRegistration($emailData);
                        
                         $response = [
                         "status"        => "success",

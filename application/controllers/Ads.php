@@ -17,15 +17,22 @@ class Ads extends Admin_Controller
     public function __construct()
     {
         parent::__construct();
+        $this->load->model('home_model', 'hm');
         $this->load->model('ads_model','ads');
+        $this->load->model('email_model','em');
+        $this->load->library('mailer');
     }
 
 
     public function index()
     {
 
-
-        $this->data['ads']        =  $this->ads->allAds();
+        $this->data['ads_type']     = $this->hm->adsType();
+        $this->data['estate_type']  = $this->hm->estateTypes();
+        $this->data['cities']       = $this->hm->allCities();
+        $this->data['regions']      = $this->hm->allRegions();
+        $this->data['districts']    = $this->hm->allDistricts();
+        $this->data['ads']          =  $this->ads->allAds();
         $this->data['title']        =  translate('ads');
         $this->data['sub_page']     =  'ads/index';
         $this->data['main_menu']    =  'ads';
@@ -36,22 +43,47 @@ class Ads extends Admin_Controller
     {
         $id = $this->input->post('id');
         $status = $this->input->post('status');
-        if ($status == 'true') {
+        if ($status == 1) {
             $arrayData['status'] = 1;
-        } else {
-            $arrayData['status'] = 0;
+        } elseif($status == 2) {
+            $arrayData['status'] = 2;
+        } elseif($status == 3) {
+            $arrayData['status'] = 3;
+        } elseif($status == 4) {
+            $arrayData['status'] = 4;
+        } elseif($status == 5) {
+            $arrayData['status'] = 5;
         }
        
         $this->db->where('id', $id);
         $this->db->update('ads_all', $arrayData);
+
+        $return = array('msg' => translate('information_has_been_updated_successfully'), 'status' => true);
+        echo json_encode($return);
+    }
+
+    public function is_active()
+    {
+        $id = $this->input->post('id');
+        $status = $this->input->post('status');
+        if ($status == 'true') {
+            $arrayData['is_active'] = 1;
+        } else {
+            $arrayData['is_active'] = 0;
+        }
+       
+        $this->db->where('id', $id);
+        $this->db->update('ads_all', $arrayData);
+
         $return = array('msg' => translate('information_has_been_updated_successfully'), 'status' => true);
         echo json_encode($return);
     }
 
     public function ads_delete($id = '')
     {
+        $arrayData['status'] = 5;
         $this->db->where('id', $id);
-        $this->db->delete('ads_all');
+        $this->db->update('ads_all', $arrayData);
        
         redirect(base_url(), 'refresh');   
     }
