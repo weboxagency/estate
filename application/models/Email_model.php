@@ -278,6 +278,24 @@ class Email_model extends CI_Model
             }
         }
     }
+
+    public function sendCurrentAdsStatusToUser($data)
+    {
+        $emailTemplate = $this->getEmailTemplates(14);
+        if ($emailTemplate['notified'] == 1) {
+            if (!empty($data['email'])) {
+                $message = $emailTemplate['template_body'];
+                $message = str_replace("{name}", $data['name'], $message);
+                $message = str_replace("{url}", $data['url'], $message);
+                $message = str_replace("{logo}", $data['logo'], $message);
+                $message = str_replace("{rand}", $data['rand'], $message);
+                $msgData['recipient']   = $data['email'];
+                $msgData['subject']     = $emailTemplate['subject'];
+                $msgData['message']     = $message;
+                $this->sendEmail($msgData);
+            }
+        }
+    }
     
 
 
