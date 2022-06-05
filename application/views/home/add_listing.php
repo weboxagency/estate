@@ -111,6 +111,7 @@
                <div class="step step-second step--blur" x-blur-2>
                   <h4 class="step-title">Elan məlumatları</h4>
                   <form x-edit-form method="post" action="<?= base_url() ?>add_listing/check_info" x-target-with-data="afterAnnouncementSuccess">
+                    
                      <input type="hidden" name="site" value="1">
                      <input type="hidden" name="id" value="">
                      <input type="hidden" name="announcement_owner">
@@ -118,7 +119,7 @@
                      <input type="hidden" name="mobile">
                      <input type="hidden" name="user_type">
                      <input type="hidden" name="whatsapp">
-                      <input type="hidden" name="<?php echo $this->security->get_csrf_token_name();?>" value="<?php echo $this->security->get_csrf_hash();?>">
+                     <input type="hidden" name="<?php echo $this->security->get_csrf_token_name();?>" value="<?php echo $this->security->get_csrf_hash();?>">
                      <fieldset>
                         <div class="form-row">
                            <div class="form-item form-item--flex form-item--large">
@@ -393,6 +394,7 @@
                               </label>
                               <div class="form-item__labeled">
                                  <div id="addform" class="form-item__file" x-upload-photo>
+                                    
                                     <label for="">
                                        <svg class="icon icon-map">
                                           <use xlink:href="assets/site/img/icons/icons.svg#icon-map"></use>
@@ -445,12 +447,12 @@
          <div class="modal-content">
             <div class="modal-body">
                <svg class="icon icon-message-sent">
-                  <use xlink:href="assets/site/img/icons/icons9860.svg?v=2022-04-19%2000:11:16#icon-message-sent"></use>
+                  <use xlink:href="<?= base_url() ?>assets/site/img/icons/icons.svg#icon-message-sent"></use>
                </svg>
                <h6>Elanınız yoxlamaya göndərildi</h6>
                <p>Elektron poçt ünvanınıza məlumat göndərildi</p>
                <p x-success-message></p>
-               <a href="../az.html" class="remove-listener">
+               <a href="<?= base_url() ?>" class="remove-listener">
                <button class="link-button link-button--primary">Bağla</button>
                </a>
             </div>

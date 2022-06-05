@@ -23,8 +23,6 @@ class Ads extends Admin_Controller
 
     public function index()
     {
-
-
         $this->data['ads']        =  $this->ads->allAds();
         $this->data['title']        =  translate('users');
         $this->data['sub_page']     =  'ads/index';

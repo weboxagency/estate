@@ -358,7 +358,7 @@
 
             $( '[x-select-2-url]' ).each( function()
             {
-                let t = $( this ) , url = t.attr( 'x-select-2-url' ) , query = { _token : csrf } ,
+                let t = $( this ) , url = t.attr( 'x-select-2-url' ) , query = { <?php echo $this->security->get_csrf_token_name();?> : csrf } ,
                     column = t.attr( 'x-data-column' ) !== undefined ? t.attr( 'x-data-column' ) : false ,
                     value = t.attr( 'x-data-value' ) !== undefined ? t.attr( 'x-data-value' ) : null ,
                     foreign = t.attr( 'x-foreign' ) ,
@@ -693,7 +693,7 @@
                     list = t.attr( 'x-list-form' ) ,
                     modal = t.attr( 'x-modal' ) !== undefined ? t.attr( 'x-modal' ) : 'tr';
 
-                formData.append( '_token' , csrf );
+                formData.append( '<?php echo $this->security->get_csrf_token_name();?>' , csrf );
 
                 $.ajax( {
                     type : 'POST' ,
@@ -821,7 +821,7 @@
 
                 $.post( url , {
                     'id' : id ,
-                    '_token' : csrf
+                    '<?php echo $this->security->get_csrf_token_name();?>' : csrf
                 } ).done( function( res )
                 {
                     if( res[ 'status' ] === 'success' )
@@ -994,7 +994,7 @@
 
                 t.find( '[x-validations]' ).html( '' );
 
-                formData.append( '_token' , csrf );
+                formData.append( '<?php echo $this->security->get_csrf_token_name();?>' , csrf );
 
                 $.ajax( {
                     type : 'POST' ,
@@ -1131,7 +1131,7 @@
                         t.find( '[for]' ).css( 'color' , '#575962' );
                         t.find( '[x-tab-title]' ).css( 'color' , '#575962' );
 
-                        formData.append( '_token' , csrf );
+                        formData.append( '<?php echo $this->security->get_csrf_token_name();?>' , csrf );
 
                         $.ajax( {
                             type : 'POST' ,
@@ -1225,7 +1225,7 @@
 
                 $.post( url , {
                     [ column ] : id ,
-                    '_token' : csrf
+                    '<?php echo $this->security->get_csrf_token_name();?>' : csrf
                 } ).done( function( res )
                 {
                     if( res[ 'status' ] === 'success' )
@@ -1265,7 +1265,7 @@
                 $.post( url , {
                     [ column ] : id ,
                     [ dataColumn ] : dataValue ,
-                    '_token' : csrf
+                    '<?php echo $this->security->get_csrf_token_name();?>' : csrf
                 } ).done( function( res )
                 {
                     if( res[ 'status' ] === 'success' )
@@ -1305,7 +1305,7 @@
 
                 $.post( url , {
                     'id' : id ,
-                    '_token' : csrf ,
+                    '<?php echo $this->security->get_csrf_token_name();?>' : csrf ,
                     [ column ] : active
                 } ).done( function( res )
                 {
@@ -1357,7 +1357,7 @@
 
                         $.post( url , {
                             'id' : id ,
-                            '_token' : csrf ,
+                            '<?php echo $this->security->get_csrf_token_name();?>' : csrf ,
                             [ column ] : value
                         } ).done( function( res )
                         {
@@ -1485,7 +1485,7 @@
                         $.post( url , {
                             'id' : id ,
                             [ _with ] : _with_id ,
-                            '_token' : csrf
+                            '<?php echo $this->security->get_csrf_token_name();?>' : csrf
                         } ).done( function( res )
                         {
                             if( res[ 'status' ] === 'success' )
@@ -1695,27 +1695,27 @@
         ;
     </script>
 <script> let HIDE_MAP = 'Xəritəni gizlət'; </script>
-<script src="https://evelani.az/site/js/popper.js?v=2022-04-26 00:15:21"></script>
-<script src="https://evelani.az/site/js/jquery-ui.js?v=2022-04-26 00:15:21"></script>
-<script src="https://evelani.az/site/js/libs.min.js?v=2022-04-26 00:15:21"></script>
-<script src="https://evelani.az/site/js/bootstrap-swipe-carousel.min.js?v=2022-04-26 00:15:21"></script>
-<script src="https://evelani.az/site/js/lightslider.js?v=2022-04-26 00:15:21"></script>
-<script src="https://evelani.az/site/js/isotope-docs.min.js?6?v=2022-04-26 00:15:21"></script>
-<script src="https://evelani.az/site/js/semantic.min.js?v=2022-04-26 00:15:21"></script>
-<script src="https://evelani.az/site/js/common.js?v=2022-04-26 00:15:21"></script>
-<script src="https://evelani.az/site/js/js/select2.full.js?v=2022-04-26 00:15:21"></script>
+<script src="https://evelani.az/site/js/popper.js"></script>
+<script src="https://evelani.az/site/js/jquery-ui.js"></script>
+<script src="https://evelani.az/site/js/libs.min.js"></script>
+<script src="https://evelani.az/site/js/bootstrap-swipe-carousel.min.js"></script>
+<script src="https://evelani.az/site/js/lightslider.js"></script>
+<script src="https://evelani.az/site/js/isotope-docs.min.js"></script>
+<script src="https://evelani.az/site/js/semantic.min.js"></script>
+<script src="https://evelani.az/site/js/common.js"></script>
+<script src="https://evelani.az/site/js/js/select2.full.js"></script>
 <script>
-            function numberWithSpaces(x) {
-                return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-            }
-            eles = document.getElementsByClassName("pricemain");
-            for(var i in eles) {
-                var p = eles[i].innerText;
-                if(parseInt(p) > 999){
-                    eles[i].innerText=numberWithSpaces(p);
-                }
-            }
-        </script>
+    function numberWithSpaces(x) {
+        return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    }
+    eles = document.getElementsByClassName("pricemain");
+    for(var i in eles) {
+        var p = eles[i].innerText;
+        if(parseInt(p) > 999){
+            eles[i].innerText=numberWithSpaces(p);
+        }
+    }
+</script>
 <script>
             function afterRegister( data )
             {
@@ -1776,10 +1776,10 @@
                 }
 
                 $( '[x-favorites]' ).html( `
-                                                <svg class="icon ` + ( favorites ? 'favorite-icon' : 'icon-heart-outline' ) + `">
-                                                    <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-26 00:15:21#icon-heart` + ( favorites ? '' : '-outline' ) + `"></use>
-                                                </svg>
-                                                Seçilmişlər
+                    <svg class="icon ` + ( favorites ? 'favorite-icon' : 'icon-heart-outline' ) + `">
+                        <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-26 00:15:21#icon-heart` + ( favorites ? '' : '-outline' ) + `"></use>
+                    </svg>
+                    Seçilmişlər
                 `);
             }
 
@@ -1787,16 +1787,9 @@
         
 
             $( document ).ready( function()
-            {
-                
-                
-                
-                
-                
-                
-            loading();
-            } )
-            ;
+            {  
+                loading();
+            });
         </script>
 <script>
 
@@ -1904,14 +1897,13 @@
 
             div2.find( 'select' ).removeAttr( 'disabled' );
             div2.find( 'select' ).closest( 'div' ).removeClass( 'disabled' );
-
-                    }
+        }
 
         function loaded(e) {
             e.preventDefault();
             e.returnValue = '';
         }
-        window.addEventListener('beforeunload', loaded);
+        // window.addEventListener('beforeunload', loaded);
 
         function afterAnnouncementSuccess( data )
         {
@@ -1967,7 +1959,7 @@
                 {
                     let formData = new FormData();
 
-                    formData.append( '_token' , csrf );
+                    formData.append( '<?php echo $this->security->get_csrf_token_name();?>' , csrf );
 
                     formData.append( 'path' , file );
 
@@ -1998,14 +1990,14 @@
                             return xhr;
                         },
                         type : 'POST' ,
-                        url : 'https://evelani.az/upload' ,
+                        url : '<?= base_url() ?>add_listing/upload' ,
                         data : formData ,
                         cache : false ,
                         contentType : false ,
                         processData : false ,
                         success : function( res )
                         {
-
+                            res = JSON.parse(res);
                             if( res[ 'status' ] === 'success' )
                             {
                                 if( res.validations !== undefined && Object.keys( res.validations ).length )
@@ -2138,9 +2130,9 @@
             } );
 
             
-            cityChange(  );
+            cityChange();
 
-            regionChange(  );
+            regionChange();
 
             inputs();
         } );
@@ -2420,7 +2412,7 @@
                         <% } %>
                         <div class="modal-close" data-dismiss="modal">
                             <svg class="icon icon-close">
-                                <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-26 00:15:21#icon-close"></use>
+                                <use xlink:href="<?= base_url() ?>assets/site/img/icons/icons.svg#icon-close"></use>
                             </svg>
                         </div>
                     </div>
@@ -2433,13 +2425,13 @@
                     <div class="modal-header">
                         <div class="modal-close" data-dismiss="modal">
                             <svg class="icon icon-close">
-                                <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-26 00:15:21#icon-close"></use>
+                                <use xlink:href="<?= base_url() ?>assets/site/img/icons/icons.svg#icon-close"></use>
                             </svg>
                         </div>
                     </div>
                     <div class="modal-body">
                         <svg class="icon icon-message-sent">
-                            <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-26 00:15:21#icon-message-sent"></use>
+                            <use xlink:href="<?= base_url() ?>assets/site/img/icons/icons.svg#icon-message-sent"></use>
                         </svg>
                         <h6><%- rc.title %></h6>
                         <p><%= rc.text %></p>
@@ -2451,20 +2443,21 @@
 <script type="text/template" x-image>
         <div class="form-gallery__item" x-image-id="<%- rc.id %>"  >
             <a class="form-gallery__item--delete" x-image-delete>
-                <svg class="icon icon-close"><use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-26 00:15:21#icon-close"></use></svg>
+                <svg class="icon icon-close">
+                    <use xlink:href="<?= base_url() ?>assets/site/img/icons/icons.svg#icon-close"></use>
+                </svg>
             </a>
             <input name="images[]" value="<%- rc.id %>" type="hidden">
             <input name="rotation[]" value='0' type="hidden">
-            
-            
             <img src="<%- media(rc.avatar) %>" class="form-item__file">
         </div>
     </script>
 <script type="text/template" x-photo>
         <div class="form-gallery__item" x-image id="<%- rc.uniqeId %>" <%- rc.uniqeId %>  >
-
             <a class="form-gallery__item--delete" data-id="<%- rc.imageName %>">
-                <svg class="icon icon-close"><use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-26 00:15:21#icon-close"></use></svg>
+                <svg class="icon icon-close">
+                    <use xlink:href="<?= base_url() ?>assets/site/img/icons/icons.svg#icon-close"></use>
+                </svg>
             </a>
 
 

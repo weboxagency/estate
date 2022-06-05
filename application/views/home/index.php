@@ -469,7 +469,7 @@
                    <li data-target="#announcement-premium_3" data-slide-to="1"></li>
                    <li data-target="#announcement-premium_3" data-slide-to="2"></li>
                </ol>
-               <div class="kiraye">Əmlak sahibi</div>
+               <div class="emlak_sahibi">Əmlak sahibi</div>
                <!-- <div class="satish">Satış</div> -->
                <div class="faiz" data-toggle="tooltip" title="<?= translate('mortgage') ?>">&nbsp;</div>
                <div class="kupcha" data-toggle="tooltip" title="Kupçalı">&nbsp;</div>
@@ -527,52 +527,130 @@
       <a class="link-button link-button--tertiary" href="<?= base_url() ?>elanlar/new"><?= translate('see_them_all') ?></a>
    </div>
    <div class="announcement-group__body">
+      <?php foreach ($new_ads_list as $value) { ?>
       <div class="announcement announcement--short announcement-template" x-announcement-owner="438">
          <div class="announcement-image">
-            <div id="announcement-32974" class="announcement-slider carousel slide" data-interval="false" data-pause="true">
+            <div id="announcement-<?= $value['id'] ?>" class="announcement-slider carousel slide" data-interval="false" data-pause="true">
                <ol class="carousel-indicators">
-                  <li data-target="#announcement-32974" data-slide-to="0" class="active"></li>
-                  <li data-target="#announcement-32974" data-slide-to="1"></li>
-                  <li data-target="#announcement-32974" data-slide-to="2"></li>
+                  <?php foreach (ads_photos($value['photos']) as $key => $pht) { ?>
+                  <li data-target="#announcement-<?= $value['id'] ?>" data-slide-to="<?= $key ?>" <?= ($key==0) ? 'class="active"' : '' ?> ></li>
+                  <?php } ?>
                </ol>
+               <?php if ($value['user_type']==1) { ?>
+               <div class="emlak_sahibi">Əmlak sahibi</div>
+               <?php }else{ ?>
+               <div class="vasiteci">Vasitəçi</div>
+               <?php } ?>
+
+               <?php if ($value['deed']==1) { ?>
+               <div class="kupcha" data-toggle="tooltip" title="Kupçalı">&nbsp;</div>
+               <?php } ?>
+                <?php if ($value['mortgage']==1) { ?>
+               <div class="faiz" data-toggle="tooltip" title="<?= translate('mortgage') ?>">&nbsp;</div>
+               <?php } ?>
                <div class="carousel-inner">
-                  <a class="carousel-item  active " target=_blank href=az/elan/satis-heyet-evi-bag-5-otaqli-baki-xezer-r-merdekan-q-9621752.html>
-                  <img src="uploads/announcement/32974/a14fea5c798bb49d148ba0f14cdb3d81_avatar568e.jpg?v=1641284164" alt="Satılır, həyət evi / bağ, 5 otaqlı, 250 m², Mərdəkan q.">
+                  <?php foreach (ads_photos($value['photos']) as $key => $shekil) { ?>
+                  <a class="carousel-item <?= ($key==0) ? 'active' : '' ?> " target=_blank href=az/elan/satis-heyet-evi-bag-5-otaqli-baki-xezer-r-merdekan-q-9621752.html>
+                  <img src="<?= $shekil['avatar'] ?>" alt="Satılır, həyət evi / bağ, 5 otaqlı, 250 m², Mərdəkan q.">
                   </a>
-                  <a class="carousel-item " target=_blank href=az/elan/satis-heyet-evi-bag-5-otaqli-baki-xezer-r-merdekan-q-9621752.html>
-                  <img src="uploads/announcement/32974/0ce423b15e55a0bb9430c87c93c7274b_avatar568e.jpg?v=1641284164" alt="Satılır, həyət evi / bağ, 5 otaqlı, 250 m², Mərdəkan q.">
-                  </a>
-                  <a class="carousel-item " target=_blank href=az/elan/satis-heyet-evi-bag-5-otaqli-baki-xezer-r-merdekan-q-9621752.html>
-                  <img src="uploads/announcement/32974/772973809b8628c51abc7db9fe12803f_avatar568e.jpg?v=1641284164" alt="Satılır, həyət evi / bağ, 5 otaqlı, 250 m², Mərdəkan q.">
-                  </a>
+                  <?php } ?>
                </div>
             </div>
             <div class="announcement-icons">
                <div class="shape">
-                  <form action="<?= base_url() ?>home/wishlist" method="post" x-edit-form="32974" x-target-with-data="afterWishlist">
+                  <form action="<?= base_url() ?>home/wishlist" method="post" x-edit-form="<?= $value['id'] ?>" x-target-with-data="afterWishlist">
                      <input type="hidden" name="<?php echo $this->security->get_csrf_token_name();?>" value="<?php echo $this->security->get_csrf_hash();?>">
-                     <input type="hidden" name="id" value="32974">
+                     <input type="hidden" name="id" value="<?= $value['id'] ?>">
                      <button type="submit">
-                        <svg class="icon icon-heart-outline">
-                           <use xlink:href="<?= base_url() ?>assets/site/img/icons/icons.svg#icon-heart-outline"></use>
+                        <?php if (!isset($_SESSION['wish_sess'])) { ?>
+
+                           <svg class="icon icon-heart-outline">
+                              <use xlink:href="<?= base_url() ?>assets/site/img/icons/icons.svg#icon-heart-outline"></use>
+                           </svg>
+
+                        <?php } else{ ?>
+                           <?php 
+                           $heart = (!empty(session_wishlist($_SESSION['wish_sess'],$value['id'])) AND session_wishlist($_SESSION['wish_sess'],$value['id'])['data_id']===$value['id']) ? '' : '-outline';
+                            ?>
+                           <svg class="icon icon-heart<?=$heart; ?>">
+                           <use xlink:href="<?= base_url() ?>assets/site/img/icons/icons.svg#icon-heart<?=$heart; ?>"></use>
                         </svg>
+                        <?php } ?>
+                        
                      </button>
                   </form>
                </div>
             </div>
          </div>
          <a class="announcement-description template-announcement" target=_blank href=az/elan/satis-heyet-evi-bag-5-otaqli-baki-xezer-r-merdekan-q-9621752.html>
-            <p class="announcement-price py-0"><span class="pricemain">180000</span>AZN</p>
-            <p class="announcement-location">Mərdəkan q.</p>
-            <p class="announcement-size announcement-headline">5 otaqlı - 250 m²</p>
-            <p class="announcement-deadline"><span>4 Yanvar 2022</span></p>
+            <p class="announcement-price py-0"><span class="pricemain">
+               <?php 
+               if ($value['announcement_type']==1) 
+               {
+                  $price = $value['price'].'</span>AZN';
+               }
+               elseif($value['announcement_type']==2)
+               {
+                  $price = $value['price'].'</span>AZN/ay';
+               }
+               else
+               {
+                  $price = $value['price'].'</span>AZN/gün';
+               } 
+               ?>
+               <?= $price; ?>
+            </p>
+            <p class="announcement-location">
+               <?php if ($value['metro_id']!=0) 
+               {
+                  $loca = $metros[$value['metro_id']]['metro_name'].' m.';
+               } 
+               elseif ($value['district_id']!=0) 
+               {
+                  $loca = $district[$value['district_id']]['district_name'].' q.';
+               }
+               elseif ($value['region_id']!=0)
+               {
+                  $loca = $regions[$value['region_id']]['region_name'].' r.';
+               }
+               else
+               {
+                  $loca = $cities[$value['city_id']]['city_name'];
+               }
+
+               ?>
+               <?= $loca; ?>   
+            </p>
+            <?php 
+            if ($value['property_type']==6) 
+            {
+               $an_headline = $value['land_area'];
+            } 
+            elseif ($value['property_type']==10) 
+            {
+               $an_headline = $value['area'].' m²';
+            }
+            else 
+            {
+               $an_headline = $value['room'].' otaqlı - '. $value['area'].' m²';
+            }
+            ?>
+            <p class="announcement-size announcement-headline"><?= $an_headline ?></p>
+            <p class="announcement-deadline">
+               <span>
+               <?php 
+                echo date("n F Y",strtotime($value['created_at']));
+               ?></span></p>
          </a>
       </div>
+      <?php } ?>
    </div>
 </div>
 
+
+
 <!-- Yeni Elanlarin sonu -->
-<div class="banner-center "><img src="https://tapsat.az/oc-content/plugins/slider/images/617460dccb2a0.jpg" width="100%"></div>
+<div class="banner-center "><img src="<?= base_url() ?>uploads/banner.jpg" width="100%"></div>
 <br>
 
 <!-- AGENTLİKLƏR -->

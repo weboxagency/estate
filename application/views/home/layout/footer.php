@@ -1775,9 +1775,9 @@
            form = $( '[x-target-with-data="afterWishlist"][x-edit-form="' + id + '"]' ) ,
            svg_area = form.find( 'button' ) ,
            svg = `
-                       <svg class="icon icon-heart` + ( result ? '' : '-outline' ) + `">
-                           <use xlink:href="assets/site/img/icons/icons.svg#icon-heart` + ( result ? '' : '-outline' ) + `"></use>
-                       </svg>
+               <svg class="icon icon-heart` + ( result ? '' : '-outline' ) + `">
+                   <use xlink:href="assets/site/img/icons/icons.svg#icon-heart` + ( result ? '' : '-outline' ) + `"></use>
+               </svg>
                `
            , text_area = form.find( '[x-wishlist-text]' )
            , text_area_m = form.find( '[x-wishlist-text-m]' )

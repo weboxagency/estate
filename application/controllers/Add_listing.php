@@ -21,7 +21,9 @@ class Add_listing extends Frontend_Controller
         $this->load->model('email_model');
         $this->load->model('testimonial_model');
         $this->load->model('gallery_model');
+        $this->load->model('ads_model');
         $this->load->library('mailer');
+        $this->uploadPath = 'uploads/photos/'; 
     }
 
     public function index()
@@ -41,7 +43,54 @@ class Add_listing extends Frontend_Controller
 
     public function check_info()
     {
+        $last_ads_id                = $this->ads_model->lastAdsId();
+        $owner                      = $this->input->post('announcement_owner',TRUE);
+        $user_type                  = $this->input->post('user_type',TRUE);
+        $mobile                     = $this->input->post('mobile',TRUE);
+        $whatsapp                   = $this->input->post('whatsapp',TRUE);
+        $email                      = $this->input->post('email',TRUE);
+        $check                      = $this->input->post('check',TRUE);
+        $announcement_type          = $this->input->post('announcement_type',TRUE);
+        $land_area                  = $this->input->post('land_area',TRUE);
+        $metro                      = $this->input->post('metro',TRUE);
+        $city                       = $this->input->post('city',TRUE);
+        $property_type              = $this->input->post('property_type',TRUE);
+        $deed                       = $this->input->post('deed',TRUE);
+        $room                       = $this->input->post('room',TRUE);
+        $floor                      = $this->input->post('floor',TRUE);
+        $max_floor                  = $this->input->post('max_floor',TRUE);
+        $price                      = $this->input->post('price',TRUE);
+        $area                       = $this->input->post('area',TRUE);
+        $repair                     = $this->input->post('repair',TRUE);
+        $city                       = $this->input->post('city',TRUE);
+        $region                     = $this->input->post('region',TRUE);
+        $district                   = $this->input->post('district',TRUE);
+        $repair                     = $this->input->post('repair',TRUE);
+        $address                    = $this->input->post('address',TRUE);
+        $latitude                   = $this->input->post('latitude',TRUE);
+        $longitude                  = $this->input->post('longitude',TRUE);
+        $property_description       = $this->input->post('property_description',TRUE);
 
+        $all_cities           = $this->home_model->allCities();
+        $all_regions          = $this->home_model->allRegions();
+        $all_metros           = $this->home_model->allMetros();
+        $all_estate_types     = $this->home_model->estateTypes();
+        $all_ads_type         = $this->home_model->adsType();
+        $all_district         = $this->home_model->allDistricts();
+        array_unshift($all_metros,"");
+        unset($all_metros[0]);
+        array_unshift($all_district,"");
+        unset($all_district[0]);
+        array_unshift($all_regions,"");
+        unset($all_regions[0]);
+        array_unshift($all_cities,"");
+        unset($all_cities[0]);
+        array_unshift($all_estate_types,"");
+        unset($all_estate_types[0]);
+        // dd($all_estate_types);
+
+        if ($check == 1) 
+        {        
         $this->form_validation->set_rules('announcement_owner', translate('announcement_owner'), 'trim|required|min_length[3]|xss_clean', 
                     [
                         "required"      => ucfirst(translate("the_announcement_owner_field_is_required")),
@@ -52,8 +101,8 @@ class Add_listing extends Frontend_Controller
         $this->form_validation->set_rules('mobile', translate('mobile'), 'trim|required|min_length[9]|max_length[9]|xss_clean', 
                     [
                         "required"      => ucfirst(translate("the_mobile_number_field_is_required")),
-                        "max_length"    => ucfirst(translate("the_phone_number_is_not_valid")),
-                        "min_length"    => ucfirst(translate("the_phone_number_is_not_valid"))
+                        "max_length"    => ucfirst(translate("the_mobile_number_is_not_valid")),
+                        "min_length"    => ucfirst(translate("the_mobile_number_is_not_valid"))
                     ]
                 );
         // $this->form_validation->set_rules('whatsapp', translate('whatsapp'), 'trim');
@@ -64,13 +113,10 @@ class Add_listing extends Frontend_Controller
                     ]
                 );
 
-        $owner      = $this->input->post('announcement_owner',TRUE);
-        $user_type  = $this->input->post('user_type',TRUE);
-        $mobile     = $this->input->post('mobile',TRUE);
-        $whatsapp   = $this->input->post('whatsapp',TRUE);
-        $email      = $this->input->post('email',TRUE);
+        
         $adsCount   = $this->home_model->getAdsCountForPhoneNumber($mobile);
         $provider   = ["99","55","70","77","50","51","10"];
+
         if ($this->form_validation->run() === TRUE) 
         {
             if ($adsCount>=2) 
@@ -93,7 +139,7 @@ class Add_listing extends Frontend_Controller
                 echo json_encode($response);
                 die();
             }
-            elseif ($mobile[2]<2) 
+            elseif ($mobile[2] < 2) 
             {
                 $response = [
                         "status"        => "success",
@@ -116,7 +162,6 @@ class Add_listing extends Frontend_Controller
         }
         else
         {
-            
             $output = array();
                 foreach ($_POST as $key => $value)
                 {
@@ -137,7 +182,361 @@ class Add_listing extends Frontend_Controller
                 echo json_encode($response);
                 die();
         }
-       
+
+        }
+        else
+        {
+
+            $this->form_validation->set_rules('announcement_type', translate('announcement_type'), 'trim|required|xss_clean', 
+                    [
+                        "required"      => ucfirst(translate("the_announcement_type_field_is_required"))                        
+                    ]
+                );
+            $this->form_validation->set_rules('property_type', translate('property_type'), 'trim|required|xss_clean', 
+                    [
+                        "required"      => ucfirst(translate("the_property_type_field_is_required"))                        
+                    ]
+                );
+            $this->form_validation->set_rules('deed', translate('deed'), 'trim|required|xss_clean', 
+                    [
+                        "required"      => ucfirst(translate("the_deed_field_is_required"))                        
+                    ]
+                );
+            $this->form_validation->set_rules('room', translate('room'), 'trim|required|xss_clean', 
+                    [
+                        "required"      => ucfirst(translate("the_room_field_is_required"))                        
+                    ]
+                );
+            $this->form_validation->set_rules('floor', translate('floor'), 'trim|required|xss_clean', 
+                    [
+                        "required"      => ucfirst(translate("the_floor_field_is_required"))                        
+                    ]
+                );
+            $this->form_validation->set_rules('max_floor', translate('max_floor'), 'trim|required|xss_clean', 
+                    [
+                        "required"      => ucfirst(translate("the_max_floor_field_is_required"))                        
+                    ]
+                );
+            $this->form_validation->set_rules('price', translate('price'), 'trim|required|xss_clean', 
+                    [
+                        "required"      => ucfirst(translate("the_price_field_is_required"))                        
+                    ]
+                );
+            $this->form_validation->set_rules('area', translate('area'), 'trim|required|xss_clean', 
+                    [
+                        "required"      => ucfirst(translate("the_area_field_is_required"))                        
+                    ]
+                );
+            if (((int)$_POST["property_type"] === 3) OR ((int)$_POST["property_type"] === 5)) 
+            {
+            $this->form_validation->set_rules('land_area', translate('land_area'), 'trim|required|xss_clean', 
+                    [
+                        "required"      => ucfirst(translate("the_land_area_field_is_required"))                        
+                    ]
+                );
+            }
+            $this->form_validation->set_rules('repair', translate('repair'), 'trim|required|xss_clean', 
+                    [
+                        "required"      => ucfirst(translate("the_repair_field_is_required"))                        
+                    ]
+                );
+           
+            $this->form_validation->set_rules('city', translate('city'), 'trim|required|xss_clean', 
+                    [
+                        "required"      => ucfirst(translate("the_city_field_is_required"))                        
+                    ]
+                );
+            if ((int)$city === 1) 
+            {
+            $this->form_validation->set_rules('region', translate('region'), 'trim|required|xss_clean', 
+                    [
+                        "required"      => ucfirst(translate("the_region_field_is_required"))                        
+                    ]
+                );
+             $this->form_validation->set_rules('district', translate('district'), 'trim|required|xss_clean', 
+                    [
+                        "required"      => ucfirst(translate("the_district_field_is_required"))                        
+                    ]
+                );
+            }
+            $this->form_validation->set_rules('repair', translate('repair'), 'trim|required|xss_clean', 
+                    [
+                        "required"      => ucfirst(translate("the_repair_field_is_required"))                        
+                    ]
+                );
+            
+            
+            $this->form_validation->set_rules('address', translate('address'), 'trim|required|xss_clean', 
+                    [
+                        "required"      => ucfirst(translate("the_address_field_is_required"))                        
+                    ]
+                );
+            $this->form_validation->set_rules('latitude', translate('latitude'), 'trim|required|xss_clean', 
+                    [
+                        "required"      => ucfirst(translate("the_latitude_field_is_required"))                        
+                    ]
+                );
+            $this->form_validation->set_rules('longitude', translate('longitude'), 'trim|required|xss_clean', 
+                    [
+                        "required"      => ucfirst(translate("the_longitude_field_is_required"))                        
+                    ]
+                );
+            $this->form_validation->set_rules('property_description', translate('property_description'), 'trim|required|xss_clean', 
+                    [
+                        "required"      => ucfirst(translate("the_property_description_field_is_required"))                        
+                    ]
+                );
+            
+           
+            if ($this->form_validation->run() === TRUE) 
+            {
+                // ALL IS OK AND SAVE ADS
+                $photo = array(); 
+                foreach ($_POST['images'] as  $value) 
+                {
+                    $photo[] = $value; 
+                } 
+                $image_array = implode(", ", $photo);
+                if ($announcement_type==1) 
+                {
+                    $pr = "Satılır";
+                }
+                elseif($announcement_type==2)
+                {
+                    $pr = "Kiraye aylıq";
+                }
+                else
+                {
+                    $pr = "Kiraye günlük";
+                }
+                if ($property_type==6) 
+                {
+                   $an_headline = $land_area;
+                } 
+                elseif ($property_type==10) 
+                {
+                   $an_headline = $area.' m²';
+                }
+                else 
+                {
+                   $an_headline = $room.' otaqlı - '. $area.' m²';
+                }
+
+                if ($metro!=0) 
+                {
+                  $loca = $all_metros[$metro]['metro_name'].' m.';
+                } 
+                elseif ($district!=0) 
+                {
+                  $loca = $all_district[$district]['district_name'].' q.';
+                }
+                elseif ($region!=0)
+                {
+                  $loca = $all_regions[$region]['region_name'].' r.';
+                }
+                else
+                {
+                  $loca = $all_cities[$city]['city_name'];
+                }
+
+                $emlak_novu = $all_estate_types[$property_type]['estate_type_name'];
+               
+                $title      = strip_tags($pr.','.$emlak_novu.','.$an_headline.','.$loca.'-'.time());
+                $titleURL   = strtolower(url_title($title));
+              
+                
+                $requesData = [
+                    "ads_pin_kod"               => rand(10000,99999),
+                    "ads_title"                 => $title,
+                    "url_slug"                  => seo_link($titleURL),
+                    "ads_number"                => $last_ads_id+10,
+                    "announcement_type"         => (isset($announcement_type)) ? $announcement_type : '',   
+                    "connection_type"           => (isset($connection_type)) ? $connection_type : '',
+                    "property_type"             => (isset($property_type)) ? $property_type : '',  
+                    "price"                     => (isset($price)) ? $price : '',  
+                    "average_price"             => (isset($average_price)) ? $average_price : '',  
+                    "room"                      => (isset($room)) ? $room : '',   
+                    "area"                      => (isset($area)) ? $area : '',   
+                    "land_area"                 => (isset($land_area)) ? $land_area : '',  
+                    "floor"                     => (isset($floor)) ? $floor : '',  
+                    "max_floor"                 => (isset($max_floor)) ? $max_floor : '',  
+                    "repair"                    => (isset($repair)) ? $repair : '', 
+                    "deed"                      => (isset($deed)) ? $deed : '',   
+                    "mortgage"                  => (isset($mortgage)) ? $mortgage : '',   
+                    "user_type"                 => (isset($user_type)) ? $user_type : '',  
+                    "name"                      => (isset($owner)) ? $owner : '',   
+                    "email"                     => (isset($email)) ? $email : '',  
+                    "mobile"                    => (isset($mobile)) ? $mobile : '', 
+                    "has_whatsapp"              => (isset($whatsapp)) ? $whatsapp : '',   
+                    "city_id"                   => (isset($city)) ? $city : '',
+                    "region_id"                 => (isset($region)) ? $region : '',  
+                    "district_id"               => (isset($district)) ? $district : '',
+                    "metro_id"                  => (isset($metro)) ? $metro : '',  
+                    "business_center"           => '',
+                    "complex"                   => '',
+                    "is_active"                 => 0,  
+                    "status"                    => 2, 
+                    "pull_ads_forward_begin"    => '', 
+                    "pull_ads_forward_end"      => '',   
+                    "vip_begin"                 => '',  
+                    "vip_end"                   => '',
+                    "premium_begin"             => '',  
+                    "premium_end"               => '',
+                    "photos"                    => $image_array, 
+                    "created_at"                => date("Y-m-d H:i:s"), 
+                    "updated_at"                => '', 
+                    "deleted_at"                => '', 
+                    "approved_at"               => '',
+                    "simple_ads_end_date"       => ''
+                ];
+
+                $this->db->insert('ads_all', $requesData);
+                $ads_last_id = $this->db->insert_id();
+                $response = [
+                            "status"        => "success",
+                            "message"       => "Elan nömrəniz: ".$requesData['ads_number']."",
+                            "validations"   => []   
+                        ];
+                    echo json_encode($response);
+                    die();
+            }
+            else
+            {
+                $output = array();
+                
+                foreach ($_POST as $key => $value)
+                {
+                    $text   =   str_ireplace('<p>','',form_error($key));
+                    $text   =   str_ireplace('</p>','',$text); 
+                    if ($key!='_token' AND !empty($text)) 
+                    {
+                         $output[$key] = [$text];
+                    }
+                }
+                if (!isset($_POST['images']) OR (count($_POST['images']) < 4)) 
+                {
+                    $output["images"] = ["Şəkillər üçün minimal say 4 olmalıdır"];
+                }
+                if ((int)$_POST["announcement_type"] === 0) 
+                {
+                    $output["announcement_type"] = ["the_announcement_type_field_is_required"];
+                }
+                if ((int)$_POST["property_type"] === 0) 
+                {
+                    $output["property_type"] = ["the_property_type_field_is_required"];
+                }
+                if ((int)$_POST["city"] === 0) 
+                {
+                    $output["city"] = ["the_city_field_is_required"];
+                }
+                if ((int)$_POST["city"] === 1) 
+                {
+                    $output["metro"] = ["the_metro_field_is_required"];
+                }
+                if (((int)$_POST["property_type"] === 3) OR ((int)$_POST["property_type"] === 5)) 
+                {
+                    $output["land_area"] = ["the_land_area_field_is_required"];
+                }
+                $response = [
+                            "status"        => "success",
+                            "message"       => "",
+                            "validations"   => $output   
+                        ];
+                    echo json_encode($response);
+                    die();
+            }
+        }       
+    }
+
+
+    public function upload()
+    {
+        $thumb_msg = $status = $status_msg = $thumbnail = $org_image_size = $thumb_image_size = ''; 
+        $data = array(); 
+ 
+        // If the file upload form submitted 
+      
+        if(!empty($_FILES['path']['name'])){ 
+                // File upload config 
+                $config['upload_path']   = $this->uploadPath; 
+                $config['allowed_types'] = 'jpg|jpeg|png'; 
+                $config['max_size']      = '6144';
+                $config['remove_spaces'] = TRUE;        
+                $config['encrypt_name']  = TRUE;
+                // Load and initialize upload library 
+                $this->load->library('upload', $config); 
+                $this->upload->initialize($config);
+                // Upload file to server 
+
+                if($this->upload->do_upload('path')){ 
+                    $uploadData     = $this->upload->data(); 
+                    $uploadedImage  = $uploadData['file_name']; 
+                    $org_image_size = $uploadData['image_width'].'x'.$uploadData['image_height']; 
+                     
+                    $source_path  = $this->uploadPath.$uploadedImage; 
+                    $thumb_path   = $this->uploadPath.'thumb/'; 
+                    $thumb_width  = 280; 
+                    $thumb_height = 175; 
+                     
+                    // Image resize config 
+                    $config['image_library']    = 'gd2'; 
+                    $config['source_image']     = $source_path; 
+                    $config['new_image']        = $thumb_path; 
+                    $config['maintain_ratio']   = FALSE; 
+                    $config['width']            = $thumb_width; 
+                    $config['height']           = $thumb_height; 
+                     
+                    // Load and initialize image_lib library 
+                    $this->load->library('image_lib', $config); 
+                     
+                    // Resize image and create thumbnail 
+                    if($this->image_lib->resize())
+                    { 
+                        $thumbnail = $thumb_path.$uploadedImage; 
+                        $thumb_image_size = $thumb_width.'x'.$thumb_height; 
+                        $thumb_msg = '<br/>Thumbnail created!'; 
+                    }
+                    else
+                    { 
+                        $thumb_msg = '<br/>'.$this->image_lib->display_errors(); 
+                    } 
+                     
+                    $status = 'success'; 
+                    $status_msg = 'Image has been uploaded successfully.'.$thumb_msg; 
+                }else{ 
+                    $status = 'error'; 
+                    $status_msg = 'The image upload has failed!<br/>'.$this->upload->display_errors('',''); 
+                } 
+            }else{ 
+                $status = 'error'; 
+                $status_msg = 'Please select a image file to upload.';  
+            } 
+
+            $data['status']             = $status; 
+            $data['status_msg']         = $status_msg; 
+            $data['thumbnail']          = base_url().$thumbnail; 
+            $data['source_path']        = base_url().$source_path; 
+            $data['org_image_size']     = $org_image_size; 
+            $data['thumb_image_size']   = $thumb_image_size;
+
+            $insertData = [
+                "avatar"    => $data['thumbnail'],
+                "path"      => $data['source_path']                
+            ];
+            $this->db->insert('thumb_image', $insertData);
+            $insert_id = $this->db->insert_id();
+            $output = [];
+            $response = [
+                "status"        => "success",
+                "photo"         => [
+                    "avatar" => $data['thumbnail'],
+                    "id"     => $insert_id, 
+                    "path"   => $data['source_path']
+                ],
+                "validations"   => $output
+            ];
+            echo json_encode($response);
+            die();   
     }
 
     public function home()
