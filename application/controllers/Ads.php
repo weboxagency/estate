@@ -26,7 +26,7 @@ class Ads extends Admin_Controller
 
 
         $this->data['ads']        =  $this->ads->allAds();
-        $this->data['title']        =  translate('users');
+        $this->data['title']        =  translate('ads');
         $this->data['sub_page']     =  'ads/index';
         $this->data['main_menu']    =  'ads';
         $this->load->view('layout/index', $this->data);
@@ -43,7 +43,7 @@ class Ads extends Admin_Controller
         }
        
         $this->db->where('id', $id);
-        $this->db->update('ads', $arrayData);
+        $this->db->update('ads_all', $arrayData);
         $return = array('msg' => translate('information_has_been_updated_successfully'), 'status' => true);
         echo json_encode($return);
     }
@@ -51,7 +51,7 @@ class Ads extends Admin_Controller
     public function ads_delete($id = '')
     {
         $this->db->where('id', $id);
-        $this->db->delete('ads');
+        $this->db->delete('ads_all');
        
         redirect(base_url(), 'refresh');   
     }

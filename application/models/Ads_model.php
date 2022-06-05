@@ -13,7 +13,7 @@ class Ads_model extends MY_Model
     public function allAds()
     {
         $this->db->select('*');
-        $this->db->from('ads');
+        $this->db->from('ads_all');
         $query = $this->db->get();
         $this->db->order_by("id", "asc");
         return $query->result_array();
