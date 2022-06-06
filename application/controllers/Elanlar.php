@@ -65,14 +65,17 @@ class Elanlar extends Frontend_Controller
        
         if (isset($_GET['type']) AND $_GET['type']=== "sale") 
         {
+            $this->data['title']            = '- '.translate("sale");
             $this->data['new_ads_list']     = $this->home_model->allNewAdsSaleList();
         }
         elseif (isset($_GET['type']) AND $_GET['type']=== "monthly_rent") 
         {
+            $this->data['title']            = '- '.translate("monthly_rent");
             $this->data['new_ads_list']     = $this->home_model->allNewAdsRentMonthlyList();
         }
         elseif (isset($_GET['type']) AND $_GET['type']=== "daily_rent") 
         {
+            $this->data['title']            = '- '.translate("daily_rent");
             $this->data['new_ads_list']     = $this->home_model->allNewAdsRentDailyList();
         }
         else

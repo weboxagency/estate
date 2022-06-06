@@ -45,16 +45,10 @@ class Application_model extends CI_Model
 
     public function getUserNameByRoleID($roleID, $userID = '')
     {
-        if ($roleID == 6) {
-            $sql = "SELECT name,email,photo,branch_id FROM parent WHERE id = " . $this->db->escape($userID);
-            return $this->db->query($sql)->row_array();
-        } elseif ($roleID == 7) {
-            $sql = "SELECT student.id, CONCAT(student.first_name,' ',student.last_name) as name, student.email, student.photo, enroll.branch_id FROM student INNER JOIN enroll ON enroll.student_id = student.id WHERE student.id = " . $this->db->escape($userID);
-            return $this->db->query($sql)->row_array();
-        } else {
-            $sql = "SELECT name,email,photo,branch_id FROM staff WHERE id = " . $this->db->escape($userID);
-            return $this->db->query($sql)->row_array();
-        }
+        
+        $sql = "SELECT name,email,photo,branch_id FROM staff WHERE id = " . $this->db->escape($userID);
+        return $this->db->query($sql)->row_array();
+        
     }
 
     public function getStudentListByClassSection($classID = '', $sectionID = '', $branchID = '', $deactivate = false, $rollOrder = false)

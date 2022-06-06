@@ -1,5 +1,5 @@
 <main>
-   <section class="announcement-agency agency">
+<!--    <section class="announcement-agency agency">
 <div class="page-container container">
 <div class="agency-body">
 <div class="agency-body__content">
@@ -67,13 +67,13 @@
 </div>
 </div>
 </div>
-</section>
+</section> -->
    <div class="announcement-main announcement-section">
       <section class="page-container container pb-0">
          <div class="announcement-inner">
             <div class="announcement-inner__top">
                <div class="announcement-inner__left">
-                  <h1>Satılır, köhnə tikili, 3 otaqlı, 41 m², Neftçilər m.</h1>
+                  <h1><?= $ads_detail['ads_title'] ?></h1>
                   <div class="announcement-inner__filter announcement-filter filter-tertiary">
                      <div class="link-buttons">
                         <a class="link-button link-button--tertiary" id="announcement-gallery-normal">Şəkillər</a>
@@ -106,7 +106,7 @@
                   <div class="announcement-inner__right announcement-section-respons">
                      <div class="announcement-allprice">
                         <h2 class="announcement-price--main">
-                           <span id="pricemain">75000</span>
+                           <span id="pricemain"><?= $ads_detail['price'] ?></span>
                            <span class="color">AZN</span>
                         </h2>
                         <h2 class="announcement-price">
@@ -222,7 +222,7 @@
                      <p>Prospekt / Qara Qarayev</p>
                      <a>
                         <svg class="icon icon-pin">
-                           <use xlink:href="<?= base_url() ?>assets/site/img/icons/icons.svg?v=2022-04-22 05:08:38#icon-pin"></use>
+                           <use xlink:href="<?= base_url() ?>assets/site/img/icons/icons.svg#icon-pin"></use>
                         </svg>
                         <span class="show-map"> Xəritəni göstər</span>
                         <span class="notshow-map" style="display: none">Xəritəni gizlət</span>
@@ -314,17 +314,17 @@
                            <div class="links">
                               <a href="https://www.facebook.com/sharer.php?u=https://evelani.az/az/elan/satis-kohne-tikili-3-otaqli-baki-nizami-r-neftciler-m-1528812" target="_blank" class="links-social links-facebook">
                                  <svg class="icon icon-facebook">
-                                    <use xlink:href="<?= base_url() ?>assets/site/img/icons/icons.svg?v=2022-04-22 05:08:38#icon-facebook"></use>
+                                    <use xlink:href="<?= base_url() ?>assets/site/img/icons/icons.svg#icon-facebook"></use>
                                  </svg>
                               </a>
                               <a href="https://twitter.com/share?text=Sat%C4%B1l%C4%B1r%2C+k%C3%B6hn%C9%99+tikili%2C+3+otaql%C4%B1%2C+41+m%C2%B2%2C+Neft%C3%A7il%C9%99r+m.&url=https://evelani.az/az/elan/satis-kohne-tikili-3-otaqli-baki-nizami-r-neftciler-m-1528812" target="_blank" class="links-social links-twitter">
                                  <svg class="icon icon-twitter">
-                                    <use xlink:href="<?= base_url() ?>assets/site/img/icons/icons.svg?v=2022-04-22 05:08:38#icon-twitter"></use>
+                                    <use xlink:href="<?= base_url() ?>assets/site/img/icons/icons.svg#icon-twitter"></use>
                                  </svg>
                               </a>
                               <a href="https://www.linkedin.com/company/evelani-az/" class="links-social links-linkedin">
                                  <svg class="icon icon-linkedin">
-                                    <use xlink:href="<?= base_url() ?>assets/site/img/icons/icons.svg?v=2022-04-22 05:08:38#icon-linkedin"></use>
+                                    <use xlink:href="<?= base_url() ?>assets/site/img/icons/icons.svg#icon-linkedin"></use>
                                  </svg>
                               </a>
                            </div>
@@ -335,8 +335,8 @@
                <div class="announcement-inner__right">
                   <div class="announcement-allprice">
                      <h2 class="announcement-price--main">
-                        <span id="pricetitle-first" class="num-broken">
-                        75000
+                        <span id="pricetitle-first">
+                        <?= $ads_detail['price'] ?>
                         </span>
                         <span class="color">AZN</span>
                      </h2>
@@ -346,34 +346,40 @@
                      </h2>
                   </div>
                   <p class="d-md-none d-lg-flex">
-                     MT Əmlak
+                     <?= str_replace('', ',', $ads_detail['name']); ?>
+                     <?php if ($ads_detail['user_type']==0) { ?>
                      <span>Vasitəçi</span>
+                     <?php }else{  ?>
+                     <span>Əmlak sahibi</span>
+                     <?php } ?>
                   </p>
                   <div class="link-button link-button--primary showPhonebuttonlink" id="announcement_phone">
                      <div class="showPhonebutton justify-content-center">
                         <div class="link-button__icon">
                            <svg class="icon icon-phone-material">
-                              <use xlink:href="<?= base_url() ?>assets/site/img/icons/icons.svg?v=2022-04-22 05:08:38#icon-phone-material"></use>
+                              <use xlink:href="<?= base_url() ?>assets/site/img/icons/icons.svg#icon-phone-material"></use>
                            </svg>
                         </div>
                         <span class="announcement-phone__label mr-auto">Nömrəni göstər</span>
-                        <a target="_blank" href="https://api.whatsapp.com/send?phone=994553765980" class="mr-1">
+                        <?php if ($ads_detail['has_whatsapp']==1) {  ?>
+                        <a target="_blank" href="https://api.whatsapp.com/send?phone=994<?=$ads_detail['mobile'] ?>" class="mr-1">
                            <div class="state p-on">
                               <svg class="icon icon-whatsapp">
-                                 <use xlink:href="<?= base_url() ?>assets/site/img/icons/icons.svg?v=2022-04-22 05:08:38#icon-whatsapp"></use>
+                                 <use xlink:href="<?= base_url() ?>assets/site/img/icons/icons.svg#icon-whatsapp"></use>
                               </svg>
                            </div>
                         </a>
+                        <?php } ?>
                         <span class="announcement-phone" style="display: none;">
-                        <a href="tel:(055) 376-59-80" class="announcement-phone--href">(055) 376-59-80</a>
+                        <a href="tel:<?= formatPhoneNumber("",'0'.$ads_detail['mobile'])['national'] ?>" class="announcement-phone--href"><?= formatPhoneNumber("",'0'.$ads_detail['mobile'])['national'] ?></a>
                         </span>
                      </div>
-                     <span class="announcement-phone whatsapptext text-center">Satıcıya elanı Evelani.az saytında tapdığınızı bildirin</span>
+                     <span class="announcement-phone whatsapptext text-center">Satıcıya elanı Estate.az saytında tapdığınızı bildirin</span>
                   </div>
                   <div class="announcement-infos">
                      <div class="announcement-infos--item">
                         <p>Elanın nömrəsi</p>
-                        <a href="#">1528812</a>
+                        <a href="#">#<?= $ads_detail['id'] ?></a>
                      </div>
                      <div class="announcement-infos--item">
                         <p>Baxış sayı</p>

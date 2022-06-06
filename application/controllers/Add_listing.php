@@ -207,6 +207,8 @@ class Add_listing extends Frontend_Controller
                         "required"      => ucfirst(translate("the_room_field_is_required"))                        
                     ]
                 );
+            if (((int)$property_type === 1) OR ((int)$property_type === 2)) 
+            {
             $this->form_validation->set_rules('floor', translate('floor'), 'trim|required|xss_clean', 
                     [
                         "required"      => ucfirst(translate("the_floor_field_is_required"))                        
@@ -217,6 +219,7 @@ class Add_listing extends Frontend_Controller
                         "required"      => ucfirst(translate("the_max_floor_field_is_required"))                        
                     ]
                 );
+            }
             $this->form_validation->set_rules('price', translate('price'), 'trim|required|xss_clean', 
                     [
                         "required"      => ucfirst(translate("the_price_field_is_required"))                        
@@ -273,14 +276,10 @@ class Add_listing extends Frontend_Controller
                 );
             $this->form_validation->set_rules('latitude', translate('latitude'), 'trim|required|xss_clean', 
                     [
-                        "required"      => ucfirst(translate("the_latitude_field_is_required"))                        
+                        "required"      => ucfirst(translate("the_map_is_required"))                        
                     ]
                 );
-            $this->form_validation->set_rules('longitude', translate('longitude'), 'trim|required|xss_clean', 
-                    [
-                        "required"      => ucfirst(translate("the_longitude_field_is_required"))                        
-                    ]
-                );
+            $this->form_validation->set_rules('longitude', translate('longitude'), 'trim|xss_clean');
             $this->form_validation->set_rules('property_description', translate('property_description'), 'trim|required|xss_clean', 
                     [
                         "required"      => ucfirst(translate("the_property_description_field_is_required"))                        
@@ -367,7 +366,7 @@ class Add_listing extends Frontend_Controller
                     "name"                      => (isset($owner)) ? $owner : '',   
                     "email"                     => (isset($email)) ? $email : '',  
                     "mobile"                    => (isset($mobile)) ? $mobile : '', 
-                    "has_whatsapp"              => (isset($whatsapp)) ? $whatsapp : '',   
+                    "has_whatsapp"              => (isset($whatsapp) AND $whatsapp=='on') ? 1 : 0,   
                     "city_id"                   => (isset($city)) ? $city : '',
                     "region_id"                 => (isset($region)) ? $region : '',  
                     "district_id"               => (isset($district)) ? $district : '',

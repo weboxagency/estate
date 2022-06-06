@@ -29,6 +29,7 @@ class Ads_model extends MY_Model
             'user_type'  => $data['user_type'],
             'has_whatsapp'  => $data['has_whatsapp'],
 
+            
             'ads_pin_kod' => mt_rand(100000, 999999),
             'ads_type'  => $data['ads_type'],
             'estate_type'  => $data['estate_type'],

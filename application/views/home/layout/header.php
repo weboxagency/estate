@@ -50,7 +50,7 @@
           </a>
           <a class="nav-item--secondary nav-item__favorites  d-sm-flex" href="<?= base_url() ?>" x-favorites>
             <svg class="icon icon-heart-outline">
-            <use xlink:href="<?= base_url() ?>assets/site/img/icons/icons.svg#icon-heart-outline"></use>
+              <use xlink:href="<?= base_url() ?>assets/site/img/icons/icons.svg#icon-heart-outline"></use>
             </svg>
             <?= translate('wishlist') ?> 
           </a>

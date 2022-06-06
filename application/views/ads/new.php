@@ -22,7 +22,7 @@
 <section class="main-body page-container container">
    <div class="announcement-group">
    <div class="announcement-group__header">
-      <h5 class="announcement-title"><?= translate('new_ads') ?></h5>
+      <h5 class="announcement-title"><?= translate('new_ads') ?> <?= (isset($title)) ? $title : '' ?></h5>
    </div>
    <div class="announcement-group__body">
       <?php foreach ($new_ads_list as $value) { ?>
@@ -134,11 +134,7 @@
             }
             ?>
             <p class="announcement-size announcement-headline"><?= $an_headline ?></p>
-            <p class="announcement-deadline">
-               <span>
-               <?php 
-                echo date("n F Y",strtotime($value['created_at']));
-               ?></span></p>
+            <p class="announcement-deadline"><span><?= $cities[$value['city_id']]['city_name'] ?>, <?= date_aze("j F Y",$value['created_at']); ?></span></p>
          </a>
       </div>
       <?php } ?>

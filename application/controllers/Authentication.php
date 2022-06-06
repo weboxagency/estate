@@ -47,13 +47,9 @@ class Authentication extends Authentication_Controller
                 $login_credential = $this->authentication_model->login_credential($email, $password);
                 if ($login_credential) {
                     if ($login_credential->active) {
-                        if ($login_credential->role == 6) {
-                            $userType = 'parent';
-                        } elseif($login_credential->role == 7) {
-                            $userType = 'student';
-                        } else {
-                            $userType = 'staff';
-                        }
+                        
+                        $userType = 'staff';
+                        
                         $getUser = $this->application_model->getUserNameByRoleID($login_credential->role, $login_credential->user_id);
                         $getConfig = $this->db->get_where('global_settings', array('id' => 1))->row_array();
                         // get logger name
@@ -89,7 +85,7 @@ class Authentication extends Authentication_Controller
 
             }
         }
-        $this->data['branch_id'] = $this->authentication_model->urlaliasToBranch($url_alias);
+        $this->data['branch_id'] = 1;
         $this->load->view('authentication/login', $this->data);
     }
 

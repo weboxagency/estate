@@ -550,8 +550,8 @@
                <?php } ?>
                <div class="carousel-inner">
                   <?php foreach (ads_photos($value['photos']) as $key => $shekil) { ?>
-                  <a class="carousel-item <?= ($key==0) ? 'active' : '' ?> " target=_blank href=az/elan/satis-heyet-evi-bag-5-otaqli-baki-xezer-r-merdekan-q-9621752.html>
-                  <img src="<?= $shekil['avatar'] ?>" alt="Satılır, həyət evi / bağ, 5 otaqlı, 250 m², Mərdəkan q.">
+                  <a class="carousel-item <?= ($key==0) ? 'active' : '' ?> " target=_blank href="<?= base_url().'home/detail/'.$value['url_slug'] ?>">
+                  <img src="<?= $shekil['avatar'] ?>" alt="<?= $value['ads_title'] ?>">
                   </a>
                   <?php } ?>
                </div>
@@ -582,7 +582,7 @@
                </div>
             </div>
          </div>
-         <a class="announcement-description template-announcement" target=_blank href=az/elan/satis-heyet-evi-bag-5-otaqli-baki-xezer-r-merdekan-q-9621752.html>
+         <a class="announcement-description template-announcement" target=_blank href="<?= base_url().'home/detail/'.$value['url_slug'] ?>">
             <p class="announcement-price py-0"><span class="pricemain">
                <?php 
                if ($value['announcement_type']==1) 
@@ -636,11 +636,7 @@
             }
             ?>
             <p class="announcement-size announcement-headline"><?= $an_headline ?></p>
-            <p class="announcement-deadline">
-               <span>
-               <?php 
-                echo date("n F Y",strtotime($value['created_at']));
-               ?></span></p>
+            <p class="announcement-deadline"><span><?= $cities[$value['city_id']]['city_name'] ?>, <?= date_aze("j F Y",$value['created_at']); ?></span></p>
          </a>
       </div>
       <?php } ?>

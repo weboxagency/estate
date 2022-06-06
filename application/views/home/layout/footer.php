@@ -1776,7 +1776,7 @@
            svg_area = form.find( 'button' ) ,
            svg = `
                <svg class="icon icon-heart` + ( result ? '' : '-outline' ) + `">
-                   <use xlink:href="assets/site/img/icons/icons.svg#icon-heart` + ( result ? '' : '-outline' ) + `"></use>
+                   <use xlink:href="<?= base_url() ?>assets/site/img/icons/icons.svg#icon-heart` + ( result ? '' : '-outline' ) + `"></use>
                </svg>
                `
            , text_area = form.find( '[x-wishlist-text]' )
