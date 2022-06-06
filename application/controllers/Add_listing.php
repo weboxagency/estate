@@ -340,8 +340,8 @@ class Add_listing extends Frontend_Controller
 
                 $emlak_novu = $all_estate_types[$property_type]['estate_type_name'];
                
-                $title      = strip_tags($pr.','.$emlak_novu.','.$an_headline.','.$loca.'-'.time());
-                $titleURL   = strtolower(url_title($title));
+                $title      = strip_tags($pr.','.$emlak_novu.','.$an_headline.','.$loca);
+                $titleURL   = strtolower(url_title($title.'-'.time()));
               
                 
                 $requesData = [

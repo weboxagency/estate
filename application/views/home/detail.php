@@ -82,24 +82,11 @@
                   </div>
                   <div class="announcement-body__item announcement-gallery announcement-gallery-normal">
                      <ul class=" gallery-porfolio gallery-porfolio-normal gallery list-unstyled cS-hidden">
-                        <li data-thumb="https://evelani.az/uploads/announcement/32954/9daa919879fd431943157dd5b17c37ba_avatar.jpeg?v=1641220111" alt="Satılır, köhnə tikili, 3 otaqlı, 41 m², Neftçilər m." data-src="https://evelani.az/uploads/announcement/32954/9daa919879fd431943157dd5b17c37ba.jpeg?v=1641220111">
-                           <img id="galleryfull" data-src="https://evelani.az/uploads/announcement/32954/9daa919879fd431943157dd5b17c37ba.jpeg?v=1641220111" alt="Satılır, köhnə tikili, 3 otaqlı, 41 m², Neftçilər m." />
+                        <?php foreach (ads_photos($ads_detail['photos']) as $key => $shekil) { ?>
+                        <li data-thumb="<?= $shekil['avatar'] ?>" alt="Satılır, köhnə tikili, 3 otaqlı, 41 m², Neftçilər m." data-src="<?= $shekil['path'] ?>">
+                           <img id="galleryfull" data-src="<?= $shekil['path'] ?>" alt="<?= $ads_detail['ads_title'] ?>" />
                         </li>
-                        <li data-thumb="https://evelani.az/uploads/announcement/32954/547b6c5c6230681a9ff6b21fc6620a80_avatar.jpeg?v=1641220111" alt="Satılır, köhnə tikili, 3 otaqlı, 41 m², Neftçilər m." data-src="https://evelani.az/uploads/announcement/32954/547b6c5c6230681a9ff6b21fc6620a80.jpeg?v=1641220111">
-                           <img id="galleryfull" data-src="https://evelani.az/uploads/announcement/32954/547b6c5c6230681a9ff6b21fc6620a80.jpeg?v=1641220111" alt="Satılır, köhnə tikili, 3 otaqlı, 41 m², Neftçilər m." />
-                        </li>
-                        <li data-thumb="https://evelani.az/uploads/announcement/32954/b662446c4b3429d21dec52bd8fa45ec8_avatar.jpeg?v=1641220110" alt="Satılır, köhnə tikili, 3 otaqlı, 41 m², Neftçilər m." data-src="https://evelani.az/uploads/announcement/32954/b662446c4b3429d21dec52bd8fa45ec8.jpeg?v=1641220111">
-                           <img id="galleryfull" data-src="https://evelani.az/uploads/announcement/32954/b662446c4b3429d21dec52bd8fa45ec8.jpeg?v=1641220111" alt="Satılır, köhnə tikili, 3 otaqlı, 41 m², Neftçilər m." />
-                        </li>
-                        <li data-thumb="https://evelani.az/uploads/announcement/32954/8b8021fe3188c4a8ce3a27a4c07c4695_avatar.jpeg?v=1641220110" alt="Satılır, köhnə tikili, 3 otaqlı, 41 m², Neftçilər m." data-src="https://evelani.az/uploads/announcement/32954/8b8021fe3188c4a8ce3a27a4c07c4695.jpeg?v=1641220110">
-                           <img id="galleryfull" data-src="https://evelani.az/uploads/announcement/32954/8b8021fe3188c4a8ce3a27a4c07c4695.jpeg?v=1641220110" alt="Satılır, köhnə tikili, 3 otaqlı, 41 m², Neftçilər m." />
-                        </li>
-                        <li data-thumb="https://evelani.az/uploads/announcement/32954/d6c20d682705ee2c4f0bc208762e8cb2_avatar.jpeg?v=1641220109" alt="Satılır, köhnə tikili, 3 otaqlı, 41 m², Neftçilər m." data-src="https://evelani.az/uploads/announcement/32954/d6c20d682705ee2c4f0bc208762e8cb2.jpeg?v=1641220110">
-                           <img id="galleryfull" data-src="https://evelani.az/uploads/announcement/32954/d6c20d682705ee2c4f0bc208762e8cb2.jpeg?v=1641220110" alt="Satılır, köhnə tikili, 3 otaqlı, 41 m², Neftçilər m." />
-                        </li>
-                        <li data-thumb="https://evelani.az/uploads/announcement/32954/33313291333228339e6693e1fbe29008_avatar.jpeg?v=1641220109" alt="Satılır, köhnə tikili, 3 otaqlı, 41 m², Neftçilər m." data-src="https://evelani.az/uploads/announcement/32954/33313291333228339e6693e1fbe29008.jpeg?v=1641220109">
-                           <img id="galleryfull" data-src="https://evelani.az/uploads/announcement/32954/33313291333228339e6693e1fbe29008.jpeg?v=1641220109" alt="Satılır, köhnə tikili, 3 otaqlı, 41 m², Neftçilər m." />
-                        </li>
+                        <?php } ?>
                      </ul>
                   </div>
                   <div class="announcement-body__item announcement-map map" id="map"></div>
@@ -126,18 +113,22 @@
                               </svg>
                            </div>
                            <span class="announcement-phone__label">Nömrəni göstər</span>
-                           <a target="_blank" href="https://api.whatsapp.com/send?phone=994553765980">
+                           <?php if ($ads_detail['has_whatsapp']==1) {  ?>
+                           <a target="_blank" href="https://api.whatsapp.com/send?phone=994<?=$ads_detail['mobile'] ?>">
                               <div class="state p-on">
                                  <svg class="icon icon-whatsapp">
                                     <use xlink:href="<?= base_url() ?>assets/site/img/icons/icons.svg?v=2022-04-22 05:08:38#icon-whatsapp"></use>
                                  </svg>
                               </div>
                            </a>
+                           <?php } ?>
                            <span class="announcement-phone" style="display: none;">
-                           <a href="tel:(055) 376-59-80" class="announcement-phone--href">(055) 376-59-80</a>
+                           <a href="tel:<?= formatPhoneNumber("",'0'.$ads_detail['mobile'])['national'] ?>" class="announcement-phone--href"><?= formatPhoneNumber("",'0'.$ads_detail['mobile'])['national'] ?></a>
                            </span>
                         </div>
+                        <?php if ($ads_detail['has_whatsapp']==1) {  ?>
                         <span class="announcement-phone whatsapptext">Satıcıya elanı Evelani.az saytında tapdığınızı bildirin</span>
+                        <?php } ?>
                      </div>
                      <div class="announcement-infos">
                         <div class="announcement-infos--item">
@@ -150,7 +141,7 @@
                         </div>
                         <div class="announcement-infos--item">
                            <p>Yeniləndi</p>
-                           <a href="#">4 Yanvar 2022</a>
+                           <a href="#"><?= date_aze("j F Y",$ads_detail['created_at']); ?></a>
                         </div>
                      </div>
                      <div class="announcement-edit">
@@ -387,7 +378,7 @@
                      </div>
                      <div class="announcement-infos--item">
                         <p>Yeniləndi</p>
-                        <a href="#">4 Yanvar 2022</a>
+                        <a href="#"><?= date_aze("j F Y",$ads_detail['created_at']); ?></a>
                      </div>
                   </div>
                   <div class="announcement-edit">
