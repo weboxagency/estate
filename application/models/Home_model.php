@@ -160,6 +160,17 @@ class Home_model extends MY_Model
         return $query->result_array();
     }
 
+    // public function estateTypeName($id='')
+    // {
+    //     $this->db->select('*');
+    //     $this->db->from('estate_type');
+    //     $this->db->where('id', $id);
+    //     $query = $this->db->get();
+    //     $this->db->order_by("id", "asc");
+        
+    //     return return $query->num_rows() > 0 ? $query->result_array() : NULL;
+    // }
+
     public function getWishCount($id, $sess)
     {
         $this->db->select('id');

@@ -109,7 +109,7 @@ if ($div2 == 0) {
 								<div class="col-md-6 col-sm-6 col-xs-6"> <i class="fas fa-user-graduate"></i>
 									<h5 class="text-muted"><?php echo translate('students'); ?></h5> </div>
 								<div class="col-md-6 col-sm-6 col-xs-6">
-									<h3 class="counter text-right mt-md text-primary"><?=$get_total_student?></h3>
+									<h3 class="counter text-right mt-md text-primary">4</h3>
 								</div>
 								<div class="col-md-12 col-sm-12 col-xs-12">
 									<div class="box-top-line line-color-primary">
@@ -120,28 +120,7 @@ if ($div2 == 0) {
 						</div>
 					</div>
 				<?php } ?>
-				<?php if (get_permission('parent_count_widget', 'is_view')) { ?>
-					<div class="col-lg-<?php echo $widget1; ?> col-sm-6 ">
-						<div class="panel-body">
-							<div class="widget-col-in row">
-								<div class="col-md-6 col-sm-6 col-xs-6"> <i class="fas fa-user-tie" ></i>
-									<h5 class="text-muted"><?php echo translate('parents'); ?></h5></div>
-								<div class="col-md-6 col-sm-6 col-xs-6">
-									<h3 class="counter text-right mt-md text-primary"><?php
-										if (!empty($school_id))
-											$this->db->where('branch_id', $school_id);
-										echo $this->db->select('id')->get('parent')->num_rows();
-									?></h3>
-								</div>
-								<div class="col-md-12 col-sm-12 col-xs-12">
-									<div class="box-top-line line-color-primary">
-										<span class="text-muted text-uppercase"><?php echo translate('total_strength'); ?></span>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				<?php } ?>
+				
 				<?php if (get_permission('teacher_count_widget', 'is_view')) { ?>
 					<div class="col-lg-<?php echo $widget1; ?> col-sm-6 ">
 						<div class="panel-body">
@@ -207,7 +186,7 @@ if ($div2 == 0) {
 									<h5 class="text-muted"><?php echo translate('admission'); ?></h5>
 								</div>
 								<div class="col-md-6 col-sm-6 col-xs-6">
-									<h3 class="counter text-right mt-md text-primary"><?=$get_monthly_admission;?></h3>
+									<h3 class="counter text-right mt-md text-primary">8</h3>
 								</div>
 								<div class="col-md-12 col-sm-12 col-xs-12">
 									<div class="box-top-line line-color-primary">
@@ -225,7 +204,7 @@ if ($div2 == 0) {
 								<div class="col-md-6 col-sm-6 col-xs-6"> <i class="fas fa-money-check-alt"></i>
 									<h5 class="text-muted"><?php echo translate('voucher'); ?></h5> </div>
 								<div class="col-md-6 col-sm-6 col-xs-6">
-									<h3 class="counter text-right mt-md text-primary"><?=$get_voucher?></h3>
+									<h3 class="counter text-right mt-md text-primary">6</h3>
 								</div>
 								<div class="col-md-12 col-sm-12 col-xs-12">
 									<div class="box-top-line line-color-primary">
@@ -243,7 +222,7 @@ if ($div2 == 0) {
 								<div class="col-md-6 col-sm-6 col-xs-6"> <i class="fas fa-road" ></i>
 									<h5 class="text-muted"><?php echo translate('transport'); ?></h5></div>
 								<div class="col-md-6 col-sm-6 col-xs-6">
-									<h3 class="counter text-right mt-md text-primary"><?=$get_transport_route?></h3>
+									<h3 class="counter text-right mt-md text-primary">7</h3>
 								</div>
 								<div class="col-md-12 col-sm-12 col-xs-12">
 									<div class="box-top-line line-color-primary">
@@ -261,12 +240,7 @@ if ($div2 == 0) {
 								<div class="col-md-6 col-sm-6 col-xs-6"> <i class="fas fa-warehouse" ></i>
 									<h5 class="text-muted"><?php echo translate('hostel'); ?></h5></div>
 								<div class="col-md-6 col-sm-6 col-xs-6">
-									<h3 class="counter text-right mt-md text-primary"><?php
-										if (!empty($school_id))
-											$this->db->where('branch_id', $school_id);
-										$hostel_room = $this->db->select('id')->get('hostel_room')->num_rows();
-										echo $hostel_room;
-										?></h3>
+									<h3 class="counter text-right mt-md text-primary">8</h3>
 								</div>
 								<div class="col-md-12 col-sm-12 col-xs-12">
 									<div class="box-top-line line-color-primary">

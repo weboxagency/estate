@@ -334,6 +334,18 @@ function get_staff_permissions($id)
     return $result;
 }
 
+function estateTypeName($id='')
+{
+    $CI = &get_instance();
+    $CI->db->select('*');
+    $CI->db->from('estate_type');
+    $CI->db->where('id', $id);
+    $query = $CI->db->get();
+    $CI->db->order_by("id", "asc");
+    
+    return  $query->num_rows() > 0 ? $query->result_array()[0] : NULL;
+}
+
 function get_session_id()
 {
     $CI = &get_instance();

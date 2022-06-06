@@ -76,14 +76,14 @@
                   <h1><?= $ads_detail['ads_title'] ?></h1>
                   <div class="announcement-inner__filter announcement-filter filter-tertiary">
                      <div class="link-buttons">
-                        <a class="link-button link-button--tertiary" id="announcement-gallery-normal">Şəkillər</a>
-                        <a class="link-button" id="announcement-map">Xəritə</a>
+                        <a class="link-button link-button--tertiary" id="announcement-gallery-normal"><?= translate('photos') ?></a>
+                        <a class="link-button" id="announcement-map"><?= translate('map') ?></a>
                      </div>
                   </div>
                   <div class="announcement-body__item announcement-gallery announcement-gallery-normal">
                      <ul class=" gallery-porfolio gallery-porfolio-normal gallery list-unstyled cS-hidden">
                         <?php foreach (ads_photos($ads_detail['photos']) as $key => $shekil) { ?>
-                        <li data-thumb="<?= $shekil['avatar'] ?>" alt="Satılır, köhnə tikili, 3 otaqlı, 41 m², Neftçilər m." data-src="<?= $shekil['path'] ?>">
+                        <li data-thumb="<?= $shekil['avatar'] ?>" alt="<?= $ads_detail['ads_title'] ?>" data-src="<?= $shekil['path'] ?>">
                            <img id="galleryfull" data-src="<?= $shekil['path'] ?>" alt="<?= $ads_detail['ads_title'] ?>" />
                         </li>
                         <?php } ?>
@@ -97,8 +97,13 @@
                            <span class="color">AZN</span>
                         </h2>
                         <h2 class="announcement-price">
-                           <span id="announcementprice">1829</span>
+                           <?php if (!empty($ads_detail['area'])) { ?>
+                           <span id="announcementprice"><?= $ads_detail['price']/$ads_detail['area'] ?></span>
                            <span class="color">AZN/m²</span>
+                           <?php }else{ ?>
+                           <span id="announcementprice"><?= $ads_detail['price']/$ads_detail['land_area'] ?></span>
+                           <span class="color">AZN/sot</span>
+                           <?php } ?>
                         </h2>
                      </div>
                      <p class="d-md-none d-lg-flex">
@@ -137,7 +142,7 @@
                         </div>
                         <div class="announcement-infos--item">
                            <p>Baxış sayı</p>
-                           <a href="#"><span>585</span> nəfər</a>
+                           <a href="#"><span><?= $ads_detail['show_count'] ?></span> nəfər</a>
                         </div>
                         <div class="announcement-infos--item">
                            <p>Yeniləndi</p>
@@ -148,7 +153,7 @@
                         <div class="announcement-edit--item">
                            <a href="#" data-toggle="modal" data-target="#email-complaint">
                               <svg class="icon icon-flag">
-                                 <use xlink:href="<?= base_url() ?>assets/site/img/icons/icons.svg?v=2022-04-22 05:08:38#icon-flag"></use>
+                                 <use xlink:href="<?= base_url() ?>assets/site/img/icons/icons.svg#icon-flag"></use>
                               </svg>
                               <p class="d-none d-md-block">Elanı şikayət et</p>
                               <p class="d-md-none">Elanı şikayət et</p>
@@ -157,7 +162,7 @@
                         <div class="announcement-edit--item">
                            <a href="#" data-toggle="modal" data-target="#edit-announcement">
                               <svg class="icon icon-edit-solid">
-                                 <use xlink:href="<?= base_url() ?>assets/site/img/icons/icons.svg?v=2022-04-22 05:08:38#icon-edit-solid"></use>
+                                 <use xlink:href="<?= base_url() ?>assets/site/img/icons/icons.svg#icon-edit-solid"></use>
                               </svg>
                               <p class="d-none d-md-block">Elana düzəliş et</p>
                               <p class="d-md-none">Elana düzəliş et</p>
@@ -166,7 +171,7 @@
                         <div class="announcement-edit--item">
                            <a href="#" data-toggle="modal" data-target="#delete-announcement">
                               <svg class="icon icon-close">
-                                 <use xlink:href="<?= base_url() ?>assets/site/img/icons/icons.svg?v=2022-04-22 05:08:38#icon-close"></use>
+                                 <use xlink:href="<?= base_url() ?>assets/site/img/icons/icons.svg#icon-close"></use>
                               </svg>
                               <p class="d-none d-md-block">Elanı sil</p>
                               <p class="d-md-none">Elanı sil</p>
@@ -174,8 +179,8 @@
                         </div>
                         <div class="announcement-edit--item">
                            <div class="favorites">
-                              <form action="https://evelani.az/az/wishlist" method="post" x-edit-form="32954" x-target-with-data="afterWishlist">
-                                 <input type="hidden" name="id" value="32954">
+                              <form action="<?= base_url() ?>home/wishlist" method="post" x-edit-form="<?= $ads_detail['id'] ?>" x-target-with-data="afterWishlist">
+                                 <input type="hidden" name="id" value="<?= $ads_detail['id'] ?>">
                                  <button type="submit">
                                     <svg class="icon icon-heart-outline">
                                        <use xlink:href="<?= base_url() ?>assets/site/img/icons/icons.svg?v=2022-04-22 05:08:38#icon-heart-outline"></use>
@@ -191,32 +196,32 @@
                   <div class="announcement-details announcement-links">
                      <a href="#" data-toggle="modal" data-target="#pull-forward-announcement">
                         <svg class="icon icon-circle-up">
-                           <use xlink:href="<?= base_url() ?>assets/site/img/icons/icons.svg?v=2022-04-22 05:08:38#icon-circle-up"></use>
+                           <use xlink:href="<?= base_url() ?>assets/site/img/icons/icons.svg#icon-circle-up"></use>
                         </svg>
                         İrəli çək
                      </a>
                      <a href="#" data-toggle="modal" data-target="#make-announcement-vip">
                         <svg class="icon icon-vipp">
-                           <use xlink:href="<?= base_url() ?>assets/site/img/icons/icons.svg?v=2022-04-22 05:08:38#icon-vipp"></use>
+                           <use xlink:href="<?= base_url() ?>assets/site/img/icons/icons.svg#icon-vipp"></use>
                         </svg>
                         VIP Et
                      </a>
                      <a href="#" data-toggle="modal" data-target="#make-announcement-premium">
                         <svg class="icon icon-vip">
-                           <use xlink:href="<?= base_url() ?>assets/site/img/icons/icons.svg?v=2022-04-22 05:08:38#icon-vip"></use>
+                           <use xlink:href="<?= base_url() ?>assets/site/img/icons/icons.svg#icon-vip"></use>
                         </svg>
                         Premium et
                      </a>
                   </div>
                   <div class="announcement-details announcement-address">
                      <span>Ünvan</span>
-                     <p>Prospekt / Qara Qarayev</p>
+                     <p><?= $ads_detail['address'] ?></p>
                      <a>
                         <svg class="icon icon-pin">
                            <use xlink:href="<?= base_url() ?>assets/site/img/icons/icons.svg#icon-pin"></use>
                         </svg>
-                        <span class="show-map"> Xəritəni göstər</span>
-                        <span class="notshow-map" style="display: none">Xəritəni gizlət</span>
+                        <span class="show-map"> <?= translate('show_map') ?></span>
+                        <span class="notshow-map" style="display: none"><?= translate('hide_map') ?></span>
                      </a>
                   </div>
                   <div class="announcement-details announcement-info announcement-details--all">
@@ -224,7 +229,7 @@
                         <span>Əmlakın növü</span>
                         <div class="announcement-info--right">
                            <div class="announcement-info__top">
-                              <p class="announcement-info__item">Köhnə tikili</p>
+                              <p class="announcement-info__item"><?= estateTypeName($ads_detail['property_type'])['estate_type_name'] ?></p>
                            </div>
                         </div>
                      </div>
@@ -232,23 +237,25 @@
                         <span>Çıxarış</span>
                         <div class="announcement-info--right">
                            <div class="announcement-info__top">
-                              <p class="announcement-info__item">Var</p>
+                              <p class="announcement-info__item"><?= ($ads_detail['deed']==1) ? 'Var' : 'Yoxdur' ?></p>
                            </div>
                         </div>
                      </div>
+                     <?php if ($ads_detail['floor']!=0) { ?>
                      <div class="announcement-info--item">
                         <span>Mərtəbə</span>
                         <div class="announcement-info--right">
                            <div class="announcement-info__top">
-                              <p class="announcement-info__item">5 / 5 </p>
+                              <p class="announcement-info__item"><?= $ads_detail['floor'] ?> / <?= $ads_detail['max_floor'] ?> </p>
                            </div>
                         </div>
                      </div>
+                     <?php } ?>
                      <div class="announcement-info--item">
                         <span>Sahə</span>
                         <div class="announcement-info--right">
                            <div class="announcement-info__top">
-                              <p class="announcement-info__item">41 m²</p>
+                              <p class="announcement-info__item"><?= (!empty($ads_detail)) ? $ads_detail['area'].' m²' : $ads_detail['land_area'].' sot'; ?> </p>
                            </div>
                         </div>
                      </div>
@@ -256,39 +263,24 @@
                         <span>Təmir</span>
                         <div class="announcement-info--right">
                            <div class="announcement-info__top">
-                              <p class="announcement-info__item">Təmirli</p>
+                              <p class="announcement-info__item"><?= ($ads_detail['repair']==1) ? 'Təmirli' : 'Təmirsiz' ?></p>
                            </div>
                         </div>
                      </div>
                   </div>
                   <div class="announcement-details announcement-info">
-                     <span>Qısa məlumat</span>
+                     <span><?= translate('short_information') ?></span>
                      <div class="announcement-info--right">
                         <div class="announcement-info__top">
-                           <p class="announcement-info__paragraph">Metro Neftçilərdə 3 otaqlı mənzil
-                              Lahiyə: - Xuruşovka
-                              Mərtəbə: - 5/5
-                              Sahə: - 41m²
-                              Otaq sayı: - 3 (2dən – 3ə Düzəlmə)
-                              Sənəd: Çıxarış (Kupça)
-                              Kommunal: Qaz, su, Elektrik daimidir. KabelTv, İnternet var.
-                              İstilik sistemi: - Mərkəzi istilik sistemi
-                              Yaxınlıqda: - Nizami Rayon İcara Hakimiyyəti, 24-cu pölis bölməsi, 210 saylı orta məktəb.
-                              Ünvan: - Nizami, ray., Prospekt / Qara Qarayev Neftçilər metrosuna ayaq məsafəsində.
-                              Qalacaq əşya: - bir çox əşya qalacaq. Soyuducu, paltaryuyan, kondisionerlər. Hər otaqda ayrı kodisioner var. stol-stul və s.
-                              QEYD: Ev metroya yaxındır. Dam tollanıb. Heç bir problem yoxdur.
-                              Whatsapla da əlaqə saxlaya bilərsiniz
-                              Evi göstərmə haqqı – 20 manat
-                              1% - Əmlakçı haqqı (Alqı-satqı baş verdikdə)
-                           </p>
+                           <p class="announcement-info__paragraph"><?= $ads_detail['property_description']; ?></p>
                            <a class="arrow-button">
                            <i class="fas fa-chevron-down"></i>
-                           Bütün məlumatı göstər
+                           <?= translate('show_all_information') ?>
                            </a>
                         </div>
                      </div>
                   </div>
-                  <div class="announcement-details announcement-otherlinks">
+                <!--   <div class="announcement-details announcement-otherlinks">
                      <ul class="locations">
                         <li>
                            <a target="_blank" href="https://evelani.az/az/axtar/satis/elanlar/neftciler">Neftçilər m.</a>
@@ -297,7 +289,7 @@
                            <a target="_blank" href="https://evelani.az/az/axtar/satis/elanlar/nizami">Nizami r.</a>
                         </li>
                      </ul>
-                  </div>
+                  </div> -->
                   <div class="announcement-details announcement-info align-items-center justify-content-between">
                      <span class="mb-0">Paylaş</span>
                      <div class="announcement-info--right">
@@ -332,8 +324,15 @@
                         <span class="color">AZN</span>
                      </h2>
                      <h2 class="announcement-price">
-                        <span id="pricetitle" class="price-main pricetitle pricemain-title num-broken">1829</span>
-                        <span class="price-cost">AZN/m²</span>
+                        <?php if (!empty($ads_detail['area'])) { ?>
+                           <span id="pricetitle" class="price-main pricetitle pricemain-title num-broken"><?= $ads_detail['price']/$ads_detail['area'] ?></span>
+                           <span class="price-cost">AZN/m²</span>
+                           <?php }else{ ?>
+                           <span id="pricetitle" class="price-main pricetitle pricemain-title num-broken"><?= $ads_detail['price']/$ads_detail['land_area'] ?></span>
+                           <span class="price-cost">AZN/sot</span>
+                           <?php } ?>
+                        <!-- <span id="pricetitle" class="price-main pricetitle pricemain-title num-broken">1829</span> -->
+                        <!-- <span class="price-cost">AZN/m²</span> -->
                      </h2>
                   </div>
                   <p class="d-md-none d-lg-flex">
@@ -351,7 +350,7 @@
                               <use xlink:href="<?= base_url() ?>assets/site/img/icons/icons.svg#icon-phone-material"></use>
                            </svg>
                         </div>
-                        <span class="announcement-phone__label mr-auto">Nömrəni göstər</span>
+                        <span class="announcement-phone__label mr-auto"><?= translate('show_number') ?></span>
                         <?php if ($ads_detail['has_whatsapp']==1) {  ?>
                         <a target="_blank" href="https://api.whatsapp.com/send?phone=994<?=$ads_detail['mobile'] ?>" class="mr-1">
                            <div class="state p-on">
@@ -374,7 +373,7 @@
                      </div>
                      <div class="announcement-infos--item">
                         <p>Baxış sayı</p>
-                        <a href="#"><span>585</span> nəfər</a>
+                        <a href="#"><span><?= $ads_detail['show_count'] ?></span> nəfər</a>
                      </div>
                      <div class="announcement-infos--item">
                         <p>Yeniləndi</p>
@@ -408,8 +407,8 @@
                      </div>
                      <div class="announcement-edit--item">
                         <div class="favorites">
-                           <form action="https://evelani.az/az/wishlist" method="post" x-edit-form="32954" x-target-with-data="afterWishlist">
-                              <input type="hidden" name="id" value="32954">
+                           <form action="https://evelani.az/az/wishlist" method="post" x-edit-form="<?= $ads_detail['id'] ?>" x-target-with-data="afterWishlist">
+                              <input type="hidden" name="id" value="<?=$ads_detail['id'] ?>">
                               <button type="submit">
                                  <svg class="icon icon-heart-outline">
                                     <use xlink:href="<?= base_url() ?>assets/site/img/icons/icons.svg?v=2022-04-22 05:08:38#icon-heart-outline"></use>
@@ -729,11 +728,11 @@
                         </div>
                         <div class="announcement-icons">
                            <div class="shape">
-                              <form action="https://evelani.az/az/wishlist" method="post" x-edit-form="32981" x-target-with-data="afterWishlist">
-                                 <input type="hidden" name="id" value="32981">
+                              <form action="<?= base_url() ?>home/wishlist" method="post" x-edit-form="<?= $ads_detail['id'] ?>" x-target-with-data="afterWishlist">
+                                 <input type="hidden" name="id" value="<?= $ads_detail['id'] ?>">
                                  <button type="submit">
                                     <svg class="icon icon-heart-outline">
-                                       <use xlink:href="<?= base_url() ?>assets/site/img/icons/icons.svg?v=2022-04-22 05:08:38#icon-heart-outline"></use>
+                                       <use xlink:href="<?= base_url() ?>assets/site/img/icons/icons.svg#icon-heart-outline"></use>
                                     </svg>
                                  </button>
                               </form>
