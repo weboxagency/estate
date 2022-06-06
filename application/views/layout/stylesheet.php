@@ -14,6 +14,7 @@
 <link rel="stylesheet" href="<?php echo base_url('assets/css/custom-style.css');?>">
 <link rel="stylesheet" href="<?php echo base_url('assets/css/skins/default.css');?>">
 <link rel="stylesheet" href="<?php echo base_url('assets/vendor/sweetalert/sweetalert-custom.css');?>">
+<link rel="stylesheet" href="<?php echo base_url('assets/vendor/dropify/css/dropify.min.css') ?>">
 
 <link rel="stylesheet" href="<?php echo base_url('/assets/vendor/summernote/summernote.css') ?>">
 
@@ -21,3 +22,4 @@
 <script src="<?php echo base_url('assets/vendor/jquery/jquery.min.js');?>"></script>
 <script src="<?php echo base_url('assets/vendor/jquery-ui/jquery-ui.min.js');?>"></script>
 <script src="<?php echo base_url('assets/vendor/modernizr/modernizr.js');?>"></script>
+<script src="<?php echo base_url('assets/vendor/dropify/js/dropify.min.js') ?>"></script>

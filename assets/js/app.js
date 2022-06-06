@@ -807,3 +807,4 @@ function mfp_modal(data){
 		modal: true
 	});
 }
+
