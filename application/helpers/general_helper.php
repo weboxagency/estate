@@ -335,6 +335,32 @@ function get_lang_info($field, $name = '')
     }
 }
 
+function ads_photos($ids)
+{
+    $CI = &get_instance();
+    $CI->db->select("*");
+    $CI->db->where_in('id',explode(",",$ids));
+    $CI->db->limit(5);
+    $query = $CI->db->get('thumb_image');
+    if ($query->num_rows() > 0) 
+    {
+        return $query->result_array();
+    } 
+}
+
+function metro_name_by_id($id)
+{
+    $this->db->select('*');
+    $this->db->from('metros');
+    $this->db->where('id', $id);
+    $query = $this->db->get();
+    
+    if ($query->num_rows() > 0) {
+        $row = $query->row();
+        return $row->metro_name;
+    }
+    
+}
 
 
 
@@ -597,6 +623,52 @@ function check_hash_restrictions($table, $id, $hash)
     }
     if (empty($hash) || ($get_hash != $hash)) {
         show_404();
+    }
+}
+
+function getMonthslist($m)
+{
+    $months = array(
+        '01' => translate('January'),
+        '02' => translate('February'),
+        '03' => translate('March'),
+        '04' => translate('April'),
+        '05' => translate('May'),
+        '06' => translate('June'),
+        '07' => translate('July '),
+        '08' => translate('August'),
+        '09' => translate('September'),
+        '10' => translate('October'),
+        '11' => translate('November'),
+        '12' => translate('December'),
+    );
+    return $months[$m];
+}
+
+function session_wishlist($session,$ads_id)
+{
+    $CI = &get_instance();
+    $session = (isset($_SESSION['wish_sess'])) ? $_SESSION['wish_sess'] : '';
+    if (!empty($session)) 
+    {
+        $CI->db->select('*');
+        $CI->db->from('wishlists');
+        $CI->db->where('session_id', $session);
+        $CI->db->where('data_id', $ads_id);
+        $query = $CI->db->get();
+        if ($query->num_rows() > 0) 
+        {
+            return $query->result_array()[0];
+        } 
+        else 
+        {
+            return [];
+        }
+        
+    }
+    else
+    {
+        return false;
     }
 }
 

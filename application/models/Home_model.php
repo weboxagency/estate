@@ -18,8 +18,8 @@ class Home_model extends MY_Model
         if ($query->num_rows() == 1) 
         {
             $this->db->select('*');
-            $this->db->from('all_ads');
-            $this->db->where('user_id', $query->row()->id);
+            $this->db->from('ads_all');
+            $this->db->where('mobile', $phone);
             $ads = $this->db->get();
             return $ads->num_rows();
         }
@@ -91,7 +91,7 @@ class Home_model extends MY_Model
         
         return $query->result_array();
     }
-    
+
     public function allMetros($active = 1)
     {
         $this->db->select('*');
@@ -143,6 +143,112 @@ class Home_model extends MY_Model
         $query = $this->db->get();
         return $query->result_array()[0];
     }
+
+    public function allNewAdsList()
+    {
+        $this->db->select('*');
+        $this->db->from('ads_all');
+        if (ENVIRONMENT=="development") 
+        {
+            $this->db->where('status', 2);
+        }
+        else
+        {
+            $this->db->where('status', 1);
+        }
+
+        $this->db->order_by("id", "asc");
+        $query = $this->db->get();
+        return $query->num_rows() > 0 ? $query->result_array() : NULL;
+        
+    }
+
+    public function allNewAdsSaleList()
+    {
+        $this->db->select('*');
+        $this->db->from('ads_all');
+        if (ENVIRONMENT=="development") 
+        {
+            $this->db->where('status', 2);
+            $this->db->where('announcement_type', 1);
+        }
+        else
+        {
+            $this->db->where('status', 1);
+            $this->db->where('announcement_type', 1);
+        }
+        
+        $this->db->order_by("id", "asc");
+        $query = $this->db->get();
+        return $query->num_rows() > 0 ? $query->result_array() : NULL;
+        
+    }
+
+    public function allNewAdsRentMonthlyList()
+    {
+        $this->db->select('*');
+        $this->db->from('ads_all');
+        if (ENVIRONMENT=="development") 
+        {
+            $this->db->where('status', 2);
+            $this->db->where('announcement_type', 2);
+        }
+        else
+        {
+            $this->db->where('status', 1);
+            $this->db->where('announcement_type', 2);
+        }
+        
+        $this->db->order_by("id", "asc");
+        $query = $this->db->get();
+        return $query->num_rows() > 0 ? $query->result_array() : NULL;
+        
+    }
+
+    public function allNewAdsRentDailyList()
+    {
+        $this->db->select('*');
+        $this->db->from('ads_all');
+        if (ENVIRONMENT=="development") 
+        {
+            $this->db->where('status', 2);
+            $this->db->where('announcement_type', 3);
+        }
+        else
+        {
+            $this->db->where('status', 1);
+            $this->db->where('announcement_type', 3);
+        }
+        
+        $this->db->order_by("id", "asc");
+        $query = $this->db->get();
+        return $query->num_rows() > 0 ? $query->result_array() : NULL;
+        
+    }
+
+    public function allNewAdsRentList()
+    {
+        $this->db->select('*');
+        $this->db->from('ads_all');
+        if (ENVIRONMENT=="development") 
+        {
+            $array = ['announcement_type' => 2, 'announcement_type' => 3];
+            $wherecond = "( ( ( announcement_type = 2 OR announcement_type = 3 ) ) )";
+            $this->db->where('status', 2);
+            $this->db->where($wherecond);
+        }
+        else
+        {
+            $this->db->where('status', 1);
+            $this->db->where($wherecond);
+        }
+        
+        $this->db->order_by("id", "asc");
+        $query = $this->db->get();
+        return $query->num_rows() > 0 ? $query->result_array() : NULL;
+        
+    }
+    
 
     public function getDefaultBranch()
     {

@@ -47,6 +47,7 @@ class Elanlar extends Frontend_Controller
         $this->data['ads_type']         = $this->home_model->adsType();
         $this->data['district']         = $this->home_model->allDistricts();
         $this->data['targets']          = $this->home_model->allTargets();
+
         $this->data['page_data']        = $this->home_model->get('front_cms_home_seo', array('branch_id' => 1), true);
         $this->data['main_contents']    = $this->load->view('ads/vip', $this->data, true);
         $this->load->view('home/layout/index', $this->data);
@@ -61,6 +62,32 @@ class Elanlar extends Frontend_Controller
         $this->data['ads_type']         = $this->home_model->adsType();
         $this->data['district']         = $this->home_model->allDistricts();
         $this->data['targets']          = $this->home_model->allTargets();
+       
+        if (isset($_GET['type']) AND $_GET['type']=== "sale") 
+        {
+            $this->data['new_ads_list']     = $this->home_model->allNewAdsSaleList();
+        }
+        elseif (isset($_GET['type']) AND $_GET['type']=== "monthly_rent") 
+        {
+            $this->data['new_ads_list']     = $this->home_model->allNewAdsRentMonthlyList();
+        }
+        elseif (isset($_GET['type']) AND $_GET['type']=== "daily_rent") 
+        {
+            $this->data['new_ads_list']     = $this->home_model->allNewAdsRentDailyList();
+        }
+        else
+        {
+            $this->data['new_ads_list']     = $this->home_model->allNewAdsList();
+        }
+        
+        array_unshift($this->data['metros'],"");
+        unset($this->data['metros'][0]);
+        array_unshift($this->data['district'],"");
+        unset($this->data['district'][0]);
+        array_unshift($this->data['regions'],"");
+        unset($this->data['regions'][0]);
+        array_unshift($this->data['cities'],"");
+        unset($this->data['cities'][0]);
         $this->data['page_data']        = $this->home_model->get('front_cms_home_seo', array('branch_id' => 1), true);
         $this->data['main_contents']    = $this->load->view('ads/new', $this->data, true);
         $this->load->view('home/layout/index', $this->data);
@@ -75,6 +102,16 @@ class Elanlar extends Frontend_Controller
         $this->data['ads_type']         = $this->home_model->adsType();
         $this->data['district']         = $this->home_model->allDistricts();
         $this->data['targets']          = $this->home_model->allTargets();
+        $this->data['new_ads_list']     = $this->home_model->allNewAdsSaleList();
+        array_unshift($this->data['metros'],"");
+        unset($this->data['metros'][0]);
+        array_unshift($this->data['district'],"");
+        unset($this->data['district'][0]);
+        array_unshift($this->data['regions'],"");
+        unset($this->data['regions'][0]);
+        array_unshift($this->data['cities'],"");
+        unset($this->data['cities'][0]);
+
         $this->data['page_data']        = $this->home_model->get('front_cms_home_seo', array('branch_id' => 1), true);
         $this->data['main_contents']    = $this->load->view('ads/satish', $this->data, true);
         $this->load->view('home/layout/index', $this->data);
@@ -89,6 +126,16 @@ class Elanlar extends Frontend_Controller
         $this->data['ads_type']         = $this->home_model->adsType();
         $this->data['district']         = $this->home_model->allDistricts();
         $this->data['targets']          = $this->home_model->allTargets();
+        $this->data['new_ads_list']     = $this->home_model->allNewAdsRentList();
+
+        array_unshift($this->data['metros'],"");
+        unset($this->data['metros'][0]);
+        array_unshift($this->data['district'],"");
+        unset($this->data['district'][0]);
+        array_unshift($this->data['regions'],"");
+        unset($this->data['regions'][0]);
+        array_unshift($this->data['cities'],"");
+        unset($this->data['cities'][0]);
         $this->data['page_data']        = $this->home_model->get('front_cms_home_seo', array('branch_id' => 1), true);
         $this->data['main_contents']    = $this->load->view('ads/kiraye', $this->data, true);
         $this->load->view('home/layout/index', $this->data);

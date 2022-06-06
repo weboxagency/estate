@@ -19,6 +19,7 @@ class Ads_model extends MY_Model
         return $query->result_array();
     }
 
+
     public function ads_save($data)
     {
         $arrayCity = array(
@@ -43,8 +44,6 @@ class Ads_model extends MY_Model
             'description'  => $data['description']),
             
 
-            
-
 
         );
 
@@ -55,6 +54,24 @@ class Ads_model extends MY_Model
             return true;
         } else {
             return false;
+        }
+    }
+
+    public function lastAdsId()
+    {
+        $this->db->select("*");
+        $this->db->from("ads_all");
+        $this->db->limit(1);
+        $this->db->order_by('id',"DESC");
+        $query = $this->db->get();
+        $result =  $query->result_array();
+        if ($result) 
+        {
+            return $result[0]['id'];
+        }
+        else
+        {
+            return 0;
         }
     }
 
