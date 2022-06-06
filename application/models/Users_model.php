@@ -17,6 +17,8 @@ class Users_model extends MY_Model
         $query = $this->db->get();
         $this->db->order_by("id", "asc");
         return $query->result_array();
+
+        $this->db->join('ads_all', 'ads_all.mobile = ads_users.mobile_format_second');
     }
 
     public function user_save($data)

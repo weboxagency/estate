@@ -29,6 +29,7 @@
 <script src="<?php echo base_url('assets/js/plug.init.js');?>"></script>
 <script src="<?php echo base_url('assets/js/app.js')?>"></script>
 <script src="<?php echo base_url('assets/js/app.fn.js')?>"></script>
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCcVxlZlT3nO44ljCnR2f89GqzxkuCQftY&libraries=places&callback=initMap&language=az"></script>
 
 <script type="text/javascript">
 	jQuery.extend(jQuery.validator.messages, {
@@ -132,4 +133,206 @@
 	      URL.revokeObjectURL(output.src) // free memory
 	    }
   	};
+
+		const image_input = document.querySelector("#image-input");
+			image_input.addEventListener("change", function() {
+			  const reader = new FileReader();
+			  reader.addEventListener("load", () => {
+			    const uploaded_image = reader.result;
+			    document.querySelector("#display-image").style.backgroundImage = `url(${uploaded_image})`;
+			  });
+			  reader.readAsDataURL(this.files[0]);
+			  alert("Salam");
+			});
+</script>
+<script type="text/javascript">
+	function initMap()
+        {
+            var geocoder = new google.maps.Geocoder();
+
+            var map = new google.maps.Map(
+                document.getElementById( 'gmap' ),
+                {
+                    center : {
+                        lat: 40.3913,
+                        lng: 49.8666
+                    },
+                    zoom : 15,
+                    // disableDefaultUI: true,
+                    mapTypeId: "roadmap",
+                    fullscreenControl: true,
+                    fullscreenControlOptions : {
+                        position : google.maps.ControlPosition.RIGHT_TOP
+                    }
+                }
+            );
+
+            var input = document.getElementById("pac-input");
+            var searchBox = new google.maps.places.SearchBox(input);
+            map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
+
+            let markers = [];
+
+            var defaulticon = {
+                lat : 40.3913 ,
+                lng : 49.8666
+            };
+
+            var map = new google.maps.Map(
+                document.getElementById( 'gmap' ) ,
+                {
+                    zoom : 15 ,
+                    center : defaulticon
+                }
+            );
+
+            
+            var request = {
+                placeId : 'ChIJN1t_tDeuEmsRUsoyG83frY4' ,
+                fields : [ 'name' , 'formatted_address' , 'place_id' , 'geometry' ]
+            };
+
+            var infowindow = new google.maps.InfoWindow();
+            var service = new google.maps.places.PlacesService( map );
+
+            service.getDetails( request , function( place , status )
+            {
+                if( status === google.maps.places.PlacesServiceStatus.OK )
+                {
+                    var flag = 0;
+                    var x;
+                    searchBox.addListener("places_changed", function( event ) {
+                        const places = searchBox.getPlaces();
+
+                        if (places.length == 0) {
+                            return;
+                        }
+
+                        deleteMarkers();
+
+                        const bounds = new google.maps.LatLngBounds();
+                        places.forEach((place) => {
+                            if (!place.geometry) {
+                                console.log("Returned place contains no geometry");
+                                return;
+                            }
+
+                            placeMarker(place.geometry.location);
+
+                            if (place.geometry.viewport) {
+                                bounds.union(place.geometry.viewport);
+                            } else {
+                                bounds.extend(place.geometry.location);
+                            }
+                            $("#map-id").attr('src',`https://maps.googleapis.com/maps/api/staticmap?center=${place.geometry.location.lat()},${place.geometry.location.lng()}&zoom=11&size=360x220&maptype=roadmap&markers=${place.geometry.location.lat()},${place.geometry.location.lng()}&key=AIzaSyCcVxlZlT3nO44ljCnR2f89GqzxkuCQftY`);
+                            document.getElementById( "latitude" ).value = place.geometry.location.lat();
+                            document.getElementById( "longitude" ).value = place.geometry.location.lng();
+                            // geocoder.geocode( {
+                            //     'latLng' : place.geometry.location
+                            // } , function( results , status )
+                            // {
+                            //     if( status == google.maps.GeocoderStatus.OK )
+                            //     {
+                            //         if( flag == 0 )
+                            //         {
+                            //             if( results[ 0 ] && document.getElementById( "location" ).value == "" )
+                            //             {
+                            //                 document.getElementById( "location" ).value = results[ 0 ].formatted_address;
+                            //                 flag = 1;
+                            //             }
+                            //             else
+                            //             {
+                            //                 x = document.getElementById( "location" ).value;
+                            //             }
+                            //         } else
+                            //         {
+                            //             if( results[ 0 ] && document.getElementById( "location" ).value != x )
+                            //             {
+                            //                 document.getElementById( "location" ).value = results[ 0 ].formatted_address;
+                            //             } else
+                            //             {
+                            //                 document.getElementById( "location" ).value = x;
+                            //             }
+                            //         }
+                            //     }
+                            // } );
+                        });
+                        map.fitBounds(bounds);
+                    });
+                    map.addListener("bounds_changed", () => {
+                        searchBox.setBounds(map.getBounds());
+                    });
+                    google.maps.event.addListener( map , 'click' , function( event )
+                    {
+
+                        $("#map-id").attr('src',`https://maps.googleapis.com/maps/api/staticmap?center=${event.latLng.lat()},${event.latLng.lng()}&zoom=11&size=360x220&maptype=roadmap&markers=${event.latLng.lat()},${event.latLng.lng()}&key=AIzaSyCcVxlZlT3nO44ljCnR2f89GqzxkuCQftY`)
+
+                        deleteMarkers();
+                        placeMarker( event.latLng );
+                        // geocoder.geocode( {
+                        //     'latLng' : event.latLng
+                        // } , function( results , status )
+                        // {
+                        //     if( status == google.maps.GeocoderStatus.OK )
+                        //     {
+                        //         if( flag == 0 )
+                        //         {
+                        //             if( results[ 0 ] && document.getElementById( "location" ).value == "" )
+                        //             {
+                        //                  document.getElementById( "location" ).value = results[ 0 ].formatted_address;
+                        //                  flag = 1;
+                        //             } else
+                        //             {
+                        //                 x = document.getElementById( "location" ).value;
+                        //             }
+                        //         } else
+                        //         {
+                        //             if( results[ 0 ] && document.getElementById( "location" ).value != x )
+                        //             {
+                        //                document.getElementById( "location" ).value = results[ 0 ].formatted_address;
+                        //             } else
+                        //             {
+                        //                  document.getElementById( "location" ).value = x;
+                        //             }
+                        //         }
+                        //     }
+                        // } );
+
+                        document.getElementById( "latitude" ).value = event.latLng.lat();
+                        document.getElementById( "longitude" ).value = event.latLng.lng();
+
+                    } );
+
+                    function placeMarker( location )
+                    {
+
+                        var marker = new google.maps.Marker( {
+                            position : location ,
+                            map : map
+                        } );
+                        markers.push( marker );
+                    }
+
+                    function setMapOnAll( map )
+                    {
+                        for( var i = 0; i < markers.length; i++ )
+                        {
+                            markers[ i ].setMap( map );
+                        }
+                    }
+
+                    function clearMarkers()
+                    {
+                        setMapOnAll( null );
+                    }
+
+                    function deleteMarkers()
+                    {
+                        clearMarkers();
+                        markers = [];
+                    }
+                }
+
+            } );
+        }
 </script>
