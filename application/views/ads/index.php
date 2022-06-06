@@ -367,6 +367,54 @@
 						</div>
 					</div>
 
+					<div class="form-row">
+                           <div class="form-item form-item--flex form-item--large">
+                              <label for="address">
+                              <?= translate('address') ?>
+                              <i class="fas fa-star-of-life"></i>
+                              </label>
+                              <div class="form-item__labeled">
+                                 <input type="text" class="form-item__element" name="address" placeholder="Ünvan" id="location" value="">
+                                 <input type="hidden" name="latitude" id="latitude" value="">
+                                 <input type="hidden" name="longitude" id="longitude" value="">
+                                 <p class="form-message form-message--info align-items-center">
+                                    <svg class="icon icon-pin">
+                                       <use xlink:href="<?= base_url() ?>assets/site/img/icons/icons.svg#icon-pin"></use>
+                                    </svg>
+                                    <span>
+                                       <a href="#" class="googleMapImg" data-toggle="modal" data-target="#modalMap"><?= translate('show_map') ?></a>
+                                    </span>
+                                 </p>
+                                 <div class="modal fade" id="modalMap" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                       <div class="modal-content">
+                                          <div class="modal-header" style="border-bottom: unset;">
+                                             <div class="modal-close" data-dismiss="modal">
+                                                <svg class="icon icon-close">
+                                                   <use xlink:href="assets/site/img/icons/icons9860.svg?v=2022-04-19%2000:11:16#icon-close"></use>
+                                                </svg>
+                                             </div>
+                                          </div>
+                                          <div class="modal-body">
+                                             <input id="pac-input" class="controls" type="text" placeholder="Ünvan" />
+                                             <div class="map-complex" id="gmap"></div>
+                                             <a id="savelocation" href="#" class="link-button link-button--primary link-setup d-none d-sm-flex" data-dismiss="modal"><?= translate('save') ?></a>
+                                          </div>
+                                       </div>
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                        <div class="form-row">
+                           <div class="form-item form-item--flex form-item--large form-item--textarea">
+                              <label for="property_description">
+                              </label>
+                              <div class="form-item__labeled">
+                                 <img id="map-id" src="">
+                              </div>
+                           </div>
+                        </div>
 					<div class="form-group mt-md description">
 						<label class="col-md-3 control-label"><?=translate('description')?> <span class="required">*</span></label>
 						<div class="col-md-6">
@@ -379,10 +427,8 @@
 					<div class="form-group mt-md images">
 						<label class="col-md-3 control-label" for="images"><?=translate('images')?> <span class="required">*</span></label>
 						<div class="col-md-6">
-							<input type="file" name="file" id="file" multiple onchange="loadFile(event)">
-							<div id="uploaded_images">
-								<img id="output" />
-							</div>
+							<input type="file" name="file" id="image-input">
+							<div id="display-image"></div>
 						</div>
 					</div>
 
@@ -416,3 +462,6 @@
       </div>
    </div>
 </section>
+<script src="<?= base_url('assets/site/admin/jquery-3.3.1.min.js') ?>"></script>
+<script src='<?= base_url('assets/site/admin/sweetalert2.all.min.js') ?>'></script>
+<script src='<?= base_url('assets/site/admin/underscore-min.js') ?>'></script>

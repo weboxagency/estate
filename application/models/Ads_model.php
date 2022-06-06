@@ -28,6 +28,7 @@ class Ads_model extends MY_Model
             'email'  => $data['email'],
             'user_type'  => $data['user_type'],
             'has_whatsapp'  => $data['has_whatsapp'],
+
             
             'ads_pin_kod' => mt_rand(100000, 999999),
             'ads_type'  => $data['ads_type'],
@@ -42,6 +43,7 @@ class Ads_model extends MY_Model
             'address'  => $data['address'],
             'description'  => $data['description'],
             'description'  => $data['description']
+
         );
 
         $this->db->insert('cities', $arrayCity);

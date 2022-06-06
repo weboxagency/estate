@@ -2,14 +2,17 @@
    <div class="tabs-custom">
       <ul class="nav nav-tabs">
          <li class="<?=(empty($validation_error) ? 'active' : '') ?>">
-            <a href="#list" data-toggle="tab"><i class="fas fa-list-ul"></i> <?=translate('all_users')?></a>
+            <a href="#user_registered" data-toggle="tab"><i class="fas fa-list-ul"></i> <?=translate('User_registered')?></a>
+         </li>
+         <li class="<?=(empty($validation_error) ? 'active' : '') ?>">
+            <a href="#user_nonregistered" data-toggle="tab"><i class="fas fa-list-ul"></i> <?=translate('user_nonregistered')?></a>
          </li>
          <li class="<?=(!empty($validation_error) ? 'active' : '') ?>">
             <a href="#create" data-toggle="tab"><i class="far fa-edit"></i> <?=translate('add_user')?></a>
          </li>
       </ul>
       <div class="tab-content">
-         <div id="list" class="tab-pane <?=(empty($validation_error) ? 'active' : '')?>">
+         <div id="user_registered" class="tab-pane <?=(empty($validation_error) ? 'active' : '')?>">
             <div class="mb-md">
                <table class="table table-bordered table-hover table-condensed mb-none table-export">
                   <thead>
@@ -35,6 +38,55 @@
                         <td><?php echo $row['email'];?></td>
                         <td><?php echo $row['mobile'];?></td>
                         <td><?php echo $row['balance'];?></td>
+                        <td>0 elan</td>
+                        <td>
+                           <div class="material-switch ml-xs">
+                              <input class="users-switch" id="switch_<?=$row['id']?>" data-id="<?=$row['id']?>" name="users_switch<?=$row['id']?>" 
+                              type="checkbox" <?php echo ($row['status'] == 1 ? 'checked' : ''); ?> />
+                              <label for="switch_<?=$row['id'] ?>" class="label-primary"></label>
+                           </div>
+                        </td>
+                        <td class="min-w-c">
+                           <!--update link-->
+                           <a href="<?=base_url('users/user_edit/'.$row['id'])?>" class="btn btn-default btn-circle icon">
+                              <i class="fas fa-pen-nib"></i>
+                           </a>
+                           <!-- delete link -->
+                           <?php echo btn_delete('users/user_delete/' . $row['id']);?>
+                        </td>
+                     </tr>
+                     <?php endforeach; ?>
+                  </tbody>
+               </table>
+            </div>
+         </div>
+         <div id="user_nonregistered" class="tab-pane <?=(empty($validation_error) ? 'active' : '')?>">
+            <div class="mb-md">
+               <table class="table table-bordered table-hover table-condensed mb-none table-export">
+                  <thead>
+                     <tr>
+                        <th width="50"><?=translate('id')?></th>
+                        <th><?=translate('user_name_surname')?></th>
+                        <th><?= translate('user_email') ?></th>
+                        <th><?= translate('user_mobile') ?></th>
+                        <th><?= translate('user_balance') ?></th>
+                        <th><?= translate('listings') ?></th>
+                        <th><?=translate('status')?></th>
+                        <th class="no-sort"><?=translate('action')?></th>
+                     </tr>
+                  </thead>
+                  <tbody>
+                     <?php 
+                        $count = 1;
+                        foreach($users as $row):
+                     ?>
+                     <tr>
+                        <td><?php echo $count++; ?></td>
+                        <td><?php echo $row['name'];?></td>
+                        <td><?php echo $row['email'];?></td>
+                        <td><?php echo $row['mobile'];?></td>
+                        <td><?php echo $row['balance'];?></td>
+                        <td>0 elan</td>
                         <td>
                            <div class="material-switch ml-xs">
                               <input class="users-switch" id="switch_<?=$row['id']?>" data-id="<?=$row['id']?>" name="users_switch<?=$row['id']?>" 
