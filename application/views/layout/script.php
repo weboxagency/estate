@@ -51,3 +51,85 @@
 		min: jQuery.validator.format("Please enter a value greater than or equal to {0}.")
 	});
 </script>
+
+<script type="text/javascript">
+	$('.room').hide();
+	$('.floor').hide();
+	$('.max-floor').hide();
+	$('.land-area').hide();
+	$('.region').hide();
+	$('.district').hide();
+	$('.deed').hide();
+	$('.mortgage').hide();
+	$('.repair').hide();
+
+	$('#estate_type').change(function(){
+		var estate_type_id = $(this).val();
+		if(estate_type_id == 1 || estate_type_id == 2)
+		{
+			$('.deed').show();
+			$('.mortgage').show();
+			$('.repair').show();
+			$('.room').show();
+			$('.floor').show();
+			$('.max-floor').show();
+		}
+		else if(estate_type_id==3 || estate_type_id == 4)
+		{
+			$('.deed').show();
+			$('.mortgage').show();
+			$('.repair').show();
+			$('.room').show();
+
+			$('.floor').hide();
+			$('.max-floor').hide();
+		}
+		else if(estate_type_id == 5)
+		{
+			$('.deed').show();
+			$('.mortgage').show();
+			$('.repair').show();
+			$('.room').show();
+			$('.area').show();
+			$('.land-area').hide();
+		}
+		else if(estate_type_id == 6)
+		{
+			$('.deed').show();
+			$('.mortgage').show();
+			$('.repair').hide();
+			$('.room').hide();
+			$('.area').show();
+			$('.land-area').show();
+		}
+		else if(estate_type_id == 7 || estate_type_id == 8)
+		{
+			$('.deed').show();
+			$('.mortgage').show();
+			$('.repair').show();
+			$('.area').show();
+			$('.room').hide();
+			$('.land-area').hide();
+		}
+		else 
+		{
+			$('.room').hide();
+			$('.floor').hide();
+			$('.max-floor').hide();
+			$('.land-area').hide();
+			$('.region').hide();
+			$('.district').hide();
+			$('.deed').hide();
+			$('.mortgage').hide();
+			$('.repair').hide();
+		}
+	})
+
+	var loadFile = function(event) {
+    var output = document.getElementById('file');
+	    output.src = URL.createObjectURL(event.target.files[0]);
+	    output.onload = function() {
+	      URL.revokeObjectURL(output.src) // free memory
+	    }
+  	};
+</script>

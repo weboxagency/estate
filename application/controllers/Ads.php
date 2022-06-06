@@ -26,6 +26,17 @@ class Ads extends Admin_Controller
 
     public function index()
     {
+        if ($this->input->post('submit') == 'save') {                  
+                
+            $post = $this->input->post();
+            $response = $this->ads->ads_save($post);
+            if ($response) {
+                set_alert('success', translate('information_has_been_saved_successfully'));
+            }
+                    redirect(base_url('ads/index'));
+                
+        }
+
 
         $this->data['ads_type']     = $this->hm->adsType();
         $this->data['estate_type']  = $this->hm->estateTypes();

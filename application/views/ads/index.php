@@ -1,3 +1,4 @@
+
 <section class="panel">
    <div class="tabs-custom">
       <ul class="nav nav-tabs">
@@ -174,7 +175,7 @@
          <div class="tab-pane <?=(!empty($validation_error) ? 'active' : '')?>" id="create">
             <?php echo form_open($this->uri->uri_string(), array('class' => 'form-horizontal form-bordered validate')); ?>
             	
-            		<div class="form-group mt-md">
+            		<div class="form-group mt-md related-person">
 						<label class="col-md-3 control-label"><?=translate('related_person')?> <span class="required">*</span></label>
 						<div class="col-md-6">
 							<input type="text" class="form-control" name="name" value="<?=set_value('name')?>" />
@@ -182,7 +183,7 @@
 						</div>
 					</div>
 
-					<div class="form-group mt-md">
+					<div class="form-group mt-md user-type">
 						<label class="col-md-3 control-label"><?=translate('user_type')?> <span class="required">*</span></label>
 						<div class="col-md-6">
 							<select class="form-control" name="user_type" id="user_type">
@@ -194,7 +195,7 @@
 					</div>
 
 
-					<div class="form-group mt-md">
+					<div class="form-group mt-md mobile">
 						<label class="col-md-3 control-label"><?=translate('mobile')?> <span class="required">*</span></label>
 						<div class="col-md-6">
 							<input type="text" class="form-control" name="mobile" value="<?=set_value('mobile')?>" />
@@ -207,7 +208,7 @@
 					</div>
 
 
-					<div class="form-group mt-md">
+					<div class="form-group mt-md email">
 						<label class="col-md-3 control-label"><?=translate('email')?> <span class="required">*</span></label>
 						<div class="col-md-6">
 							<input type="text" class="form-control" name="email" value="<?=set_value('email')?>" />
@@ -215,9 +216,7 @@
 						</div>
 					</div>
 
-					<hr>
-
-					<div class="form-group mt-md">
+					<div class="form-group mt-md ads-type">
 						<label class="col-md-3 control-label"><?=translate('ads_type')?> <span class="required">*</span></label>
 						<div class="col-md-6">
 							<select class="form-control" name="ads_type" id="ads_type">
@@ -230,7 +229,7 @@
 						</div>
 					</div>
 
-					<div class="form-group mt-md">
+					<div class="form-group mt-md estate-type">
 						<label class="col-md-3 control-label"><?=translate('estate_type')?> <span class="required">*</span></label>
 						<div class="col-md-6">
 							<select class="form-control" name="estate_type" id="estate_type">
@@ -240,34 +239,31 @@
 									<?php } ?>
 							</select>
 							<span class="error"><?=form_error('estate_type') ?></span>
+							<div class="deed">
+								<label>
+									<input type="checkbox" id="deed" name="deed">
+									Çıxarış var 
+								</label>
+							</div>
+								
 						</div>
 					</div>
 
-					<div class="form-group form-inline mt-md">
-						<label class="col-md-3 control-label"><?=translate('mortgage')?> <span class="required">*</span></label>
-						<div class="col-md-4">
-							<label>
-								<input type="radio" name="mortgage" value="1">
-								Var
-							</label>
-						</div>
-						<div class="col-md-4">
-							<label>
-								<input type="radio" name="mortgage" value="2">
-								Yoxdur
-							</label>
-						</div>
-					</div>
-
-					<div class="form-group mt-md">
+					<div class="form-group mt-md price">
 						<label class="col-md-3 control-label"><?=translate('price')?> <span class="required">*</span></label>
 						<div class="col-md-6">
 							<input type="text" class="form-control" name="price" placeholder="AZN" value="<?=set_value('price')?>" />
 							<span class="error"><?=form_error('price') ?></span>
+							<div class="mortgage">
+								<label>
+									<input type="checkbox" id="mortgage" name="mortgage">
+									Ipoteka var 
+								</label>
+							</div>
 						</div>
 					</div>
 
-					<div class="form-group mt-md">
+					<div class="form-group mt-md room">
 						<label class="col-md-3 control-label"><?=translate('room')?> <span class="required">*</span></label>
 						<div class="col-md-6">
 							<input type="text" class="form-control" name="room" placeholder="<?= translate('room') ?>" value="<?=set_value('room')?>" />
@@ -275,7 +271,7 @@
 						</div>
 					</div>
 
-					<div class="form-group mt-md">
+					<div class="form-group mt-md floor">
 						<label class="col-md-3 control-label"><?=translate('floor')?> <span class="required">*</span></label>
 						<div class="col-md-6">
 							<input type="text" class="form-control" name="floor" placeholder="<?= translate('enter_floor') ?>" value="<?=set_value('floor')?>" />
@@ -283,7 +279,7 @@
 						</div>
 					</div>
 
-					<div class="form-group mt-md">
+					<div class="form-group mt-md max-floor">
 						<label class="col-md-3 control-label"><?=translate('max_floor')?> <span class="required">*</span></label>
 						<div class="col-md-6">
 							<input type="text" class="form-control" name="max_floor" placeholder="<?= translate('enter_max_floor') ?>" value="<?=set_value('max_floor')?>" />
@@ -291,15 +287,32 @@
 						</div>
 					</div>
 
-					<div class="form-group mt-md">
+					<div class="form-group mt-md area">
 						<label class="col-md-3 control-label"><?=translate('area')?> <span class="required">*</span></label>
 						<div class="col-md-6">
 							<input type="text" class="form-control" name="area" placeholder="area" value="<?=set_value('area')?>" />
 							<span class="error"><?=form_error('area') ?></span>
+							
 						</div>
 					</div>
 
-					<div class="form-group mt-md">
+					<div class="form-group form-inline mt-md repair">
+						<label class="col-md-3 control-label"><?=translate('repair')?> <span class="required">*</span></label>
+						<div class="col-md-4">
+							<label>
+								<input type="radio" name="repair" value="1">
+								Təmirli
+							</label>
+						</div>
+						<div class="col-md-4">
+							<label>
+								<input type="radio" name="repair" value="0">
+								Təmirsiz
+							</label>
+						</div>
+					</div>
+
+					<div class="form-group mt-md land-area">
 						<label class="col-md-3 control-label"><?=translate('land_area')?> <span class="required">*</span></label>
 						<div class="col-md-6">
 							<input type="text" class="form-control" name="land_area" placeholder="land_area" value="<?=set_value('land_area')?>" />
@@ -307,8 +320,8 @@
 						</div>
 					</div>
 
-					<div class="form-group mt-md">
-						<label class="col-md-3 control-label"><?=translate('cities')?> <span class="required">*</span></label>
+					<div class="form-group mt-md city-id">
+						<label class="col-md-3 control-label"><?=translate('city')?> <span class="required">*</span></label>
 						<div class="col-md-6">
 							<select class="form-control" name="city_id" id="city_id">
 								<?php 
@@ -320,8 +333,8 @@
 						</div>
 					</div>
 
-					<div class="form-group mt-md">
-						<label class="col-md-3 control-label"><?=translate('regions')?> <span class="required">*</span></label>
+					<div class="form-group mt-md region">
+						<label class="col-md-3 control-label"><?=translate('region')?> <span class="required">*</span></label>
 						<div class="col-md-6">
 							<select class="form-control" name="region_id" id="region_id">
 								<?php 
@@ -333,8 +346,8 @@
 						</div>
 					</div>
 
-					<div class="form-group mt-md">
-						<label class="col-md-3 control-label"><?=translate('districts')?> <span class="required">*</span></label>
+					<div class="form-group mt-md district">
+						<label class="col-md-3 control-label"><?=translate('district')?> <span class="required">*</span></label>
 						<div class="col-md-6">
 							<select class="form-control" name="district_id" id="district_id">
 								<?php 
@@ -346,7 +359,7 @@
 						</div>
 					</div>
 
-					<div class="form-group mt-md">
+					<div class="form-group mt-md address">
 						<label class="col-md-3 control-label"><?=translate('address')?> <span class="required">*</span></label>
 						<div class="col-md-6">
 							<input type="text" class="form-control" name="address" placeholder="address" value="<?=set_value('address')?>" />
@@ -354,7 +367,7 @@
 						</div>
 					</div>
 
-					<div class="form-group mt-md">
+					<div class="form-group mt-md description">
 						<label class="col-md-3 control-label"><?=translate('description')?> <span class="required">*</span></label>
 						<div class="col-md-6">
 							<textarea name="description" class="form-control summernote" id="summernote">
@@ -363,9 +376,19 @@
 						</div>
 					</div>
 
+					<div class="form-group mt-md images">
+						<label class="col-md-3 control-label" for="images"><?=translate('images')?> <span class="required">*</span></label>
+						<div class="col-md-6">
+							<input type="file" name="file" id="file" multiple onchange="loadFile(event)">
+							<div id="uploaded_images">
+								<img id="output" />
+							</div>
+						</div>
+					</div>
 
 
-					<div class="form-group mt-md">
+
+					<div class="form-group mt-md status">
 						<label class="col-md-3 control-label" for="status"><?=translate('status')?> <span class="required">*</span></label>
 						<div class="col-md-6">
 							<select class="form-control" name="status" id="status">
