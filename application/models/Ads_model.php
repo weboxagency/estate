@@ -25,26 +25,23 @@ class Ads_model extends MY_Model
         $arrayCity = array(
             'name'      => $data['name'],
             'mobile' => $data['mobile'],
-            'email'  => $data['email']),
-            'user_type'  => $data['user_type']),
-            'has_whatsapp'  => $data['has_whatsapp']),
+            'email'  => $data['email'],
+            'user_type'  => $data['user_type'],
+            'has_whatsapp'  => $data['has_whatsapp'],
             
             'ads_pin_kod' => mt_rand(100000, 999999),
-            'ads_type'  => $data['ads_type']),
-            'estate_type'  => $data['estate_type']),
-            'price'  => $data['price']),
-            'area'  => $data['area']),
-            'land_area'  => $data['land_area']),
-            'deed'  => $data['deed']),
-            'mortgage'  => $data['mortgage']),
-            'floor'  => $data['floor']),
-            'max_floor'  => $data['max_floor']),
-            'address'  => $data['address']),
-            'description'  => $data['description']),
-            'description'  => $data['description']),
-            
-
-
+            'ads_type'  => $data['ads_type'],
+            'estate_type'  => $data['estate_type'],
+            'price'  => $data['price'],
+            'area'  => $data['area'],
+            'land_area'  => $data['land_area'],
+            'deed'  => $data['deed'],
+            'mortgage'  => $data['mortgage'],
+            'floor'  => $data['floor'],
+            'max_floor'  => $data['max_floor'],
+            'address'  => $data['address'],
+            'description'  => $data['description'],
+            'description'  => $data['description']
         );
 
         $this->db->insert('cities', $arrayCity);

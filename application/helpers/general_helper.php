@@ -9,6 +9,54 @@ function dd($par)
     die();
 }
 
+function date_aze($format, $datetime = 'now'){
+    $z = date("$format", strtotime($datetime));
+    $gun_dizi = array(
+        'Monday'    => 'Bazar ertəsi',
+        'Tuesday'   => 'Çərşənbə axşamı',
+        'Wednesday' => 'Çərşənbə',
+        'Thursday'  => 'Cümə axşamı',
+        'Friday'    => 'Cümə',
+        'Saturday'  => 'Şənbə',
+        'Sunday'    => 'Bazar',
+        'January'   => 'Yanvar',
+        'February'  => 'Fevral',
+        'March'     => 'Mart',
+        'April'     => 'Aprel',
+        'May'       => 'May',
+        'June'      => 'İyun',
+        'July'      => 'İyul',
+        'August'    => 'Avqust',
+        'September' => 'Sentyabr',
+        'October'   => 'Oktyabr',
+        'November'  => 'Noyabr',
+        'December'  => 'Dekabr',
+        'Mon'       => 'Bzr.e',
+        'Tue'       => 'Çər.a',
+        'Wed'       => 'Çər',
+        'Thu'       => 'Cüm.a',
+        'Fri'       => 'Cüm',
+        'Sat'       => 'Şnb',
+        'Sun'       => 'Bzr',
+        'Jan'       => 'Yan',
+        'Feb'       => 'Fev',
+        'Mar'       => 'Mar',
+        'Apr'       => 'Apr',
+        'Jun'       => 'İyn',
+        'Jul'       => 'İyl',
+        'Aug'       => 'Avq',
+        'Sep'       => 'Sen',
+        'Oct'       => 'Okt',
+        'Nov'       => 'Noy',
+        'Dec'       => 'Dek',
+    );
+    foreach($gun_dizi as $en => $tr){
+        $z = str_replace($en, $tr, $z);
+    }
+    if(strpos($z, 'May') !== false && strpos($format, 'F') === false) $z = str_replace('May', 'May', $z);
+    return $z;
+}
+
 function formatPhoneNumber($par='',$number='') 
 {
     // 070 854 43 01
