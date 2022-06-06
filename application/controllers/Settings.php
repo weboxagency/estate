@@ -221,6 +221,9 @@ class Settings extends Admin_Controller
 
         if ($this->input->post('submit') == 'banner') {
             move_uploaded_file($_FILES['header_banner']['tmp_name'], 'uploads/app_image/header_banner.png');
+            move_uploaded_file($_FILES['right_banner']['tmp_name'], 'uploads/app_image/right_banner.png');
+            move_uploaded_file($_FILES['left_banner']['tmp_name'], 'uploads/app_image/left_banner.png');
+            move_uploaded_file($_FILES['center_banner']['tmp_name'], 'uploads/app_image/center_banner.png');
             set_alert('success', translate('the_configuration_has_been_updated'));
             $this->session->set_flashdata('active', 4);
             redirect(current_url());

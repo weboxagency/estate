@@ -373,7 +373,7 @@
 					echo form_open_multipart($this->uri->uri_string(), array('class' 	=> 'validate'));
 				?>
 				<div class="headers-line">
-					<i class="fab fa-envira"></i> <?=translate('Site banners');?>
+					<i class="fab fa-envira"></i> <?=translate('site_banners');?>
 				</div>
 				<div class="row">
 					<div class="col-md-3">
@@ -382,7 +382,26 @@
 							<input type="file" name="header_banner" class="dropify" data-allowed-file-extensions="png" data-default-file="<?=base_url('uploads/app_image/header_banner.png')?>" />
 						</div>
 					</div>
+					<div class="col-md-3">
+						<div class="form-group">
+							<label class="control-label"><?=translate('right_banner');?></label>
+							<input type="file" name="right_banner" class="dropify" data-allowed-file-extensions="png" data-default-file="<?=base_url('uploads/app_image/right_banner.png')?>" />
+						</div>
+					</div>
+					<div class="col-md-3">
+						<div class="form-group">
+							<label class="control-label"><?=translate('left_banner');?></label>
+							<input type="file" name="left_banner" class="dropify" data-allowed-file-extensions="png" data-default-file="<?=base_url('uploads/app_image/left_banner.png')?>" />
+						</div>
+					</div>
+					<div class="col-md-3">
+						<div class="form-group">
+							<label class="control-label"><?=translate('center_banner');?></label>
+							<input type="file" name="center_banner" class="dropify" data-allowed-file-extensions="png" data-default-file="<?=base_url('uploads/app_image/center_banner.png')?>" />
+						</div>
+					</div>
 				</div>
+				
 				<footer class="panel-footer">
 					<div class="row">
 						<div class="col-md-2 col-sm-offset-10">

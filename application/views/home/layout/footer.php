@@ -89,7 +89,7 @@
                </a>
             </div>
             <div class="footer-background d-none d-md-flex">
-               <img src="assets/site/img/icons/footer%402x5760.png?v=2022-04-19%2000:11:03">
+               <img src="<?= base_url() ?>assets/site/img/icons/footer%402x5760.png">
             </div>
          </div>
       </div>

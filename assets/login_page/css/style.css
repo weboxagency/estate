@@ -24,7 +24,7 @@ input.form-control {
 
 .form-control {
     color: #fff;
-    background-color: #212121;
+    background-color: #a3719d;
     border-color: #444;
 	-webkit-border-radius: 4px;
 	border-radius: 4px;
@@ -168,7 +168,7 @@ a:hover, a:focus {
 /* sign area */
 .sign-area {
     z-index: 1;
-    background: #212121;
+    background: #a3719d;
     position: relative;
     color: #fff;
     width: 100%;
@@ -182,7 +182,7 @@ a:hover, a:focus {
 }
 
 .sign-area::before {
-    border-right: 60px solid #212121;
+    border-right: 60px solid #a3719d;
     border-top: 70px solid transparent;
     border-bottom: 70px solid transparent;
     content: '';
@@ -202,7 +202,7 @@ a:hover, a:focus {
 
 /* btn round */
 .btn-round {
-	background-color: #212121;
+	background-color: #a3719d;
 	border-color: #444;
 	margin-top: 25px;
 	height: 42px;
@@ -243,7 +243,7 @@ a:hover, a:focus {
     margin-bottom: 20px;
     border: 1px solid #444;
     border-radius: 4px;
-	background: #212121;
+	background: #a3719d;
 	text-align: center;
 }
 
@@ -260,7 +260,7 @@ a:hover, a:focus {
     margin-bottom: 12px;
     border: 1px solid #6ca115;
     border-radius: 4px;
-	background: #212121;
+	background: #a3719d;
 	text-align: center;
 }
 			
