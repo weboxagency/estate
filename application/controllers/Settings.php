@@ -19,6 +19,8 @@ class Settings extends Admin_Controller
         parent::__construct();
         $this->load->model('useragreements_model','ua');
         $this->load->model('adsrules_model', 'ar');
+        $this->load->model('right_left_banners_model', 'rlmodel');
+        
     }
 
     public function index()
@@ -60,7 +62,7 @@ class Settings extends Admin_Controller
         $this->data['user_agreement']  = $this->ua->getUserAgreements()[0];
         $this->data['title']            = translate('user_agreement');
         $this->data['sub_page']         = 'settings/user_agreement';
-        $this->data['main_menu']        = 'locations';
+        $this->data['main_menu']        = 'settings';
         $this->load->view('layout/index', $this->data);
     }
 
@@ -243,6 +245,167 @@ class Settings extends Admin_Controller
         );
         $this->load->view('layout/index', $this->data);
     }
+
+    /* ads banner controller */
+    public function ads_banners()
+    { 
+         $this->uploadPath = 'uploads/banners/'; 
+         $this->load->library('upload');
+         if ($this->input->post('submit') == 'save') {
+
+                // $this->form_validation->set_rules('file', translate('file'), 'required');
+                $this->form_validation->set_rules('position', translate('position'), 'required');
+                $this->form_validation->set_rules('external_link', translate('external_link'), 'required');
+                $this->form_validation->set_rules('status', translate('status'), 'required');
+                
+                if ($this->form_validation->run() == true) 
+                {
+                   $data = array(); 
+                      if(!empty($_FILES['file']['name']))
+                      { 
+                        $config['upload_path']   = $this->uploadPath; 
+                        $config['allowed_types'] = 'jpg|jpeg|png'; 
+                        $config['max_size']      = '6144';
+                        $config['remove_spaces'] = TRUE;        
+                        $config['encrypt_name']  = TRUE;
+                        // Load and initialize upload library 
+                        $this->load->library('upload', $config); 
+                        $this->upload->initialize($config);
+                        // Upload file to server 
+
+                        if($this->upload->do_upload('file')){ 
+                            $uploadData     = $this->upload->data(); 
+                            $uploadedImage  = $uploadData['file_name'];  
+                             // dd($uploadedImage);
+                            $source_path  = $this->uploadPath.$uploadedImage;
+                         }
+                     }
+                      else
+                      { 
+                         // $data['response'] = 'failed'; 
+                      } 
+
+                    $post = $this->input->post();
+                    
+                    $data_model = [
+                        "file"          => $source_path,
+                        "status"        => $this->input->post('status'),
+                        "position"      => $this->input->post('position'),
+                        "external_link" => $this->input->post('external_link'),
+                    ];
+
+                    $response = $this->rlmodel->ads_banners_save($data_model);
+                    if ($response) {
+                        set_alert('success', translate('information_has_been_updated_successfully'));
+                    }
+                    redirect(base_url('settings/ads_banners'));
+                } 
+                else 
+                {
+                    $this->data['validation_error'] = true;
+                }
+        }
+        $this->data['banners']          = $this->rlmodel->getAdsBanners();
+        $this->data['title']            = translate('ads_banners');
+        $this->data['sub_page']         = 'settings/ads_banners';
+        $this->data['main_menu']        = 'settings';
+        $this->load->view('layout/index', $this->data);
+    }
+
+
+
+    public function edit_banner($id = '')
+    {
+         $this->uploadPath = 'uploads/banners/'; 
+         $this->load->library('upload');
+         if ($this->input->post('submit') == 'edit') {
+
+                $this->form_validation->set_rules('position', translate('position'), 'required');
+                $this->form_validation->set_rules('external_link', translate('external_link'), 'required');
+                $this->form_validation->set_rules('status', translate('status'), 'required');
+                
+                if ($this->form_validation->run() == true) 
+                {
+                    $data = array(); 
+                      if(!empty($_FILES['file']['name']))
+                      { 
+                        $config['upload_path']   = $this->uploadPath; 
+                        $config['allowed_types'] = 'jpg|jpeg|png'; 
+                        $config['max_size']      = '6144';
+                        $config['remove_spaces'] = TRUE;        
+                        $config['encrypt_name']  = TRUE;
+                        $this->load->library('upload', $config); 
+                        $this->upload->initialize($config);
+
+                        if($this->upload->do_upload('file')){ 
+                            $uploadData     = $this->upload->data(); 
+                            $uploadedImage  = $uploadData['file_name'];  
+                            $source_path  = $this->uploadPath.$uploadedImage;
+                         }
+                     }
+                      else
+                      { 
+                         // $data['response'] = 'failed'; 
+                      } 
+
+                      $data_model = [
+                        "file"          => $source_path,
+                        "status"        => $this->input->post('status'),
+                        "position"      => $this->input->post('position'),
+                        "external_link" => $this->input->post('external_link'),
+                    ];
+
+                    
+
+                    $response = $this->rlmodel->edit_banner($data_model);
+                    if ($response) {
+                        set_alert('success', translate('information_has_been_updated_successfully'));
+                    }
+                    redirect(base_url('settings/ads_banners'));
+                } 
+                else 
+                {
+                    $this->data['validation_error'] = true;
+                }
+        
+        }
+        
+
+        $this->data['banner']          = $this->rlmodel->getAdsBanner($id);
+        $this->data['title']            = translate('edit_banner');
+        $this->data['sub_page']         = 'settings/edit_banner.php';
+        $this->data['main_menu']        = 'settings';
+
+        $this->load->view('layout/index', $this->data);
+    }
+
+    public function banner_status()
+    {
+        $id = $this->input->post('id');
+        $status = $this->input->post('status');
+        if ($status == 'true') {
+            $arrayData['status'] = 1;
+        } else {
+            $arrayData['status'] = 0;
+        }
+       
+        $this->db->where('id', $id);
+        $this->db->update('right_left_banners', $arrayData);
+        $return = array('msg' => translate('information_has_been_updated_successfully'), 'status' => true);
+        echo json_encode($return);
+    }
+
+    public function delete_banner($id = '')
+    {
+        if (is_superadmin_loggedin()) {
+            $this->db->where('id', $id);
+            $this->db->delete('right_left_banners');
+        } else {
+            redirect(base_url(), 'refresh');
+        }
+    }
+
+
 
     /* school settings controller */
     public function school()
