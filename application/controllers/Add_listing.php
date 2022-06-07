@@ -202,11 +202,14 @@ class Add_listing extends Frontend_Controller
                         "required"      => ucfirst(translate("the_deed_field_is_required"))                        
                     ]
                 );
+            if (((int)$_POST["property_type"] != 8)) 
+            {
             $this->form_validation->set_rules('room', translate('room'), 'trim|required|xss_clean', 
                     [
                         "required"      => ucfirst(translate("the_room_field_is_required"))                        
                     ]
                 );
+            }
             if (((int)$property_type === 1) OR ((int)$property_type === 2)) 
             {
             $this->form_validation->set_rules('floor', translate('floor'), 'trim|required|xss_clean', 
@@ -261,7 +264,13 @@ class Add_listing extends Frontend_Controller
                         "required"      => ucfirst(translate("the_district_field_is_required"))                        
                     ]
                 );
-            }
+            $this->form_validation->set_rules('metro', translate('metro'), 'trim|required|xss_clean', 
+                    [
+                        "required"      => ucfirst(translate("the_metro_field_is_required"))                        
+                    ]
+                );
+            }     
+            
             $this->form_validation->set_rules('repair', translate('repair'), 'trim|required|xss_clean', 
                     [
                         "required"      => ucfirst(translate("the_repair_field_is_required"))                        
@@ -340,8 +349,8 @@ class Add_listing extends Frontend_Controller
 
                 $emlak_novu = $all_estate_types[$property_type]['estate_type_name'];
                
-                $title      = strip_tags($pr.','.$emlak_novu.','.$an_headline.','.$loca.'-'.time());
-                $titleURL   = strtolower(url_title($title));
+                $title      = strip_tags($pr.','.$emlak_novu.','.$an_headline.','.$loca);
+                $titleURL   = strtolower(url_title($title.'-'.time()));
               
                 
                 $requesData = [
@@ -371,6 +380,10 @@ class Add_listing extends Frontend_Controller
                     "region_id"                 => (isset($region)) ? $region : '',  
                     "district_id"               => (isset($district)) ? $district : '',
                     "metro_id"                  => (isset($metro)) ? $metro : '',  
+                    "address"                   => (isset($address)) ? $address : '',  
+                    "latitude"                  => (isset($latitude)) ? $latitude : '',  
+                    "longitude"                 => (isset($longitude)) ? $longitude : '',  
+                    "property_description"      => (isset($property_description)) ? $property_description : '',  
                     "business_center"           => '',
                     "complex"                   => '',
                     "is_active"                 => 0,  
@@ -428,10 +441,7 @@ class Add_listing extends Frontend_Controller
                 {
                     $output["city"] = ["the_city_field_is_required"];
                 }
-                if ((int)$_POST["city"] === 1) 
-                {
-                    $output["metro"] = ["the_metro_field_is_required"];
-                }
+                
                 if (((int)$_POST["property_type"] === 3) OR ((int)$_POST["property_type"] === 5)) 
                 {
                     $output["land_area"] = ["the_land_area_field_is_required"];
@@ -452,7 +462,6 @@ class Add_listing extends Frontend_Controller
     {
         $thumb_msg = $status = $status_msg = $thumbnail = $org_image_size = $thumb_image_size = ''; 
         $data = array(); 
- 
         // If the file upload form submitted 
       
         if(!empty($_FILES['path']['name'])){ 
@@ -476,7 +485,7 @@ class Add_listing extends Frontend_Controller
                     $thumb_path   = $this->uploadPath.'thumb/'; 
                     $thumb_width  = 280; 
                     $thumb_height = 175; 
-                     
+                    
                     // Image resize config 
                     $config['image_library']    = 'gd2'; 
                     $config['source_image']     = $source_path; 
@@ -487,7 +496,8 @@ class Add_listing extends Frontend_Controller
                      
                     // Load and initialize image_lib library 
                     $this->load->library('image_lib', $config); 
-                     
+                    
+
                     // Resize image and create thumbnail 
                     if($this->image_lib->resize())
                     { 

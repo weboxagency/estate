@@ -474,13 +474,13 @@
                <div class="faiz" data-toggle="tooltip" title="<?= translate('mortgage') ?>">&nbsp;</div>
                <div class="kupcha" data-toggle="tooltip" title="Kupçalı">&nbsp;</div>
                <div class="carousel-inner">
-                   <a target="_blank" href="<?= base_url() ?>home/detail" class="carousel-item active">
+                   <a target="_blank" href="<?= base_url() ?>elan" class="carousel-item active">
                        <img src="uploads/announcement/32974/a14fea5c798bb49d148ba0f14cdb3d81_avatar568e.jpg?v=1641284164" alt="<%- rc.title %>">
                    </a>
-                   <a target="_blank" href="<?= base_url() ?>home/detail" class="carousel-item">
+                   <a target="_blank" href="<?= base_url() ?>elan" class="carousel-item">
                        <img src="uploads/announcement/32974/a14fea5c798bb49d148ba0f14cdb3d81_avatar568e.jpg?v=1641284164" alt="<%- rc.title %>">
                    </a>
-                   <a target="_blank" href="<?= base_url() ?>home/detail" class="carousel-item">
+                   <a target="_blank" href="<?= base_url() ?>elan" class="carousel-item">
                        <img src="uploads/announcement/32974/a14fea5c798bb49d148ba0f14cdb3d81_avatar568e.jpg?v=1641284164" alt="<%- rc.title %>">
                    </a>
                </div>
@@ -497,7 +497,7 @@
                   </svg>
                </div>
                <div class="shape">
-                  <form action="<?= base_url() ?>home/wishlist" method="post" x-edit-form="32978" x-target-with-data="afterWishlist">
+                  <form action="<?= base_url() ?>wishlist" method="post" x-edit-form="32978" x-target-with-data="afterWishlist">
                      <input type="hidden" name="<?php echo $this->security->get_csrf_token_name();?>" value="<?php echo $this->security->get_csrf_hash();?>">
                      <input type="hidden" name="id" value="32978">
                         <button type="submit">
@@ -509,7 +509,7 @@
                </div>   
             </div>
        </div>
-      <a class="announcement-description template-announcement" target="_blank" href="<?= base_url() ?>home/detail">
+      <a class="announcement-description template-announcement" target="_blank" href="<?= base_url() ?>elan">
             <p class="announcement-price py-0"><span class="pricemain">180000</span>AZN</p>
             <p class="announcement-location">Mərdəkan q.</p>
             <p class="announcement-size announcement-headline">5 otaqlı - 250 m²</p>
@@ -519,12 +519,18 @@
    </div>
 </div>
 
-<!-- Yeni Elanlar -->
+
+
+
+
+
+
+<!-- YENI ELANLAR -->
 
 <div class="announcement-group">
    <div class="announcement-group__header">
       <h5 class="announcement-title"><?= translate('new_ads') ?></h5>
-      <a class="link-button link-button--tertiary" href="<?= base_url() ?>elanlar/new"><?= translate('see_them_all') ?></a>
+      <a class="link-button link-button--tertiary" href="<?= base_url() ?>yeni-elanlar"><?= translate('see_them_all') ?></a>
    </div>
    <div class="announcement-group__body">
       <?php foreach ($new_ads_list as $value) { ?>
@@ -550,7 +556,7 @@
                <?php } ?>
                <div class="carousel-inner">
                   <?php foreach (ads_photos($value['photos']) as $key => $shekil) { ?>
-                  <a class="carousel-item <?= ($key==0) ? 'active' : '' ?> " target=_blank href="<?= base_url().'home/detail/'.$value['url_slug'] ?>">
+                  <a class="carousel-item <?= ($key==0) ? 'active' : '' ?> " target=_blank href="<?= base_url().'elan/'.$value['url_slug'] ?>">
                   <img src="<?= $shekil['avatar'] ?>" alt="<?= $value['ads_title'] ?>">
                   </a>
                   <?php } ?>
@@ -558,7 +564,7 @@
             </div>
             <div class="announcement-icons">
                <div class="shape">
-                  <form action="<?= base_url() ?>home/wishlist" method="post" x-edit-form="<?= $value['id'] ?>" x-target-with-data="afterWishlist">
+                  <form action="<?= base_url() ?>wishlist" method="post" x-edit-form="<?= $value['id'] ?>" x-target-with-data="afterWishlist">
                      <input type="hidden" name="<?php echo $this->security->get_csrf_token_name();?>" value="<?php echo $this->security->get_csrf_hash();?>">
                      <input type="hidden" name="id" value="<?= $value['id'] ?>">
                      <button type="submit">
@@ -582,7 +588,7 @@
                </div>
             </div>
          </div>
-         <a class="announcement-description template-announcement" target=_blank href="<?= base_url().'home/detail/'.$value['url_slug'] ?>">
+         <a class="announcement-description template-announcement" target=_blank href="<?= base_url().'elan/'.$value['url_slug'] ?>">
             <p class="announcement-price py-0"><span class="pricemain">
                <?php 
                if ($value['announcement_type']==1) 
@@ -622,11 +628,11 @@
                <?= $loca; ?>   
             </p>
             <?php 
-            if ($value['property_type']==6) 
+            if ($value['property_type']==8) 
             {
-               $an_headline = $value['land_area'];
+               $an_headline = $value['area'].' sot';
             } 
-            elseif ($value['property_type']==10) 
+            elseif ($value['property_type']==9 OR $value['property_type']==10) 
             {
                $an_headline = $value['area'].' m²';
             }
@@ -634,8 +640,17 @@
             {
                $an_headline = $value['room'].' otaqlı - '. $value['area'].' m²';
             }
+
+            if ($value['floor']!=0) 
+            {
+               $ot = ' - '.$value['floor'].'/'.$value['max_floor'];
+            }
+            else
+            {
+               $ot = '';
+            }
             ?>
-            <p class="announcement-size announcement-headline"><?= $an_headline ?></p>
+            <p class="announcement-size announcement-headline"><?= $an_headline.' '.$ot ?></p>
             <p class="announcement-deadline"><span><?= $cities[$value['city_id']]['city_name'] ?>, <?= date_aze("j F Y",$value['created_at']); ?></span></p>
          </a>
       </div>
@@ -762,10 +777,10 @@
 <div class="announcement-group">
    <div class="announcement-group__header">
       <h4 class="announcement-title">Yaşayış kompleksləri</h4>
-      <a class="link-button link-button--tertiary" href="<?= base_url() ?>home/detail"><?= translate('see_them_all') ?></a>
+      <a class="link-button link-button--tertiary" href="<?= base_url() ?>elan"><?= translate('see_them_all') ?></a>
    </div>
    <div class="announcement-group__body">
-      <a target="_blank" class="announcement announcement--long" href="<?= base_url() ?>home/detail">
+      <a target="_blank" class="announcement announcement--long" href="<?= base_url() ?>elan">
          <div class="announcement-image">
             <img src="uploads/complex/27/bbdc9f1ed072a90a30c08920dbe7ac8c_avatar7fb5.jpg?v=1619006980" alt="&quot;Hünər Park&quot;">
          </div>

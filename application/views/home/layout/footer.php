@@ -1,5 +1,5 @@
 <div class="page-container container footer-container">
-   <div class="footer-thumblis">
+   <!-- <div class="footer-thumblis">
       <div class="thumblist-title">Populyar axtarışlar</div>
       <ul>
          <li><a target="_blank" href="az/axtar/satis/yeni-tikili.html">Yeni tikili mənzillər</a></li>
@@ -19,7 +19,7 @@
          <li><a target="_blank" href="az/axtar/satis/elanlar/20-yanvar.html">20 Yanvar ucuz evlər</a></li>
          <li><a target="_blank" href="az/axtar/satis9139.html?sort=&amp;region=&amp;district=&amp;metro=&amp;placemark=&amp;page=1&amp;type=1&amp;number=&amp;property_type%5B1%5D=on&amp;property_type%5B2%5D=on&amp;room%5B0%5D=on&amp;room%5B1%5D=on&amp;room%5B2%5D=on&amp;room%5B3%5D=on&amp;room%5B4%5D=on&amp;room%5B5%5D=on&amp;price_min=&amp;price_max=&amp;area_min=&amp;area_max=&amp;land_area_min=&amp;land_area_max=&amp;floor_min=&amp;floor_max=&amp;repair%5B0%5D=on&amp;city=1">Təmirsiz mənzillər</a></li>
       </ul>
-   </div>
+   </div> -->
 </div>
 <footer class="footer">
    <div class="footer-navbar">
@@ -126,7 +126,7 @@
          </div>
          <div class="footer-secondary__container container">
             <div class="footer-secondary__column footer-secondary--about" style="max-width: unset;">
-               <p>© 2020 - 2022 Evelani.az | Bütün hüquqlar qorunur</p>
+               <p>© 2020 - 2022 Estate.az | Bütün hüquqlar qorunur</p>
             </div>
          </div>
          <div class="scroll-up">

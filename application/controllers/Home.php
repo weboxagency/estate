@@ -114,7 +114,7 @@ class Home extends Frontend_Controller
     {
         if (empty($url_slug)) 
         {
-            redirect(base_url(), 'refresh');
+            redirect('404_override');
         }
         else
         {
@@ -128,7 +128,7 @@ class Home extends Frontend_Controller
                 $this->data['ads_type']         = $this->home_model->adsType();
                 $this->data['district']         = $this->home_model->allDistricts();
                 $this->data['ads_detail']       = $this->home_model->getAdsDetail($url_slug);
-                // dd($this->data['ads_detail']);
+                // dd(estateTypeName(8));
                 array_unshift($this->data['metros'],"");
                 unset($this->data['metros'][0]);
                 array_unshift($this->data['district'],"");
