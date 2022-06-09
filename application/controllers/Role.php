@@ -6,7 +6,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
  * @version : 4.0
  * @developed by : RamomCoder
  * @support : ramomcoder@yahoo.com
- * @author url : http://codecanyon.net/user/RamomCoder
+ * @author url : https://webox.az
  * @filename : Role.php
  */
 

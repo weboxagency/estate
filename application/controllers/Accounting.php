@@ -2,12 +2,13 @@
 defined('BASEPATH') or exit('No direct script access allowed');
 
 /**
- * @package : Ramom SSchool Management System
- * @version : 4.0
- * @developed by : RamomCoder
- * @support : ramomcoder@yahoo.com
- * @author url : http://codecanyon.net/user/RamomCoder
- * @filename : Accounting.php
+ * @package : Estate.az - Daşınmaz əmlak platforması
+ * @version : 1.0
+ * @developed by : Webox Agency
+ * @support : aghakarim.karimov@gmail.com
+ * @author url : https://webox.az
+ * @filename : Home.php
+ * @copyright : Aghakarim Karimov & Cavid Shixiyev
  */
 
 class Accounting extends Admin_Controller
