@@ -51,10 +51,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 */
 $route['default_controller'] 		= 'home';
 $route['404_override'] 				= 'errors';
+$route['translate_uri_dashes'] 		= FALSE;
+
+
 $route['elan-yerlesdir'] 			= 'add_listing';
 $route['istifadeci-razilasmasi'] 	= 'user_agreement';
 $route['yeni-elanlar'] 				= 'elanlar/new';
-$route['wishlist'] 				= 'home/wishlist';
-// $route['authors/(:num)'] 		= 'authors';
+$route['wishlist'] 					= 'home/wishlist';
 $route['elan/(:any)'] 				= 'home/detail/$1';
-$route['translate_uri_dashes'] 	= FALSE;
+$route['axtar'] 					= 'home/search';
+$route['auth/authentication']			= 'authentication';

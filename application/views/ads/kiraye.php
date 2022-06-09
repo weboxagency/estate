@@ -1,7 +1,7 @@
 <main class="main">
 	<section class="map">
 	   <div class="main-header__content container map-content page-container">
-	     <form x-search-form class="search" action="https://evelani.az/az/axtar/satis" method="get">
+	     <form x-search-form class="search" action="<?= base_url() ?>axtar" method="get">
 	         <input type="hidden" name="sort" value="">
 	         <input type="hidden" name="region">
 	         <input type="hidden" name="district">

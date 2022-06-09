@@ -195,6 +195,19 @@ class Home_model extends MY_Model
         return $query->num_rows() > 0 ? $query->result_array() : NULL;
         
     }
+    
+    public function searchAdsList($sql)
+    {
+        $query = $this->db->query($sql." ORDER BY id DESC");
+        return $query->num_rows() > 0 ? $query->result_array() : NULL;
+        
+    }
+
+    public function searchAdsNumber($sql)
+    {
+        $query = $this->db->query($sql." ORDER BY id DESC");
+        return $query->num_rows() == 1 ? $query->result_array()[0] : NULL;
+    }
 
     public function allNewAdsSaleList()
     {

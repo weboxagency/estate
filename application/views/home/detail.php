@@ -98,10 +98,10 @@
                         </h2>
                         <h2 class="announcement-price">
                            <?php if (!empty($ads_detail['area'])) { ?>
-                           <span id="announcementprice"><?= $ads_detail['price']/$ads_detail['area'] ?></span>
+                           <span id="announcementprice"><?= $ads_detail['average_price'] ?></span>
                            <span class="color">AZN/m²</span>
                            <?php }else{ ?>
-                           <span id="announcementprice"><?= $ads_detail['price']/$ads_detail['land_area'] ?></span>
+                           <span id="announcementprice"><?= $ads_detail['average_price'] ?></span>
                            <span class="color">AZN/sot</span>
                            <?php } ?>
                         </h2>
@@ -138,7 +138,7 @@
                      <div class="announcement-infos">
                         <div class="announcement-infos--item">
                            <p>Elanın nömrəsi</p>
-                           <a href="#">#1528812</a>
+                           <a href="#">#<?= $ads_detail['ads_number'] ?></a>
                         </div>
                         <div class="announcement-infos--item">
                            <p>Baxış sayı</p>
@@ -325,7 +325,7 @@
                      </h2>
                      <h2 class="announcement-price">
                         <?php if (!empty($ads_detail['area'])) { ?>
-                           <span id="pricetitle" class="price-main pricetitle pricemain-title num-broken"><?= $ads_detail['price']/$ads_detail['area'] ?></span>
+                           <span id="pricetitle" class="price-main pricetitle pricemain-title num-broken"><?= $ads_detail['average_price'] ?></span>
                            <span class="price-cost">AZN/m²</span>
                            <?php }else{ ?>
                            <span id="pricetitle" class="price-main pricetitle pricemain-title num-broken"><?= $ads_detail['price']/$ads_detail['land_area'] ?></span>
@@ -369,7 +369,7 @@
                   <div class="announcement-infos">
                      <div class="announcement-infos--item">
                         <p>Elanın nömrəsi</p>
-                        <a href="#">#<?= $ads_detail['id'] ?></a>
+                        <a href="#">#<?= $ads_detail['ads_number'] ?></a>
                      </div>
                      <div class="announcement-infos--item">
                         <p>Baxış sayı</p>
@@ -384,7 +384,7 @@
                      <div class="announcement-edit--item">
                         <a href="#" data-toggle="modal" data-target="#email-complaint">
                            <svg class="icon icon-flag">
-                              <use xlink:href="<?= base_url() ?>assets/site/img/icons/icons.svg?v=2022-04-22 05:08:38#icon-flag"></use>
+                              <use xlink:href="<?= base_url() ?>assets/site/img/icons/icons.svg?#icon-flag"></use>
                            </svg>
                            <p>Elanı şikayət et</p>
                         </a>
@@ -392,7 +392,7 @@
                      <div class="announcement-edit--item">
                         <a href="#" data-toggle="modal" data-target="#edit-announcement">
                            <svg class="icon icon-edit-solid">
-                              <use xlink:href="<?= base_url() ?>assets/site/img/icons/icons.svg?v=2022-04-22 05:08:38#icon-edit-solid"></use>
+                              <use xlink:href="<?= base_url() ?>assets/site/img/icons/icons.svg?#icon-edit-solid"></use>
                            </svg>
                            <p>Elana düzəliş et</p>
                         </a>

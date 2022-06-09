@@ -1,6 +1,6 @@
 <section class="map">
    <div class="main-header__content container map-content page-container">
-      <form x-search-form="" class="search" action="https://evelani.az/az/axtar/kiraye/yeni-tikili" method="get">
+      <form x-search-form="" class="search" action="<?= base_url() ?>/az/axtar/kiraye/yeni-tikili" method="get">
          <input type="hidden" name="sort" value="">
          <input type="hidden" name="region">
          <input type="hidden" name="district">
@@ -17,7 +17,7 @@
                <div class="caption">
                   <span>Kirayə</span>
                   <svg class="icon icon-down">
-                     <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-down"></use>
+                     <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-down"></use>
                   </svg>
                </div>
                <div class="list">
@@ -29,14 +29,14 @@
             <div class="searchmap-content">
                <input onkeypress="return isNumberKey(event)" id="numberTxt" class="search-input" type="number" placeholder="Elanın nömrəsi" name="number">
                <svg class="icon icon-search">
-                  <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-search"></use>
+                  <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-search"></use>
                </svg>
             </div>
          </div>
          <div class="searchmap-input">
             <div class="link-button link-button--secondary" data-toggle="modal" data-target="#locationSearch">
                <svg class="icon icon-pin">
-                  <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-pin"></use>
+                  <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-pin"></use>
                </svg>
                Yer<span id="check-location"></span>
             </div>
@@ -48,7 +48,7 @@
                         <h6 class="modal-title">Ətraflı axtar</h6>
                         <div class="modal-close" data-dismiss="modal">
                            <svg class="icon icon-close">
-                              <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                              <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                            </svg>
                         </div>
                      </div>
@@ -59,7 +59,7 @@
                                  <div class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     <span>Əmlakın növü<strong></strong></span>
                                     <svg class="icon icon-down">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-down"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-down"></use>
                                     </svg>
                                  </div>
                                  <div class="dropdown-menu">
@@ -137,7 +137,7 @@
                                  <div class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     <span>Otaq sayı</span>
                                     <svg class="icon icon-down">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-down"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-down"></use>
                                     </svg>
                                  </div>
                                  <div class="dropdown-menu">
@@ -354,7 +354,7 @@
                         </select>
                         <div class="modal-close" data-dismiss="modal">
                            <svg class="icon icon-close">
-                              <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                              <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                            </svg>
                         </div>
                         <div class="filter-tertiary d-none d-md-flex">
@@ -369,7 +369,7 @@
                         </div>
                         <div class="map-title d-none d-sm-flex">
                            <svg class="icon-mapshowicon">
-                              <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-mapshowicon"></use>
+                              <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-mapshowicon"></use>
                            </svg>
                            <a x-search-in-map="" href="javascript:" class="link-button">Xəritədə axtar</a>
                         </div>
@@ -377,7 +377,7 @@
                      <div class="modal-body regions-tab">
                         <div class="form-item form-item--large">
                            <svg class="icon icon-search">
-                              <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-search"></use>
+                              <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-search"></use>
                            </svg>
                            <input oninput="updateRegion(this.value)" class="form-item__element location-input" type="search" placeholder="Rayon və qəsəbə adlarını daxil edin">
                            <ul class="region-list" id="region-list" style="display: none;">
@@ -1352,31 +1352,31 @@
                                  <p class="region-title region-2">
                                     <span class="region-part__title">Xətai r.</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part district-1">
                                     <span class="region-part__title">Həzi Aslanov</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part district-2">
                                     <span class="region-part__title">Əhmədli</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part district-3">
                                     <span class="region-part__title">NZS</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part district-4">
                                     <span class="region-part__title">Köhnə Günəşli</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                               </div>
@@ -1384,97 +1384,97 @@
                                  <p class="region-title region-3">
                                     <span class="region-part__title">Abşeron r.</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part district-5">
                                     <span class="region-part__title">Ceyranbatan</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part district-6">
                                     <span class="region-part__title">Digah</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part district-7">
                                     <span class="region-part__title">Fatmayi</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part district-8">
                                     <span class="region-part__title">Görədil</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part district-9">
                                     <span class="region-part__title">Hökməli</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part district-10">
                                     <span class="region-part__title">Köhnə Corat</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part district-11">
                                     <span class="region-part__title">Masazır</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part district-12">
                                     <span class="region-part__title">Mehdiabad</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part district-13">
                                     <span class="region-part__title">Müşviqabad</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part district-14">
                                     <span class="region-part__title">Novxanı</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part district-15">
                                     <span class="region-part__title">Pirəkəşkül</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part district-16">
                                     <span class="region-part__title">Qobu</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part district-17">
                                     <span class="region-part__title">Saray</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part district-18">
                                     <span class="region-part__title">Yeni Corat</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part district-54">
                                     <span class="region-part__title">Şimal Dres</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                               </div>
@@ -1482,85 +1482,85 @@
                                  <p class="region-title region-4">
                                     <span class="region-part__title">Binəqədi r.</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part district-19">
                                     <span class="region-part__title">28 may</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part district-20">
                                     <span class="region-part__title">6-cı mikrorayon</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part district-21">
                                     <span class="region-part__title">7-ci mikrorayon</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part district-22">
                                     <span class="region-part__title">8-ci mikrorayon</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part district-23">
                                     <span class="region-part__title">9-cu mikrorayon</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part district-24">
                                     <span class="region-part__title">Biləcəri</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part district-25">
                                     <span class="region-part__title">Binəqədi</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part district-26">
                                     <span class="region-part__title">M. Rəsulzadə</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part district-27">
                                     <span class="region-part__title">Sulutəpə</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part district-28">
                                     <span class="region-part__title">Xocasən</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part district-29">
                                     <span class="region-part__title">Xutor</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part district-30">
                                     <span class="region-part__title">Dərnəgül</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part district-31">
                                     <span class="region-part__title">Çiçək</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                               </div>
@@ -1568,19 +1568,19 @@
                                  <p class="region-title region-5">
                                     <span class="region-part__title">Nərimanov r.</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part district-32">
                                     <span class="region-part__title">Böyükşor</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part district-33">
                                     <span class="region-part__title">Montin</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                               </div>
@@ -1588,43 +1588,43 @@
                                  <p class="region-title region-6">
                                     <span class="region-part__title">Nəsimi r.</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part district-34">
                                     <span class="region-part__title">1-ci mikrorayon</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part district-35">
                                     <span class="region-part__title">2-ci mikrorayon</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part district-36">
                                     <span class="region-part__title">3-cü mikrorayon</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part district-37">
                                     <span class="region-part__title">4-cü mikrorayon</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part district-38">
                                     <span class="region-part__title">5-ci mikrorayon</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part district-39">
                                     <span class="region-part__title">Kubinka</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                               </div>
@@ -1632,19 +1632,19 @@
                                  <p class="region-title region-7">
                                     <span class="region-part__title">Nizami r.</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part district-40">
                                     <span class="region-part__title">8-ci kilometr</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part district-41">
                                     <span class="region-part__title">Keşlə</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                               </div>
@@ -1652,19 +1652,19 @@
                                  <p class="region-title region-8">
                                     <span class="region-part__title">Pirallahı r.</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part district-42">
                                     <span class="region-part__title">Çilov</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part district-43">
                                     <span class="region-part__title">Pirallahı</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                               </div>
@@ -1672,133 +1672,133 @@
                                  <p class="region-title region-9">
                                     <span class="region-part__title">Qaradağ r.</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part district-44">
                                     <span class="region-part__title">Bibi-Heybət</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part district-45">
                                     <span class="region-part__title">Ələt</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part district-46">
                                     <span class="region-part__title">Lökbatan</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part district-47">
                                     <span class="region-part__title">Puta</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part district-48">
                                     <span class="region-part__title">Qızıldaş</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part district-49">
                                     <span class="region-part__title">Qobustan</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part district-50">
                                     <span class="region-part__title">Sahil</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part district-51">
                                     <span class="region-part__title">Səngəçal</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part district-52">
                                     <span class="region-part__title">Şıxov</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part district-53">
                                     <span class="region-part__title">Şubani</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part district-55">
                                     <span class="region-part__title">Baş Ələt</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part district-56">
                                     <span class="region-part__title">Ceyildağ</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part district-57">
                                     <span class="region-part__title">Heybət</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part district-58">
                                     <span class="region-part__title">Korgöz</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part district-59">
                                     <span class="region-part__title">Kotal</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part district-60">
                                     <span class="region-part__title">Pirsaat</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part district-61">
                                     <span class="region-part__title">Qaradağ</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part district-62">
                                     <span class="region-part__title">Qarakosa</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part district-63">
                                     <span class="region-part__title">Şonqar</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part district-64">
                                     <span class="region-part__title">Ümid</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part district-65">
                                     <span class="region-part__title">Yeni Ələt</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                               </div>
@@ -1806,91 +1806,91 @@
                                  <p class="region-title region-10">
                                     <span class="region-part__title">Sabunçu r.</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part district-66">
                                     <span class="region-part__title">Bakıxanov</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part district-67">
                                     <span class="region-part__title">Balaxanı</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part district-68">
                                     <span class="region-part__title">Bilgəh</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part district-69">
                                     <span class="region-part__title">Kürdəxanı</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part district-70">
                                     <span class="region-part__title">Maştağa</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part district-71">
                                     <span class="region-part__title">Məmmədli</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part district-72">
                                     <span class="region-part__title">Nardaran</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part district-73">
                                     <span class="region-part__title">Pirşağı</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part district-74">
                                     <span class="region-part__title">Ramana</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part district-75">
                                     <span class="region-part__title">Sabunçu</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part district-76">
                                     <span class="region-part__title">Savalan</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part district-77">
                                     <span class="region-part__title">Yeni Balaxanı</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part district-78">
                                     <span class="region-part__title">Yeni Ramana</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part district-79">
                                     <span class="region-part__title">Zabrat</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                               </div>
@@ -1898,25 +1898,25 @@
                                  <p class="region-title region-12">
                                     <span class="region-part__title">Səbail r.</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part district-80">
                                     <span class="region-part__title">20-ci sahə</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part district-81">
                                     <span class="region-part__title">Badamdar</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part district-82">
                                     <span class="region-part__title">Bayıl</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                               </div>
@@ -1924,109 +1924,109 @@
                                  <p class="region-title region-13">
                                     <span class="region-part__title">Suraxanı r.</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part district-83">
                                     <span class="region-part__title">Bahar</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part district-84">
                                     <span class="region-part__title">Bülbülə</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part district-85">
                                     <span class="region-part__title">Dədə Qorqud</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part district-87">
                                     <span class="region-part__title">Əmircan</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part district-88">
                                     <span class="region-part__title">Günəşli</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part district-89">
                                     <span class="region-part__title">Hövsan</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part district-90">
                                     <span class="region-part__title">Zığ</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part district-91">
                                     <span class="region-part__title">Massiv A</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part district-92">
                                     <span class="region-part__title">Massiv B</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part district-93">
                                     <span class="region-part__title">Massiv D</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part district-94">
                                     <span class="region-part__title">Massiv G</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part district-95">
                                     <span class="region-part__title">Massiv V</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part district-96">
                                     <span class="region-part__title">Qaraçuxur</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part district-97">
                                     <span class="region-part__title">Şərq</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part district-98">
                                     <span class="region-part__title">Suraxanı</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part district-99">
                                     <span class="region-part__title">Yeni Günəşli</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part district-100">
                                     <span class="region-part__title">Yeni Suraxanı</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                               </div>
@@ -2034,73 +2034,73 @@
                                  <p class="region-title region-14">
                                     <span class="region-part__title">Xəzər r.</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part district-101">
                                     <span class="region-part__title">Binə</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part district-102">
                                     <span class="region-part__title">Buzovna</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part district-103">
                                     <span class="region-part__title">Dübəndi</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part district-104">
                                     <span class="region-part__title">Gürgən</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part district-105">
                                     <span class="region-part__title">Mərdəkan</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part district-106">
                                     <span class="region-part__title">Qala</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part district-107">
                                     <span class="region-part__title">Şağan</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part district-108">
                                     <span class="region-part__title">Şüvəlan</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part district-109">
                                     <span class="region-part__title">Türkan</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part district-110">
                                     <span class="region-part__title">Zirə</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part district-111">
                                     <span class="region-part__title">Zağulba</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                               </div>
@@ -2108,25 +2108,25 @@
                                  <p class="region-title region-15">
                                     <span class="region-part__title">Yasamal r.</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part district-112">
                                     <span class="region-part__title">Yasamal</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part district-113">
                                     <span class="region-part__title">Yeni Yasamal</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part district-114">
                                     <span class="region-part__title">Alatava</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                               </div>
@@ -2134,7 +2134,7 @@
                                  <p class="region-title region-24">
                                     <span class="region-part__title">1-ci mikrorayon r.</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                               </div>
@@ -2142,7 +2142,7 @@
                                  <p class="region-title region-25">
                                     <span class="region-part__title">2-ci mikrorayon r.</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                               </div>
@@ -2150,7 +2150,7 @@
                                  <p class="region-title region-27">
                                     <span class="region-part__title">3-cü mikrorayon r.</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                               </div>
@@ -2158,7 +2158,7 @@
                                  <p class="region-title region-28">
                                     <span class="region-part__title">4-cü mikrorayon r.</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                               </div>
@@ -2166,7 +2166,7 @@
                                  <p class="region-title region-29">
                                     <span class="region-part__title">5-ci mikrorayon r.</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                               </div>
@@ -2174,7 +2174,7 @@
                                  <p class="region-title region-30">
                                     <span class="region-part__title">6-cı mikrorayon r.</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                               </div>
@@ -2182,7 +2182,7 @@
                                  <p class="region-title region-31">
                                     <span class="region-part__title">7-ci mikrorayon r.</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                               </div>
@@ -2190,7 +2190,7 @@
                                  <p class="region-title region-32">
                                     <span class="region-part__title">8-ci mikrorayon r.</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                               </div>
@@ -2198,7 +2198,7 @@
                                  <p class="region-title region-33">
                                     <span class="region-part__title">9-cu mikrorayon r.</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                               </div>
@@ -2206,7 +2206,7 @@
                                  <p class="region-title region-34">
                                     <span class="region-part__title">10-cu mikrorayon r.</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                               </div>
@@ -2214,7 +2214,7 @@
                                  <p class="region-title region-35">
                                     <span class="region-part__title">11-ci mikrorayon r.</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                               </div>
@@ -2222,7 +2222,7 @@
                                  <p class="region-title region-36">
                                     <span class="region-part__title">12-ci mikrorayon r.</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                               </div>
@@ -2230,7 +2230,7 @@
                                  <p class="region-title region-37">
                                     <span class="region-part__title">13-cü mikrorayon r.</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                               </div>
@@ -2238,7 +2238,7 @@
                                  <p class="region-title region-38">
                                     <span class="region-part__title">16-cı mikrorayon r.</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                               </div>
@@ -2246,7 +2246,7 @@
                                  <p class="region-title region-39">
                                     <span class="region-part__title">17-ci mikrorayon r.</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                               </div>
@@ -2254,7 +2254,7 @@
                                  <p class="region-title region-40">
                                     <span class="region-part__title">18-ci mikrorayon r.</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                               </div>
@@ -2262,7 +2262,7 @@
                                  <p class="region-title region-41">
                                     <span class="region-part__title">20-ci mikrorayon r.</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                               </div>
@@ -2270,7 +2270,7 @@
                                  <p class="region-title region-42">
                                     <span class="region-part__title">21-ci mikrorayon r.</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                               </div>
@@ -2278,7 +2278,7 @@
                                  <p class="region-title region-43">
                                     <span class="region-part__title">1-ci məhəllə r.</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                               </div>
@@ -2286,7 +2286,7 @@
                                  <p class="region-title region-44">
                                     <span class="region-part__title">2-ci məhəllə r.</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                               </div>
@@ -2294,7 +2294,7 @@
                                  <p class="region-title region-45">
                                     <span class="region-part__title">3-cü məhəllə r.</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                               </div>
@@ -2302,7 +2302,7 @@
                                  <p class="region-title region-46">
                                     <span class="region-part__title">4-cü məhəllə r.</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                               </div>
@@ -2310,7 +2310,7 @@
                                  <p class="region-title region-47">
                                     <span class="region-part__title">5-ci məhəllə r.</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                               </div>
@@ -2318,7 +2318,7 @@
                                  <p class="region-title region-48">
                                     <span class="region-part__title">7-ci məhəllə r.</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                               </div>
@@ -2326,7 +2326,7 @@
                                  <p class="region-title region-49">
                                     <span class="region-part__title">8-ci məhəllə r.</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                               </div>
@@ -2334,7 +2334,7 @@
                                  <p class="region-title region-50">
                                     <span class="region-part__title">9-cu məhəllə r.</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                               </div>
@@ -2342,7 +2342,7 @@
                                  <p class="region-title region-51">
                                     <span class="region-part__title">12-ci məhəllə r.</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                               </div>
@@ -2350,7 +2350,7 @@
                                  <p class="region-title region-52">
                                     <span class="region-part__title">13-cü məhəllə r.</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                               </div>
@@ -2358,7 +2358,7 @@
                                  <p class="region-title region-53">
                                     <span class="region-part__title">14-cü məhəllə r.</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                               </div>
@@ -2366,7 +2366,7 @@
                                  <p class="region-title region-54">
                                     <span class="region-part__title">15-ci məhəllə r.</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                               </div>
@@ -2374,7 +2374,7 @@
                                  <p class="region-title region-55">
                                     <span class="region-part__title">16-cı məhəllə r.</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                               </div>
@@ -2382,7 +2382,7 @@
                                  <p class="region-title region-56">
                                     <span class="region-part__title">17-ci məhəllə r.</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                               </div>
@@ -2390,7 +2390,7 @@
                                  <p class="region-title region-57">
                                     <span class="region-part__title">18-ci məhəllə r.</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                               </div>
@@ -2398,7 +2398,7 @@
                                  <p class="region-title region-58">
                                     <span class="region-part__title">19-cu məhəllə r.</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                               </div>
@@ -2406,7 +2406,7 @@
                                  <p class="region-title region-59">
                                     <span class="region-part__title">20-ci məhəllə r.</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                               </div>
@@ -2414,7 +2414,7 @@
                                  <p class="region-title region-60">
                                     <span class="region-part__title">21-ci məhəllə r.</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                               </div>
@@ -2422,7 +2422,7 @@
                                  <p class="region-title region-61">
                                     <span class="region-part__title">22-ci məhəllə r.</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                               </div>
@@ -2430,7 +2430,7 @@
                                  <p class="region-title region-62">
                                     <span class="region-part__title">23-cü məhəllə r.</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                               </div>
@@ -2438,7 +2438,7 @@
                                  <p class="region-title region-63">
                                     <span class="region-part__title">24-cü məhəllə r.</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                               </div>
@@ -2446,7 +2446,7 @@
                                  <p class="region-title region-64">
                                     <span class="region-part__title">25-ci məhəllə r.</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                               </div>
@@ -2454,7 +2454,7 @@
                                  <p class="region-title region-65">
                                     <span class="region-part__title">26-cı məhəllə r.</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                               </div>
@@ -2462,7 +2462,7 @@
                                  <p class="region-title region-66">
                                     <span class="region-part__title">30-cu məhəllə r.</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                               </div>
@@ -2470,7 +2470,7 @@
                                  <p class="region-title region-67">
                                     <span class="region-part__title">34-cü məhəllə r.</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                               </div>
@@ -2478,7 +2478,7 @@
                                  <p class="region-title region-68">
                                     <span class="region-part__title">36-cı məhəllə r.</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                               </div>
@@ -2486,7 +2486,7 @@
                                  <p class="region-title region-69">
                                     <span class="region-part__title">40-cı məhəllə r.</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                               </div>
@@ -2494,7 +2494,7 @@
                                  <p class="region-title region-70">
                                     <span class="region-part__title">41-ci məhəllə r.</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                               </div>
@@ -2502,7 +2502,7 @@
                                  <p class="region-title region-71">
                                     <span class="region-part__title">42-ci məhəllə r.</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                               </div>
@@ -2510,7 +2510,7 @@
                                  <p class="region-title region-72">
                                     <span class="region-part__title">43-cü məhəllə r.</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                               </div>
@@ -2518,7 +2518,7 @@
                                  <p class="region-title region-73">
                                     <span class="region-part__title">44-cü məhəllə r.</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                               </div>
@@ -2526,7 +2526,7 @@
                                  <p class="region-title region-75">
                                     <span class="region-part__title">45-ci məhəllə r.</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                               </div>
@@ -2534,7 +2534,7 @@
                                  <p class="region-title region-76">
                                     <span class="region-part__title">46-cı məhəllə r.</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                               </div>
@@ -2542,7 +2542,7 @@
                                  <p class="region-title region-77">
                                     <span class="region-part__title">47-ci məhəllə r.</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                               </div>
@@ -2550,7 +2550,7 @@
                                  <p class="region-title region-78">
                                     <span class="region-part__title">48-ci məhəllə r.</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                               </div>
@@ -2558,7 +2558,7 @@
                                  <p class="region-title region-79">
                                     <span class="region-part__title">49-cu məhəllə r.</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                               </div>
@@ -2566,7 +2566,7 @@
                                  <p class="region-title region-80">
                                     <span class="region-part__title">51-ci məhəllə r.</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                               </div>
@@ -2574,7 +2574,7 @@
                                  <p class="region-title region-81">
                                     <span class="region-part__title">52-ci məhəllə r.</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                               </div>
@@ -2582,7 +2582,7 @@
                                  <p class="region-title region-82">
                                     <span class="region-part__title">76-cı məhəllə r.</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                               </div>
@@ -2590,7 +2590,7 @@
                                  <p class="region-title region-83">
                                     <span class="region-part__title">Sumqayıt şəhər r.</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                               </div>
@@ -2598,7 +2598,7 @@
                                  <p class="region-title region-84">
                                     <span class="region-part__title">Stansiya Sumqayıt r.</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                               </div>
@@ -2606,7 +2606,7 @@
                                  <p class="region-title region-85">
                                     <span class="region-part__title">İnşaatçılar qəsəbəsi r.</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                               </div>
@@ -2614,7 +2614,7 @@
                                  <p class="region-title region-86">
                                     <span class="region-part__title">Kotec qəsəbəsi r.</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                               </div>
@@ -2622,7 +2622,7 @@
                                  <p class="region-title region-87">
                                     <span class="region-part__title">Qurd dərəsi r.</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                               </div>
@@ -2630,7 +2630,7 @@
                                  <p class="region-title region-88">
                                     <span class="region-part__title">BTZ bağları r.</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                               </div>
@@ -2638,7 +2638,7 @@
                                  <p class="region-title region-89">
                                     <span class="region-part__title">Xəzər bağları r.</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                               </div>
@@ -2646,7 +2646,7 @@
                                  <p class="region-title region-90">
                                     <span class="region-part__title">Corat bağları r.</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                               </div>
@@ -2654,7 +2654,7 @@
                                  <p class="region-title region-91">
                                     <span class="region-part__title">Hacı Zeynəlabdin r.</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                               </div>
@@ -2662,7 +2662,7 @@
                                  <p class="region-title region-16">
                                     <span class="region-part__title">Babək r.</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                               </div>
@@ -2670,7 +2670,7 @@
                                  <p class="region-title region-17">
                                     <span class="region-part__title">Culfa r.</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                               </div>
@@ -2678,7 +2678,7 @@
                                  <p class="region-title region-18">
                                     <span class="region-part__title">Ordubad r.</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                               </div>
@@ -2686,7 +2686,7 @@
                                  <p class="region-title region-19">
                                     <span class="region-part__title">Şahbuz r.</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                               </div>
@@ -2694,7 +2694,7 @@
                                  <p class="region-title region-20">
                                     <span class="region-part__title">Şərur r.</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                               </div>
@@ -2702,7 +2702,7 @@
                                  <p class="region-title region-21">
                                     <span class="region-part__title">Sədərək r.</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                               </div>
@@ -2710,7 +2710,7 @@
                                  <p class="region-title region-22">
                                     <span class="region-part__title">Qıvraq r.</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                               </div>
@@ -2718,7 +2718,7 @@
                                  <p class="region-title region-23">
                                     <span class="region-part__title">Naxçıvan r.</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                               </div>
@@ -2728,7 +2728,7 @@
                      <div class="modal-body metro-tab d-none">
                         <div class="form-item form-item--large">
                            <svg class="icon icon-search">
-                              <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-search"></use>
+                              <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-search"></use>
                            </svg>
                            <input oninput="updateMetro(this.value)" class="form-item__element location-input" type="search" placeholder="Stansiya axtar">
                            <ul class="region-list" id="metro-list" style="display: none;">
@@ -2946,7 +2946,7 @@
                               <div class="station station-1">
                                  <div class="station-point">
                                     <svg class="icon icon-success-circle">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-success-circle"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-success-circle"></use>
                                     </svg>
                                  </div>
                                  <p class="station-title">20 yanvar</p>
@@ -2954,7 +2954,7 @@
                               <div class="station station-2">
                                  <div class="station-point">
                                     <svg class="icon icon-success-circle">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-success-circle"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-success-circle"></use>
                                     </svg>
                                  </div>
                                  <p class="station-title">28 may</p>
@@ -2962,7 +2962,7 @@
                               <div class="station station-3">
                                  <div class="station-point">
                                     <svg class="icon icon-success-circle">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-success-circle"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-success-circle"></use>
                                     </svg>
                                  </div>
                                  <p class="station-title">Avtovağzal</p>
@@ -2970,7 +2970,7 @@
                               <div class="station station-4">
                                  <div class="station-point">
                                     <svg class="icon icon-success-circle">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-success-circle"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-success-circle"></use>
                                     </svg>
                                  </div>
                                  <p class="station-title">Azadlıq prospekti</p>
@@ -2978,7 +2978,7 @@
                               <div class="station station-5">
                                  <div class="station-point">
                                     <svg class="icon icon-success-circle">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-success-circle"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-success-circle"></use>
                                     </svg>
                                  </div>
                                  <p class="station-title">Bakmil</p>
@@ -2986,7 +2986,7 @@
                               <div class="station station-6">
                                  <div class="station-point">
                                     <svg class="icon icon-success-circle">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-success-circle"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-success-circle"></use>
                                     </svg>
                                  </div>
                                  <p class="station-title">Dərnəgül</p>
@@ -2994,7 +2994,7 @@
                               <div class="station station-7">
                                  <div class="station-point">
                                     <svg class="icon icon-success-circle">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-success-circle"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-success-circle"></use>
                                     </svg>
                                  </div>
                                  <p class="station-title">Elmlər Akademiyası</p>
@@ -3002,7 +3002,7 @@
                               <div class="station station-8">
                                  <div class="station-point">
                                     <svg class="icon icon-success-circle">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-success-circle"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-success-circle"></use>
                                     </svg>
                                  </div>
                                  <p class="station-title">Gənclik</p>
@@ -3010,7 +3010,7 @@
                               <div class="station station-9">
                                  <div class="station-point">
                                     <svg class="icon icon-success-circle">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-success-circle"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-success-circle"></use>
                                     </svg>
                                  </div>
                                  <p class="station-title">Həzi Aslanov</p>
@@ -3018,7 +3018,7 @@
                               <div class="station station-10">
                                  <div class="station-point">
                                     <svg class="icon icon-success-circle">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-success-circle"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-success-circle"></use>
                                     </svg>
                                  </div>
                                  <p class="station-title">İçəri Şəhər</p>
@@ -3026,7 +3026,7 @@
                               <div class="station station-11">
                                  <div class="station-point">
                                     <svg class="icon icon-success-circle">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-success-circle"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-success-circle"></use>
                                     </svg>
                                  </div>
                                  <p class="station-title">İnşaatçılar</p>
@@ -3034,7 +3034,7 @@
                               <div class="station station-12">
                                  <div class="station-point">
                                     <svg class="icon icon-success-circle">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-success-circle"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-success-circle"></use>
                                     </svg>
                                  </div>
                                  <p class="station-title">Koroğlu</p>
@@ -3042,7 +3042,7 @@
                               <div class="station station-13">
                                  <div class="station-point">
                                     <svg class="icon icon-success-circle">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-success-circle"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-success-circle"></use>
                                     </svg>
                                  </div>
                                  <p class="station-title">Memar Əcəmi</p>
@@ -3050,7 +3050,7 @@
                               <div class="station station-14">
                                  <div class="station-point">
                                     <svg class="icon icon-success-circle">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-success-circle"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-success-circle"></use>
                                     </svg>
                                  </div>
                                  <p class="station-title">Neftçilər</p>
@@ -3058,7 +3058,7 @@
                               <div class="station station-15">
                                  <div class="station-point">
                                     <svg class="icon icon-success-circle">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-success-circle"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-success-circle"></use>
                                     </svg>
                                  </div>
                                  <p class="station-title">Nizami</p>
@@ -3066,7 +3066,7 @@
                               <div class="station station-16">
                                  <div class="station-point">
                                     <svg class="icon icon-success-circle">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-success-circle"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-success-circle"></use>
                                     </svg>
                                  </div>
                                  <p class="station-title">Nəriman Nərimanov</p>
@@ -3074,7 +3074,7 @@
                               <div class="station station-17">
                                  <div class="station-point">
                                     <svg class="icon icon-success-circle">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-success-circle"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-success-circle"></use>
                                     </svg>
                                  </div>
                                  <p class="station-title">Nəsimi</p>
@@ -3082,7 +3082,7 @@
                               <div class="station station-18">
                                  <div class="station-point">
                                     <svg class="icon icon-success-circle">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-success-circle"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-success-circle"></use>
                                     </svg>
                                  </div>
                                  <p class="station-title">Qara Qarayev</p>
@@ -3090,7 +3090,7 @@
                               <div class="station station-19">
                                  <div class="station-point">
                                     <svg class="icon icon-success-circle">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-success-circle"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-success-circle"></use>
                                     </svg>
                                  </div>
                                  <p class="station-title">Şah İsmayıl Xətai</p>
@@ -3098,7 +3098,7 @@
                               <div class="station station-20">
                                  <div class="station-point">
                                     <svg class="icon icon-success-circle">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-success-circle"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-success-circle"></use>
                                     </svg>
                                  </div>
                                  <p class="station-title">Sahil</p>
@@ -3106,7 +3106,7 @@
                               <div class="station station-21">
                                  <div class="station-point">
                                     <svg class="icon icon-success-circle">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-success-circle"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-success-circle"></use>
                                     </svg>
                                  </div>
                                  <p class="station-title">Ulduz</p>
@@ -3114,7 +3114,7 @@
                               <div class="station station-22">
                                  <div class="station-point">
                                     <svg class="icon icon-success-circle">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-success-circle"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-success-circle"></use>
                                     </svg>
                                  </div>
                                  <p class="station-title">Xalqlar Dostluğu</p>
@@ -3122,7 +3122,7 @@
                               <div class="station station-23">
                                  <div class="station-point">
                                     <svg class="icon icon-success-circle">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-success-circle"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-success-circle"></use>
                                     </svg>
                                  </div>
                                  <p class="station-title">Əhmədli</p>
@@ -3130,7 +3130,7 @@
                               <div class="station station-24">
                                  <div class="station-point">
                                     <svg class="icon icon-success-circle">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-success-circle"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-success-circle"></use>
                                     </svg>
                                  </div>
                                  <p class="station-title">8 Noyabr</p>
@@ -3144,145 +3144,145 @@
                                     <p class="region-part station-1">
                                        <span class="region-part__title station-part__title">20 yanvar</span>
                                        <svg class="icon icon-close">
-                                          <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                          <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                        </svg>
                                     </p>
                                     <p class="region-part station-2">
                                        <span class="region-part__title station-part__title">28 may</span>
                                        <svg class="icon icon-close">
-                                          <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                          <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                        </svg>
                                     </p>
                                     <p class="region-part station-3">
                                        <span class="region-part__title station-part__title">Avtovağzal</span>
                                        <svg class="icon icon-close">
-                                          <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                          <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                        </svg>
                                     </p>
                                     <p class="region-part station-4">
                                        <span class="region-part__title station-part__title">Azadlıq prospekti</span>
                                        <svg class="icon icon-close">
-                                          <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                          <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                        </svg>
                                     </p>
                                     <p class="region-part station-5">
                                        <span class="region-part__title station-part__title">Bakmil</span>
                                        <svg class="icon icon-close">
-                                          <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                          <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                        </svg>
                                     </p>
                                     <p class="region-part station-6">
                                        <span class="region-part__title station-part__title">Dərnəgül</span>
                                        <svg class="icon icon-close">
-                                          <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                          <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                        </svg>
                                     </p>
                                     <p class="region-part station-7">
                                        <span class="region-part__title station-part__title">Elmlər Akademiyası</span>
                                        <svg class="icon icon-close">
-                                          <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                          <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                        </svg>
                                     </p>
                                     <p class="region-part station-8">
                                        <span class="region-part__title station-part__title">Gənclik</span>
                                        <svg class="icon icon-close">
-                                          <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                          <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                        </svg>
                                     </p>
                                     <p class="region-part station-9">
                                        <span class="region-part__title station-part__title">Həzi Aslanov</span>
                                        <svg class="icon icon-close">
-                                          <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                          <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                        </svg>
                                     </p>
                                     <p class="region-part station-10">
                                        <span class="region-part__title station-part__title">İçəri Şəhər</span>
                                        <svg class="icon icon-close">
-                                          <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                          <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                        </svg>
                                     </p>
                                     <p class="region-part station-11">
                                        <span class="region-part__title station-part__title">İnşaatçılar</span>
                                        <svg class="icon icon-close">
-                                          <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                          <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                        </svg>
                                     </p>
                                     <p class="region-part station-12">
                                        <span class="region-part__title station-part__title">Koroğlu</span>
                                        <svg class="icon icon-close">
-                                          <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                          <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                        </svg>
                                     </p>
                                     <p class="region-part station-13">
                                        <span class="region-part__title station-part__title">Memar Əcəmi</span>
                                        <svg class="icon icon-close">
-                                          <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                          <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                        </svg>
                                     </p>
                                     <p class="region-part station-14">
                                        <span class="region-part__title station-part__title">Neftçilər</span>
                                        <svg class="icon icon-close">
-                                          <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                          <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                        </svg>
                                     </p>
                                     <p class="region-part station-15">
                                        <span class="region-part__title station-part__title">Nizami</span>
                                        <svg class="icon icon-close">
-                                          <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                          <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                        </svg>
                                     </p>
                                     <p class="region-part station-16">
                                        <span class="region-part__title station-part__title">Nəriman Nərimanov</span>
                                        <svg class="icon icon-close">
-                                          <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                          <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                        </svg>
                                     </p>
                                     <p class="region-part station-17">
                                        <span class="region-part__title station-part__title">Nəsimi</span>
                                        <svg class="icon icon-close">
-                                          <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                          <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                        </svg>
                                     </p>
                                     <p class="region-part station-18">
                                        <span class="region-part__title station-part__title">Qara Qarayev</span>
                                        <svg class="icon icon-close">
-                                          <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                          <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                        </svg>
                                     </p>
                                     <p class="region-part station-19">
                                        <span class="region-part__title station-part__title">Şah İsmayıl Xətai</span>
                                        <svg class="icon icon-close">
-                                          <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                          <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                        </svg>
                                     </p>
                                     <p class="region-part station-20">
                                        <span class="region-part__title station-part__title">Sahil</span>
                                        <svg class="icon icon-close">
-                                          <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                          <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                        </svg>
                                     </p>
                                     <p class="region-part station-21">
                                        <span class="region-part__title station-part__title">Ulduz</span>
                                        <svg class="icon icon-close">
-                                          <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                          <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                        </svg>
                                     </p>
                                     <p class="region-part station-22">
                                        <span class="region-part__title station-part__title">Xalqlar Dostluğu</span>
                                        <svg class="icon icon-close">
-                                          <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                          <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                        </svg>
                                     </p>
                                     <p class="region-part station-23">
                                        <span class="region-part__title station-part__title">Əhmədli</span>
                                        <svg class="icon icon-close">
-                                          <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                          <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                        </svg>
                                     </p>
                                     <p class="region-part station-24">
                                        <span class="region-part__title station-part__title">8 Noyabr</span>
                                        <svg class="icon icon-close">
-                                          <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                          <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                        </svg>
                                     </p>
                                  </div>
@@ -3293,7 +3293,7 @@
                      <div class="modal-body target-tab d-none">
                         <div class="form-item form-item--large">
                            <svg class="icon icon-search">
-                              <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-search"></use>
+                              <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-search"></use>
                            </svg>
                            <input oninput="updateTarget(this.value)" class="form-item__element location-input" type="search" placeholder="Nişangah adlarını daxil edin">
                            <ul class="region-list" id="target-list" style="display: none;">
@@ -5883,13 +5883,13 @@
                                  <p class="region-title">
                                     <span class="region-part__title">2</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part target-2">
                                     <span class="region-part__title">28 Mall</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                               </div>
@@ -5897,13 +5897,13 @@
                                  <p class="region-title">
                                     <span class="region-part__title">5</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part target-3">
                                     <span class="region-part__title">5 nömrəli xəstəxana</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                               </div>
@@ -5911,295 +5911,295 @@
                                  <p class="region-title">
                                     <span class="region-part__title">A</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part target-4">
                                     <span class="region-part__title">A.S.Puşkin parkı</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part target-5">
                                     <span class="region-part__title">AAAF park</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part target-6">
                                     <span class="region-part__title">ABŞ səfirliyi</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part target-99">
                                     <span class="region-part__title">Abşeron Gənclər Şəhərciyi</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part target-7">
                                     <span class="region-part__title">Abşeron Marriott otel</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part target-8">
                                     <span class="region-part__title">Abu Arena</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part target-9">
                                     <span class="region-part__title">ADA universiteti</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part target-10">
                                     <span class="region-part__title">AF Biznes Mərkəzi</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part target-11">
                                     <span class="region-part__title">Afrodita şadlıq sarayı</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part target-12">
                                     <span class="region-part__title">Ağ Saray restoranı</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part target-13">
                                     <span class="region-part__title">Ağ Şəhər</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part target-14">
                                     <span class="region-part__title">AĞA biznes mərkəzi</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part target-15">
                                     <span class="region-part__title">Al Saray restoranı</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part target-16">
                                     <span class="region-part__title">Ali Məhkəmə</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part target-17">
                                     <span class="region-part__title">Altes plaza</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part target-18">
                                     <span class="region-part__title">AMAY ticarət mərkəzi</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part target-19">
                                     <span class="region-part__title">Ambassador otel</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part target-20">
                                     <span class="region-part__title">Amor şadlıq sarayı</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part target-21">
                                     <span class="region-part__title">Anadolu restoranı</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part target-22">
                                     <span class="region-part__title">Aqat şadlıq sarayı</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part target-23">
                                     <span class="region-part__title">Arash estetik klinikası</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part target-25">
                                     <span class="region-part__title">ASAN xidmət - 1</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part target-26">
                                     <span class="region-part__title">ASAN xidmət - 2</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part target-27">
                                     <span class="region-part__title">ASAN xidmət - 3</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part target-28">
                                     <span class="region-part__title">ASAN xidmət - 4</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part target-29">
                                     <span class="region-part__title">ASAN xidmət - 5</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part target-24">
                                     <span class="region-part__title">ASAN xidmət Sumqayıt</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part target-30">
                                     <span class="region-part__title">Asiman şadlıq sarayı</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part target-264">
                                     <span class="region-part__title">ASK arena</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part target-31">
                                     <span class="region-part__title">Atatürk parkı</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part target-32">
                                     <span class="region-part__title">ATU onkoloji klinikası</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part target-33">
                                     <span class="region-part__title">Aura şadlıq sarayı</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part target-34">
                                     <span class="region-part__title">Avesta biznes mərkəzi</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part target-36">
                                     <span class="region-part__title">Avrasiya klinikası</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part target-37">
                                     <span class="region-part__title">Avropa otel</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part target-38">
                                     <span class="region-part__title">Axundov bağı</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part target-39">
                                     <span class="region-part__title">Ay İşığı şadlıq sarayı</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part target-40">
                                     <span class="region-part__title">Aygün City Mall</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part target-41">
                                     <span class="region-part__title">Ayla şadlıq sarayı</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part target-42">
                                     <span class="region-part__title">Ayna Sultanova heykəli</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part target-43">
                                     <span class="region-part__title">Aynalı plaza</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part target-44">
                                     <span class="region-part__title">Aysun şadlıq sarayı</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part target-45">
                                     <span class="region-part__title">Azad Qadın heykəli</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part target-46">
                                     <span class="region-part__title">Azadlıq meydanı</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part target-49">
                                     <span class="region-part__title">Azər Türk Med hospital</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part target-47">
                                     <span class="region-part__title">Azərbaycan Dillər Universiteti</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part target-50">
                                     <span class="region-part__title">Azneft meydanı</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part target-51">
                                     <span class="region-part__title">AzTV telekanalı</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                               </div>
@@ -6207,157 +6207,157 @@
                                  <p class="region-title">
                                     <span class="region-part__title">B</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part target-52">
                                     <span class="region-part__title">Babək plaza</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part target-53">
                                     <span class="region-part__title">Badi-Səba şadlıq sarayı</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part target-54">
                                     <span class="region-part__title">Badu-Kubə şadlıq sarayı</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part target-55">
                                     <span class="region-part__title">Bakı Avrasiya Universiteti</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part target-56">
                                     <span class="region-part__title">Bakı Bərpa Mərkəzi</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part target-58">
                                     <span class="region-part__title">Bakı Dövlət Universiteti</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part target-59">
                                     <span class="region-part__title">Bakı Flebologiya mərkəzi</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part target-64">
                                     <span class="region-part__title">Bakı Mall</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part target-236">
                                     <span class="region-part__title">Bakı Mühəndislik Universiteti</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part target-60">
                                     <span class="region-part__title">Bakı Musiqi Akademiyası</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part target-219">
                                     <span class="region-part__title">Bakı Oksford Məktəbi</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part target-61">
                                     <span class="region-part__title">Bakı Sağlamlıq Mərkəzi</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part target-62">
                                     <span class="region-part__title">Baku City hospital</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part target-63">
                                     <span class="region-part__title">Baku Klinika</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part target-65">
                                     <span class="region-part__title">Ballı şadlıq sarayı</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part target-66">
                                     <span class="region-part__title">Banu Çiçək şadlıq sarayı</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part target-67">
                                     <span class="region-part__title">Bayıl park</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part target-68">
                                     <span class="region-part__title">Beşmərtəbə</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part target-69">
                                     <span class="region-part__title">Binə ticarət mərkəzi</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part target-70">
                                     <span class="region-part__title">Biolab tibb mərkəzi</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part target-71">
                                     <span class="region-part__title">Bioloji təbabət klinikası</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part target-72">
                                     <span class="region-part__title">Botanika bağı</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part target-73">
                                     <span class="region-part__title">Bridge plaza</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part target-74">
                                     <span class="region-part__title">Brilyant şadlıq sarayı</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part target-75">
                                     <span class="region-part__title">Bül-bülə şadlıq sarayı</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                               </div>
@@ -6365,43 +6365,43 @@
                                  <p class="region-title">
                                     <span class="region-part__title">C</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part target-76">
                                     <span class="region-part__title">C.Naxçıvanski adına Hərbi Lisey</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part target-78">
                                     <span class="region-part__title">Caspian plaza</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part target-79">
                                     <span class="region-part__title">Caspian Shopping Center</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part target-80">
                                     <span class="region-part__title">Cavanşir körpüsü</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part target-82">
                                     <span class="region-part__title">Ceyranbatan su anbarı</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part target-81">
                                     <span class="region-part__title">Cəfər Cabbarlı heykəli</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                               </div>
@@ -6409,37 +6409,37 @@
                                  <p class="region-title">
                                     <span class="region-part__title">Ç</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part target-77">
                                     <span class="region-part__title">Çanaqqala restoranı</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part target-83">
                                     <span class="region-part__title">Çin səfirliyi</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part target-84">
                                     <span class="region-part__title">Çinar plaza</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part target-85">
                                     <span class="region-part__title">Çıraq palace restoranı</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part target-86">
                                     <span class="region-part__title">Çıraq plaza</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                               </div>
@@ -6447,91 +6447,91 @@
                                  <p class="region-title">
                                     <span class="region-part__title">D</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part target-87">
                                     <span class="region-part__title">Dağüstü park</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part target-88">
                                     <span class="region-part__title">Dalğa plaza</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part target-89">
                                     <span class="region-part__title">Daxili İşlər Nazirliyi</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part target-90">
                                     <span class="region-part__title">Dədə Qorqud parkı</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part target-91">
                                     <span class="region-part__title">Dəmirçi Plaza</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part target-92">
                                     <span class="region-part__title">Dəniz Vağzalı</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part target-93">
                                     <span class="region-part__title">Dənizkənarı Milli park</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part target-94">
                                     <span class="region-part__title">Diaqnoz tibb mərkəzi</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part target-95">
                                     <span class="region-part__title">Dobremed hospital</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part target-96">
                                     <span class="region-part__title">Dövlət İdarəçilik Akademiyası</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part target-298">
                                     <span class="region-part__title">Dövlət İmahan Mərkəzi</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part target-97">
                                     <span class="region-part__title">Dövlət Statistika Komitəsi</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part target-98">
                                     <span class="region-part__title">Dövlət Təhlükəsizliyi Xidməti</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part target-100">
                                     <span class="region-part__title">Dünyagöz hospitalı</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                               </div>
@@ -6539,55 +6539,55 @@
                                  <p class="region-title">
                                     <span class="region-part__title">E</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part target-103">
                                     <span class="region-part__title">Ekologiya və Təbii Sərvətlər Nazirliyi</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part target-104">
                                     <span class="region-part__title">Elçin şadlıq sarayı</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part target-105">
                                     <span class="region-part__title">Elit ticarət mərkəzi</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part target-106">
                                     <span class="region-part__title">Elmed tibb mərkəzi</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part target-107">
                                     <span class="region-part__title">Elşən şadlıq sarayı</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part target-102">
                                     <span class="region-part__title">Eqoist otel</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part target-110">
                                     <span class="region-part__title">Euro Lab klinikası</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part target-111">
                                     <span class="region-part__title">Evromed tibb mərkəzi</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                               </div>
@@ -6595,25 +6595,25 @@
                                  <p class="region-title">
                                     <span class="region-part__title">Ə</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part target-101">
                                     <span class="region-part__title">Ədliyyə Nazirliyi</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part target-303">
                                     <span class="region-part__title">Əliağa Vahid heykəli</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part target-109">
                                     <span class="region-part__title">Ərzurum şadlıq sarayı</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                               </div>
@@ -6621,61 +6621,61 @@
                                  <p class="region-title">
                                     <span class="region-part__title">F</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part target-112">
                                     <span class="region-part__title">Fəridə şadlıq sarayı</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part target-113">
                                     <span class="region-part__title">Fəvvarələr meydanı</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part target-114">
                                     <span class="region-part__title">Fidan şadlıq sarayı</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part target-115">
                                     <span class="region-part__title">Firuzə restoranı</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part target-116">
                                     <span class="region-part__title">Flame Towers</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part target-117">
                                     <span class="region-part__title">Four Seasons otel</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part target-118">
                                     <span class="region-part__title">Fövqəladə Hallar Nazirliyi</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part target-119">
                                     <span class="region-part__title">Fransız səfirliyi</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part target-120">
                                     <span class="region-part__title">Funda hospital</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                               </div>
@@ -6683,49 +6683,49 @@
                                  <p class="region-title">
                                     <span class="region-part__title">G</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part target-121">
                                     <span class="region-part__title">Gəlin Qaya restoranı</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part target-122">
                                     <span class="region-part__title">Gənclər və İdman Nazirliyi</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part target-123">
                                     <span class="region-part__title">Gənclik Mall</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part target-124">
                                     <span class="region-part__title">Gənclik şadlıq sarayı</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part target-125">
                                     <span class="region-part__title">Gilavar şadlıq sarayı</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part target-126">
                                     <span class="region-part__title">Golden Ring şadlıq sarayı</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part target-127">
                                     <span class="region-part__title">Günəş şadlıq sarayı</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                               </div>
@@ -6733,67 +6733,67 @@
                                  <p class="region-title">
                                     <span class="region-part__title">H</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part target-132">
                                     <span class="region-part__title">H.Əliyev adına İdman Kompleksi</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part target-130">
                                     <span class="region-part__title">Hayat klinikası</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part target-128">
                                     <span class="region-part__title">HB Güvən klinikası</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part target-133">
                                     <span class="region-part__title">Heydər Əliyev Mərkəzi</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part target-129">
                                     <span class="region-part__title">Heydər Əliyev Sarayı</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part target-134">
                                     <span class="region-part__title">Hilton otel</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part target-135">
                                     <span class="region-part__title">Hökümət Evi</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part target-136">
                                     <span class="region-part__title">Hollivud şadlıq sarayı</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part target-137">
                                     <span class="region-part__title">Hüseyn Cavid parkı</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part target-138">
                                     <span class="region-part__title">Hyatt Regency otel</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                               </div>
@@ -6801,67 +6801,67 @@
                                  <p class="region-title">
                                     <span class="region-part__title">İ</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part target-139">
                                     <span class="region-part__title">İçəri Şəhər</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part target-140">
                                     <span class="region-part__title">İctimai telekanal</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part target-141">
                                     <span class="region-part__title">İmperial şadlıq sarayı</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part target-142">
                                     <span class="region-part__title">İnam tibb mərkəzi</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part target-144">
                                     <span class="region-part__title">İnci şadlıq sarayı</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part target-146">
                                     <span class="region-part__title">İqtisad Universiteti</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part target-174">
                                     <span class="region-part__title">İqtisadiyyat Nazirliyi</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part target-147">
                                     <span class="region-part__title">İran səfirliyi</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part target-149">
                                     <span class="region-part__title">İtaliya səfirliyi</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part target-150">
                                     <span class="region-part__title">İzmir parkı</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                               </div>
@@ -6869,19 +6869,19 @@
                                  <p class="region-title">
                                     <span class="region-part__title">I</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part target-145">
                                     <span class="region-part__title">Intourist otel</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part target-148">
                                     <span class="region-part__title">ISR plaza</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                               </div>
@@ -6889,79 +6889,79 @@
                                  <p class="region-title">
                                     <span class="region-part__title">K</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part target-151">
                                     <span class="region-part__title">Kaktus restoranı</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part target-152">
                                     <span class="region-part__title">Karnaval hall restoranı</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part target-154">
                                     <span class="region-part__title">Keşlə bazarı</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part target-153">
                                     <span class="region-part__title">Kəmalə Nərmin şadlıq sarayı</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part target-155">
                                     <span class="region-part__title">Koala parkı</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part target-156">
                                     <span class="region-part__title">Kolizey şadlıq sarayı</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part target-157">
                                     <span class="region-part__title">Kooperasiya Universiteti</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part target-158">
                                     <span class="region-part__title">Koroğlu parkı</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part target-159">
                                     <span class="region-part__title">Korrupsiya idarəsi</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part target-160">
                                     <span class="region-part__title">Kosmos restoranı</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part target-161">
                                     <span class="region-part__title">Kral şadlıq sarayı</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part target-162">
                                     <span class="region-part__title">Kukla Teatrı</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                               </div>
@@ -6969,55 +6969,55 @@
                                  <p class="region-title">
                                     <span class="region-part__title">L</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part target-163">
                                     <span class="region-part__title">Lake Palace otel</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part target-164">
                                     <span class="region-part__title">Landmark biznes mərkəzi</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part target-165">
                                     <span class="region-part__title">Leyla plaza restoranı</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part target-166">
                                     <span class="region-part__title">Leyla şadlıq evi</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part target-167">
                                     <span class="region-part__title">Leyla Şıxlinskaya klinikası</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part target-168">
                                     <span class="region-part__title">Lider telekanal</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part target-169">
                                     <span class="region-part__title">LOR hospital</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part target-170">
                                     <span class="region-part__title">Lotos ticarət mərkəzi</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                               </div>
@@ -7025,175 +7025,175 @@
                                  <p class="region-title">
                                     <span class="region-part__title">M</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part target-172">
                                     <span class="region-part__title">M. Hüseynzadə parkı</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part target-171">
                                     <span class="region-part__title">M.Ə.Sabir parkı</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part target-173">
                                     <span class="region-part__title">Mala Praqa restoranı</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part target-175">
                                     <span class="region-part__title">Malokan bağı</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part target-176">
                                     <span class="region-part__title">Medera hospital</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part target-177">
                                     <span class="region-part__title">Mega palace restoranı</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part target-178">
                                     <span class="region-part__title">Megafun əyləncə mərkəzi</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part target-180">
                                     <span class="region-part__title">Memarlıq və İnşaat Universiteti</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part target-185">
                                     <span class="region-part__title">Metropark Mall</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part target-143">
                                     <span class="region-part__title">Mədəniyyət və İncəsənət Universiteti</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part target-179">
                                     <span class="region-part__title">Mələk şadlıq sarayı</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part target-186">
                                     <span class="region-part__title">Mərkəzi Bank</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part target-57">
                                     <span class="region-part__title">Mərkəzi Dəmiryol xəstəxanası</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part target-181">
                                     <span class="region-part__title">Mərkəzi Gömrük hospitalı</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part target-131">
                                     <span class="region-part__title">Mərkəzi Hərbi Hospital</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part target-182">
                                     <span class="region-part__title">Mərkəzi klinika</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part target-194">
                                     <span class="region-part__title">Mərkəzi univermaq</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part target-183">
                                     <span class="region-part__title">Məşədi Dadaş məscidi</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part target-184">
                                     <span class="region-part__title">Mətin şadlıq sarayı</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part target-35">
                                     <span class="region-part__title">Milli Aviasiya Akademiyası</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part target-187">
                                     <span class="region-part__title">Milli Konservatoriya</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part target-188">
                                     <span class="region-part__title">Milli Məclis</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part target-189">
                                     <span class="region-part__title">Modern hospital</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part target-190">
                                     <span class="region-part__title">Mona Liza restoranı</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part target-191">
                                     <span class="region-part__title">Montin bazarı</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part target-192">
                                     <span class="region-part__title">Movida Plaza şadlıq sarayı</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part target-193">
                                     <span class="region-part__title">Mübarək şadlıq sarayı</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part target-195">
                                     <span class="region-part__title">Musabəyov parkı</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                               </div>
@@ -7201,133 +7201,133 @@
                                  <p class="region-title">
                                     <span class="region-part__title">N</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part target-197">
                                     <span class="region-part__title">Nargilə kafesi</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part target-199">
                                     <span class="region-part__title">Nazlı şadlıq sarayı</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part target-200">
                                     <span class="region-part__title">Neapol dairəsi</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part target-201">
                                     <span class="region-part__title">Neapol şadlıq sarayı</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part target-203">
                                     <span class="region-part__title">Neft Akademiyası</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part target-323">
                                     <span class="region-part__title">Neftçi baza</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part target-204">
                                     <span class="region-part__title">Neftçilər xəstəxanası</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part target-205">
                                     <span class="region-part__title">Neolit Hall şadlıq sarayı</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part target-206">
                                     <span class="region-part__title">Neptun şadlıq sarayı</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part target-211">
                                     <span class="region-part__title">New Med hospital</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part target-202">
                                     <span class="region-part__title">Nəbz klinikası</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part target-198">
                                     <span class="region-part__title">Nərgiz Mall</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part target-208">
                                     <span class="region-part__title">Nəriman Nərimanov heykəli</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part target-207">
                                     <span class="region-part__title">Nəriman Nərimanov parkı</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part target-209">
                                     <span class="region-part__title">Nəsimi bazarı</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part target-210">
                                     <span class="region-part__title">Nəsimi heykəli</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part target-196">
                                     <span class="region-part__title">Nəsrəddin Tusi adına klinika</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part target-212">
                                     <span class="region-part__title">Niel şadlıq sarayı</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part target-213">
                                     <span class="region-part__title">Nizami heykəli</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part target-214">
                                     <span class="region-part__title">Nizami kinoteatr</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part target-215">
                                     <span class="region-part__title">Nizami Mall</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                               </div>
@@ -7335,43 +7335,43 @@
                                  <p class="region-title">
                                     <span class="region-part__title">O</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part target-216">
                                     <span class="region-part__title">Oazis restoranı</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part target-217">
                                     <span class="region-part__title">Odlar Yurdu Universiteti</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part target-218">
                                     <span class="region-part__title">Oğuzxan şadlıq sarayı</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part target-220">
                                     <span class="region-part__title">Oksigen klinikası</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part target-221">
                                     <span class="region-part__title">Olimpik otel</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part target-222">
                                     <span class="region-part__title">Olimpik Star</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                               </div>
@@ -7379,73 +7379,73 @@
                                  <p class="region-title">
                                     <span class="region-part__title">P</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part target-223">
                                     <span class="region-part__title">Park Azure</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part target-224">
                                     <span class="region-part__title">Park Bulvar Mall</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part target-225">
                                     <span class="region-part__title">Park İnn otel</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part target-227">
                                     <span class="region-part__title">Pedaqoji Universiteti</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part target-228">
                                     <span class="region-part__title">Pirosmani restoranı</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part target-229">
                                     <span class="region-part__title">Pitomnik restoranı</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part target-230">
                                     <span class="region-part__title">Planet şadlıq sarayı</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part target-231">
                                     <span class="region-part__title">Pluton şadlıq sarayı</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part target-232">
                                     <span class="region-part__title">Port Baku Mall</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part target-233">
                                     <span class="region-part__title">Praqa şadlıq sarayı</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part target-234">
                                     <span class="region-part__title">Prezident parkı</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                               </div>
@@ -7453,73 +7453,73 @@
                                  <p class="region-title">
                                     <span class="region-part__title">Q</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part target-235">
                                     <span class="region-part__title">Qafqaz Resort otel</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part target-237">
                                     <span class="region-part__title">Qələbə dairəsi</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part target-238">
                                     <span class="region-part__title">Qərb Universiteti</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part target-239">
                                     <span class="region-part__title">Qış parkı</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part target-240">
                                     <span class="region-part__title">Qız Qalası</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part target-241">
                                     <span class="region-part__title">Qızıl Buta şadlıq sarayı</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part target-242">
                                     <span class="region-part__title">Qızıl Qaya şadlıq sarayı</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part target-243">
                                     <span class="region-part__title">Qızıl Tac restoranı</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part target-244">
                                     <span class="region-part__title">Qlobus plaza</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part target-245">
                                     <span class="region-part__title">Qubernator parkı</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part target-246">
                                     <span class="region-part__title">Qurtuluş 93 Yaşayış Kompleksi</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                               </div>
@@ -7527,67 +7527,67 @@
                                  <p class="region-title">
                                     <span class="region-part__title">R</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part target-248">
                                     <span class="region-part__title">RAS plaza restoranı</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part target-249">
                                     <span class="region-part__title">Real hospital</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part target-250">
                                     <span class="region-part__title">Real şadlıq sarayı</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part target-251">
                                     <span class="region-part__title">Respublika Müalicəvi Diaqnostika Mərkəzi</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part target-252">
                                     <span class="region-part__title">Rəssamlıq Akademiyası</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part target-253">
                                     <span class="region-part__title">Rich plaza</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part target-254">
                                     <span class="region-part__title">Riviera otel</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part target-255">
                                     <span class="region-part__title">Romance palace restoranı</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part target-256">
                                     <span class="region-part__title">Roz Marina restoranı</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part target-257">
                                     <span class="region-part__title">Rusiya səfirliyi</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                               </div>
@@ -7595,55 +7595,55 @@
                                  <p class="region-title">
                                     <span class="region-part__title">Ş</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part target-258">
                                     <span class="region-part__title">Şahənşah şadlıq sarayı</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part target-260">
                                     <span class="region-part__title">Şam bağı restoranı</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part target-265">
                                     <span class="region-part__title">Şəhidlər Xiyabanı</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part target-267">
                                     <span class="region-part__title">Şəki restoranı</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part target-268">
                                     <span class="region-part__title">Şəlalə parkı</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part target-271">
                                     <span class="region-part__title">Şərq bazarı</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part target-288">
                                     <span class="region-part__title">Şuşa restoranı</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part target-289">
                                     <span class="region-part__title">Şüvəlan Park ticarət mərkəzi</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                               </div>
@@ -7651,151 +7651,151 @@
                                  <p class="region-title">
                                     <span class="region-part__title">S</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part target-259">
                                     <span class="region-part__title">Sahil bağı</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part target-261">
                                     <span class="region-part__title">Sapfir şadlıq sarayı</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part target-262">
                                     <span class="region-part__title">Sea Breeze</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part target-272">
                                     <span class="region-part__title">Sevən Ürəklər şadlıq sarayı</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part target-273">
                                     <span class="region-part__title">Sevgi parkı</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part target-274">
                                     <span class="region-part__title">Sevil Qazıyeva parkı</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part target-263">
                                     <span class="region-part__title">Sədərək Ticarət Mərkəzi</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part target-266">
                                     <span class="region-part__title">Səhiyyə Nazirliyi</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part target-269">
                                     <span class="region-part__title">Səməd Vurğun parkı</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part target-270">
                                     <span class="region-part__title">Sərhədçi İdman Mərkəzi</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part target-275">
                                     <span class="region-part__title">Simfoniya Hall şadlıq sarayı</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part target-276">
                                     <span class="region-part__title">Sirk</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part target-277">
                                     <span class="region-part__title">Siyaqut şadlıq sarayı</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part target-278">
                                     <span class="region-part__title">Sofiya şadlıq sarayı</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part target-108">
                                     <span class="region-part__title">Sosial Müdafiəsi Nazirliyi</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part target-279">
                                     <span class="region-part__title">Space telekanalı</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part target-280">
                                     <span class="region-part__title">Spero hospital</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part target-281">
                                     <span class="region-part__title">Spring otel</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part target-282">
                                     <span class="region-part__title">Starlab tibb mərkəzi</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part target-283">
                                     <span class="region-part__title">Stimul hospital</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part target-284">
                                     <span class="region-part__title">Su İdman Sarayı</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part target-285">
                                     <span class="region-part__title">Su Səsi restoranı</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part target-286">
                                     <span class="region-part__title">Su Sonası şadlıq sarayı</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part target-287">
                                     <span class="region-part__title">Sultan şadlıq sarayı</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                               </div>
@@ -7803,73 +7803,73 @@
                                  <p class="region-title">
                                     <span class="region-part__title">T</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part target-294">
                                     <span class="region-part__title">Texniki Universitet</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part target-290">
                                     <span class="region-part__title">Təbrik şadlıq sarayı</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part target-291">
                                     <span class="region-part__title">Təfəkkür Universiteti</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part target-292">
                                     <span class="region-part__title">Təhsil Nazirliyi</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part target-293">
                                     <span class="region-part__title">Tərlan restoranı</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part target-295">
                                     <span class="region-part__title">Təzə bazar</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part target-296">
                                     <span class="region-part__title">Tibb Universiteti</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part target-297">
                                     <span class="region-part__title">Tofiq Bəhrəmov stadionu</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part target-299">
                                     <span class="region-part__title">Turan klinikası</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part target-301">
                                     <span class="region-part__title">Türk səfirliyi</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part target-300">
                                     <span class="region-part__title">Türk-Amerikan tibb mərkəzi</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                               </div>
@@ -7877,13 +7877,13 @@
                                  <p class="region-title">
                                     <span class="region-part__title">U</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part target-302">
                                     <span class="region-part__title">Ukrayna dairəsi</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                               </div>
@@ -7891,31 +7891,31 @@
                                  <p class="region-title">
                                     <span class="region-part__title">V</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part target-304">
                                     <span class="region-part__title">Venera şadlıq sarayı</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part target-305">
                                     <span class="region-part__title">Vergilər Nazirliyi</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part target-306">
                                     <span class="region-part__title">Versal şadlıq sarayı</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part target-307">
                                     <span class="region-part__title">Vita Med hospital</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                               </div>
@@ -7923,13 +7923,13 @@
                                  <p class="region-title">
                                     <span class="region-part__title">W</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part target-308">
                                     <span class="region-part__title">World Business Center</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                               </div>
@@ -7937,43 +7937,43 @@
                                  <p class="region-title">
                                     <span class="region-part__title">X</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part target-309">
                                     <span class="region-part__title">Xalça Muzeyi</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part target-310">
                                     <span class="region-part__title">Xan saray restoranı</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part target-312">
                                     <span class="region-part__title">Xaqani Ticarət Mərkəzi</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part target-311">
                                     <span class="region-part__title">Xarici İşlər Nazirliyi</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part target-313">
                                     <span class="region-part__title">Xəzər Universiteti</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part target-314">
                                     <span class="region-part__title">Xəzinə şadlıq sarayı</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                               </div>
@@ -7981,43 +7981,43 @@
                                  <p class="region-title">
                                     <span class="region-part__title">Y</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part target-315">
                                     <span class="region-part__title">Yaşam tibb mərkəzi</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part target-316">
                                     <span class="region-part__title">Yasamal bazarı</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part target-317">
                                     <span class="region-part__title">Yasamal parkı</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part target-318">
                                     <span class="region-part__title">Yaşıl bazar</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part target-319">
                                     <span class="region-part__title">Yeganə şadlıq sarayı</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part target-247">
                                     <span class="region-part__title">Yüksək Texnologiyalar Nazirliyi</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                               </div>
@@ -8025,31 +8025,31 @@
                                  <p class="region-title">
                                     <span class="region-part__title">Z</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part target-226">
                                     <span class="region-part__title">Zabitlər parkı</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part target-320">
                                     <span class="region-part__title">Zərifə Əliyeva adına park</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part target-321">
                                     <span class="region-part__title">Zirvə şadlıq sarayı</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part target-322">
                                     <span class="region-part__title">Zoopark</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                               </div>
@@ -8057,13 +8057,13 @@
                                  <p class="region-title">
                                     <span class="region-part__title">Т</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                                  <p class="region-part target-48">
                                     <span class="region-part__title">Тurizm və Menecment Universiteti</span>
                                     <svg class="icon icon-close">
-                                       <use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-04-30 01:21:27#icon-close"></use>
+                                       <use xlink:href="<?= base_url() ?>/site/img/icons/icons.svg#icon-close"></use>
                                     </svg>
                                  </p>
                               </div>

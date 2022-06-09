@@ -14907,7 +14907,7 @@ a {
     -o-transition: all 0.3s ease-in-out;
     transition: all 0.3s ease-in-out;
     opacity: 0;
-    background-color: #4868e8;
+    background-color: #d3a033;
 }
 
 .header-secondary .nav-item--secondary:before {
@@ -19584,7 +19584,7 @@ select {
     -o-transition: all 0.3s ease-in-out;
     transition: all 0.3s ease-in-out;
     opacity: 0;
-    background-color: #4868e8;
+    background-color: #d3a033;
 }
 
 .footer-nav a:before {

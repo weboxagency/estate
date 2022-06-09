@@ -2,7 +2,7 @@
 <section class="main-header">
    <div class="main-header__content container  ">
       <h1>Mənzil sahibi olmaq Estate.az ilə daha rahat!</h1>
-      <form x-search-form class="search" action="https://evelani.az/az/axtar/satis" method="get">
+      <form x-search-form class="search" action="<?= base_url() ?>axtar" method="get">
          <input type="hidden" name="sort" value="">
          <input type="hidden" name="region">
          <input type="hidden" name="district">
@@ -29,7 +29,6 @@
                </div>
             </div>
             <div class="searchmap-content">
-               
                <input onkeypress="return isNumberKey(event)" id="numberTxt" class="search-input" type="number" placeholder="<?= translate('ads_number') ?>" name="number">
                <svg class="icon icon-search">
                 <use xlink:href="<?= base_url() ?>assets/site/img/icons/icons_search.svg#icon-search"></use>

@@ -299,6 +299,7 @@
                               <i class="fas fa-star-of-life"></i>
                               </label>
                               <select name="region" id="exampleFormControlSelect15" class="ui fluid dropdown">
+                                 <option value="0" selected><?= translate('not_selected') ?></option>
                                   <?php foreach ($regions as $value): ?>
                                  <option value="<?= $value['id'] ?>"  x-city="<?= $value['parent_city'] ?>"><?= $value['region_name'] ?></option>
                                  <?php endforeach; ?>

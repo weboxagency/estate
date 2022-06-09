@@ -144,7 +144,7 @@
             deleted_files = [] ,
             _map , _marker;
 
-
+        
         function initMap( latitude = 40.4093 , longitude = 49.8671 )
         {
             var input = document.getElementById("pac-input");
@@ -1695,15 +1695,15 @@
         ;
     </script>
 <script> let HIDE_MAP = 'Xəritəni gizlət'; </script>
-<script src="https://evelani.az/site/js/popper.js"></script>
-<script src="https://evelani.az/site/js/jquery-ui.js"></script>
-<script src="https://evelani.az/site/js/libs.min.js"></script>
-<script src="https://evelani.az/site/js/bootstrap-swipe-carousel.min.js"></script>
-<script src="https://evelani.az/site/js/lightslider.js"></script>
-<script src="https://evelani.az/site/js/isotope-docs.min.js"></script>
-<script src="https://evelani.az/site/js/semantic.min.js"></script>
-<script src="https://evelani.az/site/js/common.js"></script>
-<script src="https://evelani.az/site/js/js/select2.full.js"></script>
+<script src="<?= base_url() ?>assets/site/js/popper.js"></script>
+<script src="<?= base_url() ?>assets/site/js/jquery-ui.js"></script>
+<script src="<?= base_url() ?>assets/site/js/libs.min.js"></script>
+<script src="<?= base_url() ?>assets/site/js/bootstrap-swipe-carousel.min.js"></script>
+<script src="<?= base_url() ?>assets/site/js/lightslider.js"></script>
+<script src="<?= base_url() ?>assets/site/js/isotope-docs.min.js"></script>
+<script src="<?= base_url() ?>assets/site/js/semantic.min.js"></script>
+<script src="<?= base_url() ?>assets/site/js/common.js"></script>
+<script src="<?= base_url() ?>assets/site/js/js/select2.full.js"></script>
 <script>
     function numberWithSpaces(x) {
         return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");

@@ -70,13 +70,13 @@ class Add_listing extends Frontend_Controller
         $latitude                   = $this->input->post('latitude',TRUE);
         $longitude                  = $this->input->post('longitude',TRUE);
         $property_description       = $this->input->post('property_description',TRUE);
-
-        $all_cities           = $this->home_model->allCities();
-        $all_regions          = $this->home_model->allRegions();
-        $all_metros           = $this->home_model->allMetros();
-        $all_estate_types     = $this->home_model->estateTypes();
-        $all_ads_type         = $this->home_model->adsType();
-        $all_district         = $this->home_model->allDistricts();
+                
+        $all_cities                 = $this->home_model->allCities();
+        $all_regions                = $this->home_model->allRegions();
+        $all_metros                 = $this->home_model->allMetros();
+        $all_estate_types           = $this->home_model->estateTypes();
+        $all_ads_type               = $this->home_model->adsType();
+        $all_district               = $this->home_model->allDistricts();
         array_unshift($all_metros,"");
         unset($all_metros[0]);
         array_unshift($all_district,"");
@@ -317,9 +317,9 @@ class Add_listing extends Frontend_Controller
                 {
                     $pr = "Kiraye günlük";
                 }
-                if ($property_type==6) 
+                if ($property_type==8) 
                 {
-                   $an_headline = $land_area;
+                   $an_headline = $area.' sot';
                 } 
                 elseif ($property_type==10) 
                 {
@@ -350,8 +350,17 @@ class Add_listing extends Frontend_Controller
                 $emlak_novu = $all_estate_types[$property_type]['estate_type_name'];
                
                 $title      = strip_tags($pr.','.$emlak_novu.','.$an_headline.','.$loca);
-                $titleURL   = strtolower(url_title($title.'-'.time()));
-              
+                $titleURL   = strtolower(url_title($title.'-'.$last_ads_id+10));
+                if (!empty($area)) 
+                {
+                    $bol = str_replace(",","",$price);
+                    $average_price = $bol/$area;
+                }
+                else
+                {
+                    $bol = str_replace(",","",$price);
+                    $average_price = $bol/$land_area;
+                }
                 
                 $requesData = [
                     "ads_pin_kod"               => rand(10000,99999),
@@ -446,8 +455,11 @@ class Add_listing extends Frontend_Controller
                 {
                     $output["land_area"] = ["the_land_area_field_is_required"];
                 }
+
+                // dd(validation_errors());
+                
                 $response = [
-                            "status"        => "success",
+                            "status"        => "error",
                             "message"       => "",
                             "validations"   => $output   
                         ];
@@ -464,7 +476,8 @@ class Add_listing extends Frontend_Controller
         $data = array(); 
         // If the file upload form submitted 
       
-        if(!empty($_FILES['path']['name'])){ 
+        if(!empty($_FILES['path']['name']))
+        { 
                 // File upload config 
                 $config['upload_path']   = $this->uploadPath; 
                 $config['allowed_types'] = 'jpg|jpeg|png'; 
@@ -483,6 +496,7 @@ class Add_listing extends Frontend_Controller
                      
                     $source_path  = $this->uploadPath.$uploadedImage; 
                     $thumb_path   = $this->uploadPath.'thumb/'; 
+                    $water_path   = $this->uploadPath.'original/'; 
                     $thumb_width  = 280; 
                     $thumb_height = 175; 
                     
@@ -509,14 +523,28 @@ class Add_listing extends Frontend_Controller
                     { 
                         $thumb_msg = '<br/>'.$this->image_lib->display_errors(); 
                     } 
-                     
+                    $imgConfig = array();
+                    $imgConfig['image_library']     = 'GD2';
+                    $imgConfig['source_image']      = $source_path;
+                    $imgConfig['wm_overlay_path']   = 'uploads/watermark.png';
+                    $imgConfig['new_image']            = $water_path; 
+                    $imgConfig['wm_type']           = 'overlay';
+                    $imgConfig['wm_vrt_alignment']  = 'middle';
+                    $imgConfig['wm_hor_alignment']  = 'center';
+                    $this->load->library('image_lib', $imgConfig);
+                    $this->image_lib->initialize($imgConfig);
+                    if($this->image_lib->watermark())
+                    {
+                        $watermarked = $water_path.$uploadedImage;
+                    }
                     $status = 'success'; 
                     $status_msg = 'Image has been uploaded successfully.'.$thumb_msg; 
                 }else{ 
                     $status = 'error'; 
                     $status_msg = 'The image upload has failed!<br/>'.$this->upload->display_errors('',''); 
                 } 
-            }else{ 
+            }
+            else{ 
                 $status = 'error'; 
                 $status_msg = 'Please select a image file to upload.';  
             } 
@@ -524,13 +552,14 @@ class Add_listing extends Frontend_Controller
             $data['status']             = $status; 
             $data['status_msg']         = $status_msg; 
             $data['thumbnail']          = base_url().$thumbnail; 
+            $data['water_path']         = base_url().$watermarked; 
             $data['source_path']        = base_url().$source_path; 
             $data['org_image_size']     = $org_image_size; 
             $data['thumb_image_size']   = $thumb_image_size;
 
             $insertData = [
                 "avatar"    => $data['thumbnail'],
-                "path"      => $data['source_path']                
+                "path"      => $data['water_path']                
             ];
             $this->db->insert('thumb_image', $insertData);
             $insert_id = $this->db->insert_id();
@@ -540,7 +569,8 @@ class Add_listing extends Frontend_Controller
                 "photo"         => [
                     "avatar" => $data['thumbnail'],
                     "id"     => $insert_id, 
-                    "path"   => $data['source_path']
+                    "path"   => $data['source_path'],
+                    "water"  => $data['water_path']
                 ],
                 "validations"   => $output
             ];

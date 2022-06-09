@@ -150,7 +150,7 @@
        _map , _marker;
    
    
-   function initMap( latitude = 40.4093 , longitude = 49.8671 )
+   function initMap( latitude = <?= (isset($ads_detail['latitude']) AND !empty($ads_detail['latitude'])) ? $ads_detail['latitude'] : '40.4093'; ?>  ,  longitude = <?= (isset($ads_detail['longitude']) AND !empty($ads_detail['longitude'])) ? $ads_detail['longitude'] : '49.8671'; ?>  )
    {
        var input = document.getElementById("pac-input");
        var searchBox = new google.maps.places.SearchBox(input);
