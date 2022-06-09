@@ -380,7 +380,13 @@
                             <i class="icons icon-briefcase"></i><span><?=translate('settings')?></span>
                         </a>
                         <ul class="nav nav-children">
-                            <?php if(get_permission('global_settings', 'is_view')){ ?>
+                            <?php if(get_permission('ads_banners', 'is_view')){ ?>
+                            <li class="<?php if($sub_page == 'settings/ads_banners') echo 'nav-active';?>">
+                                <a href="<?=base_url('settings/ads_banners')?>">
+                                    <span><i class="fas fa-caret-right" aria-hidden="true"></i><?=translate('ads_banners')?></span>
+                                </a>
+                            </li>
+                            <?php } if(get_permission('global_settings', 'is_view')){ ?>
                             <li class="<?php if($sub_page == 'settings/universal') echo 'nav-active';?>">
                                 <a href="<?=base_url('settings/universal')?>">
                                     <span><i class="fas fa-caret-right" aria-hidden="true"></i><?=translate('global_settings')?></span>
