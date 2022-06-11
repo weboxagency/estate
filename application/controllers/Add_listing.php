@@ -527,13 +527,17 @@ class Add_listing extends Frontend_Controller
                     $imgConfig['image_library']     = 'GD2';
                     $imgConfig['source_image']      = $source_path;
                     $imgConfig['wm_overlay_path']   = 'uploads/watermark.png';
-                    $imgConfig['new_image']            = $water_path; 
+                    $imgConfig['new_image']         = $water_path; 
                     $imgConfig['wm_type']           = 'overlay';
                     $imgConfig['wm_vrt_alignment']  = 'middle';
                     $imgConfig['wm_hor_alignment']  = 'center';
                     $this->load->library('image_lib', $imgConfig);
                     $this->image_lib->initialize($imgConfig);
                     if($this->image_lib->watermark())
+                    {
+                        $watermarked = $water_path.$uploadedImage;
+                    }
+                    else
                     {
                         $watermarked = $water_path.$uploadedImage;
                     }
@@ -559,7 +563,7 @@ class Add_listing extends Frontend_Controller
 
             $insertData = [
                 "avatar"    => $data['thumbnail'],
-                "path"      => $data['water_path']                
+                "path"      => (!empty($watermarked)) ? $data['water_path'] : ''               
             ];
             $this->db->insert('thumb_image', $insertData);
             $insert_id = $this->db->insert_id();

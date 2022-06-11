@@ -1803,10 +1803,10 @@
        }
    
        $( '[x-favorites]' ).html( `
-                                       <svg class="icon ` + ( favorites ? 'favorite-icon' : 'icon-heart-outline' ) + `">
-                                           <use xlink:href="<?= base_url() ?>assets/site/img/icons/icons.svg#icon-heart` + ( favorites ? '' : '-outline' ) + `"></use>
-                                       </svg>
-                                       <?= translate('wishlist') ?>
+           <svg class="icon ` + ( favorites ? 'favorite-icon' : 'icon-heart-outline' ) + `">
+               <use xlink:href="<?= base_url() ?>assets/site/img/icons/icons.svg#icon-heart` + ( favorites ? '' : '-outline' ) + `"></use>
+           </svg>
+           <?= translate('wishlist') ?>
        `);
    }
    

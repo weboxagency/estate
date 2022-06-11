@@ -414,7 +414,7 @@
                                     <p class="form-message form-message--small">
                                        <span>Şəkillərin optimal ölçüləri — <strong>1200 x 900 pikseldir</strong></span>
                                     </p>
-                                    <p class="form-message mt-5"><span>Elan yerləşdirərək, Siz <a target="_blank" href="istifadeci-razilasmasi.html">Estate.az-ın İstifadəçi razılaşması</a> ilə razı olduğunuzu təsdiq edirsiniz.</span></p>
+                                    <p class="form-message mt-5"><span>Elan yerləşdirərək, Siz <a target="_blank" href="<?= base_url() ?>istifadeci-razilasmasi">Estate.az-ın İstifadəçi razılaşması</a> ilə razı olduğunuzu təsdiq edirsiniz.</span></p>
                                  </div>
                               </div>
                            </div>

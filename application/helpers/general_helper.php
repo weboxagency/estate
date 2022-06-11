@@ -732,6 +732,32 @@ function session_wishlist($session,$ads_id)
     }
 }
 
+function check_wishlist($session)
+{
+    $CI = &get_instance();
+    $session = (isset($_SESSION['wish_sess'])) ? $_SESSION['wish_sess'] : '';
+    if (!empty($session)) 
+    {
+        $CI->db->select('*');
+        $CI->db->from('wishlists');
+        $CI->db->where('session_id', $session);
+        $query = $CI->db->get();
+        if ($query->num_rows() > 0) 
+        {
+            return true;
+        } 
+        else 
+        {
+            return false;
+        }
+        
+    }
+    else
+    {
+        return false;
+    }
+}
+
 function get_nicetime($date)
 {
     $get_format = get_global_setting('date_format');

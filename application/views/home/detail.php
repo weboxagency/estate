@@ -179,12 +179,24 @@
                         </div>
                         <div class="announcement-edit--item">
                            <div class="favorites">
-                              <form action="<?= base_url() ?>home/wishlist" method="post" x-edit-form="<?= $ads_detail['id'] ?>" x-target-with-data="afterWishlist">
+                              <form action="<?= base_url() ?>wishlist" method="post" x-edit-form="<?= $ads_detail['id'] ?>" x-target-with-data="afterWishlist">
+                                 <input type="hidden" name="<?php echo $this->security->get_csrf_token_name();?>" value="<?php echo $this->security->get_csrf_hash();?>">
                                  <input type="hidden" name="id" value="<?= $ads_detail['id'] ?>">
                                  <button type="submit">
-                                    <svg class="icon icon-heart-outline">
-                                       <use xlink:href="<?= base_url() ?>assets/site/img/icons/icons.svg?v=2022-04-22 05:08:38#icon-heart-outline"></use>
+                                     <?php if (!isset($_SESSION['wish_sess'])) { ?>
+
+                                       <svg class="icon icon-heart-outline">
+                                          <use xlink:href="<?= base_url() ?>assets/site/img/icons/icons.svg#icon-heart-outline"></use>
+                                       </svg>
+
+                                    <?php }   else{ ?>
+                                       <?php 
+                                       $heart = (!empty(session_wishlist($_SESSION['wish_sess'],$ads_detail['id'])) AND session_wishlist($_SESSION['wish_sess'],$ads_detail['id'])['data_id']===$ads_detail['id']) ? '' : '-outline';
+                                        ?>
+                                       <svg class="icon icon-heart<?=$heart; ?>">
+                                       <use xlink:href="<?= base_url() ?>assets/site/img/icons/icons.svg#icon-heart<?=$heart; ?>"></use>
                                     </svg>
+                                    <?php } ?>
                                     <p class="d-none d-md-block" x-wishlist-text>Seçilmişlərə əlavə et</p>
                                     <p class="d-md-none" x-wishlist-text-m>Seçilmişlərə əlavə et</p>
                                  </button>
@@ -255,7 +267,7 @@
                         <span>Sahə</span>
                         <div class="announcement-info--right">
                            <div class="announcement-info__top">
-                              <p class="announcement-info__item"><?= (!empty($ads_detail)) ? $ads_detail['area'].' m²' : $ads_detail['land_area'].' sot'; ?> </p>
+                              <p class="announcement-info__item"><?= (!empty($ads_detail['area'])) ? $ads_detail['area'].' m²' : $ads_detail['land_area'].' sot'; ?> </p>
                            </div>
                         </div>
                      </div>
@@ -324,15 +336,15 @@
                         <span class="color">AZN</span>
                      </h2>
                      <h2 class="announcement-price">
-                        <?php if (!empty($ads_detail['area'])) { ?>
+                        <?php if (!empty($ads_detail['area']) ) { ?>
                            <span id="pricetitle" class="price-main pricetitle pricemain-title num-broken"><?= $ads_detail['average_price'] ?></span>
-                           <span class="price-cost">AZN/m²</span>
+                           <span class="price-cost">AZN/<?= ($ads_detail['property_type']==8) ? 'sot' : 'm²' ?></span>
                            <?php }else{ ?>
                            <span id="pricetitle" class="price-main pricetitle pricemain-title num-broken"><?= $ads_detail['price']/$ads_detail['land_area'] ?></span>
                            <span class="price-cost">AZN/sot</span>
                            <?php } ?>
-                        <!-- <span id="pricetitle" class="price-main pricetitle pricemain-title num-broken">1829</span> -->
-                        <!-- <span class="price-cost">AZN/m²</span> -->
+                        <span id="pricetitle" class="price-main pricetitle pricemain-title num-broken">1829</span>
+                        <span class="price-cost">AZN/m²</span>
                      </h2>
                   </div>
                   <p class="d-md-none d-lg-flex">
@@ -407,13 +419,26 @@
                      </div>
                      <div class="announcement-edit--item">
                         <div class="favorites">
-                           <form action="https://evelani.az/az/wishlist" method="post" x-edit-form="<?= $ads_detail['id'] ?>" x-target-with-data="afterWishlist">
+                           <form action="<?= base_url() ?>wishlist" method="post" x-edit-form="<?= $ads_detail['id'] ?>" x-target-with-data="afterWishlist">
+                              <input type="hidden" name="<?php echo $this->security->get_csrf_token_name();?>" value="<?php echo $this->security->get_csrf_hash();?>">
                               <input type="hidden" name="id" value="<?=$ads_detail['id'] ?>">
                               <button type="submit">
-                                 <svg class="icon icon-heart-outline">
-                                    <use xlink:href="<?= base_url() ?>assets/site/img/icons/icons.svg?v=2022-04-22 05:08:38#icon-heart-outline"></use>
-                                 </svg>
-                                 <p x-wishlist-text>Seçilmişlərə əlavə et</p>
+                                <?php if (!isset($_SESSION['wish_sess'])) { ?>
+
+                                       <svg class="icon icon-heart-outline">
+                                          <use xlink:href="<?= base_url() ?>assets/site/img/icons/icons.svg#icon-heart-outline"></use>
+                                       </svg>
+                                       <p x-wishlist-text>Seçilmişlərə əlavə et</p>
+                                    <?php }   else{ ?>
+                                       <?php 
+                                       $heart = (!empty(session_wishlist($_SESSION['wish_sess'],$ads_detail['id'])) AND session_wishlist($_SESSION['wish_sess'],$ads_detail['id'])['data_id']===$ads_detail['id']) ? '' : '-outline';
+                                        ?>
+                                       <svg class="icon icon-heart<?=$heart; ?>">
+                                       <use xlink:href="<?= base_url() ?>assets/site/img/icons/icons.svg#icon-heart<?=$heart; ?>"></use>
+                                    </svg>
+                                     <p x-wishlist-text>Seçilmişlərdən çıxart</p>
+                                    <?php } ?>
+                                 
                               </button>
                            </form>
                         </div>

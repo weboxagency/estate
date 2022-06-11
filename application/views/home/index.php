@@ -568,12 +568,10 @@
                      <input type="hidden" name="id" value="<?= $value['id'] ?>">
                      <button type="submit">
                         <?php if (!isset($_SESSION['wish_sess'])) { ?>
-
                            <svg class="icon icon-heart-outline">
                               <use xlink:href="<?= base_url() ?>assets/site/img/icons/icons.svg#icon-heart-outline"></use>
                            </svg>
-
-                        <?php } else{ ?>
+                        <?php }else{ ?>
                            <?php 
                            $heart = (!empty(session_wishlist($_SESSION['wish_sess'],$value['id'])) AND session_wishlist($_SESSION['wish_sess'],$value['id'])['data_id']===$value['id']) ? '' : '-outline';
                             ?>
@@ -581,7 +579,6 @@
                            <use xlink:href="<?= base_url() ?>assets/site/img/icons/icons.svg#icon-heart<?=$heart; ?>"></use>
                         </svg>
                         <?php } ?>
-                        
                      </button>
                   </form>
                </div>
