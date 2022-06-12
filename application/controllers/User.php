@@ -85,6 +85,7 @@ class User extends Frontend_Controller
                         {
                             $getUser    = $this->um->getUserInfo($login_credential->id);
                             $getConfig  = $this->db->get_where('global_settings', array('id' => 1))->row_array();
+                            $this->db->update('ads_users', array('last_login' => date('Y-m-d H:i:s')), array('id' => $login_credential->id));
                             $sessionData = array(
                                 'fr_name'           => $getUser['name'],
                                 'fr_email'          => $getUser['email'],
@@ -100,7 +101,6 @@ class User extends Frontend_Controller
                         ];
                         echo json_encode($response);
                         
-                        // $this->db->update('ads_users', array('last_login' => date('Y-m-d H:i:s')), array('id' => $login_credential->id));
                         }
                         
                     }
@@ -164,7 +164,7 @@ class User extends Frontend_Controller
                         "is_unique"     => ucfirst(translate("the_email_address_already_used"))
                     ]
                 );
-                $this->form_validation->set_rules("mobile", translate("mobile"), "trim|required|min_length[10]|max_length[10]|is_unique[ads_users.mobile]|xss_clean", 
+                $this->form_validation->set_rules("mobile", translate("mobile"), "trim|required|min_length[10]|max_length[10]|is_unique[ads_users.phone]|xss_clean", 
                     [
                         "required"      => ucfirst(translate("the_mobile_number_field_is_required")),
                         "max_length"    => ucfirst(translate("the_phone_number_is_not_valid")),
@@ -194,11 +194,27 @@ class User extends Frontend_Controller
 
                 if ($this->form_validation->run() === TRUE)         
                 {
+                    if (!isset($user_agreement)) 
+                    {
+                        $output['user_agreement'] = [ucfirst(translate("user_rules_not_accepted"))];
+
+                        $response = [
+                        "status"        => "success",
+                        "text"          => "",
+                        "validations"   => $output
+                        ];
+                        echo json_encode($response);
+                    }
+                    else
+                    {
+                   
+                    
                         $insertData = [
                             "name"                  => $announcement_owner,
                             "email"                 => $email,
                             "password"              => $this->app_lib->pass_hashed($password),
                             "register_token"        => hash('sha256', $announcement_owner . $email . app_generate_hash()),
+                            "phone"                 => $mobile,
                             "mobile"                => formatPhoneNumber("",$mobile)['international'],
                             "mobile_format_second"  => formatPhoneNumber("",$mobile)['second_format'],
                             "mobileBeautified"      => formatPhoneNumber("",$mobile)['national'],
@@ -233,6 +249,7 @@ class User extends Frontend_Controller
                         
                         echo json_encode($response);
                         exit();
+                    }
 
                 }  
                 else
@@ -831,6 +848,7 @@ class User extends Frontend_Controller
             $this->session->set_userdata('redirect_url', current_url());
             redirect(base_url(), 'refresh');
         }
+        $this->data['user_info']        = $this->um->getUserInfo(logged_user_id());
         $this->data['page_data'] = $this->home_model->get('front_cms_home_seo', array('branch_id' => 1), true);
         $this->data['main_contents'] = $this->load->view('user/account', $this->data, true);
         $this->load->view('home/layout/index', $this->data);
@@ -843,6 +861,7 @@ class User extends Frontend_Controller
             $this->session->set_userdata('redirect_url', current_url());
             redirect(base_url(), 'refresh');
         }
+        $this->data['user_info']        = $this->um->getUserInfo(logged_user_id());
         $this->data['page_data'] = $this->home_model->get('front_cms_home_seo', array('branch_id' => 1), true);
         $this->data['main_contents'] = $this->load->view('user/balance', $this->data, true);
         $this->load->view('home/layout/index', $this->data);
@@ -855,6 +874,7 @@ class User extends Frontend_Controller
             $this->session->set_userdata('redirect_url', current_url());
             redirect(base_url(), 'refresh');
         }
+        $this->data['user_info']        = $this->um->getUserInfo(logged_user_id());
         $this->data['page_data'] = $this->home_model->get('front_cms_home_seo', array('branch_id' => 1), true);
         $this->data['main_contents'] = $this->load->view('user/statistics', $this->data, true);
         $this->load->view('home/layout/index', $this->data);

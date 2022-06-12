@@ -245,8 +245,6 @@ class Home extends Frontend_Controller
         $this->load->view('home/layout/index', $this->data);
     }
 
-    
-
     public function wishlist()
     {
         if (!$this->input->is_ajax_request()) {
@@ -291,6 +289,66 @@ class Home extends Frontend_Controller
                     "validations"  => []
                 ];
                  echo  json_encode($data);
+            }
+        }
+    }
+
+    public function sikayet()
+    {
+        if (!$this->input->is_ajax_request()) {
+            exit('No direct script access allowed');
+        }
+        else
+        {
+            $data['id']             = $this->input->post('id');
+            $data['category']       = $this->input->post('category');
+            $data['extra_info']     = $this->input->post('extra_info');               
+
+            $this->form_validation->set_rules('id', translate('id'), 'trim|required|xss_clean');
+            $this->form_validation->set_rules('category', translate('category'), 'trim|required|xss_clean');
+            $this->form_validation->set_rules('extra_info', translate('extra_info'), 'trim|required|xss_clean');
+
+            if ($this->form_validation->run() === TRUE) 
+            {
+                $insertData = array(
+                    'ads_id'            => $data['id'],
+                    'complain_category' => $data['category'],
+                    'extra_info'        => $data['extra_info'],
+                    'ip'                => getIP(),
+                    'soft'              => json_encode(getBrowser())
+                );
+
+                $this->db->insert('ads_complain', $insertData);
+
+                $response = [
+                    "status"        => "success",
+                    "validations"   => [],
+                    "message"       => ""
+                ];
+                echo json_encode($response);
+                exit();
+                
+            }
+            else
+            {
+                $output = array();
+                foreach ($_POST as $key => $value)
+                {
+                    $text   =   str_ireplace('<p>','',form_error($key));
+                    $text   =   str_ireplace('</p>','',$text); 
+                    if ($key!='_token' AND !empty($text)) 
+                    {
+                         $output[$key] = [$text];
+                    }
+                }
+
+                $response = [
+                            "status"        => "success",
+                            "message"       => "",
+                            "validations"   => $output
+                        ];
+                echo json_encode($response);
+                die();
             }
         }
     }

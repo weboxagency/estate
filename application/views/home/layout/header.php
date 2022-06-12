@@ -392,7 +392,7 @@
               <a href="<?= base_url() ?>elanlar/agency" class="nav-item--secondary"><?= translate('agency') ?></a>
             </nav>
             </div>
-            <a href="<?= base_url() ?>elan-yerlesdir" class="link-button link-button--primary link-setup d-none d-sm-flex">
+            <a href="<?= base_url() ?>add_listing" class="link-button link-button--primary link-setup d-none d-sm-flex">
               <span>
                 <svg class="icon icon-plus-circle">
                 <use xlink:href="<?= base_url() ?>assets/site/img/icons/icons.svg#icon-plus-circle"></use>

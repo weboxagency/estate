@@ -62,7 +62,7 @@
                      <use xlink:href="<?= base_url() ?>assets/site/img/icons/icons.svg#icon-facebook"></use>
                   </svg>
                </a>
-               <a target="_blank" href="https://www.instagram.com/evelani.az/" class="links-social links-instagram">
+               <a target="_blank" href="https://www.instagram.com/estate.az/" class="links-social links-instagram">
                   <svg class="icon icon-instagram">
                      <use xlink:href="<?= base_url() ?>assets/site/img/icons/icons.svg#icon-instagram"></use>
                   </svg>
@@ -141,6 +141,62 @@
 <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCcVxlZlT3nO44ljCnR2f89GqzxkuCQftY&libraries=places&callback=initMap&language=az">
     
 </script>
+<script>
+    $(window).bind('load', function() {
+        $('img').each(function() {
+            if((typeof this.naturalWidth != "undefined" && this.naturalWidth == 0) || this.readyState == 'uninitialized') {
+                $(this).attr('src', '<?php echo base_url('uploads/frontend/images/' . $cms_setting['logo']); ?>');
+            }
+        });
+    });
+function afterComplain()
+{
+    let modal = $( '[x-target="afterComplain"]' ).closest( '.modal' );
+
+    modal.html( _.template( $( 'script[x-success]' ).html() )( { message : 'Şikayət qəbul olundu' } ) );
+
+    modal.addClass( 'modal--small editmodal' );
+}
+
+        function afterPermit( data ) { location.href = data.link; }
+
+        function afterDelete()
+        {
+            let modal = $( '[x-target="afterDelete"]' ).closest( '.modal' );
+
+            modal.html( _.template( $( 'script[x-success]' ).html() )( { message : 'Elan müvəffəqiyyətlə silindi' , linkAfterClose : '' } ) );
+
+            modal.addClass( 'modal--small editmodal' );
+        }
+
+        function afterPayment( data ) { if( data.link.length ) location.href = data.link; }
+
+        function typeChange( input )
+        {
+            let type = input.val() , form = input.closest( 'form' );
+
+            if( type == 'balance' )
+            {
+                form.find( '[name="period"]' ).each( function ()
+                {
+                    let price = $( this ).attr( 'x-price' );
+
+                    if( 0 >= price ) $( this ).closest( 'div' ).show();
+
+                    else $( this ).closest( 'div' ).hide();
+                } );
+            }
+
+            else form.find( '[name="period"]' ).closest( 'div' ).show();
+        }
+
+
+        $( document ).ready( function()
+        {
+            $( document ).on( 'click' , '[name="type"]' , function () { typeChange( $( this ) ); } );
+        });
+    </script>
+
 <script type="text/javascript">
    _.templateSettings.variable = "rc";
    var token = "<?php echo $this->security->get_csrf_hash();?>";
@@ -653,7 +709,7 @@
    {
        if( url !== null && url !== undefined && url.length ) return url;
    
-       return 'https://evelani.az/uploads/default.png?v=2022-04-21 19:44:49';
+       return '<?php echo base_url('uploads/frontend/images/' . $cms_setting['logo']); ?>';
    }
    
    
@@ -1011,8 +1067,6 @@
                success : function( res )
                {
                     res = JSON.parse(res);
-                    console.log(res);
-                    console.log(res);
                    if( res[ 'status' ] === 'success' )
                    {
                        if( res.validations !== undefined && Object.keys( res.validations ).length )
@@ -1039,8 +1093,6 @@
                        } 
                        else
                        {
-                        console.log('targetWithData' + targetWithData + ' - ' + res );
-                        console.log('target' + target);
                            if( targetWithData && typeof window[ targetWithData ] === 'function' )
                            {
                                window[ targetWithData ]( res );

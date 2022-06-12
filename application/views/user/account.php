@@ -3,17 +3,17 @@
       <div class="account account-personal">
          <div class="account-left">
             <div class="account-welcome">
-               <span>A</span>
+               <span id="nfl"><?= mb_substr($user_info['name'], 0, 1); ?></span>
                <div class="account-welcome--desc">
                   <h6><?= translate('welcome') ?>,</h6>
-                  <h5>Ağakərim</h5>
+                  <h5 class="ad"><?= $user_info['name']; ?></h5>
                </div>
             </div>
             <div class="account-desc">
                <h4><?= translate('my_account') ?></h4>
                <ul>
                   <li class="account-link__announcement active">
-                     <a href="<?= base_url() ?>user/account">
+                     <a href="<?= base_url() ?>elanlarim">
                         <svg class="icon icon-villa">
                            <use xlink:href="<?= base_url() ?>assets/site/img/icons/icons.svg#icon-villa"></use>
                         </svg>
@@ -21,7 +21,7 @@
                      </a>
                   </li>
                   <li class="account-link__balance">
-                     <a href="<?= base_url() ?>user/balance">
+                     <a href="<?= base_url() ?>balansim">
                         <svg class="icon icon-wallet">
                            <use xlink:href="<?= base_url() ?>assets/site/img/icons/icons.svg#icon-wallet"></use>
                         </svg>
@@ -29,7 +29,7 @@
                      </a>
                   </li>
                   <li class="account-link__profile">
-                     <a href="<?= base_url() ?>user/profile">
+                     <a href="<?= base_url() ?>hesabim">
                         <svg class="icon icon-user">
                            <use xlink:href="<?= base_url() ?>assets/site/img/icons/icons.svg#icon-user"></use>
                         </svg>
@@ -37,7 +37,7 @@
                      </a>
                   </li>
                   <li class="account-link__statistics">
-                     <a href="<?= base_url() ?>user/statistics">
+                     <a href="<?= base_url() ?>statistika">
                         <svg class="icon icon-statistic">
                            <use xlink:href="<?= base_url() ?>assets/site/img/icons/icons.svg#icon-statistic"></use>
                         </svg>

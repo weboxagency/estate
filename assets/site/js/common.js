@@ -673,7 +673,8 @@ for (i = 0; i < acc.length; i++) {
     }
   });
 }
-//fa-eye-slash icon
+
+
 $(document).ready(function() {
     // $('input[id="form_amount"]').keyup(function() {
     //     $(this).val($(this).val().replace(/(\d{4})(\d+)/g, '$1.$2'))

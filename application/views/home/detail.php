@@ -329,24 +329,34 @@
                </div>
                <div class="announcement-inner__right">
                   <div class="announcement-allprice">
-                     <h2 class="announcement-price--main">
+                     <h2 class="announcement-price--main <?php if($ads_detail['announcement_type']!=1){ ?> amouttag <?php } ?>" <?php if($ads_detail['announcement_type']!=1){ ?> style="height: 72px;" <?php } ?>>
                         <span id="pricetitle-first">
                         <?= $ads_detail['price'] ?>
                         </span>
-                        <span class="color">AZN</span>
+                        <span class="color">
+                           <?php if($ads_detail['announcement_type']==1){ ?>
+                              AZN
+                           <?php }elseif($ads_detail['announcement_type']==2){ ?>
+                              AZN/ay
+                           <?php }else{ ?>
+                              AZN/gün
+                           <?php } ?>
+                        </span>
                      </h2>
+                     <?php if($ads_detail['announcement_type']==1): ?>
                      <h2 class="announcement-price">
                         <?php if (!empty($ads_detail['area']) ) { ?>
                            <span id="pricetitle" class="price-main pricetitle pricemain-title num-broken"><?= $ads_detail['average_price'] ?></span>
                            <span class="price-cost">AZN/<?= ($ads_detail['property_type']==8) ? 'sot' : 'm²' ?></span>
                            <?php }else{ ?>
-                           <span id="pricetitle" class="price-main pricetitle pricemain-title num-broken"><?= $ads_detail['price']/$ads_detail['land_area'] ?></span>
+                           <span id="pricetitle" class="price-main pricetitle pricemain-title num-broken"><?= $ads_detail['average_price'] ?></span>
                            <span class="price-cost">AZN/sot</span>
                            <?php } ?>
-                        <span id="pricetitle" class="price-main pricetitle pricemain-title num-broken">1829</span>
-                        <span class="price-cost">AZN/m²</span>
+                        
                      </h2>
+                  <?php endif; ?>
                   </div>
+
                   <p class="d-md-none d-lg-flex">
                      <?= str_replace('', ',', $ads_detail['name']); ?>
                      <?php if ($ads_detail['user_type']==0) { ?>
@@ -355,6 +365,7 @@
                      <span>Əmlak sahibi</span>
                      <?php } ?>
                   </p>
+
                   <div class="link-button link-button--primary showPhonebuttonlink" id="announcement_phone">
                      <div class="showPhonebutton justify-content-center">
                         <div class="link-button__icon">
@@ -793,20 +804,21 @@
       </a>
    </div>
    <div class="modal modal--small" id="email-complaint">
-      <input type="hidden" name="id" value="32954">
+      <input type="hidden" name="id" value="<?= $ads_detail['id'] ?>">
       <div class="modal-dialog">
          <div class="modal-content">
             <div class="modal-header">
                <h6 class="modal-title">Elanı şikayət et</h6>
                <div class="modal-close" data-dismiss="modal">
                   <svg class="icon icon-close">
-                     <use xlink:href="<?= base_url() ?>assets/site/img/icons/icons.svg?v=2022-04-22 05:08:38#icon-close"></use>
+                     <use xlink:href="<?= base_url() ?>assets/site/img/icons/icons.svg#icon-close"></use>
                   </svg>
                </div>
             </div>
             <div class="modal-body">
-               <form action="https://evelani.az/az/complain" method="post" x-edit-form x-target="afterComplain">
-                  <input type="hidden" name="id" value="32954">
+               <form action="<?= base_url() ?>/complain" method="post" x-edit-form x-target="afterComplain">
+                  <input type="hidden" name="id" value="<?= $ads_detail['ads_number'] ?>">
+                  <input type="hidden" name="<?php echo $this->security->get_csrf_token_name();?>" value="<?php echo $this->security->get_csrf_hash();?>">
                   <div class="form-row">
                      <div class="form-item form-item--large">
                         <label for="category">Kateqoriya</label>

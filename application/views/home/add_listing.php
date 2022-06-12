@@ -23,7 +23,7 @@
                            Əlaqədar şəxs
                            <i class="fas fa-star-of-life"></i>
                            </label>
-                           <input type="text" class="form-item__element" placeholder="Əlaqədar şəxs" name="announcement_owner" value="">
+                           <input type="text" class="form-item__element" placeholder="Əlaqədar şəxs" name="announcement_owner" value="<?= $user_info['name'] ?? ''; ?>">
                         </div>
                      </div>
                      <div class="form-row">
@@ -73,7 +73,7 @@
                            <div class="inputPhone">
                               <div class="form-item--compound">
                                  <div class="form-item__constant" id="validationTooltipUsernamePrepend">+994</div>
-                                 <input onkeypress="return isNumberKey(event)" type="number" class="form-item__element" name="mobile" placeholder="Mobil nömrə" value="">
+                                 <input onkeypress="return isNumberKey(event)" type="number" class="form-item__element" name="mobile" placeholder="Mobil nömrə" <?= (isset($user_info['mobile_format_second'])) ? 'disabled' : ''; ?> value="<?= $user_info['mobile_format_second'] ?? ''; ?>">
                               </div>
                               <div class="pretty pretty-whatsapp p-toggle" data-toggle="tooltip" title="Əgər aktiv etsəniz, elanda whatsapp işlətdiyiniz qeyd olunacaqdır">
                                  <input type="checkbox" name="whatsapp">
@@ -97,7 +97,7 @@
                            Elektron poçt
                            <i class="fas fa-star-of-life"></i>
                            </label>
-                           <input class="form-item__element" placeholder="Elektron poçt" type="text" name="email" value="">
+                           <input class="form-item__element" placeholder="Elektron poçt" <?= (isset($user_info['email'])) ? 'disabled' : ''; ?> type="text" name="email" value="<?= $user_info['email'] ?? ''; ?>">
                         </div>
                      </div>
                      <div x-validations></div>
@@ -284,7 +284,7 @@
                               <?= translate('city') ?>
                               <i class="fas fa-star-of-life"></i>
                               </label>
-                              <select name="city" id="exampleFormControlSelect14" class="ui fluid dropdown">
+                              <select name="city" id="exampleFormControlSelect14" class="ui fluid dropdown search">
                                  <option value="0" selected><?= translate('not_selected') ?></option>
                                  <?php foreach ($cities as $value): ?>
                                  <option value="<?= $value['id'] ?>"><?= $value['city_name'] ?></option>
@@ -298,7 +298,7 @@
                               <?= translate('region') ?>
                               <i class="fas fa-star-of-life"></i>
                               </label>
-                              <select name="region" id="exampleFormControlSelect15" class="ui fluid dropdown">
+                              <select name="region" id="exampleFormControlSelect15" class="ui fluid dropdown search">
                                  <option value="0" selected><?= translate('not_selected') ?></option>
                                   <?php foreach ($regions as $value): ?>
                                  <option value="<?= $value['id'] ?>"  x-city="<?= $value['parent_city'] ?>"><?= $value['region_name'] ?></option>
@@ -309,7 +309,7 @@
                         <div class="form-row" x-district-div>
                            <div class="form-item form-item--flex form-item--large">
                               <label for="district"><?= translate('district') ?></label>
-                              <select class="ui fluid dropdown" name="district" id="exampleFormControlSelect17">
+                              <select class="ui fluid dropdown search" name="district" id="exampleFormControlSelect17">
                                  <option value="0" selected><?= translate('not_selected') ?></option>
                                  <?php foreach ($district as $value): ?>
                                  <option value="<?= $value['id'] ?>"  x-region="<?= $value['parent_region'] ?>"><?= $value['district_name'] ?></option>
@@ -320,7 +320,7 @@
                         <div class="form-row" x-metro-div>
                            <div class="form-item form-item--flex form-item--large">
                               <label for="metro"><?= translate('metro') ?></label>
-                              <select class="ui fluid dropdown" name="metro" id="exampleFormControlSelect16">
+                              <select class="ui fluid dropdown search" name="metro" id="exampleFormControlSelect16">
                                  <option value="0" selected><?= translate('not_selected') ?></option>
                                  <?php foreach ($metros as $value): ?>
                                  <option value="<?= $value['id'] ?>"><?= $value['metro_name'] ?></option>
@@ -328,6 +328,17 @@
                               </select>
                            </div>
                         </div>
+                        <!-- <div class="form-row" x-targets-div>
+                           <div class="form-item form-item--flex form-item--large">
+                              <label for="targets"><?= translate('targets') ?></label>
+                              <select class="ui fluid search dropdown targetsAds" multiple="" name="targets" id="exampleFormControlSelect18">
+                                 <option value=""><?= translate('not_selected') ?></option>
+                                 <?php foreach ($targets as $value): ?>
+                                 <option value="<?= $value['id'] ?>"><?= $value['target_name'] ?></option>
+                                 <?php endforeach; ?>
+                              </select>
+                           </div>
+                        </div> -->
                         <div class="form-row">
                            <div class="form-item form-item--flex form-item--large">
                               <label for="address">

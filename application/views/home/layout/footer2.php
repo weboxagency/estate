@@ -137,6 +137,7 @@
 <script src='<?= base_url('assets/site/admin/sweetalert2.all.min.js') ?>'></script>
 <script src='<?= base_url('assets/site/admin/underscore-min.js') ?>'></script>
 <script type="text/javascript">
+
         _.templateSettings.variable = "rc";
 
         let locale = 'az' ,
@@ -2810,6 +2811,10 @@
                     $("#mortgagemodal .modal-body").height(window.innerHeight - 60);
                 }
             });
+            $('.targetsAds')
+              .dropdown({
+                maxSelections: 4
+              });
         </script>
 </body>
 </html>

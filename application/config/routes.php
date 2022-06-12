@@ -50,14 +50,26 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 |		my-controller/my-method	-> my_controller/my_method
 */
 $route['default_controller'] 		= 'home';
-$route['404_override'] 				= 'errors';
-$route['translate_uri_dashes'] 		= FALSE;
 
 
-$route['elan-yerlesdir'] 			= 'add_listing';
+// $route['elan-yerlesdir'] 			= 'add_listing';
+// $route['elan-yerlesdir/check_info'] = 'add_listing/check_info';
 $route['istifadeci-razilasmasi'] 	= 'user_agreement';
 $route['yeni-elanlar'] 				= 'elanlar/new';
+
+//HOME CONTROLLER
 $route['wishlist'] 					= 'home/wishlist';
+$route['complain'] 					= 'home/sikayet';
 $route['elan/(:any)'] 				= 'home/detail/$1';
 $route['axtar'] 					= 'home/search';
-$route['auth/authentication']			= 'authentication';
+
+// USER PROFILES
+$route['hesabim'] 					= 'user/profile';
+$route['elanlarim'] 				= 'user/account';
+$route['balansim'] 					= 'user/balance';
+$route['statistika'] 				= 'user/statistics';
+
+//DASHBOARD
+$route['auth/authentication']		= 'authentication';
+$route['404_override'] 				= 'errors';
+$route['translate_uri_dashes'] 		= FALSE;

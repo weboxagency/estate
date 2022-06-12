@@ -11,34 +11,41 @@ class MY_Controller extends CI_Controller
         $this->output->set_header('Cache-Control: no-store, no-cache, must-revalidate, post-check=0, pre-check=0');
         $this->output->set_header('Pragma: no-cache');
         $this->output->set_header("Expires: Mon, 26 Jul 1997 05:00:00 GMT");
-
+        $this->load->model('user_model','um');
+        if (is_user_loggedin()) 
+        {
+           $this->data['user_info']        = $this->um->getUserInfo(logged_user_id());
+        }
         if ($this->config->item('installed') == false) {
             redirect(site_url('install'));
         }
 
+       
+        
+
         $get_config = $this->db->get_where('global_settings', array('id' => 1))->row_array();
         $this->data['global_config'] = $get_config;
-        $this->data['theme_config'] = $this->db->get_where('theme_settings', array('id' => 1))->row_array();
+        $this->data['theme_config']  = $this->db->get_where('theme_settings', array('id' => 1))->row_array();
 
         date_default_timezone_set($get_config['timezone']);
     }
 
-    public function get_payment_config()
-    {
-        $branchID = $this->application_model->get_branch_id();
-        $this->db->where('branch_id', $branchID);
-        $this->db->select('*')->from('payment_config');
-        return $this->db->get()->row_array();
-    }
+    // public function get_payment_config()
+    // {
+    //     $branchID = $this->application_model->get_branch_id();
+    //     $this->db->where('branch_id', $branchID);
+    //     $this->db->select('*')->from('payment_config');
+    //     return $this->db->get()->row_array();
+    // }
 
-    public function getBranchDetails()
-    {
-        $branchID = $this->application_model->get_branch_id();
-        $this->db->select('*');
-        $this->db->where('id', $branchID);
-        $this->db->from('branch');
-        return $this->db->get()->row_array();
-    }
+    // public function getBranchDetails()
+    // {
+    //     $branchID = $this->application_model->get_branch_id();
+    //     $this->db->select('*');
+    //     $this->db->where('id', $branchID);
+    //     $this->db->from('branch');
+    //     return $this->db->get()->row_array();
+    // }
 }
 
 class Admin_Controller extends MY_Controller

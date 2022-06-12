@@ -42,25 +42,24 @@ class Home_model extends MY_Model
         }
     }
 
-    public function getAdsCountForPhoneNumber($phone)
+    public function registeredUserAdsCount($phone)
+    {
+        // getAdsCountForPhoneNumber
+        $this->db->select('*');
+        $this->db->from('ads_all');
+        $this->db->where('mobile', $phone);
+        $ads = $this->db->get();
+        return $ads->num_rows();
+        
+    }
+
+    public function nonRegisteredUserAdsCount($phone)
     {
         $this->db->select('*');
         $this->db->from('ads_users');
         $this->db->where('mobile_format_second', $phone);
-        $this->db->limit(1);
         $query = $this->db->get();
-        if ($query->num_rows() == 1) 
-        {
-            $this->db->select('*');
-            $this->db->from('ads_all');
-            $this->db->where('mobile', $phone);
-            $ads = $this->db->get();
-            return $ads->num_rows();
-        }
-        else
-        {
-            return false;
-        }
+        return $query->num_rows(); 
     }
 
     public function getLangImage($id = '', $thumb = true)

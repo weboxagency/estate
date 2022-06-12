@@ -346,6 +346,8 @@ function estateTypeName($id='')
     return  $query->num_rows() > 0 ? $query->result_array()[0] : NULL;
 }
 
+
+
 function get_session_id()
 {
     $CI = &get_instance();
