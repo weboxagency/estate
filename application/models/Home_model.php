@@ -42,12 +42,53 @@ class Home_model extends MY_Model
         }
     }
 
-    public function registeredUserAdsCount($phone)
+    // public function adsSeeCountUpdater($url='')
+    // {
+    //     if (!empty($url))
+    //     {
+            
+    //     }
+    // }
+
+    public function checkUserForPhone($phone)
+    {
+        if (!empty($phone)) 
+        {
+            $this->db->select('*');
+            $this->db->from('ads_users');
+            $this->db->where('mobile_format_second', $phone);
+            $this->db->limit(1);
+            $query = $this->db->get();
+            if ($query->num_rows() == 1) 
+            {
+               return $query->num_rows();
+            }
+            else
+            {
+                return 0;
+            }
+        }
+    }
+
+    public function countAdsForNumber($phone)
     {
         // getAdsCountForPhoneNumber
         $this->db->select('*');
         $this->db->from('ads_all');
         $this->db->where('mobile', $phone);
+        $this->db->where('created_at BETWEEN NOW() - INTERVAL 30 DAY AND NOW()', "", false);
+        $ads = $this->db->get();
+        return $ads->num_rows();
+        
+    }
+
+    public function registeredUserAdsCount($phone)
+    {
+        // getAdsCountForPhoneNumber
+        $this->db->select('*');
+        $this->db->from('ads_users');
+        $this->db->where('mobile', $phone);
+        $this->db->where('is_registered', 1);
         $ads = $this->db->get();
         return $ads->num_rows();
         
@@ -57,7 +98,8 @@ class Home_model extends MY_Model
     {
         $this->db->select('*');
         $this->db->from('ads_users');
-        $this->db->where('mobile_format_second', $phone);
+        $this->db->where('mobile', $phone);
+        $this->db->where('is_registered', 0);
         $query = $this->db->get();
         return $query->num_rows(); 
     }
@@ -190,7 +232,8 @@ class Home_model extends MY_Model
 
     public function allNewAdsList()
     {
-        $query = $this->db->query("SELECT * FROM ads_all WHERE status=2 ORDER BY id DESC");
+        $ads_config       = $this->db->get_where('ads_configuration', array('id' => 1))->row_array();
+        $query = $this->db->query("SELECT * FROM ads_all WHERE status=2 AND created_at BETWEEN NOW() - INTERVAL 30 DAY AND NOW() ORDER BY id DESC LIMIT ".$ads_config['home_ads_limit']."");
         return $query->num_rows() > 0 ? $query->result_array() : NULL;
         
     }
@@ -210,21 +253,24 @@ class Home_model extends MY_Model
 
     public function allNewAdsSaleList()
     {
-        $query = $this->db->query("SELECT * FROM ads_all WHERE status=2 AND announcement_type=1  ORDER BY id DESC");
+        $ads_config       = $this->db->get_where('ads_configuration', array('id' => 1))->row_array();
+        $query = $this->db->query("SELECT * FROM ads_all WHERE status=2 AND announcement_type=1  ORDER BY id DESC LIMIT ".$ads_config['category_ads_limit']."");
         return $query->num_rows() > 0 ? $query->result_array() : NULL;
         
     }
 
     public function allNewAdsRentMonthlyList()
     {
-        $query = $this->db->query("SELECT * FROM ads_all WHERE status=2 AND announcement_type=2  ORDER BY id DESC");
+        $ads_config       = $this->db->get_where('ads_configuration', array('id' => 1))->row_array();
+        $query = $this->db->query("SELECT * FROM ads_all WHERE status=2 AND announcement_type=2  ORDER BY id DESC LIMIT ".$ads_config['category_ads_limit']."");
         return $query->num_rows() > 0 ? $query->result_array() : NULL;
         
     }
 
     public function allNewAdsRentDailyList()
     {
-       $query = $this->db->query("SELECT * FROM ads_all WHERE status=2 AND announcement_type=3  ORDER BY id DESC");
+        $ads_config       = $this->db->get_where('ads_configuration', array('id' => 1))->row_array(); 
+        $query = $this->db->query("SELECT * FROM ads_all WHERE status=2 AND announcement_type=3  ORDER BY id DESC LIMIT ".$ads_config['category_ads_limit']."");
         return $query->num_rows() > 0 ? $query->result_array() : NULL;
         
     }

@@ -3,20 +3,20 @@
 <div class="page-container container">
 <div class="agency-body">
 <div class="agency-body__content">
-<img src="https://evelani.az/uploads/agency/106/c3e7741ce290f0fc66362ced63faa938.jpeg?v=1627300451" alt="Avalon daşınmaz əmlak agentliyi">
+<img src="https://Estate.az/uploads/agency/106/c3e7741ce290f0fc66362ced63faa938.jpeg?v=1627300451" alt="Avalon daşınmaz əmlak agentliyi">
 <div class="agency-description agency-main">
 <h1>Avalon daşınmaz əmlak agentliyi</h1>
 <p></p><p>"AVALON REC" Azərbaycan və Türkiyə əmlak bazarlarında daşınmaz əmlakın alqı, satqı, idarə olunması, kirayə və konsaltinq xidmətləri sahəsində ixtisaslaşıb, eyni zamanda da bizim həm Azərbaycanın paytaxtı Bakı şəhərində, həm də Türkiyənin Antalya şəhərində filiallarımız fəaliyyət göstərir.</p><p></p>
 <div class="agency-overview">
 <p>
 <svg class="icon icon-yeni-tikili">
-<use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-06-04 13:39:28#icon-yeni-tikili"></use>
+<use xlink:href="https://Estate.az/site/img/icons/icons.svg?v=2022-06-04 13:39:28#icon-yeni-tikili"></use>
  </svg>
 <strong>365</strong> təklif
 </p>
 <p>
 <svg class="icon icon-eye">
-<use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-06-04 13:39:28#icon-eye"></use>
+<use xlink:href="https://Estate.az/site/img/icons/icons.svg?v=2022-06-04 13:39:28#icon-eye"></use>
 </svg>
 <strong>351</strong> baxış
 </p>
@@ -26,7 +26,7 @@
 <div class="agency-contact__item agency-location">
 <div class="agency-contact__icon">
 <svg class="icon icon-pin">
-<use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-06-04 13:39:28#icon-pin"></use>
+<use xlink:href="https://Estate.az/site/img/icons/icons.svg?v=2022-06-04 13:39:28#icon-pin"></use>
 </svg>
 </div>
 <p>
@@ -36,7 +36,7 @@
 <div class="agency-contact__item">
 <div class="agency-contact__icon">
 <svg class="icon icon-phone">
-<use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-06-04 13:39:28#icon-phone"></use>
+<use xlink:href="https://Estate.az/site/img/icons/icons.svg?v=2022-06-04 13:39:28#icon-phone"></use>
 </svg>
 </div>
 <p>
@@ -54,7 +54,7 @@
 <div class="agency-contact__item">
 <div class="agency-contact__icon">
 <svg class="icon icon-mail">
-<use xlink:href="https://evelani.az/site/img/icons/icons.svg?v=2022-06-04 13:39:28#icon-mail"></use>
+<use xlink:href="https://Estate.az/site/img/icons/icons.svg?v=2022-06-04 13:39:28#icon-mail"></use>
 </svg>
 </div>
 <p>
@@ -132,7 +132,7 @@
                            </span>
                         </div>
                         <?php if ($ads_detail['has_whatsapp']==1) {  ?>
-                        <span class="announcement-phone whatsapptext">Satıcıya elanı Evelani.az saytında tapdığınızı bildirin</span>
+                        <span class="announcement-phone whatsapptext">Satıcıya elanı Estate.az saytında tapdığınızı bildirin</span>
                         <?php } ?>
                      </div>
                      <div class="announcement-infos">
@@ -295,10 +295,10 @@
                 <!--   <div class="announcement-details announcement-otherlinks">
                      <ul class="locations">
                         <li>
-                           <a target="_blank" href="https://evelani.az/az/axtar/satis/elanlar/neftciler">Neftçilər m.</a>
+                           <a target="_blank" href="https://Estate.az/az/axtar/satis/elanlar/neftciler">Neftçilər m.</a>
                         </li>
                         <li>
-                           <a target="_blank" href="https://evelani.az/az/axtar/satis/elanlar/nizami">Nizami r.</a>
+                           <a target="_blank" href="https://Estate.az/az/axtar/satis/elanlar/nizami">Nizami r.</a>
                         </li>
                      </ul>
                   </div> -->
@@ -307,17 +307,17 @@
                      <div class="announcement-info--right">
                         <div class="announcement-info__top">
                            <div class="links">
-                              <a href="https://www.facebook.com/sharer.php?u=https://evelani.az/az/elan/satis-kohne-tikili-3-otaqli-baki-nizami-r-neftciler-m-1528812" target="_blank" class="links-social links-facebook">
+                              <a href="https://www.facebook.com/sharer.php?u=https://Estate.az/az/elan/satis-kohne-tikili-3-otaqli-baki-nizami-r-neftciler-m-1528812" target="_blank" class="links-social links-facebook">
                                  <svg class="icon icon-facebook">
                                     <use xlink:href="<?= base_url() ?>assets/site/img/icons/icons.svg#icon-facebook"></use>
                                  </svg>
                               </a>
-                              <a href="https://twitter.com/share?text=Sat%C4%B1l%C4%B1r%2C+k%C3%B6hn%C9%99+tikili%2C+3+otaql%C4%B1%2C+41+m%C2%B2%2C+Neft%C3%A7il%C9%99r+m.&url=https://evelani.az/az/elan/satis-kohne-tikili-3-otaqli-baki-nizami-r-neftciler-m-1528812" target="_blank" class="links-social links-twitter">
+                              <a href="https://twitter.com/share?text=Sat%C4%B1l%C4%B1r%2C+k%C3%B6hn%C9%99+tikili%2C+3+otaql%C4%B1%2C+41+m%C2%B2%2C+Neft%C3%A7il%C9%99r+m.&url=https://Estate.az/az/elan/satis-kohne-tikili-3-otaqli-baki-nizami-r-neftciler-m-1528812" target="_blank" class="links-social links-twitter">
                                  <svg class="icon icon-twitter">
                                     <use xlink:href="<?= base_url() ?>assets/site/img/icons/icons.svg#icon-twitter"></use>
                                  </svg>
                               </a>
-                              <a href="https://www.linkedin.com/company/evelani-az/" class="links-social links-linkedin">
+                              <a href="https://www.linkedin.com/company/Estate-az/" class="links-social links-linkedin">
                                  <svg class="icon icon-linkedin">
                                     <use xlink:href="<?= base_url() ?>assets/site/img/icons/icons.svg#icon-linkedin"></use>
                                  </svg>
@@ -471,20 +471,20 @@
                               <li data-target="#announcement-30939" data-slide-to="2"></li>
                            </ol>
                            <div class="carousel-inner">
-                              <a class="carousel-item  active " target=_blank href=https://evelani.az/az/elan/satis-kohne-tikili-4-otaqli-baki-xetai-r-ehmedli-q-hezi-aslanov-m-8179947>
-                              <img src="https://evelani.az/uploads/announcement/30939/d55d3c2d89c6e11281f8ee416fa23e09_avatar.jpg?v=1638276799" alt="Satılır, köhnə tikili, 4 otaqlı, 105 m², Həzi Aslanov m.">
+                              <a class="carousel-item  active " target=_blank href=https://Estate.az/az/elan/satis-kohne-tikili-4-otaqli-baki-xetai-r-ehmedli-q-hezi-aslanov-m-8179947>
+                              <img src="https://Estate.az/uploads/announcement/30939/d55d3c2d89c6e11281f8ee416fa23e09_avatar.jpg?v=1638276799" alt="Satılır, köhnə tikili, 4 otaqlı, 105 m², Həzi Aslanov m.">
                               </a>
-                              <a class="carousel-item " target=_blank href=https://evelani.az/az/elan/satis-kohne-tikili-4-otaqli-baki-xetai-r-ehmedli-q-hezi-aslanov-m-8179947>
-                              <img src="https://evelani.az/uploads/announcement/30939/676fb9381074097c75adde5d7e144ed5_avatar.jpg?v=1638276799" alt="Satılır, köhnə tikili, 4 otaqlı, 105 m², Həzi Aslanov m.">
+                              <a class="carousel-item " target=_blank href=https://Estate.az/az/elan/satis-kohne-tikili-4-otaqli-baki-xetai-r-ehmedli-q-hezi-aslanov-m-8179947>
+                              <img src="https://Estate.az/uploads/announcement/30939/676fb9381074097c75adde5d7e144ed5_avatar.jpg?v=1638276799" alt="Satılır, köhnə tikili, 4 otaqlı, 105 m², Həzi Aslanov m.">
                               </a>
-                              <a class="carousel-item " target=_blank href=https://evelani.az/az/elan/satis-kohne-tikili-4-otaqli-baki-xetai-r-ehmedli-q-hezi-aslanov-m-8179947>
-                              <img src="https://evelani.az/uploads/announcement/30939/b07640e0a6be1948a02bb4c6b95e9e38_avatar.jpg?v=1638276799" alt="Satılır, köhnə tikili, 4 otaqlı, 105 m², Həzi Aslanov m.">
+                              <a class="carousel-item " target=_blank href=https://Estate.az/az/elan/satis-kohne-tikili-4-otaqli-baki-xetai-r-ehmedli-q-hezi-aslanov-m-8179947>
+                              <img src="https://Estate.az/uploads/announcement/30939/b07640e0a6be1948a02bb4c6b95e9e38_avatar.jpg?v=1638276799" alt="Satılır, köhnə tikili, 4 otaqlı, 105 m², Həzi Aslanov m.">
                               </a>
                            </div>
                         </div>
                         <div class="announcement-icons">
                            <div class="shape">
-                              <form action="https://evelani.az/az/wishlist" method="post" x-edit-form="30939" x-target-with-data="afterWishlist">
+                              <form action="https://Estate.az/az/wishlist" method="post" x-edit-form="30939" x-target-with-data="afterWishlist">
                                  <input type="hidden" name="id" value="30939">
                                  <button type="submit">
                                     <svg class="icon icon-heart-outline">
@@ -495,7 +495,7 @@
                            </div>
                         </div>
                      </div>
-                     <a class="announcement-description template-announcement" target=_blank href=https://evelani.az/az/elan/satis-kohne-tikili-4-otaqli-baki-xetai-r-ehmedli-q-hezi-aslanov-m-8179947>
+                     <a class="announcement-description template-announcement" target=_blank href=https://Estate.az/az/elan/satis-kohne-tikili-4-otaqli-baki-xetai-r-ehmedli-q-hezi-aslanov-m-8179947>
                         <p class="announcement-price py-0"><span class="pricemain">127000</span>AZN</p>
                         <p class="announcement-location">Həzi Aslanov m.</p>
                         <p class="announcement-size announcement-headline">4 otaqlı - 105 m² - 2/5</p>
@@ -511,20 +511,20 @@
                               <li data-target="#announcement-32953" data-slide-to="2"></li>
                            </ol>
                            <div class="carousel-inner">
-                              <a class="carousel-item  active " target=_blank href=https://evelani.az/az/elan/satis-kohne-tikili-1-otaqli-sumqayit-11-mikrorayon-r-4688864>
-                              <img src="https://evelani.az/uploads/announcement/32953/bfb373a10852e398f5a6178c671d1c08_avatar.jpg?v=1641217956" alt="Satılır, köhnə tikili, 1 otaqlı, 36 m², 11-ci mikrorayon r.">
+                              <a class="carousel-item  active " target=_blank href=https://Estate.az/az/elan/satis-kohne-tikili-1-otaqli-sumqayit-11-mikrorayon-r-4688864>
+                              <img src="https://Estate.az/uploads/announcement/32953/bfb373a10852e398f5a6178c671d1c08_avatar.jpg?v=1641217956" alt="Satılır, köhnə tikili, 1 otaqlı, 36 m², 11-ci mikrorayon r.">
                               </a>
-                              <a class="carousel-item " target=_blank href=https://evelani.az/az/elan/satis-kohne-tikili-1-otaqli-sumqayit-11-mikrorayon-r-4688864>
-                              <img src="https://evelani.az/uploads/announcement/32953/cdc8aecda16e01276b7bccae1bc51b89_avatar.jpg?v=1641217958" alt="Satılır, köhnə tikili, 1 otaqlı, 36 m², 11-ci mikrorayon r.">
+                              <a class="carousel-item " target=_blank href=https://Estate.az/az/elan/satis-kohne-tikili-1-otaqli-sumqayit-11-mikrorayon-r-4688864>
+                              <img src="https://Estate.az/uploads/announcement/32953/cdc8aecda16e01276b7bccae1bc51b89_avatar.jpg?v=1641217958" alt="Satılır, köhnə tikili, 1 otaqlı, 36 m², 11-ci mikrorayon r.">
                               </a>
-                              <a class="carousel-item " target=_blank href=https://evelani.az/az/elan/satis-kohne-tikili-1-otaqli-sumqayit-11-mikrorayon-r-4688864>
-                              <img src="https://evelani.az/uploads/announcement/32953/70967e62d11ad805702545bce30cb312_avatar.jpg?v=1641217957" alt="Satılır, köhnə tikili, 1 otaqlı, 36 m², 11-ci mikrorayon r.">
+                              <a class="carousel-item " target=_blank href=https://Estate.az/az/elan/satis-kohne-tikili-1-otaqli-sumqayit-11-mikrorayon-r-4688864>
+                              <img src="https://Estate.az/uploads/announcement/32953/70967e62d11ad805702545bce30cb312_avatar.jpg?v=1641217957" alt="Satılır, köhnə tikili, 1 otaqlı, 36 m², 11-ci mikrorayon r.">
                               </a>
                            </div>
                         </div>
                         <div class="announcement-icons">
                            <div class="shape">
-                              <form action="https://evelani.az/az/wishlist" method="post" x-edit-form="32953" x-target-with-data="afterWishlist">
+                              <form action="https://Estate.az/az/wishlist" method="post" x-edit-form="32953" x-target-with-data="afterWishlist">
                                  <input type="hidden" name="id" value="32953">
                                  <button type="submit">
                                     <svg class="icon icon-heart-outline">
@@ -535,7 +535,7 @@
                            </div>
                         </div>
                      </div>
-                     <a class="announcement-description template-announcement" target=_blank href=https://evelani.az/az/elan/satis-kohne-tikili-1-otaqli-sumqayit-11-mikrorayon-r-4688864>
+                     <a class="announcement-description template-announcement" target=_blank href=https://Estate.az/az/elan/satis-kohne-tikili-1-otaqli-sumqayit-11-mikrorayon-r-4688864>
                         <p class="announcement-price py-0"><span class="pricemain">37000</span>AZN</p>
                         <p class="announcement-location">11-ci mikrorayon r.</p>
                         <p class="announcement-size announcement-headline">1 otaqlı - 36 m² - 5/5</p>
@@ -551,20 +551,20 @@
                               <li data-target="#announcement-32957" data-slide-to="2"></li>
                            </ol>
                            <div class="carousel-inner">
-                              <a class="carousel-item  active " target=_blank href=https://evelani.az/az/elan/satis-kohne-tikili-2-otaqli-baki-nizami-r-8-kilometr-q-xalqlar-dostlugu-m-8689448>
-                              <img src="https://evelani.az/uploads/announcement/32957/fcf4a7ed88fd98b2d1a676e5b46cf14b_avatar.jpg?v=1641224344" alt="Satılır, köhnə tikili, 2 otaqlı, 32 m², Xalqlar Dostluğu m.">
+                              <a class="carousel-item  active " target=_blank href=https://Estate.az/az/elan/satis-kohne-tikili-2-otaqli-baki-nizami-r-8-kilometr-q-xalqlar-dostlugu-m-8689448>
+                              <img src="https://Estate.az/uploads/announcement/32957/fcf4a7ed88fd98b2d1a676e5b46cf14b_avatar.jpg?v=1641224344" alt="Satılır, köhnə tikili, 2 otaqlı, 32 m², Xalqlar Dostluğu m.">
                               </a>
-                              <a class="carousel-item " target=_blank href=https://evelani.az/az/elan/satis-kohne-tikili-2-otaqli-baki-nizami-r-8-kilometr-q-xalqlar-dostlugu-m-8689448>
-                              <img src="https://evelani.az/uploads/announcement/32957/6920227e7edc7c21433f68cafe15c8d4_avatar.jpg?v=1641224348" alt="Satılır, köhnə tikili, 2 otaqlı, 32 m², Xalqlar Dostluğu m.">
+                              <a class="carousel-item " target=_blank href=https://Estate.az/az/elan/satis-kohne-tikili-2-otaqli-baki-nizami-r-8-kilometr-q-xalqlar-dostlugu-m-8689448>
+                              <img src="https://Estate.az/uploads/announcement/32957/6920227e7edc7c21433f68cafe15c8d4_avatar.jpg?v=1641224348" alt="Satılır, köhnə tikili, 2 otaqlı, 32 m², Xalqlar Dostluğu m.">
                               </a>
-                              <a class="carousel-item " target=_blank href=https://evelani.az/az/elan/satis-kohne-tikili-2-otaqli-baki-nizami-r-8-kilometr-q-xalqlar-dostlugu-m-8689448>
-                              <img src="https://evelani.az/uploads/announcement/32957/223a6be4b56c75e17775ea150a30e17d_avatar.jpg?v=1641224352" alt="Satılır, köhnə tikili, 2 otaqlı, 32 m², Xalqlar Dostluğu m.">
+                              <a class="carousel-item " target=_blank href=https://Estate.az/az/elan/satis-kohne-tikili-2-otaqli-baki-nizami-r-8-kilometr-q-xalqlar-dostlugu-m-8689448>
+                              <img src="https://Estate.az/uploads/announcement/32957/223a6be4b56c75e17775ea150a30e17d_avatar.jpg?v=1641224352" alt="Satılır, köhnə tikili, 2 otaqlı, 32 m², Xalqlar Dostluğu m.">
                               </a>
                            </div>
                         </div>
                         <div class="announcement-icons">
                            <div class="shape">
-                              <form action="https://evelani.az/az/wishlist" method="post" x-edit-form="32957" x-target-with-data="afterWishlist">
+                              <form action="https://Estate.az/az/wishlist" method="post" x-edit-form="32957" x-target-with-data="afterWishlist">
                                  <input type="hidden" name="id" value="32957">
                                  <button type="submit">
                                     <svg class="icon icon-heart-outline">
@@ -575,7 +575,7 @@
                            </div>
                         </div>
                      </div>
-                     <a class="announcement-description template-announcement" target=_blank href=https://evelani.az/az/elan/satis-kohne-tikili-2-otaqli-baki-nizami-r-8-kilometr-q-xalqlar-dostlugu-m-8689448>
+                     <a class="announcement-description template-announcement" target=_blank href=https://Estate.az/az/elan/satis-kohne-tikili-2-otaqli-baki-nizami-r-8-kilometr-q-xalqlar-dostlugu-m-8689448>
                         <p class="announcement-price py-0"><span class="pricemain">43000</span>AZN</p>
                         <p class="announcement-location">Xalqlar Dostluğu m.</p>
                         <p class="announcement-size announcement-headline">2 otaqlı - 32 m² - 4/5</p>
@@ -591,20 +591,20 @@
                               <li data-target="#announcement-32962" data-slide-to="2"></li>
                            </ol>
                            <div class="carousel-inner">
-                              <a class="carousel-item  active " target=_blank href=https://evelani.az/az/elan/satis-kohne-tikili-4-otaqli-sumqayit-9-mikrorayon-r-1393828>
-                              <img src="https://evelani.az/uploads/announcement/32962/34878c5bee968eb71c4d940cef19fade_avatar.jpg?v=1641235972" alt="Satılır, köhnə tikili, 4 otaqlı, 90 m², 9-cu mikrorayon r.">
+                              <a class="carousel-item  active " target=_blank href=https://Estate.az/az/elan/satis-kohne-tikili-4-otaqli-sumqayit-9-mikrorayon-r-1393828>
+                              <img src="https://Estate.az/uploads/announcement/32962/34878c5bee968eb71c4d940cef19fade_avatar.jpg?v=1641235972" alt="Satılır, köhnə tikili, 4 otaqlı, 90 m², 9-cu mikrorayon r.">
                               </a>
-                              <a class="carousel-item " target=_blank href=https://evelani.az/az/elan/satis-kohne-tikili-4-otaqli-sumqayit-9-mikrorayon-r-1393828>
-                              <img src="https://evelani.az/uploads/announcement/32962/e2ccc1cceb8d55e5edf27b61b1b63f58_avatar.jpg?v=1641235978" alt="Satılır, köhnə tikili, 4 otaqlı, 90 m², 9-cu mikrorayon r.">
+                              <a class="carousel-item " target=_blank href=https://Estate.az/az/elan/satis-kohne-tikili-4-otaqli-sumqayit-9-mikrorayon-r-1393828>
+                              <img src="https://Estate.az/uploads/announcement/32962/e2ccc1cceb8d55e5edf27b61b1b63f58_avatar.jpg?v=1641235978" alt="Satılır, köhnə tikili, 4 otaqlı, 90 m², 9-cu mikrorayon r.">
                               </a>
-                              <a class="carousel-item " target=_blank href=https://evelani.az/az/elan/satis-kohne-tikili-4-otaqli-sumqayit-9-mikrorayon-r-1393828>
-                              <img src="https://evelani.az/uploads/announcement/32962/2c0d1e161a992393928d556372eb5536_avatar.jpg?v=1641235978" alt="Satılır, köhnə tikili, 4 otaqlı, 90 m², 9-cu mikrorayon r.">
+                              <a class="carousel-item " target=_blank href=https://Estate.az/az/elan/satis-kohne-tikili-4-otaqli-sumqayit-9-mikrorayon-r-1393828>
+                              <img src="https://Estate.az/uploads/announcement/32962/2c0d1e161a992393928d556372eb5536_avatar.jpg?v=1641235978" alt="Satılır, köhnə tikili, 4 otaqlı, 90 m², 9-cu mikrorayon r.">
                               </a>
                            </div>
                         </div>
                         <div class="announcement-icons">
                            <div class="shape">
-                              <form action="https://evelani.az/az/wishlist" method="post" x-edit-form="32962" x-target-with-data="afterWishlist">
+                              <form action="https://Estate.az/az/wishlist" method="post" x-edit-form="32962" x-target-with-data="afterWishlist">
                                  <input type="hidden" name="id" value="32962">
                                  <button type="submit">
                                     <svg class="icon icon-heart-outline">
@@ -615,7 +615,7 @@
                            </div>
                         </div>
                      </div>
-                     <a class="announcement-description template-announcement" target=_blank href=https://evelani.az/az/elan/satis-kohne-tikili-4-otaqli-sumqayit-9-mikrorayon-r-1393828>
+                     <a class="announcement-description template-announcement" target=_blank href=https://Estate.az/az/elan/satis-kohne-tikili-4-otaqli-sumqayit-9-mikrorayon-r-1393828>
                         <p class="announcement-price py-0"><span class="pricemain">120000</span>AZN</p>
                         <p class="announcement-location">9-cu mikrorayon r.</p>
                         <p class="announcement-size announcement-headline">4 otaqlı - 90 m² - 3/5</p>
@@ -631,20 +631,20 @@
                               <li data-target="#announcement-33002" data-slide-to="2"></li>
                            </ol>
                            <div class="carousel-inner">
-                              <a class="carousel-item  active " target=_blank href=https://evelani.az/az/elan/satis-kohne-tikili-3-otaqli-baki-nesimi-r-nizami-m-5834261>
-                              <img src="https://evelani.az/uploads/announcement/33002/fdc83da51726c57f721fe7f31585333c_avatar.jpeg?v=1641308758" alt="Satılır, köhnə tikili, 3 otaqlı, 70 m², Nizami m.">
+                              <a class="carousel-item  active " target=_blank href=https://Estate.az/az/elan/satis-kohne-tikili-3-otaqli-baki-nesimi-r-nizami-m-5834261>
+                              <img src="https://Estate.az/uploads/announcement/33002/fdc83da51726c57f721fe7f31585333c_avatar.jpeg?v=1641308758" alt="Satılır, köhnə tikili, 3 otaqlı, 70 m², Nizami m.">
                               </a>
-                              <a class="carousel-item " target=_blank href=https://evelani.az/az/elan/satis-kohne-tikili-3-otaqli-baki-nesimi-r-nizami-m-5834261>
-                              <img src="https://evelani.az/uploads/announcement/33002/648a5edf731909b7e6f762ae5160123a_avatar.jpeg?v=1641308759" alt="Satılır, köhnə tikili, 3 otaqlı, 70 m², Nizami m.">
+                              <a class="carousel-item " target=_blank href=https://Estate.az/az/elan/satis-kohne-tikili-3-otaqli-baki-nesimi-r-nizami-m-5834261>
+                              <img src="https://Estate.az/uploads/announcement/33002/648a5edf731909b7e6f762ae5160123a_avatar.jpeg?v=1641308759" alt="Satılır, köhnə tikili, 3 otaqlı, 70 m², Nizami m.">
                               </a>
-                              <a class="carousel-item " target=_blank href=https://evelani.az/az/elan/satis-kohne-tikili-3-otaqli-baki-nesimi-r-nizami-m-5834261>
-                              <img src="https://evelani.az/uploads/announcement/33002/abd12c1975ca93818aeaeae8fb9ca9cc_avatar.jpeg?v=1641308759" alt="Satılır, köhnə tikili, 3 otaqlı, 70 m², Nizami m.">
+                              <a class="carousel-item " target=_blank href=https://Estate.az/az/elan/satis-kohne-tikili-3-otaqli-baki-nesimi-r-nizami-m-5834261>
+                              <img src="https://Estate.az/uploads/announcement/33002/abd12c1975ca93818aeaeae8fb9ca9cc_avatar.jpeg?v=1641308759" alt="Satılır, köhnə tikili, 3 otaqlı, 70 m², Nizami m.">
                               </a>
                            </div>
                         </div>
                         <div class="announcement-icons">
                            <div class="shape">
-                              <form action="https://evelani.az/az/wishlist" method="post" x-edit-form="33002" x-target-with-data="afterWishlist">
+                              <form action="https://Estate.az/az/wishlist" method="post" x-edit-form="33002" x-target-with-data="afterWishlist">
                                  <input type="hidden" name="id" value="33002">
                                  <button type="submit">
                                     <svg class="icon icon-heart-outline">
@@ -655,7 +655,7 @@
                            </div>
                         </div>
                      </div>
-                     <a class="announcement-description template-announcement" target=_blank href=https://evelani.az/az/elan/satis-kohne-tikili-3-otaqli-baki-nesimi-r-nizami-m-5834261>
+                     <a class="announcement-description template-announcement" target=_blank href=https://Estate.az/az/elan/satis-kohne-tikili-3-otaqli-baki-nesimi-r-nizami-m-5834261>
                         <p class="announcement-price py-0"><span class="pricemain">160000</span>AZN</p>
                         <p class="announcement-location">Nizami m.</p>
                         <p class="announcement-size announcement-headline">3 otaqlı - 70 m² - 2/5</p>
@@ -671,20 +671,20 @@
                               <li data-target="#announcement-32970" data-slide-to="2"></li>
                            </ol>
                            <div class="carousel-inner">
-                              <a class="carousel-item  active " target=_blank href=https://evelani.az/az/elan/satis-kohne-tikili-3-otaqli-baki-nerimanov-r-montin-q-neriman-nerimanov-m-4159986>
-                              <img src="https://evelani.az/uploads/announcement/32970/26e6a0b048ae04ee8ac9c42a9e0d1b9b_avatar.jpg?v=1641280696" alt="Satılır, köhnə tikili, 3 otaqlı, 65 m², Nəriman Nərimanov m.">
+                              <a class="carousel-item  active " target=_blank href=https://Estate.az/az/elan/satis-kohne-tikili-3-otaqli-baki-nerimanov-r-montin-q-neriman-nerimanov-m-4159986>
+                              <img src="https://Estate.az/uploads/announcement/32970/26e6a0b048ae04ee8ac9c42a9e0d1b9b_avatar.jpg?v=1641280696" alt="Satılır, köhnə tikili, 3 otaqlı, 65 m², Nəriman Nərimanov m.">
                               </a>
-                              <a class="carousel-item " target=_blank href=https://evelani.az/az/elan/satis-kohne-tikili-3-otaqli-baki-nerimanov-r-montin-q-neriman-nerimanov-m-4159986>
-                              <img src="https://evelani.az/uploads/announcement/32970/acf62df220cbce0a3c93bdc33e6ef514_avatar.jpg?v=1641280696" alt="Satılır, köhnə tikili, 3 otaqlı, 65 m², Nəriman Nərimanov m.">
+                              <a class="carousel-item " target=_blank href=https://Estate.az/az/elan/satis-kohne-tikili-3-otaqli-baki-nerimanov-r-montin-q-neriman-nerimanov-m-4159986>
+                              <img src="https://Estate.az/uploads/announcement/32970/acf62df220cbce0a3c93bdc33e6ef514_avatar.jpg?v=1641280696" alt="Satılır, köhnə tikili, 3 otaqlı, 65 m², Nəriman Nərimanov m.">
                               </a>
-                              <a class="carousel-item " target=_blank href=https://evelani.az/az/elan/satis-kohne-tikili-3-otaqli-baki-nerimanov-r-montin-q-neriman-nerimanov-m-4159986>
-                              <img src="https://evelani.az/uploads/announcement/32970/96fa028b07c8dd04d2f5a1beb75b35f0_avatar.jpg?v=1641280696" alt="Satılır, köhnə tikili, 3 otaqlı, 65 m², Nəriman Nərimanov m.">
+                              <a class="carousel-item " target=_blank href=https://Estate.az/az/elan/satis-kohne-tikili-3-otaqli-baki-nerimanov-r-montin-q-neriman-nerimanov-m-4159986>
+                              <img src="https://Estate.az/uploads/announcement/32970/96fa028b07c8dd04d2f5a1beb75b35f0_avatar.jpg?v=1641280696" alt="Satılır, köhnə tikili, 3 otaqlı, 65 m², Nəriman Nərimanov m.">
                               </a>
                            </div>
                         </div>
                         <div class="announcement-icons">
                            <div class="shape">
-                              <form action="https://evelani.az/az/wishlist" method="post" x-edit-form="32970" x-target-with-data="afterWishlist">
+                              <form action="https://Estate.az/az/wishlist" method="post" x-edit-form="32970" x-target-with-data="afterWishlist">
                                  <input type="hidden" name="id" value="32970">
                                  <button type="submit">
                                     <svg class="icon icon-heart-outline">
@@ -695,7 +695,7 @@
                            </div>
                         </div>
                      </div>
-                     <a class="announcement-description template-announcement" target=_blank href=https://evelani.az/az/elan/satis-kohne-tikili-3-otaqli-baki-nerimanov-r-montin-q-neriman-nerimanov-m-4159986>
+                     <a class="announcement-description template-announcement" target=_blank href=https://Estate.az/az/elan/satis-kohne-tikili-3-otaqli-baki-nerimanov-r-montin-q-neriman-nerimanov-m-4159986>
                         <p class="announcement-price py-0"><span class="pricemain">73000</span>AZN</p>
                         <p class="announcement-location">Nəriman Nərimanov m.</p>
                         <p class="announcement-size announcement-headline">3 otaqlı - 65 m² - 1/1</p>
@@ -711,20 +711,20 @@
                               <li data-target="#announcement-32973" data-slide-to="2"></li>
                            </ol>
                            <div class="carousel-inner">
-                              <a class="carousel-item  active " target=_blank href=https://evelani.az/az/elan/satis-kohne-tikili-1-otaqli-baki-nizami-r-8-kilometr-q-neftciler-m-4436315>
-                              <img src="https://evelani.az/uploads/announcement/32973/e548e5958f2c385e5058346df349ba72_avatar.jpg?v=1641282771" alt="Satılır, köhnə tikili, 1 otaqlı, 36 m², Neftçilər m.">
+                              <a class="carousel-item  active " target=_blank href=https://Estate.az/az/elan/satis-kohne-tikili-1-otaqli-baki-nizami-r-8-kilometr-q-neftciler-m-4436315>
+                              <img src="https://Estate.az/uploads/announcement/32973/e548e5958f2c385e5058346df349ba72_avatar.jpg?v=1641282771" alt="Satılır, köhnə tikili, 1 otaqlı, 36 m², Neftçilər m.">
                               </a>
-                              <a class="carousel-item " target=_blank href=https://evelani.az/az/elan/satis-kohne-tikili-1-otaqli-baki-nizami-r-8-kilometr-q-neftciler-m-4436315>
-                              <img src="https://evelani.az/uploads/announcement/32973/8984289353df9f583aaeb69e88f6c477_avatar.jpg?v=1641282771" alt="Satılır, köhnə tikili, 1 otaqlı, 36 m², Neftçilər m.">
+                              <a class="carousel-item " target=_blank href=https://Estate.az/az/elan/satis-kohne-tikili-1-otaqli-baki-nizami-r-8-kilometr-q-neftciler-m-4436315>
+                              <img src="https://Estate.az/uploads/announcement/32973/8984289353df9f583aaeb69e88f6c477_avatar.jpg?v=1641282771" alt="Satılır, köhnə tikili, 1 otaqlı, 36 m², Neftçilər m.">
                               </a>
-                              <a class="carousel-item " target=_blank href=https://evelani.az/az/elan/satis-kohne-tikili-1-otaqli-baki-nizami-r-8-kilometr-q-neftciler-m-4436315>
-                              <img src="https://evelani.az/uploads/announcement/32973/db270c335608273e95dd5e1517da3be3_avatar.jpg?v=1641282773" alt="Satılır, köhnə tikili, 1 otaqlı, 36 m², Neftçilər m.">
+                              <a class="carousel-item " target=_blank href=https://Estate.az/az/elan/satis-kohne-tikili-1-otaqli-baki-nizami-r-8-kilometr-q-neftciler-m-4436315>
+                              <img src="https://Estate.az/uploads/announcement/32973/db270c335608273e95dd5e1517da3be3_avatar.jpg?v=1641282773" alt="Satılır, köhnə tikili, 1 otaqlı, 36 m², Neftçilər m.">
                               </a>
                            </div>
                         </div>
                         <div class="announcement-icons">
                            <div class="shape">
-                              <form action="https://evelani.az/az/wishlist" method="post" x-edit-form="32973" x-target-with-data="afterWishlist">
+                              <form action="https://Estate.az/az/wishlist" method="post" x-edit-form="32973" x-target-with-data="afterWishlist">
                                  <input type="hidden" name="id" value="32973">
                                  <button type="submit">
                                     <svg class="icon icon-heart-outline">
@@ -735,7 +735,7 @@
                            </div>
                         </div>
                      </div>
-                     <a class="announcement-description template-announcement" target=_blank href=https://evelani.az/az/elan/satis-kohne-tikili-1-otaqli-baki-nizami-r-8-kilometr-q-neftciler-m-4436315>
+                     <a class="announcement-description template-announcement" target=_blank href=https://Estate.az/az/elan/satis-kohne-tikili-1-otaqli-baki-nizami-r-8-kilometr-q-neftciler-m-4436315>
                         <p class="announcement-price py-0"><span class="pricemain">75000</span>AZN</p>
                         <p class="announcement-location">Neftçilər m.</p>
                         <p class="announcement-size announcement-headline">1 otaqlı - 36 m² - 2/5</p>
@@ -751,14 +751,14 @@
                               <li data-target="#announcement-32981" data-slide-to="2"></li>
                            </ol>
                            <div class="carousel-inner">
-                              <a class="carousel-item  active " target=_blank href=https://evelani.az/az/elan/satis-kohne-tikili-4-otaqli-baki-sebail-r-bayil-q-iceri-seher-m-7142133>
-                              <img src="https://evelani.az/uploads/announcement/32981/d1481d7c7460dae9628c099c367dfa7b_avatar.jpeg?v=1641287716" alt="Satılır, köhnə tikili, 4 otaqlı, 120 m², İçəri Şəhər m.">
+                              <a class="carousel-item  active " target=_blank href=https://Estate.az/az/elan/satis-kohne-tikili-4-otaqli-baki-sebail-r-bayil-q-iceri-seher-m-7142133>
+                              <img src="https://Estate.az/uploads/announcement/32981/d1481d7c7460dae9628c099c367dfa7b_avatar.jpeg?v=1641287716" alt="Satılır, köhnə tikili, 4 otaqlı, 120 m², İçəri Şəhər m.">
                               </a>
-                              <a class="carousel-item " target=_blank href=https://evelani.az/az/elan/satis-kohne-tikili-4-otaqli-baki-sebail-r-bayil-q-iceri-seher-m-7142133>
-                              <img src="https://evelani.az/uploads/announcement/32981/12acf7a61d159b1799fbe5cdb439a87b_avatar.jpeg?v=1641287720" alt="Satılır, köhnə tikili, 4 otaqlı, 120 m², İçəri Şəhər m.">
+                              <a class="carousel-item " target=_blank href=https://Estate.az/az/elan/satis-kohne-tikili-4-otaqli-baki-sebail-r-bayil-q-iceri-seher-m-7142133>
+                              <img src="https://Estate.az/uploads/announcement/32981/12acf7a61d159b1799fbe5cdb439a87b_avatar.jpeg?v=1641287720" alt="Satılır, köhnə tikili, 4 otaqlı, 120 m², İçəri Şəhər m.">
                               </a>
-                              <a class="carousel-item " target=_blank href=https://evelani.az/az/elan/satis-kohne-tikili-4-otaqli-baki-sebail-r-bayil-q-iceri-seher-m-7142133>
-                              <img src="https://evelani.az/uploads/announcement/32981/7302049e13faef03fd528ba339608978_avatar.jpeg?v=1641287724" alt="Satılır, köhnə tikili, 4 otaqlı, 120 m², İçəri Şəhər m.">
+                              <a class="carousel-item " target=_blank href=https://Estate.az/az/elan/satis-kohne-tikili-4-otaqli-baki-sebail-r-bayil-q-iceri-seher-m-7142133>
+                              <img src="https://Estate.az/uploads/announcement/32981/7302049e13faef03fd528ba339608978_avatar.jpeg?v=1641287724" alt="Satılır, köhnə tikili, 4 otaqlı, 120 m², İçəri Şəhər m.">
                               </a>
                            </div>
                         </div>
@@ -775,7 +775,7 @@
                            </div>
                         </div>
                      </div>
-                     <a class="announcement-description template-announcement" target=_blank href=https://evelani.az/az/elan/satis-kohne-tikili-4-otaqli-baki-sebail-r-bayil-q-iceri-seher-m-7142133>
+                     <a class="announcement-description template-announcement" target=_blank href=https://Estate.az/az/elan/satis-kohne-tikili-4-otaqli-baki-sebail-r-bayil-q-iceri-seher-m-7142133>
                         <p class="announcement-price py-0"><span class="pricemain">170000</span>AZN</p>
                         <p class="announcement-location">İçəri Şəhər m.</p>
                         <p class="announcement-size announcement-headline">4 otaqlı - 120 m² - 8/9</p>
@@ -788,18 +788,18 @@
       </section>
    </div>
    <div class="pagination">
-      <a disabled href="https://evelani.az/az/elan/satis-kohne-tikili-3-otaqli-baki-nizami-r-neftciler-m-1528812">
+      <a disabled href="https://Estate.az/az/elan/satis-kohne-tikili-3-otaqli-baki-nizami-r-neftciler-m-1528812">
       1
       </a>
-      <a href="https://evelani.az/az/elan/satis-kohne-tikili-3-otaqli-baki-nizami-r-neftciler-m-1528812?page=2">
+      <a href="https://Estate.az/az/elan/satis-kohne-tikili-3-otaqli-baki-nizami-r-neftciler-m-1528812?page=2">
       2
       </a>
-      <a href="https://evelani.az/az/elan/satis-kohne-tikili-3-otaqli-baki-nizami-r-neftciler-m-1528812?page=3">
+      <a href="https://Estate.az/az/elan/satis-kohne-tikili-3-otaqli-baki-nizami-r-neftciler-m-1528812?page=3">
       3
       </a>
       <a>...</a>
-      <a href="https://evelani.az/az/elan/satis-kohne-tikili-3-otaqli-baki-nizami-r-neftciler-m-1528812?page=416">416</a>
-      <a href="https://evelani.az/az/elan/satis-kohne-tikili-3-otaqli-baki-nizami-r-neftciler-m-1528812?page=2" title="Növbəti">
+      <a href="https://Estate.az/az/elan/satis-kohne-tikili-3-otaqli-baki-nizami-r-neftciler-m-1528812?page=416">416</a>
+      <a href="https://Estate.az/az/elan/satis-kohne-tikili-3-otaqli-baki-nizami-r-neftciler-m-1528812?page=2" title="Növbəti">
       <i class="fa fa-chevron-right"></i>
       </a>
    </div>
@@ -816,7 +816,7 @@
                </div>
             </div>
             <div class="modal-body">
-               <form action="<?= base_url() ?>/complain" method="post" x-edit-form x-target="afterComplain">
+               <form action="<?= base_url() ?>complain" method="post" x-edit-form x-target="afterComplain">
                   <input type="hidden" name="id" value="<?= $ads_detail['ads_number'] ?>">
                   <input type="hidden" name="<?php echo $this->security->get_csrf_token_name();?>" value="<?php echo $this->security->get_csrf_hash();?>">
                   <div class="form-row">
@@ -861,7 +861,7 @@
                </div>
             </div>
             <div class="modal-body">
-               <form action="https://evelani.az/az/announcement/permit" method="post" x-edit-form x-target-with-data="afterPermit">
+               <form action="https://Estate.az/az/announcement/permit" method="post" x-edit-form x-target-with-data="afterPermit">
                   <div class="form-row">
                      <div class="form-item form-item--large">
                         <label for="pin">PIN şifrəni daxil edin</label>
@@ -891,7 +891,7 @@
                </div>
             </div>
             <div class="modal-body">
-               <form action="https://evelani.az/az/announcement/delete" method="post" x-edit-form x-target="afterDelete">
+               <form action="https://Estate.az/az/announcement/delete" method="post" x-edit-form x-target="afterDelete">
                   <input type="hidden" name="site" value="1">
                   <div class="form-row">
                      <div class="form-item form-item--large">
@@ -928,7 +928,7 @@
             </div>
             <div class="modal-body">
                <p>Elanınız yeni elanlar bölməsində və axtarış nəticələrində irəli çəkiləcəkdir</p>
-               <form action="https://evelani.az/az/announcement/pull-forward" method="post" x-edit-form x-target-with-data="afterPayment">
+               <form action="https://Estate.az/az/announcement/pull-forward" method="post" x-edit-form x-target-with-data="afterPayment">
                   <input type="hidden" name="id" value="32954">
                   <div class="form-row__title">
                      <h6 for="type">Ödəniş üsulu</h6>
@@ -998,7 +998,7 @@
             </div>
             <div class="modal-body">
                <p>Elanınız saytda ana səhifədə və axtarış nəticələrində VIP bölməsində göstəriləcəkdir</p>
-               <form action="https://evelani.az/az/announcement/make-vip" method="post" x-edit-form x-target-with-data="afterPayment">
+               <form action="https://Estate.az/az/announcement/make-vip" method="post" x-edit-form x-target-with-data="afterPayment">
                   <input type="hidden" name="id" value="32954">
                   <div class="form-row__title">
                      <h6 for="type">Ödəniş üsulu</h6>
@@ -1088,7 +1088,7 @@
             </div>
             <div class="modal-body">
                <p>Elanınız saytda ana səhifədə xüsusi bölmədə yerləşəcəkdir</p>
-               <form action="https://evelani.az/az/announcement/make-premium" method="post" x-edit-form x-target-with-data="afterPayment">
+               <form action="https://Estate.az/az/announcement/make-premium" method="post" x-edit-form x-target-with-data="afterPayment">
                   <input type="hidden" name="id" value="32954">
                   <div class="form-row__title">
                      <h6 for="type">Ödəniş üsulu</h6>

@@ -1,33 +1,10 @@
-<div class="page-container container footer-container">
-   <!-- <div class="footer-thumblis">
-      <div class="thumblist-title">Populyar axtarışlar</div>
-      <ul>
-         <li><a target="_blank" href="az/axtar/satis/yeni-tikili.html">Yeni tikili mənzillər</a></li>
-         <li><a target="_blank" href="az/axtar/kiraye/heyet-evi-bag.html">Kirayə həyət evləri</a></li>
-         <li><a target="_blank" href="az/ipoteka.html">İpotekaya mənzillər</a></li>
-         <li><a target="_blank" href="az/bloq.html">Əmlak xəbərləri</a></li>
-         <li><a target="_blank" href="az/biznez-merkezleri.html">Bakıda ofislər</a></li>
-         <li><a target="_blank" href="az/axtar/satis/villa.html">Satılıq villalar</a></li>
-         <li><a target="_blank" href="az/axtar/satis7a66.html?sort=&amp;region=&amp;district=&amp;metro=&amp;placemark=&amp;page=1&amp;number=&amp;property_type%5B0%5D=on&amp;property_type%5B1%5D=on&amp;property_type%5B2%5D=on&amp;property_type%5B3%5D=on&amp;property_type%5B5%5D=on&amp;property_type%5B6%5D=on&amp;property_type%5B8%5D=on&amp;property_type%5B9%5D=on&amp;property_type%5B10%5D=on&amp;room%5B0%5D=on&amp;room%5B1%5D=on&amp;room%5B2%5D=on&amp;room%5B3%5D=on&amp;room%5B4%5D=on&amp;room%5B5%5D=on&amp;priceFrom=&amp;priceTo=&amp;areaFrom=&amp;areaTo=&amp;floorFrom=&amp;floorTo=&amp;repair=1&amp;city=1">Satılıq evlər 2020</a></li>
-         <li><a target="_blank" href="az/axtar/satis/kohne-tikili.html">Əmlak alqı-satqısı</a></li>
-         <li><a target="_blank" href="az/yasayis-kompleksleri.html">Yaşayış kompleks mənzilləri</a></li>
-         <li><a target="_blank" href="az/insaat-sirketleri.html">Bakıda təmir şirkətləri</a></li>
-         <li><a target="_blank" href="az/axtar/kiraye-gunluk/yeni-tikili.html">Günlük kirayə mənzillər</a></li>
-         <li><a target="_blank" href="az/axtar/satis/elanlar/yasamal.html">Yasamal rayonunda satılıq mənzillər</a></li>
-         <li><a target="_blank" href="az/axtar/satis/elanlar/28-mall.html">28 Mall evlər</a></li>
-         <li><a target="_blank" href="az/axtar/satis/elanlar/genclik.html">Gənclik metro evlər</a></li>
-         <li><a target="_blank" href="az/axtar/satis/elanlar/20-yanvar.html">20 Yanvar ucuz evlər</a></li>
-         <li><a target="_blank" href="az/axtar/satis9139.html?sort=&amp;region=&amp;district=&amp;metro=&amp;placemark=&amp;page=1&amp;type=1&amp;number=&amp;property_type%5B1%5D=on&amp;property_type%5B2%5D=on&amp;room%5B0%5D=on&amp;room%5B1%5D=on&amp;room%5B2%5D=on&amp;room%5B3%5D=on&amp;room%5B4%5D=on&amp;room%5B5%5D=on&amp;price_min=&amp;price_max=&amp;area_min=&amp;area_max=&amp;land_area_min=&amp;land_area_max=&amp;floor_min=&amp;floor_max=&amp;repair%5B0%5D=on&amp;city=1">Təmirsiz mənzillər</a></li>
-      </ul>
-   </div> -->
-</div>
 <footer class="footer">
    <div class="footer-navbar">
       <ul>
          <li>
             <a href="az/axtar.html">
                <svg class="icon icon-home">
-                  <use xlink:href="assets/site/img/icons/icons.svg#icon-home"></use>
+                  <use xlink:href="<?= base_url() ?>assets/site/img/icons/icons.svg#icon-home"></use>
                </svg>
                <p><?= translate('home') ?></p>
             </a>
@@ -35,7 +12,7 @@
          <li>
             <a href="<?= base_url() ?>add_listing">
                <svg class="icon icon-plusnew">
-                  <use xlink:href="assets/site/img/icons/icons.svg#icon-plusnew"></use>
+                  <use xlink:href="<?= base_url() ?>assets/site/img/icons/icons.svg#icon-plusnew"></use>
                </svg>
                <p><?= translate('add_listing') ?></p>
             </a>
@@ -43,7 +20,7 @@
          <li>
             <a href="az/axtar.html">
                <svg class="icon icon-loupe">
-                  <use xlink:href="assets/site/img/icons/icons.svg#icon-loupe"></use>
+                  <use xlink:href="<?= base_url() ?>assets/site/img/icons/icons.svg#icon-loupe"></use>
                </svg>
                <p><?= translate('search') ?></p>
             </a>

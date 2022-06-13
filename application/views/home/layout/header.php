@@ -37,10 +37,10 @@
           <!-- LANGUAGE END -->
 
           <nav class="d-none d-xl-flex">
-            <a href="<?= base_url() ?>home/user_agreement" data-toggle="tooltip" title="<?= translate('by_registering_you_are_deemed_to_have_accepted_all_the_rules') ?>">
+            <a href="<?= base_url() ?>istifadeci-razilasmasi" data-toggle="tooltip" title="<?= translate('by_registering_you_are_deemed_to_have_accepted_all_the_rules') ?>">
               <?= translate('user_agreement') ?>
             </a>
-            <a href="<?= base_url() ?>home/sitemap"><?= translate('site_map') ?></a>
+            <a href="<?= base_url() ?>sitemap"><?= translate('site_map') ?></a>
           </nav>
           <a class="nav-item--secondary nav-item__contact d-none d-md-flex" href="tel:info@estate.az">
             <svg class="icon icon-phone mr-1">
@@ -83,11 +83,11 @@
              <div class="dropdown-hover__menu">
                 <div class="dropdown-menu__group dropdown-menu__header" x-notification-area style="display: none;">
                    <span class="notification-count"><?= translate('notifications') ?> (<span x-notification-count>0</span>)</span>
-                   <form action="https://evelani.az/az/notification/clear" x-edit-form x-target="clearNotifications">
+                   <!-- <form action="https://estate.az/notification/clear" x-edit-form x-target="clearNotifications">
                       <button>
                       <span class="notification-clear">Təmizlə</span>
                       </button>
-                   </form>
+                   </form> -->
                 </div>
                 <div class="dropdown-menu__group dropdown-menu__header" x-no-notification-area>
                    <span class="notification-count">Bildiriş yoxdur</span>
@@ -389,7 +389,7 @@
             <nav class="nav d-none d-xl-flex">             
               <a href="<?= base_url() ?>elanlar/satish" class="nav-item--secondary"><?= translate('for_sale') ?></a>
               <a href="<?= base_url() ?>elanlar/kiraye" class="nav-item--secondary"><?= translate('for_rent') ?></a>
-              <a href="<?= base_url() ?>elanlar/agency" class="nav-item--secondary"><?= translate('agency') ?></a>
+              <!-- <a href="<?= base_url() ?>elanlar/agency" class="nav-item--secondary"><?= translate('agency') ?></a> -->
             </nav>
             </div>
             <a href="<?= base_url() ?>add_listing" class="link-button link-button--primary link-setup d-none d-sm-flex">
@@ -467,7 +467,7 @@
               </ul>
               <ul class="contact-numbers">
                 <li>
-                  <a href="tel:info@evelani.az">
+                  <a href="tel:info@estate.az">
                     <span class="__cf_email__" data-cfemail="a5cccbc3cae5c0d3c0c9c4cbcc8bc4df">[email&#160;protected]</span>
                   </a>
                   <a href="tel:info@evelani.az">

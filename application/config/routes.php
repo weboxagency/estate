@@ -54,7 +54,8 @@ $route['default_controller'] 		= 'home';
 
 // $route['elan-yerlesdir'] 			= 'add_listing';
 // $route['elan-yerlesdir/check_info'] = 'add_listing/check_info';
-$route['istifadeci-razilasmasi'] 	= 'user_agreement';
+$route['istifadeci-razilasmasi'] 	= 'home/user_agreement';
+$route['sitemap'] 					= 'home/sitemap';
 $route['yeni-elanlar'] 				= 'elanlar/new';
 
 //HOME CONTROLLER

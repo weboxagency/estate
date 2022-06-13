@@ -24,9 +24,9 @@ class MY_Controller extends CI_Controller
         
 
         $get_config = $this->db->get_where('global_settings', array('id' => 1))->row_array();
-        $this->data['global_config'] = $get_config;
-        $this->data['theme_config']  = $this->db->get_where('theme_settings', array('id' => 1))->row_array();
-
+        $this->data['global_config']    = $get_config;
+        $this->data['theme_config']     = $this->db->get_where('theme_settings', array('id' => 1))->row_array();
+        $this->data['ads_config']       = $this->db->get_where('ads_configuration', array('id' => 1))->row_array();
         date_default_timezone_set($get_config['timezone']);
     }
 

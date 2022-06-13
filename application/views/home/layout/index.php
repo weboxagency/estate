@@ -34,6 +34,13 @@
     <link rel="stylesheet" href="<?= base_url('assets/site/css/lightslider.css') ?>">
     <link rel="stylesheet" href="<?= base_url('assets/site/css/app.min.php') ?>">
     <link rel="stylesheet" href="<?= base_url('assets/site/css/semantic.min.css') ?>">
+    <style type="text/css">
+      @media only screen and (max-width: 1500px) {
+          .lotriver-top-banner {
+              display: none;
+          }
+      }
+    </style>
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script type="text/javascript">
 
@@ -47,16 +54,16 @@
     </script>
   </head>
   <div class="lotriver-top-banner" id="js-lotriver-top-banner">
-   <div style="visibility:hidden;height:0px;left:-1000px;position:absolute;">
-    <iframe id="ar_container_1" width="1" height="1" marginwidth="0" marginheight="0" scrolling="no" frameborder="0"></iframe>
-  </div>
-   <div id="ad_ph_1" style="display: block; width: 100%; height: 120px;">
+      <div style="visibility:hidden;height:0px;left:-1000px;position:absolute;">
+        <iframe id="ar_container_1" width="1" height="1" marginwidth="0" marginheight="0" scrolling="no" frameborder="0"></iframe>
+      </div>
+    <div id="ad_ph_1" style="display: block; width: 100%; height: 120px;">
       <div style="display:block;width:100%;height:100%;margin:0 auto;line-height:100%;text-align:center;">
         <a href="https://ad.adriver.ru/cgi-bin/click.cgi?sid=220686&amp;ad=724514&amp;bid=7391282&amp;bt=43&amp;bn=1&amp;pz=0&amp;nid=0&amp;ref=<?= base_url() ?>" onclick="ar_clickCoord.calc(event, this, document.getElementById('ad_ph_1')); return ar_sendPix('');" target="_blank"><img id="ar_cr_1460892" src="https://servers2.adriver.ru/images/0007391/0007391282/0/yasamdesc.png" border="0" alt="AdRiver" style="display:inline;height:100%;max-width:1903px">
         </a>
       </div>
-   </div>
-</div>
+    </div>
+  </div>
   <body class="scroll" id="body">
     <div id="loading" class="loading  no-blur" style="display: none;">
       <svg class="spinner" viewBox="0 0 50 50">

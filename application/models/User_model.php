@@ -8,12 +8,12 @@ class User_model extends MY_Model
         parent::__construct();
     }
 
-    public function check_email($email)
+    public function check_phone($phone)
     {
         $this->db->select('*');
         $this->db->from('ads_users');
-        $this->db->where('email', $email);
-        $this->db->limit(1);
+        $this->db->where('phone', $phone);
+        $this->db->where('is_registered', 0);
         $query = $this->db->get();
         if ($query->num_rows() == 1) 
         {
@@ -25,12 +25,12 @@ class User_model extends MY_Model
         }
     }
 
-    public function check_phone($phone)
+    public function check_phone_exist($phone)
     {
         $this->db->select('*');
         $this->db->from('ads_users');
-        $this->db->where('mobile', $phone);
-        $this->db->limit(1);
+        $this->db->where('phone', $phone);
+        $this->db->where('is_registered', 1);
         $query = $this->db->get();
         if ($query->num_rows() == 1) 
         {

@@ -49,24 +49,22 @@
                <div class="carousel-inner">
                   <?php foreach (ads_photos($value['photos']) as $key => $shekil) { ?>
                   <a class="carousel-item <?= ($key==0) ? 'active' : '' ?> " target=_blank href="<?= base_url().'elan/'.$value['url_slug'] ?>">
-                  <img src="<?= $shekil['avatar'] ?>" alt="Satılır, həyət evi / bağ, 5 otaqlı, 250 m², Mərdəkan q.">
+                  <img src="<?= $shekil['avatar'] ?>" alt="<?= $value['ads_title'] ?>">
                   </a>
                   <?php } ?>
                </div>
             </div>
             <div class="announcement-icons">
                <div class="shape">
-                  <form action="<?= base_url() ?>home/wishlist" method="post" x-edit-form="<?= $value['id'] ?>" x-target-with-data="afterWishlist">
+                  <form action="<?= base_url() ?>wishlist" method="post" x-edit-form="<?= $value['id'] ?>" x-target-with-data="afterWishlist">
                      <input type="hidden" name="<?php echo $this->security->get_csrf_token_name();?>" value="<?php echo $this->security->get_csrf_hash();?>">
                      <input type="hidden" name="id" value="<?= $value['id'] ?>">
                      <button type="submit">
                         <?php if (!isset($_SESSION['wish_sess'])) { ?>
-
                            <svg class="icon icon-heart-outline">
                               <use xlink:href="<?= base_url() ?>assets/site/img/icons/icons.svg#icon-heart-outline"></use>
                            </svg>
-
-                        <?php } else{ ?>
+                        <?php }else{ ?>
                            <?php 
                            $heart = (!empty(session_wishlist($_SESSION['wish_sess'],$value['id'])) AND session_wishlist($_SESSION['wish_sess'],$value['id'])['data_id']===$value['id']) ? '' : '-outline';
                             ?>
@@ -74,7 +72,6 @@
                            <use xlink:href="<?= base_url() ?>assets/site/img/icons/icons.svg#icon-heart<?=$heart; ?>"></use>
                         </svg>
                         <?php } ?>
-                        
                      </button>
                   </form>
                </div>
@@ -122,7 +119,7 @@
             <?php 
             if ($value['property_type']==8) 
             {
-               $an_headline = $value['land_area'].' sot';
+               $an_headline = $value['area'].' sot';
             } 
             elseif ($value['property_type']==9 OR $value['property_type']==10) 
             {

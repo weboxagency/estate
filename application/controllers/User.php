@@ -81,6 +81,16 @@ class User extends Frontend_Controller
                             ];
                             echo json_encode($response);
                         }
+                        elseif ($login_credential->is_registered == 0) 
+                        {
+                           $output['email'] = [ucfirst(translate('unregistered_account'))];
+                            
+                            $response = [
+                                "status"        => "success",
+                                "validations"   => $output
+                            ];
+                            echo json_encode($response);
+                        }
                         elseif ($login_credential->status == 1) 
                         {
                             $getUser    = $this->um->getUserInfo($login_credential->id);
@@ -157,19 +167,19 @@ class User extends Frontend_Controller
                         "min_length"    => ucfirst(translate("the_name_must_consist_of_at_least_3_letters")),
                     ]
                 );
-                $this->form_validation->set_rules("email", translate("email"), "trim|required|valid_email|is_unique[ads_users.email]|xss_clean", 
-                    [
+                $this->form_validation->set_rules("email", translate("email"), "trim|required|valid_email|xss_clean", 
+                    [   
                         "required"      => ucfirst(translate("the_email_field_is_required")),
-                        "valid_email"   => ucfirst(translate("the_email_address_is_not_valid")),
-                        "is_unique"     => ucfirst(translate("the_email_address_already_used"))
+                        "valid_email"   => ucfirst(translate("the_email_address_is_not_valid"))
+                        // "is_unique"     => ucfirst(translate("the_email_address_already_used"))
                     ]
                 );
-                $this->form_validation->set_rules("mobile", translate("mobile"), "trim|required|min_length[10]|max_length[10]|is_unique[ads_users.phone]|xss_clean", 
+                $this->form_validation->set_rules("mobile", translate("mobile"), "trim|required|min_length[10]|max_length[10]|xss_clean", 
                     [
                         "required"      => ucfirst(translate("the_mobile_number_field_is_required")),
                         "max_length"    => ucfirst(translate("the_phone_number_is_not_valid")),
-                        "min_length"    => ucfirst(translate("the_phone_number_is_not_valid")),
-                        "is_unique"     => ucfirst(translate("the_phone_number_already_used"))
+                        "min_length"    => ucfirst(translate("the_phone_number_is_not_valid"))
+                        // "is_unique"     => ucfirst(translate("the_phone_number_already_used"))
                     ]
                 );
                 $this->form_validation->set_rules("password", translate("password"), "trim|required|min_length[8]|xss_clean",
@@ -191,9 +201,13 @@ class User extends Frontend_Controller
                 $password               = $this->input->post('password',TRUE);
                 $repassword             = $this->input->post('repassword',TRUE);
                 $user_agreement         = $this->input->post('user_agreement',TRUE);
-
+               
+                $phoneCheck             = $this->um->check_phone($mobile);
+                $phoneCheckExist        = $this->um->check_phone_exist($mobile);
+                
                 if ($this->form_validation->run() === TRUE)         
                 {
+                    
                     if (!isset($user_agreement)) 
                     {
                         $output['user_agreement'] = [ucfirst(translate("user_rules_not_accepted"))];
@@ -206,49 +220,106 @@ class User extends Frontend_Controller
                         echo json_encode($response);
                     }
                     else
-                    {
-                   
-                    
-                        $insertData = [
-                            "name"                  => $announcement_owner,
-                            "email"                 => $email,
+                    {  
+                        if ($phoneCheck) 
+                        {
+                            $updateData = [
                             "password"              => $this->app_lib->pass_hashed($password),
                             "register_token"        => hash('sha256', $announcement_owner . $email . app_generate_hash()),
-                            "phone"                 => $mobile,
-                            "mobile"                => formatPhoneNumber("",$mobile)['international'],
-                            "mobile_format_second"  => formatPhoneNumber("",$mobile)['second_format'],
-                            "mobileBeautified"      => formatPhoneNumber("",$mobile)['national'],
-                            "provider_name"         => provider_name(formatPhoneNumber("",$mobile)['provider']),
-                            "balance"               => 0,
+                            "is_registered"         => 1,
                             "status"                => 2,
                             "ip"                    => getIP(),
                             "soft"                  => getBrowser()['userAgent'],
                             "browser_name"          => getBrowser()['name'],
                             "register_at"           => date("Y-m-d H:i:s")
-                        ];
-                        $this->db->insert('ads_users', $insertData);
-                        $user_id = $this->db->insert_id();
-                        
-                        $emailData = [
-                            "name"              => $announcement_owner,
-                            "url"               => base_url(),
-                            "logo"              => base_url()."uploads/frontend/images/logo1.png",
-                            "email"             => $email,
-                            "mobile"            => formatPhoneNumber("",$mobile)['national'],
-                            "activation_url"    => base_url()."user/finish_registration/".$insertData['register_token']
-                        ];
+                            ];
 
-                        // send user activation email
-                        $this->em->userRegistration($emailData);
-                       
-                        $response = [
-                        "status"        => "success",
-                        "text"          => $email." ünvanına təsdiq mesajı göndərildi.",
-                        "validations"   => []
-                        ];
-                        
-                        echo json_encode($response);
-                        exit();
+                            $this->db->set('password', $updateData['password']);
+                            $this->db->set('register_token', $updateData['register_token']);
+                            $this->db->set('is_registered', $updateData['is_registered']);
+                            $this->db->set('status', $updateData['status']);
+                            $this->db->set('ip', $updateData['ip']);
+                            $this->db->set('soft', $updateData['soft']);
+                            $this->db->set('browser_name', $updateData['browser_name']);
+                            $this->db->set('register_at', $updateData['register_at']);
+                            $this->db->where('phone', $mobile);
+                            $this->db->update('ads_users');
+
+                            $emailData = [
+                                "name"              => $announcement_owner,
+                                "url"               => base_url(),
+                                "logo"              => base_url()."uploads/frontend/images/logo1.png",
+                                "email"             => $email,
+                                "mobile"            => formatPhoneNumber("",$mobile)['national'],
+                                "activation_url"    => base_url()."user/finish_registration/".$updateData['register_token']
+                            ];
+                            // send user activation email
+                            $this->em->userRegistration($emailData);
+                           
+                            $response = [
+                            "status"        => "success",
+                            "text"          => $email." ünvanına təsdiq mesajı göndərildi.",
+                            "validations"   => []
+                            ];
+                            
+                            echo json_encode($response);
+                            exit();
+                        }
+                        elseif ($phoneCheckExist) 
+                        {
+                            $output['mobile'] = [ucfirst(translate("the_phone_number_already_used"))];
+
+                            $response = [
+                            "status"        => "success",
+                            "text"          => "",
+                            "validations"   => $output
+                            ];
+                            echo json_encode($response);
+                        }
+                        else
+                        {                  
+                            $insertData = [
+                                "name"                  => $announcement_owner,
+                                "email"                 => $email,
+                                "password"              => $this->app_lib->pass_hashed($password),
+                                "register_token"        => hash('sha256', $announcement_owner . $email . app_generate_hash()),
+                                "phone"                 => $mobile,
+                                "mobile"                => formatPhoneNumber("",$mobile)['international'],
+                                "mobile_format_second"  => formatPhoneNumber("",$mobile)['second_format'],
+                                "mobileBeautified"      => formatPhoneNumber("",$mobile)['national'],
+                                "provider_name"         => provider_name(formatPhoneNumber("",$mobile)['provider']),
+                                "balance"               => 0,
+                                "is_registered"         => 1,
+                                "status"                => 2,
+                                "ip"                    => getIP(),
+                                "soft"                  => getBrowser()['userAgent'],
+                                "browser_name"          => getBrowser()['name'],
+                                "register_at"           => date("Y-m-d H:i:s")
+                            ];
+                            $this->db->insert('ads_users', $insertData);
+                            $user_id = $this->db->insert_id();
+                            
+                            $emailData = [
+                                "name"              => $announcement_owner,
+                                "url"               => base_url(),
+                                "logo"              => base_url()."uploads/frontend/images/logo1.png",
+                                "email"             => $email,
+                                "mobile"            => formatPhoneNumber("",$mobile)['national'],
+                                "activation_url"    => base_url()."user/finish_registration/".$insertData['register_token']
+                            ];
+
+                            // send user activation email
+                            $this->em->userRegistration($emailData);
+                           
+                            $response = [
+                            "status"        => "success",
+                            "text"          => $email." ünvanına təsdiq mesajı göndərildi.",
+                            "validations"   => []
+                            ];
+                            
+                            echo json_encode($response);
+                            exit();
+                        }
                     }
 
                 }  

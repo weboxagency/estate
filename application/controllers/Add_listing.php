@@ -24,6 +24,7 @@ class Add_listing extends Frontend_Controller
         $this->load->model('ads_model');
         $this->load->library('mailer');
         $this->uploadPath = 'uploads/photos/'; 
+        $ads_config       = $this->db->get_where('ads_configuration', array('id' => 1))->row_array();
     }
 
     public function index()
@@ -44,6 +45,7 @@ class Add_listing extends Frontend_Controller
 
     public function check_info()
     {
+        $ads_config                 = $this->db->get_where('ads_configuration', array('id' => 1))->row_array();
         $last_ads_id                = $this->ads_model->lastAdsId();
         $owner                      = $this->input->post('announcement_owner',TRUE);
         $user_type                  = $this->input->post('user_type',TRUE);
@@ -115,17 +117,39 @@ class Add_listing extends Frontend_Controller
             
             $adsCountReg        = $this->home_model->registeredUserAdsCount($mobile);
             $adsCountNonReg     = $this->home_model->nonRegisteredUserAdsCount($mobile);
-            // dd($adsCount);
+            $countAdsForNumber  = $this->home_model->countAdsForNumber($mobile);
+            $checkUserForPhone  = $this->home_model->checkUserForPhone($mobile);
+
             $provider   = ["99","55","70","77","50","51","10"];
 
             if ($this->form_validation->run() === TRUE) 
             {
-                if ($adsCountReg>=2 OR $adsCountNonReg>=2) 
+                if ((int)$checkUserForPhone===0) 
+                {
+                    $insertData = [
+                        "name"                  => $owner,
+                        "email"                 => $email,
+                        "phone"                 => '0'.$mobile,
+                        "mobile"                => formatPhoneNumber("",'0'.$mobile)['international'],
+                        "mobile_format_second"  => formatPhoneNumber("",'0'.$mobile)['second_format'],
+                        "mobileBeautified"      => formatPhoneNumber("",'0'.$mobile)['national'],
+                        "provider_name"         => provider_name(formatPhoneNumber("",'0'.$mobile)['provider']),
+                        "balance"               => 0,
+                        "is_registered"         => 0,
+                        "status"                => 2,
+                        "ip"                    => getIP(),
+                        "soft"                  => getBrowser()['userAgent'],
+                        "browser_name"          => getBrowser()['name'],
+                        "register_at"           => date("Y-m-d H:i:s")
+                    ];
+                    $this->db->insert('ads_users', $insertData);
+                }
+                if ($countAdsForNumber>=(int)$ads_config['one_number_ads_count']) 
                 {
                     $response = [
                             "status"        => "success",
                             "message"       => "",
-                            "validations"   => ["id" => ["Siz artıq ay ərzində 2 pulsuz elan yerləşdirmisiniz"]]
+                            "validations"   => ["id" => ["Siz artıq ay ərzində ".$countAdsForNumber." pulsuz elan yerləşdirmisiniz"]]
                         ];
                     echo json_encode($response);
                     die();
@@ -183,7 +207,6 @@ class Add_listing extends Frontend_Controller
                     echo json_encode($response);
                     die();
             }
-
         }
         else
         {
