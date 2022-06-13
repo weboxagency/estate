@@ -221,15 +221,16 @@ class Home extends Frontend_Controller
         {
             $this->data['user_info']        = $this->um->getUserInfo(logged_user_id());
         }
-        $this->data['cities']           = $this->home_model->allCities();
-        $this->data['regions']          = $this->home_model->allRegions();
-        $this->data['metros']           = $this->home_model->allMetros();
-        $this->data['estate_types']     = $this->home_model->estateTypes();
-        $this->data['ads_type']         = $this->home_model->adsType();
-        $this->data['district']         = $this->home_model->allDistricts();
-        $this->data['new_ads_list']     = $this->home_model->allNewAdsList();
-        // dd($this->data['new_ads_list']);
-        // dd($this->data['new_ads_list']);
+        $this->data['cities']            = $this->home_model->allCities();
+        $this->data['regions']           = $this->home_model->allRegions();
+        $this->data['metros']            = $this->home_model->allMetros();
+        $this->data['estate_types']      = $this->home_model->estateTypes();
+        $this->data['ads_type']          = $this->home_model->adsType();
+        $this->data['district']          = $this->home_model->allDistricts();
+        $this->data['new_ads_list']      = $this->home_model->allNewAdsList();
+        $this->data['all_yeni_tikili']   = $this->home_model->allYeniTikili();
+        $this->data['all_kohne_tikili']  = $this->home_model->allKohneTikili();
+       
         array_unshift($this->data['metros'],"");
         unset($this->data['metros'][0]);
         array_unshift($this->data['district'],"");
@@ -371,7 +372,31 @@ class Home extends Frontend_Controller
                 $this->data['ads_type']         = $this->home_model->adsType();
                 $this->data['district']         = $this->home_model->allDistricts();
                 $this->data['ads_detail']       = $this->home_model->getAdsDetail($url_slug);
-                // dd(estateTypeName(8));
+                $property_type                  = $this->data['ads_detail']['property_type'];
+                $ads_number                     = $this->data['ads_detail']['ads_number'];
+                
+                $ads_config                     = $this->db->get_where('ads_configuration', array('id' => 1))->row_array();
+
+                $sayfada                        = $ads_config['detail_ads_limit']; 
+                $toplam_icerik                  = $this->home_model->get_count_detail_benzer($property_type, $ads_number);
+                $this->data['toplam_sayfa']     = ceil($toplam_icerik / $sayfada);
+                $this->data['sayfa']            = isset($_GET['page']) ? (int) $_GET['page'] : 1;
+                $this->data['url']              = base_url().'elan/'.$this->data['ads_detail']['url_slug'];
+                if($this->data['sayfa'] < 1)
+                { 
+                    $sayfa = 1;
+                }
+                
+                if($this->data['sayfa'] > $this->data['toplam_sayfa'])
+                {
+                     $this->data['sayfa'] = $this->data['toplam_sayfa'];
+                }
+
+                $limit = abs(($this->data['sayfa'] - 1) * $sayfada);
+
+                $this->data['benzer_elanlar']   = $this->home_model->benzerElanlarPagination($limit, $sayfada, $property_type,$ads_number);
+                // $this->data['benzer_elanlar']   = $this->home_model->benzerElanlar($property_type,$ads_number);
+                // dd($this->data['benzer_elanlar']);
                 array_unshift($this->data['metros'],"");
                 unset($this->data['metros'][0]);
                 array_unshift($this->data['district'],"");

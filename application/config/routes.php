@@ -54,23 +54,27 @@ $route['default_controller'] 		= 'home';
 
 // $route['elan-yerlesdir'] 			= 'add_listing';
 // $route['elan-yerlesdir/check_info'] = 'add_listing/check_info';
-$route['istifadeci-razilasmasi'] 	= 'home/user_agreement';
-$route['sitemap'] 					= 'home/sitemap';
-$route['yeni-elanlar'] 				= 'elanlar/new';
+$route['istifadeci-razilasmasi'] 		= 'home/user_agreement';
+$route['sitemap'] 						= 'home/sitemap';
+$route['yeni-elanlar'] 					= 'elanlar/new';
+$route['yeni-elanlar-satish'] 			= 'elanlar/new_satish';
+$route['yeni-elanlar-kiraye-ayliq']		= 'elanlar/new_kiraye_ayliq';
+$route['yeni-elanlar-kiraye-gunluk'] 	= 'elanlar/new_kiraye_gunluk';
+$route['yeni-tikili'] 					= 'elanlar/yeni_tikili';
 
 //HOME CONTROLLER
-$route['wishlist'] 					= 'home/wishlist';
-$route['complain'] 					= 'home/sikayet';
-$route['elan/(:any)'] 				= 'home/detail/$1';
-$route['axtar'] 					= 'home/search';
+$route['wishlist'] 						= 'home/wishlist';
+$route['complain'] 						= 'home/sikayet';
+$route['elan/(:any)'] 					= 'home/detail/$1';
+$route['axtar'] 						= 'home/search';
 
 // USER PROFILES
-$route['hesabim'] 					= 'user/profile';
-$route['elanlarim'] 				= 'user/account';
-$route['balansim'] 					= 'user/balance';
-$route['statistika'] 				= 'user/statistics';
+$route['hesabim'] 						= 'user/profile';
+$route['elanlarim'] 					= 'user/account';
+$route['balansim'] 						= 'user/balance';
+$route['statistika'] 					= 'user/statistics';
 
 //DASHBOARD
-$route['auth/authentication']		= 'authentication';
-$route['404_override'] 				= 'errors';
-$route['translate_uri_dashes'] 		= FALSE;
+$route['auth/authentication']			= 'authentication';
+$route['404_override'] 					= 'errors';
+$route['translate_uri_dashes'] 			= FALSE;

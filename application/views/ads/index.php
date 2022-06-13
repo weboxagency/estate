@@ -1,4 +1,3 @@
-
 <section class="panel">
    <div class="tabs-custom">
       <ul class="nav nav-tabs">

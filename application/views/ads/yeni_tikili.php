@@ -1,24 +1,5 @@
 <main class="main">
-   <section class="map">
-   <div class="main-header__content map-content">
-      <form class="search">
-         <div class="searchmap-input">
-            <a href="<?= base_url() ?>yeni-elanlar">
-               <div class="link-button link-button--secondary"><?= translate('all_new_ads') ?></div>
-            </a>
-            <a href="<?= base_url() ?>yeni-elanlar-satish">
-               <div class="link-button link-button--secondary"><?= translate('sale') ?></div>
-            </a>
-            <a href="<?= base_url() ?>yeni-elanlar-kiraye-ayliq">
-               <div class="link-button link-button--secondary"><?= translate('rent') ?></div>
-            </a>
-            <a href="<?= base_url() ?>yeni-elanlar-kiraye-gunluk">
-               <div class="link-button link-button--secondary"><?= translate('daily_rent') ?></div>
-            </a>
-         </div>
-      </form>
-   </div>
-</section>
+
 <section class="main-body page-container container">
    <div class="announcement-group">
    <div class="announcement-group__header">
@@ -145,9 +126,6 @@
       </div>
       <?php } ?>
    </div>
-
-<?php echo insertPagination(base_url().'yeni-elanlar', $sayfa, $toplam_sayfa,true); ?>
-   
 </div>
 </section>
 </main>
