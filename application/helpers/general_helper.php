@@ -944,7 +944,7 @@ function insertPagination($base_url, $cur_page, $number_of_pages, $prev_next=tru
      
     if ($prev_next && $cur_page && 1 < $cur_page) 
     { 
-        echo '<a href="'.$base_url.'?page='. $cur_page-1 .'" title="Əvvəlki"> <i class="fa fa-chevron-left"></i></a>';
+        echo '<a href="'.$base_url.'?page='. ($cur_page-1) .'" title="Əvvəlki"> <i class="fa fa-chevron-left"></i></a>';
     }
     for ($i = 1; $i <= $number_of_pages; $i++) 
     {
@@ -969,7 +969,7 @@ function insertPagination($base_url, $cur_page, $number_of_pages, $prev_next=tru
     }
     if ($prev_next && $cur_page && ($cur_page < $number_of_pages || -1 == $number_of_pages)) 
     { 
-        echo '<a href="'. $base_url .'?page='. $cur_page+1 .'" title="İrəli"> <i class="fa fa-chevron-right"></i></a>';
+        echo '<a href="'. $base_url .'?page='. ($cur_page+1) .'" title="İrəli"> <i class="fa fa-chevron-right"></i></a>';
     } 
     
     echo '</div>';
