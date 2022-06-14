@@ -65,9 +65,6 @@
                   </svg>
                </a>
             </div>
-            <div class="footer-background d-none d-md-flex">
-               <img src="<?= base_url() ?>assets/site/img/icons/footer%402x5760.png">
-            </div>
          </div>
       </div>
       <div class="footer-secondary">

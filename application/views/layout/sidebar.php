@@ -420,6 +420,12 @@
                                     <span><i class="fas fa-caret-right" aria-hidden="true"></i><?=translate('user_agreement')?></span>
                                 </a>
                             </li>
+                            <?php } if(get_permission('add_advertisement_rules', 'is_view')){ ?>
+                            <li class="<?php if($sub_page == 'settings/add_advertisement_rules') echo 'nav-active';?>">
+                                <a href="<?=base_url('settings/add_advertisement_rules')?>">
+                                    <span><i class="fas fa-caret-right" aria-hidden="true"></i><?=translate('add_advertisement_rules')?></span>
+                                </a>
+                            </li>
                             <?php } if(get_permission('ads_rules', 'is_view')){ ?>
                             <li class="<?php if($sub_page == 'settings/ads_rules') echo 'nav-active';?>">
                                 <a href="<?=base_url('settings/ads_rules')?>">
