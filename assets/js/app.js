@@ -413,6 +413,29 @@ $.extend(theme.PluginDatePicker.defaults, {
 			}
 		});
 
+		//about ads configuration status
+		$(".modul_switch").on("change", function() {
+			var state = $(this).prop('checked');
+			var id = $(this).data('id');
+			if (state != null) {
+				$.ajax({
+					type: 'POST',
+					url: base_url + "settings/update",
+					data: {
+						id: id,
+						vip: state
+					},
+					dataType: "json",
+					success: function (data) {
+						if(data.status == true) {
+							alertMsg(data.msg);
+						}
+					}
+				});
+			}
+		});
+
+		
 
 		// region status
 		$(".regions-switch").on("change", function() {

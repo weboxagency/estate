@@ -397,6 +397,12 @@
                                 </a>
                             </li>
                             <?php } if(get_permission('ads_banners', 'is_view')){ ?>
+                            <li class="<?php if($sub_page == 'settings/about_ads_configuration') echo 'nav-active';?>">
+                                <a href="<?=base_url('settings/about_ads_configuration')?>">
+                                    <span><i class="fas fa-caret-right" aria-hidden="true"></i><?=translate('about_ads_configuration')?></span>
+                                </a>
+                            </li>
+                            <?php } if(get_permission('ads_banners', 'is_view')){ ?>
                             <li class="<?php if($sub_page == 'settings/ads_banners') echo 'nav-active';?>">
                                 <a href="<?=base_url('settings/ads_banners')?>">
                                     <span><i class="fas fa-caret-right" aria-hidden="true"></i><?=translate('ads_banners')?></span>

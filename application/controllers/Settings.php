@@ -21,6 +21,7 @@ class Settings extends Admin_Controller
         $this->load->model('adsrules_model', 'ar');
         $this->load->model('right_left_banners_model', 'rlmodel');
         $this->load->model('ads_configuration_model', 'acmodel');
+        $this->load->model('about_ads_configuration_model', 'aacmodel');
         
     }
 
@@ -806,5 +807,34 @@ class Settings extends Admin_Controller
         $this->data['main_menu']        = 'settings';
         $this->load->view('layout/index', $this->data);
     }
+
+
+     public function about_ads_configuration()
+    {
+
+        $this->data['about_ads_configuration']  = $this->aacmodel->getAboutAdsConfigurations();
+        $this->data['title']            = translate('about_ads_configuration');
+        $this->data['sub_page']         = 'settings/about_ads_configuration';
+        $this->data['main_menu']        = 'settings';
+        $this->load->view('layout/index', $this->data);
+    }
+
+    public function update()
+    {
+        $id = $this->input->post('id');
+        $status = $this->input->post('status');
+        if ($status == 'true') {
+            $arrayData['status'] = 1;
+        } else {
+            $arrayData['status'] = 0;
+        }
+       
+        $this->db->where('id', $id);
+        $this->db->update('about_ads_configuration', $arrayData);
+        $return = array('msg' => translate('information_has_been_updated_successfully'), 'status' => true);
+        echo json_encode($return); 
+    }
+
+
 
 }
