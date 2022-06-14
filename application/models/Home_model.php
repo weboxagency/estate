@@ -3,10 +3,29 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 class Home_model extends MY_Model
 {
+
     public function __construct()
     {
         parent::__construct();
     }
+
+    /* PAGINATION */
+
+    public function get_count() 
+    {
+        $query = $this->db->query("SELECT * FROM ads_all WHERE status=2 AND created_at BETWEEN NOW() - INTERVAL 30 DAY AND NOW() ORDER BY id DESC");
+        return $query->num_rows();
+    }
+
+    public function get_count_detail_benzer($property_type, $ads_number) 
+    {
+        $query = $this->db->query("SELECT * FROM ads_all WHERE status=2 AND property_type='".$property_type."' AND ads_number!='".$ads_number."' ORDER BY id DESC");
+        return $query->num_rows();
+    }
+
+    /* PAGINATION END */
+
+
 
     public function checkUrlSlug($url)
     {
@@ -42,13 +61,22 @@ class Home_model extends MY_Model
         }
     }
 
-    // public function adsSeeCountUpdater($url='')
-    // {
-    //     if (!empty($url))
-    //     {
-            
-    //     }
-    // }
+    public function benzerElanlarPagination($limit, $start, $property_type='',$ads_number='')
+    {
+        $query = $this->db->query("SELECT * FROM ads_all WHERE status=2 AND property_type=".$property_type." AND ads_number!=".$ads_number." ORDER BY id DESC LIMIT $limit, $start");
+        return $query->num_rows() > 0 ? $query->result_array() : NULL;
+    }
+
+    public function benzerElanlar($property_type='',$ads_number='')
+    {
+        $this->db->select('*');
+        $this->db->from('ads_all');
+        $this->db->where('property_type', $property_type);
+        $this->db->where('ads_number !=', $ads_number);
+        $this->db->where('status', 2);
+        $query = $this->db->get();
+        return $query->num_rows() > 0 ? $query->result_array() : NULL;
+    }
 
     public function checkUserForPhone($phone)
     {
@@ -201,16 +229,6 @@ class Home_model extends MY_Model
         return $query->result_array();
     }
 
-    // public function estateTypeName($id='')
-    // {
-    //     $this->db->select('*');
-    //     $this->db->from('estate_type');
-    //     $this->db->where('id', $id);
-    //     $query = $this->db->get();
-    //     $this->db->order_by("id", "asc");
-        
-    //     return return $query->num_rows() > 0 ? $query->result_array() : NULL;
-    // }
 
     public function getWishCount($id, $sess)
     {
@@ -232,10 +250,74 @@ class Home_model extends MY_Model
 
     public function allNewAdsList()
     {
-        $ads_config       = $this->db->get_where('ads_configuration', array('id' => 1))->row_array();
+        $ads_config  = $this->db->get_where('ads_configuration', array('id' => 1))->row_array();
         $query = $this->db->query("SELECT * FROM ads_all WHERE status=2 AND created_at BETWEEN NOW() - INTERVAL 30 DAY AND NOW() ORDER BY id DESC LIMIT ".$ads_config['home_ads_limit']."");
         return $query->num_rows() > 0 ? $query->result_array() : NULL;
         
+    }
+
+    public function allNewAdsListPagination($limit, $start)
+    {
+        
+        $query = $this->db->query("SELECT * FROM ads_all WHERE status=2 AND created_at BETWEEN NOW() - INTERVAL 30 DAY AND NOW() ORDER BY id DESC LIMIT $limit, $start");
+        return $query->num_rows() > 0 ? $query->result_array() : NULL;
+        
+    }
+
+    public function allYeniTikili()
+    {
+        $ads_config  = $this->db->get_where('ads_configuration', array('id' => 1))->row_array();
+        $query = $this->db->query("SELECT * FROM ads_all WHERE property_type=1 AND status=2 AND created_at BETWEEN NOW() - INTERVAL 30 DAY AND NOW() ORDER BY id DESC LIMIT ".$ads_config['home_ads_limit']."");
+        return $query->num_rows() > 0 ? $query->result_array() : NULL;
+    }
+
+    public function allKohneTikili()
+    {
+        $ads_config  = $this->db->get_where('ads_configuration', array('id' => 1))->row_array();
+        $query = $this->db->query("SELECT * FROM ads_all WHERE property_type=2 AND status=2 AND created_at BETWEEN NOW() - INTERVAL 30 DAY AND NOW() ORDER BY id DESC LIMIT ".$ads_config['home_ads_limit']."");
+        return $query->num_rows() > 0 ? $query->result_array() : NULL;  
+    }
+
+    public function allHeyetEvi()
+    {
+        $ads_config  = $this->db->get_where('ads_configuration', array('id' => 1))->row_array();
+        $query = $this->db->query("SELECT * FROM ads_all WHERE property_type=3 AND status=2 AND created_at BETWEEN NOW() - INTERVAL 30 DAY AND NOW() ORDER BY id DESC LIMIT ".$ads_config['home_ads_limit']."");
+        return $query->num_rows() > 0 ? $query->result_array() : NULL;   
+    }
+
+    public function allVilla()
+    {
+        $ads_config  = $this->db->get_where('ads_configuration', array('id' => 1))->row_array();
+        $query = $this->db->query("SELECT * FROM ads_all WHERE property_type=5 AND status=2 AND created_at BETWEEN NOW() - INTERVAL 30 DAY AND NOW() ORDER BY id DESC LIMIT ".$ads_config['home_ads_limit']."");
+        return $query->num_rows() > 0 ? $query->result_array() : NULL;   
+    }
+
+    public function allOfis()
+    {
+        $ads_config  = $this->db->get_where('ads_configuration', array('id' => 1))->row_array();
+        $query = $this->db->query("SELECT * FROM ads_all WHERE property_type=6 AND status=2 AND created_at BETWEEN NOW() - INTERVAL 30 DAY AND NOW() ORDER BY id DESC LIMIT ".$ads_config['home_ads_limit']."");
+        return $query->num_rows() > 0 ? $query->result_array() : NULL;   
+    }
+
+    public function allTorpaq()
+    {
+        $ads_config  = $this->db->get_where('ads_configuration', array('id' => 1))->row_array();
+        $query = $this->db->query("SELECT * FROM ads_all WHERE property_type=8 AND status=2 AND created_at BETWEEN NOW() - INTERVAL 30 DAY AND NOW() ORDER BY id DESC LIMIT ".$ads_config['home_ads_limit']."");
+        return $query->num_rows() > 0 ? $query->result_array() : NULL;   
+    }
+
+    public function allObyekt()
+    {
+        $ads_config  = $this->db->get_where('ads_configuration', array('id' => 1))->row_array();
+        $query = $this->db->query("SELECT * FROM ads_all WHERE property_type=9 AND status=2 AND created_at BETWEEN NOW() - INTERVAL 30 DAY AND NOW() ORDER BY id DESC LIMIT ".$ads_config['home_ads_limit']."");
+        return $query->num_rows() > 0 ? $query->result_array() : NULL;   
+    }
+
+    public function allQaraj()
+    {
+        $ads_config  = $this->db->get_where('ads_configuration', array('id' => 1))->row_array();
+        $query = $this->db->query("SELECT * FROM ads_all WHERE property_type=10 AND status=2 AND created_at BETWEEN NOW() - INTERVAL 30 DAY AND NOW() ORDER BY id DESC LIMIT ".$ads_config['home_ads_limit']."");
+        return $query->num_rows() > 0 ? $query->result_array() : NULL;   
     }
     
     public function searchAdsList($sql)

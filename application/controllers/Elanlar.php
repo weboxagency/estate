@@ -53,8 +53,10 @@ class Elanlar extends Frontend_Controller
         $this->load->view('home/layout/index', $this->data);
     }
 
+    // BUTUN YENI ELANLAR START
     public function new()
     {
+        
         $this->data['cities']           = $this->home_model->allCities();
         $this->data['regions']          = $this->home_model->allRegions();
         $this->data['metros']           = $this->home_model->allMetros();
@@ -62,26 +64,27 @@ class Elanlar extends Frontend_Controller
         $this->data['ads_type']         = $this->home_model->adsType();
         $this->data['district']         = $this->home_model->allDistricts();
         $this->data['targets']          = $this->home_model->allTargets();
-       
-        if (isset($_GET['type']) AND $_GET['type']=== "sale") 
-        {
-            $this->data['title']            = '- '.translate("sale");
-            $this->data['new_ads_list']     = $this->home_model->allNewAdsSaleList();
+        
+        $ads_config                     = $this->db->get_where('ads_configuration', array('id' => 1))->row_array();
+
+        $sayfada                        = $ads_config['category_ads_limit']; 
+        $toplam_icerik                  = $this->home_model->get_count();
+        $this->data['toplam_sayfa']     = ceil($toplam_icerik / $sayfada);
+        $this->data['sayfa']            = isset($_GET['page']) ? (int) $_GET['page'] : 1;
+        
+        if($this->data['sayfa'] < 1)
+        { 
+            $sayfa = 1;
         }
-        elseif (isset($_GET['type']) AND $_GET['type']=== "monthly_rent") 
+        
+        if($this->data['sayfa'] > $this->data['toplam_sayfa'])
         {
-            $this->data['title']            = '- '.translate("monthly_rent");
-            $this->data['new_ads_list']     = $this->home_model->allNewAdsRentMonthlyList();
+             $this->data['sayfa'] = $this->data['toplam_sayfa'];
         }
-        elseif (isset($_GET['type']) AND $_GET['type']=== "daily_rent") 
-        {
-            $this->data['title']            = '- '.translate("daily_rent");
-            $this->data['new_ads_list']     = $this->home_model->allNewAdsRentDailyList();
-        }
-        else
-        {
-            $this->data['new_ads_list']     = $this->home_model->allNewAdsList();
-        }
+
+        $limit = ($this->data['sayfa'] - 1) * $sayfada;
+        
+        $this->data['new_ads_list']     = $this->home_model->allNewAdsListPagination($limit, $sayfada);  
         
         array_unshift($this->data['metros'],"");
         unset($this->data['metros'][0]);
@@ -93,6 +96,108 @@ class Elanlar extends Frontend_Controller
         unset($this->data['cities'][0]);
         $this->data['page_data']        = $this->home_model->get('front_cms_home_seo', array('branch_id' => 1), true);
         $this->data['main_contents']    = $this->load->view('ads/new', $this->data, true);
+        $this->load->view('home/layout/index', $this->data);
+    }
+
+    public function new_satish()
+    {
+        $this->data['cities']           = $this->home_model->allCities();
+        $this->data['regions']          = $this->home_model->allRegions();
+        $this->data['metros']           = $this->home_model->allMetros();
+        $this->data['estate_types']     = $this->home_model->estateTypes();
+        $this->data['ads_type']         = $this->home_model->adsType();
+        $this->data['district']         = $this->home_model->allDistricts();
+        $this->data['targets']          = $this->home_model->allTargets();
+        $this->data['title']            = '- '.translate("sale");
+        $this->data['new_ads_list']     = $this->home_model->allNewAdsSaleList();
+        
+        array_unshift($this->data['metros'],"");
+        unset($this->data['metros'][0]);
+        array_unshift($this->data['district'],"");
+        unset($this->data['district'][0]);
+        array_unshift($this->data['regions'],"");
+        unset($this->data['regions'][0]);
+        array_unshift($this->data['cities'],"");
+        unset($this->data['cities'][0]);
+        $this->data['page_data']        = $this->home_model->get('front_cms_home_seo', array('branch_id' => 1), true);
+        $this->data['main_contents']    = $this->load->view('ads/new', $this->data, true);
+        $this->load->view('home/layout/index', $this->data);
+    }
+
+    public function new_kiraye_ayliq()
+    {
+        $this->data['cities']           = $this->home_model->allCities();
+        $this->data['regions']          = $this->home_model->allRegions();
+        $this->data['metros']           = $this->home_model->allMetros();
+        $this->data['estate_types']     = $this->home_model->estateTypes();
+        $this->data['ads_type']         = $this->home_model->adsType();
+        $this->data['district']         = $this->home_model->allDistricts();
+        $this->data['targets']          = $this->home_model->allTargets();
+        $this->data['title']            = '- '.translate("monthly_rent");
+        $this->data['new_ads_list']     = $this->home_model->allNewAdsRentMonthlyList();
+        
+        array_unshift($this->data['metros'],"");
+        unset($this->data['metros'][0]);
+        array_unshift($this->data['district'],"");
+        unset($this->data['district'][0]);
+        array_unshift($this->data['regions'],"");
+        unset($this->data['regions'][0]);
+        array_unshift($this->data['cities'],"");
+        unset($this->data['cities'][0]);
+        $this->data['page_data']        = $this->home_model->get('front_cms_home_seo', array('branch_id' => 1), true);
+        $this->data['main_contents']    = $this->load->view('ads/new', $this->data, true);
+        $this->load->view('home/layout/index', $this->data);
+    }
+
+    public function new_kiraye_gunluk()
+    {
+        $this->data['cities']           = $this->home_model->allCities();
+        $this->data['regions']          = $this->home_model->allRegions();
+        $this->data['metros']           = $this->home_model->allMetros();
+        $this->data['estate_types']     = $this->home_model->estateTypes();
+        $this->data['ads_type']         = $this->home_model->adsType();
+        $this->data['district']         = $this->home_model->allDistricts();
+        $this->data['targets']          = $this->home_model->allTargets();
+        $this->data['title']            = '- '.translate("daily_rent");
+        $this->data['new_ads_list']     = $this->home_model->allNewAdsRentDailyList();
+        
+        array_unshift($this->data['metros'],"");
+        unset($this->data['metros'][0]);
+        array_unshift($this->data['district'],"");
+        unset($this->data['district'][0]);
+        array_unshift($this->data['regions'],"");
+        unset($this->data['regions'][0]);
+        array_unshift($this->data['cities'],"");
+        unset($this->data['cities'][0]);
+        $this->data['page_data']        = $this->home_model->get('front_cms_home_seo', array('branch_id' => 1), true);
+        $this->data['main_contents']    = $this->load->view('ads/new', $this->data, true);
+        $this->load->view('home/layout/index', $this->data);
+    }
+
+    // BUTUN YENI ELANLAR END
+
+    public function yeni_tikili()
+    {
+        $this->data['cities']           = $this->home_model->allCities();
+        $this->data['regions']          = $this->home_model->allRegions();
+        $this->data['metros']           = $this->home_model->allMetros();
+        $this->data['estate_types']     = $this->home_model->estateTypes();
+        $this->data['ads_type']         = $this->home_model->adsType();
+        $this->data['district']         = $this->home_model->allDistricts();
+        $this->data['targets']          = $this->home_model->allTargets();
+        $this->data['title']            = '- '.translate("new_building");
+        $this->data['new_ads_list']     = $this->home_model->allYeniTikili();
+        
+        array_unshift($this->data['metros'],"");
+        unset($this->data['metros'][0]);
+        array_unshift($this->data['district'],"");
+        unset($this->data['district'][0]);
+        array_unshift($this->data['regions'],"");
+        unset($this->data['regions'][0]);
+        array_unshift($this->data['cities'],"");
+        unset($this->data['cities'][0]);
+        $this->data['page_data']        = $this->home_model->get('front_cms_home_seo', array('branch_id' => 1), true);
+        $this->data['main_contents']    = $this->load->view('ads/yeni_tikili', $this->data, true);
         $this->load->view('home/layout/index', $this->data);
     }
 

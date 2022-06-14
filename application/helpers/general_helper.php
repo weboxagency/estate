@@ -933,3 +933,44 @@ function getComplainCategory($complain_number='')
     }
 
 }
+
+
+function insertPagination($base_url, $cur_page, $number_of_pages, $prev_next=true) {
+    $ends_count   = 1;  
+    $middle_count = 2;  
+    $dots = false;
+     
+    echo '<div class="pagination">';
+     
+    if ($prev_next && $cur_page && 1 < $cur_page) 
+    { 
+        echo '<a href="'.$base_url.'?page='. $cur_page-1 .'" title="Əvvəlki"> <i class="fa fa-chevron-left"></i></a>';
+    }
+    for ($i = 1; $i <= $number_of_pages; $i++) 
+    {
+        if ($i == $cur_page) 
+        {
+            echo '<a disabled>'.$i.'</a>';
+            $dots = true;
+        } 
+        else 
+        {
+            if ($i <= $ends_count || ($cur_page && $i >= $cur_page - $middle_count && $i <= $cur_page + $middle_count) || $i > $number_of_pages - $ends_count) 
+            { 
+                echo '<a href="'. $base_url .'?page='. $i .'">'. $i .'</a>';
+                $dots = true;
+            } 
+            elseif ($dots) 
+            {
+                echo '<a>...</a>';
+                $dots = false;
+            }
+        }
+    }
+    if ($prev_next && $cur_page && ($cur_page < $number_of_pages || -1 == $number_of_pages)) 
+    { 
+        echo '<a href="'. $base_url .'?page='. $cur_page+1 .'" title="İrəli"> <i class="fa fa-chevron-right"></i></a>';
+    } 
+    
+    echo '</div>';
+} 
