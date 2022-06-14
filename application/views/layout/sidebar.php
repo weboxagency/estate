@@ -88,6 +88,15 @@
                     </li>
                     <?php endif; ?>
 
+                    <?php if (is_superadmin_loggedin()) : ?>
+                    <!-- users -->
+                    <li class="<?php if ($main_menu == 'complaints') echo 'nav-active';?>">
+                        <a href="<?=base_url('complaints/index')?>">
+                            <i class="fa fa-comment"></i><span><?=translate('complaints')?></span>
+                        </a>
+                    </li>
+                    <?php endif; ?>
+
                     <?php
                     if (get_permission('cities', 'is_view') ||
                         get_permission('regions', 'is_view') ||
@@ -371,7 +380,8 @@
                     get_permission('system_update', 'is_add') ||
                     get_permission('custom_field', 'is_view') ||
                     get_permission('backup', 'is_view') ||
-                    get_permission('user_agreement', 'is_view')
+                    get_permission('user_agreement', 'is_view') ||
+                    get_permission('ads_configuration', 'is_view')
                     ) {
                     ?>
                     <!-- setting -->
@@ -381,6 +391,12 @@
                         </a>
                         <ul class="nav nav-children">
                             <?php if(get_permission('ads_banners', 'is_view')){ ?>
+                            <li class="<?php if($sub_page == 'settings/ads_configuration') echo 'nav-active';?>">
+                                <a href="<?=base_url('settings/ads_configuration')?>">
+                                    <span><i class="fas fa-caret-right" aria-hidden="true"></i><?=translate('ads_configuration')?></span>
+                                </a>
+                            </li>
+                            <?php } if(get_permission('ads_banners', 'is_view')){ ?>
                             <li class="<?php if($sub_page == 'settings/ads_banners') echo 'nav-active';?>">
                                 <a href="<?=base_url('settings/ads_banners')?>">
                                     <span><i class="fas fa-caret-right" aria-hidden="true"></i><?=translate('ads_banners')?></span>

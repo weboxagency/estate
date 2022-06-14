@@ -317,7 +317,7 @@ class Home extends Frontend_Controller
                     'ip'                => getIP(),
                     'soft'              => json_encode(getBrowser())
                 );
-
+                
                 $this->db->insert('ads_complain', $insertData);
 
                 $response = [

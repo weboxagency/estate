@@ -20,6 +20,7 @@ class Settings extends Admin_Controller
         $this->load->model('useragreements_model','ua');
         $this->load->model('adsrules_model', 'ar');
         $this->load->model('right_left_banners_model', 'rlmodel');
+        $this->load->model('ads_configuration_model', 'acmodel');
         
     }
 
@@ -63,34 +64,6 @@ class Settings extends Admin_Controller
         $this->data['title']            = translate('user_agreement');
         $this->data['sub_page']         = 'settings/user_agreement';
         $this->data['main_menu']        = 'settings';
-        $this->load->view('layout/index', $this->data);
-    }
-
-    public function user_agreement_edit()
-    {
-        
-         if ($this->input->post('submit') == 'edit') {
-                $this->form_validation->set_rules('content', translate('content'), 'required');
-                $this->form_validation->set_rules('status', translate('status'), 'required');
-                
-                if ($this->form_validation->run() == true) 
-                {
-                    $post = $this->input->post();
-                    $response = $this->ua->user_agreement_edit($post);
-                    if ($response) {
-                        set_alert('success', translate('information_has_been_updated_successfully'));
-                    }
-                    redirect(base_url('settings/user_agreement'));
-                } 
-                else 
-                {
-                    $this->data['validation_error'] = true;
-                }
-        }
-        $this->data['user_agreement']  = $this->ua->getUserAgreements()[0];
-        $this->data['title']            = translate('user_agreement');
-        $this->data['sub_page']         = 'settings/user_agreement';
-        $this->data['main_menu']        = 'locations';
         $this->load->view('layout/index', $this->data);
     }
 
@@ -784,4 +757,54 @@ class Settings extends Admin_Controller
         $this->db->where('id', get_loggedin_branch_id());
         $this->db->update('branch', $arrayBranch);
     }
+
+
+
+
+
+
+    public function ads_configuration()
+    {
+         if ($this->input->post('submit') == 'edit') {
+                $this->form_validation->set_rules('home_ads_limit', translate('home_ads_limit'), 'required');
+                $this->form_validation->set_rules('detail_ads_limit', translate('detail_ads_limit'), 'required');
+                $this->form_validation->set_rules('category_ads_limit', translate('category_ads_limit'), 'required');
+                $this->form_validation->set_rules('min_photo_count', translate('min_photo_count'), 'required');
+                $this->form_validation->set_rules('max_photo_count', translate('max_photo_count'), 'required');
+                $this->form_validation->set_rules('one_number_ads_count', translate('one_number_ads_count'), 'required');
+                $this->form_validation->set_rules('ads_expire_day', translate('ads_expire_day'), 'required');
+
+
+                
+                if ($this->form_validation->run() == true) 
+                {
+                    $post = $this->input->post();
+                    $data_model = [
+                        "home_ads_limit" => $this->input->post('home_ads_limit'),
+                        "detail_ads_limit" => $this->input->post('detail_ads_limit'),
+                        "category_ads_limit" => $this->input->post('category_ads_limit'),
+                        "min_photo_count" => $this->input->post('min_photo_count'),
+                        "max_photo_count" => $this->input->post('max_photo_count'),
+                        "one_number_ads_count" => $this->input->post('one_number_ads_count'),
+                        "ads_expire_day"  => $this->input->post('ads_expire_day')
+                    ];
+
+                    $response = $this->acmodel->ads_configuration_edit($data_model);
+                    if ($response) {
+                        set_alert('success', translate('information_has_been_updated_successfully'));
+                    }
+                    redirect(base_url('settings/ads_configuration'));
+                } 
+                else 
+                {
+                    $this->data['validation_error'] = true;
+                }
+        }
+        $this->data['ads_configuration']  = $this->acmodel->getAdsConfigurations()[0];
+        $this->data['title']            = translate('ads_configuration');
+        $this->data['sub_page']         = 'settings/ads_configuration';
+        $this->data['main_menu']        = 'settings';
+        $this->load->view('layout/index', $this->data);
+    }
+
 }

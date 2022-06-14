@@ -908,3 +908,28 @@ function delete_dir($dirPath)
     }
     return false;
 }
+
+function getComplainCategory($complain_number='')
+{
+    if($complain_number==1)
+    {
+        return "Saxta elan";
+    }
+    elseif($complain_number==2)
+    {
+        return "Əmlak artıq satılıb";
+    }
+    elseif($complain_number==3)
+    {
+        return "Məlumat düzgün qeyd edilməyib";
+    }
+    elseif($complain_number==4)
+    {
+        return "Düzgün olmayan şəkil";
+    }
+    else
+    {
+        return "Təkrar elan";
+    }
+
+}
