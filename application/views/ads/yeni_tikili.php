@@ -126,6 +126,7 @@
       </div>
       <?php } ?>
    </div>
+   <?php echo insertPagination(base_url().'yeni-tikili', $sayfa, $toplam_sayfa,true); ?>
 </div>
 </section>
 </main>

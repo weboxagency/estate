@@ -9,12 +9,11 @@
     <meta name="msvalidate.01" content="5F0AD8E00E5343818DEB4475F2DA3D0C" />
     <title><?php echo $page_data['page_title'] . " - " . $cms_setting['application_title']; ?></title>
     <meta name="description" content="En yeni ev elanlari, 360 evler, kiraye ofisler, yeni tikililer, biznes merkezleri, yasayis kompleksleri, insaat sirketleri, ev algi satqisi, torpaq, obyekt.">
-    <meta property="og:image" content="https://evelani.az/uploads/site/id/7473f62eea8d613a08c27a982b386286.png?v=1603226064" itemprop="image">
-    <meta property="og:title" content="Evelani.az - En yeni dasinmaz emlak elanlari bir unvanda">
+    <meta property="og:title" content="Estate.az - En yeni dasinmaz emlak elanlari bir unvanda">
     <meta property="og:description" content="En yeni ev elanlari, 360 evler, kiraye ofisler, yeni tikililer, biznes merkezleri, yasayis kompleksleri, insaat sirketleri, ev algi satqisi, torpaq, obyekt.">
     <meta property="og:url" content="az">
     <meta property="og:type" content="website">
-    <meta property="og:site_name" content="Evelani.az">
+    <meta property="og:site_name" content="Estate.az">
     <meta name="msapplication-TileColor" content="#ffffff">
     <meta name="msapplication-TileImage" content="<?php echo base_url('uploads/frontend/images/' . $cms_setting['logo']); ?>">
     <meta name="theme-color" content="#000">

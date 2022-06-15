@@ -294,6 +294,35 @@ class Home extends Frontend_Controller
         }
     }
 
+    public function secilmisler()
+    {
+        $data      = ["wish_sess" => unique_token()];
+        $sess      = ($this->session->has_userdata('wish_sess')) ? $this->session->userdata('wish_sess') : $this->session->set_userdata($data);
+        $sess_id   = $this->session->userdata('wish_sess');
+           
+        $list      = $this->home_model->getWishlist($sess_id);
+
+        
+        // dd($list);
+        $this->data['cities']            = $this->home_model->allCities();
+        $this->data['regions']           = $this->home_model->allRegions();
+        $this->data['metros']            = $this->home_model->allMetros();
+        $this->data['estate_types']      = $this->home_model->estateTypes();
+        $this->data['ads_type']          = $this->home_model->adsType();
+        $this->data['district']          = $this->home_model->allDistricts();
+        array_unshift($this->data['metros'],"");
+        unset($this->data['metros'][0]);
+        array_unshift($this->data['district'],"");
+        unset($this->data['district'][0]);
+        array_unshift($this->data['regions'],"");
+        unset($this->data['regions'][0]);
+        array_unshift($this->data['cities'],"");
+        unset($this->data['cities'][0]);
+        $this->data['page_data'] = $this->home_model->get('front_cms_home_seo', array('branch_id' => 1), true);
+        $this->data['main_contents'] = $this->load->view('home/secilmisler', $this->data, true);
+        $this->load->view('home/layout/index', $this->data);
+    }
+
     public function sikayet()
     {
         if (!$this->input->is_ajax_request()) {

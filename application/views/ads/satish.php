@@ -572,6 +572,7 @@
       </div>
       <?php } ?>
    </div>
+   <?php echo insertPagination(base_url().'yeni-elanlar-satish', $sayfa, $toplam_sayfa,true); ?>
 </div>
 </section>
 </main>

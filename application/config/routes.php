@@ -64,6 +64,7 @@ $route['yeni-tikili'] 					= 'elanlar/yeni_tikili';
 
 //HOME CONTROLLER
 $route['wishlist'] 						= 'home/wishlist';
+$route['secilmisler'] 					= 'home/secilmisler';
 $route['complain'] 						= 'home/sikayet';
 $route['elan/(:any)'] 					= 'home/detail/$1';
 $route['axtar'] 						= 'home/search';
