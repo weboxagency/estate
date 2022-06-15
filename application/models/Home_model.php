@@ -17,6 +17,30 @@ class Home_model extends MY_Model
         return $query->num_rows();
     }
 
+    public function get_count_new_satish() 
+    {
+        $query = $this->db->query("SELECT * FROM ads_all WHERE status=2 AND announcement_type=1  ORDER BY id DESC");
+        return $query->num_rows();
+    }
+
+    public function get_count_new_kiraye_ayliq() 
+    {
+        $query = $this->db->query("SELECT * FROM ads_all WHERE status=2 AND announcement_type=2  ORDER BY id DESC ");
+        return $query->num_rows();
+    }
+
+    public function get_count_new_kiraye_gunluk() 
+    {
+        $query = $this->db->query("SELECT * FROM ads_all WHERE status=2 AND announcement_type=3  ORDER BY id DESC");
+        return $query->num_rows();
+    }
+
+    public function get_count_yeni_tikili() 
+    {
+        $query = $this->db->query("SELECT * FROM ads_all WHERE property_type=1 AND status=2 AND created_at BETWEEN NOW() - INTERVAL 30 DAY AND NOW() ORDER BY id DESC");
+        return $query->num_rows();
+    }
+
     public function get_count_detail_benzer($property_type, $ads_number) 
     {
         $query = $this->db->query("SELECT * FROM ads_all WHERE status=2 AND property_type='".$property_type."' AND ads_number!='".$ads_number."' ORDER BY id DESC");
@@ -240,6 +264,16 @@ class Home_model extends MY_Model
         
     }
 
+    public function getWishlist($sess)
+    {
+        $this->db->select('data_id');
+        $this->db->from('wishlists');
+        $this->db->where("session_id", $sess);
+        $query = $this->db->get();
+        return $query->num_rows() > 0 ? $query->result_array() : NULL;
+        
+    }
+
     public function adsRules()
     {
         $this->db->select('*');
@@ -262,6 +296,13 @@ class Home_model extends MY_Model
         $query = $this->db->query("SELECT * FROM ads_all WHERE status=2 AND created_at BETWEEN NOW() - INTERVAL 30 DAY AND NOW() ORDER BY id DESC LIMIT $limit, $start");
         return $query->num_rows() > 0 ? $query->result_array() : NULL;
         
+    }   
+
+    public function allYeniTikiliPagination($limit,$sayfada)
+    {
+        $ads_config  = $this->db->get_where('ads_configuration', array('id' => 1))->row_array();
+        $query = $this->db->query("SELECT * FROM ads_all WHERE property_type=1 AND status=2 AND created_at BETWEEN NOW() - INTERVAL 30 DAY AND NOW() ORDER BY id DESC LIMIT $limit, $sayfada");
+        return $query->num_rows() > 0 ? $query->result_array() : NULL;
     }
 
     public function allYeniTikili()
@@ -333,26 +374,26 @@ class Home_model extends MY_Model
         return $query->num_rows() == 1 ? $query->result_array()[0] : NULL;
     }
 
-    public function allNewAdsSaleList()
+    public function allNewAdsSaleList($limit, $start)
     {
         $ads_config       = $this->db->get_where('ads_configuration', array('id' => 1))->row_array();
-        $query = $this->db->query("SELECT * FROM ads_all WHERE status=2 AND announcement_type=1  ORDER BY id DESC LIMIT ".$ads_config['category_ads_limit']."");
+        $query = $this->db->query("SELECT * FROM ads_all WHERE status=2 AND announcement_type=1  ORDER BY id DESC LIMIT $limit, $start");
         return $query->num_rows() > 0 ? $query->result_array() : NULL;
         
     }
 
-    public function allNewAdsRentMonthlyList()
+    public function allNewAdsRentMonthlyList($limit, $sayfada)
     {
         $ads_config       = $this->db->get_where('ads_configuration', array('id' => 1))->row_array();
-        $query = $this->db->query("SELECT * FROM ads_all WHERE status=2 AND announcement_type=2  ORDER BY id DESC LIMIT ".$ads_config['category_ads_limit']."");
+        $query = $this->db->query("SELECT * FROM ads_all WHERE status=2 AND announcement_type=2  ORDER BY id DESC LIMIT $limit, $sayfada");
         return $query->num_rows() > 0 ? $query->result_array() : NULL;
         
     }
 
-    public function allNewAdsRentDailyList()
+    public function allNewAdsRentDailyList($limit,$sayfada)
     {
         $ads_config       = $this->db->get_where('ads_configuration', array('id' => 1))->row_array(); 
-        $query = $this->db->query("SELECT * FROM ads_all WHERE status=2 AND announcement_type=3  ORDER BY id DESC LIMIT ".$ads_config['category_ads_limit']."");
+        $query = $this->db->query("SELECT * FROM ads_all WHERE status=2 AND announcement_type=3  ORDER BY id DESC LIMIT $limit,$sayfada");
         return $query->num_rows() > 0 ? $query->result_array() : NULL;
         
     }

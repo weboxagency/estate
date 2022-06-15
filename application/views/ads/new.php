@@ -1,6 +1,6 @@
 <main class="main">
    <section class="map">
-   <div class="main-header__content map-content">
+   <div class="main-header__content map-content d-flex justify-content-center">
       <form class="search">
          <div class="searchmap-input">
             <a href="<?= base_url() ?>yeni-elanlar">
