@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.1
+-- version 5.1.3
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Jun 13, 2022 at 06:41 PM
--- Server version: 10.4.22-MariaDB
--- PHP Version: 8.0.14
+-- Хост: 127.0.0.1
+-- Время создания: Июн 15 2022 г., 13:25
+-- Версия сервера: 10.4.22-MariaDB
+-- Версия PHP: 7.4.28
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,19 +18,61 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `evelani`
+-- База данных: `evelani`
 --
-CREATE DATABASE IF NOT EXISTS `evelani` DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci;
-USE `evelani`;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `ads_all`
+-- Структура таблицы `about_ads_configuration`
 --
 
-CREATE TABLE IF NOT EXISTS `ads_all` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `about_ads_configuration` (
+  `id` int(11) NOT NULL,
+  `modul_key` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `modul_name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `modul_info` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `status` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Дамп данных таблицы `about_ads_configuration`
+--
+
+INSERT INTO `about_ads_configuration` (`id`, `modul_key`, `modul_name`, `modul_info`, `status`) VALUES
+(1, 'vip', 'Elanı VIP etmək', 'Əgər bu seçimi nəsə dana onu snra yazarıq', 1),
+(2, 'premium', 'Elanı Premium etmək', 'Nəsə dana bunu da sonra yazarıq', 1),
+(3, 'pull', 'Elanı İrəli çəkmək', 'Bunu lap sonra yazarıq', 1),
+(4, 'delete', 'Elanı silmək', 'Bunu axırdan əvvəl yazacıq', 1),
+(5, 'update', 'Elanı redaktə etmək', 'Bunu ən axırda yazacıq', 1);
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `add_advertisement_rules`
+--
+
+CREATE TABLE `add_advertisement_rules` (
+  `id` int(11) NOT NULL,
+  `content` text COLLATE utf8_unicode_ci NOT NULL,
+  `status` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Дамп данных таблицы `add_advertisement_rules`
+--
+
+INSERT INTO `add_advertisement_rules` (`id`, `content`, `status`) VALUES
+(1, '                Saytda REKLAM yerləşdirmək\r\n \r\n\r\nEvelani.az  Azərbaycanın daşınmaz əmlak sahəsində yeni xidmətlər təklif edən onlayn platformadır. Sayt böyük müştəri bazasını əhatə edir və daşınmaz əmlak üzrə bütün sahələrdə şaxələnməyə davam edir.\r\n\r\nEvelani.az saytında reklam yerləşdirərək, hədəf müştəri kütlənizə məhsulunuzu təqdim edə, məhsuldar müştəri bazası əldə edə bilərsiniz. Evelani.az ilə əməkdaşlıq etdiyiniz zaman nəinki yalnız platforma üzərindən həmçinin digər satış kanalları üzərindən də məhsulunuzun təqdimatı aparılacaqdır. \r\n\r\nBizimlə əməkdaşlıq etmək üçün müraciət edin!\r\n\r\n(050) 786-00-84\r\n\r\n(012) 409-00-84\r\n\r\nevelani@evelani.az              ', 1);
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `ads_all`
+--
+
+CREATE TABLE `ads_all` (
+  `id` int(11) NOT NULL,
   `ads_pin_kod` int(11) NOT NULL,
   `ads_title` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `url_slug` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
@@ -77,12 +119,11 @@ CREATE TABLE IF NOT EXISTS `ads_all` (
   `updated_at` datetime DEFAULT NULL,
   `deleted_at` datetime DEFAULT NULL,
   `approved_at` datetime NOT NULL,
-  `simple_ads_end_date` datetime NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  `simple_ads_end_date` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Dumping data for table `ads_all`
+-- Дамп данных таблицы `ads_all`
 --
 
 INSERT INTO `ads_all` (`id`, `ads_pin_kod`, `ads_title`, `url_slug`, `ads_number`, `announcement_type`, `connection_type`, `property_type`, `price`, `average_price`, `room`, `area`, `land_area`, `floor`, `max_floor`, `repair`, `deed`, `mortgage`, `user_type`, `name`, `email`, `mobile`, `has_whatsapp`, `city_id`, `region_id`, `district_id`, `metro_id`, `address`, `latitude`, `longitude`, `property_description`, `business_center`, `complex`, `is_active`, `status`, `show_count`, `pull_ads_forward_begin`, `pull_ads_forward_end`, `vip_begin`, `vip_end`, `premium_begin`, `premium_end`, `photos`, `created_at`, `updated_at`, `deleted_at`, `approved_at`, `simple_ads_end_date`) VALUES
@@ -107,22 +148,21 @@ INSERT INTO `ads_all` (`id`, `ads_pin_kod`, `ads_title`, `url_slug`, `ads_number
 -- --------------------------------------------------------
 
 --
--- Table structure for table `ads_complain`
+-- Структура таблицы `ads_complain`
 --
 
-CREATE TABLE IF NOT EXISTS `ads_complain` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `ads_complain` (
+  `id` int(11) NOT NULL,
   `ads_id` int(11) NOT NULL,
   `complain_category` int(11) NOT NULL,
   `extra_info` text COLLATE utf8_unicode_ci NOT NULL,
   `ip` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `soft` text COLLATE utf8_unicode_ci NOT NULL,
-  `created_date` datetime NOT NULL DEFAULT current_timestamp(),
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  `created_date` datetime NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Dumping data for table `ads_complain`
+-- Дамп данных таблицы `ads_complain`
 --
 
 INSERT INTO `ads_complain` (`id`, `ads_id`, `complain_category`, `extra_info`, `ip`, `soft`, `created_date`) VALUES
@@ -130,48 +170,46 @@ INSERT INTO `ads_complain` (`id`, `ads_id`, `complain_category`, `extra_info`, `
 (2, 18, 4, 'Doğru məlumat deyil\r\n', '127.0.0.1', '{\"userAgent\":\"Mozilla\\/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit\\/537.36 (KHTML, like Gecko) Chrome\\/102.0.5005.63 Safari\\/537.36\",\"name\":\"Google Chrome\",\"version\":\"102.0.5005.63\",\"platform\":\"windows\",\"pattern\":\"#(?<browser>Version|Chrome|other)[\\/ ]+(?<version>[0-9.|a-zA-Z.]*)#\"}', '2022-06-12 02:08:50'),
 (3, 25, 3, 'jhgjkhkhkhjk', '127.0.0.1', '{\"userAgent\":\"Mozilla\\/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit\\/537.36 (KHTML, like Gecko) Chrome\\/102.0.5005.63 Safari\\/537.36\",\"name\":\"Google Chrome\",\"version\":\"102.0.5005.63\",\"platform\":\"windows\",\"pattern\":\"#(?<browser>Version|Chrome|other)[\\/ ]+(?<version>[0-9.|a-zA-Z.]*)#\"}', '2022-06-12 13:27:47'),
 (4, 25, 3, 'Əmlak artıq satılıb xahiş edirəm bu elanə çıxarın', '127.0.0.1', '{\"userAgent\":\"Mozilla\\/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit\\/537.36 (KHTML, like Gecko) Chrome\\/102.0.5005.63 Safari\\/537.36\",\"name\":\"Google Chrome\",\"version\":\"102.0.5005.63\",\"platform\":\"windows\",\"pattern\":\"#(?<browser>Version|Chrome|other)[\\/ ]+(?<version>[0-9.|a-zA-Z.]*)#\"}', '2022-06-12 13:52:22'),
-(5, 26, 4, 'wjhegfjhsdgfsf\\\r\n', '127.0.0.1', '{\"userAgent\":\"Mozilla\\/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit\\/537.36 (KHTML, like Gecko) Chrome\\/102.0.5005.63 Safari\\/537.36\",\"name\":\"Google Chrome\",\"version\":\"102.0.5005.63\",\"platform\":\"windows\",\"pattern\":\"#(?<browser>Version|Chrome|other)[\\/ ]+(?<version>[0-9.|a-zA-Z.]*)#\"}', '2022-06-12 16:31:28'),
 (6, 25, 2, 'fdfdfdf', '127.0.0.1', '{\"userAgent\":\"Mozilla\\/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit\\/537.36 (KHTML, like Gecko) Chrome\\/102.0.5005.63 Safari\\/537.36\",\"name\":\"Google Chrome\",\"version\":\"102.0.5005.63\",\"platform\":\"windows\",\"pattern\":\"#(?<browser>Version|Chrome|other)[\\/ ]+(?<version>[0-9.|a-zA-Z.]*)#\"}', '2022-06-12 16:52:21');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `ads_configuration`
+-- Структура таблицы `ads_configuration`
 --
 
-CREATE TABLE IF NOT EXISTS `ads_configuration` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `ads_configuration` (
+  `id` int(11) NOT NULL,
   `home_ads_limit` int(11) NOT NULL,
   `detail_ads_limit` int(11) NOT NULL,
   `category_ads_limit` int(11) NOT NULL,
   `min_photo_count` int(11) NOT NULL,
   `max_photo_count` int(11) NOT NULL,
   `one_number_ads_count` int(11) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  `ads_expire_day` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Dumping data for table `ads_configuration`
+-- Дамп данных таблицы `ads_configuration`
 --
 
-INSERT INTO `ads_configuration` (`id`, `home_ads_limit`, `detail_ads_limit`, `category_ads_limit`, `min_photo_count`, `max_photo_count`, `one_number_ads_count`) VALUES
-(1, 100, 15, 10, 4, 20, 3);
+INSERT INTO `ads_configuration` (`id`, `home_ads_limit`, `detail_ads_limit`, `category_ads_limit`, `min_photo_count`, `max_photo_count`, `one_number_ads_count`, `ads_expire_day`) VALUES
+(1, 1, 30, 1, 3, 16, 3, 30);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `ads_rules`
+-- Структура таблицы `ads_rules`
 --
 
-CREATE TABLE IF NOT EXISTS `ads_rules` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `ads_rules` (
+  `id` int(11) NOT NULL,
   `content` text COLLATE utf8_unicode_ci NOT NULL,
-  `status` int(11) NOT NULL DEFAULT 1,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  `status` int(11) NOT NULL DEFAULT 1
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Dumping data for table `ads_rules`
+-- Дамп данных таблицы `ads_rules`
 --
 
 INSERT INTO `ads_rules` (`id`, `content`, `status`) VALUES
@@ -180,22 +218,21 @@ INSERT INTO `ads_rules` (`id`, `content`, `status`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `ads_type`
+-- Структура таблицы `ads_type`
 --
 
-CREATE TABLE IF NOT EXISTS `ads_type` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `ads_type` (
+  `id` int(11) NOT NULL,
   `type_name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `seo_link` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `status` int(11) NOT NULL DEFAULT 1,
   `created_at` datetime NOT NULL,
   `updated_at` datetime NOT NULL,
-  `deleted_at` datetime NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  `deleted_at` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Dumping data for table `ads_type`
+-- Дамп данных таблицы `ads_type`
 --
 
 INSERT INTO `ads_type` (`id`, `type_name`, `seo_link`, `status`, `created_at`, `updated_at`, `deleted_at`) VALUES
@@ -206,11 +243,11 @@ INSERT INTO `ads_type` (`id`, `type_name`, `seo_link`, `status`, `created_at`, `
 -- --------------------------------------------------------
 
 --
--- Table structure for table `ads_users`
+-- Структура таблицы `ads_users`
 --
 
-CREATE TABLE IF NOT EXISTS `ads_users` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `ads_users` (
+  `id` int(11) NOT NULL,
   `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `email` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `password` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
@@ -231,12 +268,11 @@ CREATE TABLE IF NOT EXISTS `ads_users` (
   `email_verify_code` int(11) DEFAULT NULL,
   `register_at` datetime NOT NULL DEFAULT current_timestamp(),
   `updated_at` int(11) DEFAULT NULL,
-  `deleted_at` datetime DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  `deleted_at` datetime DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Dumping data for table `ads_users`
+-- Дамп данных таблицы `ads_users`
 --
 
 INSERT INTO `ads_users` (`id`, `name`, `email`, `password`, `register_token`, `phone`, `mobile`, `mobile_format_second`, `mobileBeautified`, `provider_name`, `balance`, `is_registered`, `status`, `last_login`, `ip`, `soft`, `browser_name`, `second_email`, `email_verify_code`, `register_at`, `updated_at`, `deleted_at`) VALUES
@@ -249,10 +285,10 @@ INSERT INTO `ads_users` (`id`, `name`, `email`, `password`, `register_token`, `p
 -- --------------------------------------------------------
 
 --
--- Table structure for table `ads_users_reset_password`
+-- Структура таблицы `ads_users_reset_password`
 --
 
-CREATE TABLE IF NOT EXISTS `ads_users_reset_password` (
+CREATE TABLE `ads_users_reset_password` (
   `key` longtext NOT NULL,
   `email` varchar(100) NOT NULL,
   `credential_id` varchar(100) NOT NULL,
@@ -260,7 +296,7 @@ CREATE TABLE IF NOT EXISTS `ads_users_reset_password` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `ads_users_reset_password`
+-- Дамп данных таблицы `ads_users_reset_password`
 --
 
 INSERT INTO `ads_users_reset_password` (`key`, `email`, `credential_id`, `created_at`) VALUES
@@ -269,11 +305,27 @@ INSERT INTO `ads_users_reset_password` (`key`, `email`, `credential_id`, `create
 -- --------------------------------------------------------
 
 --
--- Table structure for table `branch`
+-- Структура таблицы `banners`
 --
 
-CREATE TABLE IF NOT EXISTS `branch` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `banners` (
+  `id` int(11) NOT NULL,
+  `page` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `left_side` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `right_side` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `top_side` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `center` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `status` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `branch`
+--
+
+CREATE TABLE `branch` (
+  `id` int(11) NOT NULL,
   `name` varchar(255) DEFAULT NULL,
   `school_name` varchar(255) NOT NULL,
   `email` varchar(100) NOT NULL,
@@ -291,12 +343,11 @@ CREATE TABLE IF NOT EXISTS `branch` (
   `grd_default_password` varchar(255) NOT NULL,
   `teacher_restricted` tinyint(1) NOT NULL DEFAULT 1,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
-  `updated_at` datetime DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+  `updated_at` datetime DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `branch`
+-- Дамп данных таблицы `branch`
 --
 
 INSERT INTO `branch` (`id`, `name`, `school_name`, `email`, `mobileno`, `currency`, `symbol`, `city`, `state`, `address`, `stu_generate`, `stu_username_prefix`, `stu_default_password`, `grd_generate`, `grd_username_prefix`, `grd_default_password`, `teacher_restricted`, `created_at`, `updated_at`) VALUES
@@ -305,22 +356,21 @@ INSERT INTO `branch` (`id`, `name`, `school_name`, `email`, `mobileno`, `currenc
 -- --------------------------------------------------------
 
 --
--- Table structure for table `cities`
+-- Структура таблицы `cities`
 --
 
-CREATE TABLE IF NOT EXISTS `cities` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `cities` (
+  `id` int(11) NOT NULL,
   `city_name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `seo_link` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `status` int(11) NOT NULL DEFAULT 1 COMMENT '0 - Deaktiv\r\n1 - Aktiv',
   `created_at` datetime NOT NULL,
   `updated_at` datetime NOT NULL,
-  `deleted_at` datetime NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=58 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  `deleted_at` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Dumping data for table `cities`
+-- Дамп данных таблицы `cities`
 --
 
 INSERT INTO `cities` (`id`, `city_name`, `seo_link`, `status`, `created_at`, `updated_at`, `deleted_at`) VALUES
@@ -385,27 +435,26 @@ INSERT INTO `cities` (`id`, `city_name`, `seo_link`, `status`, `created_at`, `up
 -- --------------------------------------------------------
 
 --
--- Table structure for table `class`
+-- Структура таблицы `class`
 --
 
-CREATE TABLE IF NOT EXISTS `class` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `class` (
+  `id` int(11) NOT NULL,
   `name` varchar(255) NOT NULL,
   `name_numeric` varchar(255) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
   `updated_at` datetime DEFAULT NULL,
-  `branch_id` int(11) DEFAULT NULL,
-  PRIMARY KEY (`id`)
+  `branch_id` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `custom_field`
+-- Структура таблицы `custom_field`
 --
 
-CREATE TABLE IF NOT EXISTS `custom_field` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `custom_field` (
+  `id` int(11) NOT NULL,
   `form_to` varchar(50) DEFAULT NULL,
   `field_label` varchar(100) NOT NULL,
   `default_value` text DEFAULT NULL,
@@ -416,46 +465,41 @@ CREATE TABLE IF NOT EXISTS `custom_field` (
   `field_order` int(11) NOT NULL,
   `bs_column` int(11) NOT NULL,
   `branch_id` int(11) NOT NULL,
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
-  PRIMARY KEY (`id`)
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `custom_fields_values`
+-- Структура таблицы `custom_fields_values`
 --
 
-CREATE TABLE IF NOT EXISTS `custom_fields_values` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `custom_fields_values` (
+  `id` int(11) NOT NULL,
   `relid` int(11) NOT NULL,
   `field_id` int(11) NOT NULL,
-  `value` text NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `relid` (`relid`),
-  KEY `fieldid` (`field_id`)
+  `value` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `districts`
+-- Структура таблицы `districts`
 --
 
-CREATE TABLE IF NOT EXISTS `districts` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `districts` (
+  `id` int(11) NOT NULL,
   `district_name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `seo_link` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `parent_region` int(11) NOT NULL,
   `status` int(11) NOT NULL DEFAULT 1 COMMENT '0 - Deaktiv\r\n1 -Aktiv',
   `created_at` datetime NOT NULL,
   `updated_at` datetime NOT NULL,
-  `deleted_at` datetime NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=114 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  `deleted_at` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Dumping data for table `districts`
+-- Дамп данных таблицы `districts`
 --
 
 INSERT INTO `districts` (`id`, `district_name`, `seo_link`, `parent_region`, `status`, `created_at`, `updated_at`, `deleted_at`) VALUES
@@ -576,11 +620,11 @@ INSERT INTO `districts` (`id`, `district_name`, `seo_link`, `parent_region`, `st
 -- --------------------------------------------------------
 
 --
--- Table structure for table `email_config`
+-- Структура таблицы `email_config`
 --
 
-CREATE TABLE IF NOT EXISTS `email_config` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `email_config` (
+  `id` int(11) NOT NULL,
   `email` varchar(255) DEFAULT NULL,
   `protocol` varchar(255) NOT NULL,
   `smtp_host` varchar(255) DEFAULT NULL,
@@ -588,12 +632,11 @@ CREATE TABLE IF NOT EXISTS `email_config` (
   `smtp_pass` varchar(255) DEFAULT NULL,
   `smtp_port` varchar(100) DEFAULT NULL,
   `smtp_encryption` varchar(10) DEFAULT NULL,
-  `branch_id` int(11) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+  `branch_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `email_config`
+-- Дамп данных таблицы `email_config`
 --
 
 INSERT INTO `email_config` (`id`, `email`, `protocol`, `smtp_host`, `smtp_user`, `smtp_pass`, `smtp_port`, `smtp_encryption`, `branch_id`) VALUES
@@ -602,18 +645,17 @@ INSERT INTO `email_config` (`id`, `email`, `protocol`, `smtp_host`, `smtp_user`,
 -- --------------------------------------------------------
 
 --
--- Table structure for table `email_templates`
+-- Структура таблицы `email_templates`
 --
 
-CREATE TABLE IF NOT EXISTS `email_templates` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `email_templates` (
+  `id` int(11) NOT NULL,
   `name` varchar(255) NOT NULL,
-  `tags` text NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8;
+  `tags` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `email_templates`
+-- Дамп данных таблицы `email_templates`
 --
 
 INSERT INTO `email_templates` (`id`, `name`, `tags`) VALUES
@@ -636,21 +678,20 @@ INSERT INTO `email_templates` (`id`, `name`, `tags`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `email_templates_details`
+-- Структура таблицы `email_templates_details`
 --
 
-CREATE TABLE IF NOT EXISTS `email_templates_details` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `email_templates_details` (
+  `id` int(11) NOT NULL,
   `template_id` int(11) NOT NULL,
   `subject` varchar(255) NOT NULL,
   `template_body` text NOT NULL,
   `notified` tinyint(1) NOT NULL DEFAULT 1,
-  `branch_id` int(11) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+  `branch_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `email_templates_details`
+-- Дамп данных таблицы `email_templates_details`
 --
 
 INSERT INTO `email_templates_details` (`id`, `template_id`, `subject`, `template_body`, `notified`, `branch_id`) VALUES
@@ -661,22 +702,21 @@ INSERT INTO `email_templates_details` (`id`, `template_id`, `subject`, `template
 -- --------------------------------------------------------
 
 --
--- Table structure for table `estate_type`
+-- Структура таблицы `estate_type`
 --
 
-CREATE TABLE IF NOT EXISTS `estate_type` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `estate_type` (
+  `id` int(11) NOT NULL,
   `estate_type_name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `seo_link` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `status` int(11) NOT NULL DEFAULT 1 COMMENT '0 - Deaktiv\r\n1 - Aktiv',
   `created_at` datetime NOT NULL,
   `updated_at` datetime NOT NULL,
-  `deleted_at` datetime NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  `deleted_at` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Dumping data for table `estate_type`
+-- Дамп данных таблицы `estate_type`
 --
 
 INSERT INTO `estate_type` (`id`, `estate_type_name`, `seo_link`, `status`, `created_at`, `updated_at`, `deleted_at`) VALUES
@@ -692,11 +732,11 @@ INSERT INTO `estate_type` (`id`, `estate_type_name`, `seo_link`, `status`, `crea
 -- --------------------------------------------------------
 
 --
--- Table structure for table `front_cms_about`
+-- Структура таблицы `front_cms_about`
 --
 
-CREATE TABLE IF NOT EXISTS `front_cms_about` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `front_cms_about` (
+  `id` int(11) NOT NULL,
   `title` varchar(255) DEFAULT NULL,
   `subtitle` varchar(255) DEFAULT NULL,
   `page_title` varchar(255) NOT NULL,
@@ -706,12 +746,11 @@ CREATE TABLE IF NOT EXISTS `front_cms_about` (
   `elements` mediumtext NOT NULL,
   `meta_description` text NOT NULL,
   `meta_keyword` text NOT NULL,
-  `branch_id` int(11) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+  `branch_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `front_cms_about`
+-- Дамп данных таблицы `front_cms_about`
 --
 
 INSERT INTO `front_cms_about` (`id`, `title`, `subtitle`, `page_title`, `content`, `banner_image`, `about_image`, `elements`, `meta_description`, `meta_keyword`, `branch_id`) VALUES
@@ -720,11 +759,11 @@ INSERT INTO `front_cms_about` (`id`, `title`, `subtitle`, `page_title`, `content
 -- --------------------------------------------------------
 
 --
--- Table structure for table `front_cms_admission`
+-- Структура таблицы `front_cms_admission`
 --
 
-CREATE TABLE IF NOT EXISTS `front_cms_admission` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `front_cms_admission` (
+  `id` int(11) NOT NULL,
   `title` varchar(255) DEFAULT NULL,
   `description` text DEFAULT NULL,
   `page_title` varchar(255) DEFAULT NULL,
@@ -734,12 +773,11 @@ CREATE TABLE IF NOT EXISTS `front_cms_admission` (
   `banner_image` varchar(255) DEFAULT NULL,
   `meta_description` text NOT NULL,
   `meta_keyword` text NOT NULL,
-  `branch_id` int(11) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+  `branch_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `front_cms_admission`
+-- Дамп данных таблицы `front_cms_admission`
 --
 
 INSERT INTO `front_cms_admission` (`id`, `title`, `description`, `page_title`, `terms_conditions_title`, `terms_conditions_description`, `fee_elements`, `banner_image`, `meta_description`, `meta_keyword`, `branch_id`) VALUES
@@ -748,23 +786,22 @@ INSERT INTO `front_cms_admission` (`id`, `title`, `description`, `page_title`, `
 -- --------------------------------------------------------
 
 --
--- Table structure for table `front_cms_admitcard`
+-- Структура таблицы `front_cms_admitcard`
 --
 
-CREATE TABLE IF NOT EXISTS `front_cms_admitcard` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `front_cms_admitcard` (
+  `id` int(11) NOT NULL,
   `page_title` varchar(255) DEFAULT NULL,
   `templete_id` int(11) NOT NULL,
   `banner_image` varchar(255) DEFAULT NULL,
   `description` text NOT NULL,
   `meta_description` text NOT NULL,
   `meta_keyword` text NOT NULL,
-  `branch_id` int(11) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+  `branch_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `front_cms_admitcard`
+-- Дамп данных таблицы `front_cms_admitcard`
 --
 
 INSERT INTO `front_cms_admitcard` (`id`, `page_title`, `templete_id`, `banner_image`, `description`, `meta_description`, `meta_keyword`, `branch_id`) VALUES
@@ -773,22 +810,21 @@ INSERT INTO `front_cms_admitcard` (`id`, `page_title`, `templete_id`, `banner_im
 -- --------------------------------------------------------
 
 --
--- Table structure for table `front_cms_certificates`
+-- Структура таблицы `front_cms_certificates`
 --
 
-CREATE TABLE IF NOT EXISTS `front_cms_certificates` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `front_cms_certificates` (
+  `id` int(11) NOT NULL,
   `page_title` varchar(255) DEFAULT NULL,
   `banner_image` varchar(255) DEFAULT NULL,
   `description` text NOT NULL,
   `meta_description` text NOT NULL,
   `meta_keyword` text NOT NULL,
-  `branch_id` int(11) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+  `branch_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `front_cms_certificates`
+-- Дамп данных таблицы `front_cms_certificates`
 --
 
 INSERT INTO `front_cms_certificates` (`id`, `page_title`, `banner_image`, `description`, `meta_description`, `meta_keyword`, `branch_id`) VALUES
@@ -797,11 +833,11 @@ INSERT INTO `front_cms_certificates` (`id`, `page_title`, `banner_image`, `descr
 -- --------------------------------------------------------
 
 --
--- Table structure for table `front_cms_contact`
+-- Структура таблицы `front_cms_contact`
 --
 
-CREATE TABLE IF NOT EXISTS `front_cms_contact` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `front_cms_contact` (
+  `id` int(11) NOT NULL,
   `box_title` varchar(255) DEFAULT NULL,
   `box_description` varchar(500) DEFAULT NULL,
   `box_image` varchar(255) DEFAULT NULL,
@@ -815,12 +851,11 @@ CREATE TABLE IF NOT EXISTS `front_cms_contact` (
   `banner_image` varchar(255) DEFAULT NULL,
   `meta_description` text NOT NULL,
   `meta_keyword` text NOT NULL,
-  `branch_id` int(11) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+  `branch_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `front_cms_contact`
+-- Дамп данных таблицы `front_cms_contact`
 --
 
 INSERT INTO `front_cms_contact` (`id`, `box_title`, `box_description`, `box_image`, `form_title`, `address`, `phone`, `email`, `submit_text`, `map_iframe`, `page_title`, `banner_image`, `meta_description`, `meta_keyword`, `branch_id`) VALUES
@@ -829,23 +864,22 @@ INSERT INTO `front_cms_contact` (`id`, `box_title`, `box_description`, `box_imag
 -- --------------------------------------------------------
 
 --
--- Table structure for table `front_cms_events`
+-- Структура таблицы `front_cms_events`
 --
 
-CREATE TABLE IF NOT EXISTS `front_cms_events` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `front_cms_events` (
+  `id` int(11) NOT NULL,
   `title` varchar(255) NOT NULL,
   `description` text NOT NULL,
   `page_title` varchar(255) DEFAULT NULL,
   `banner_image` varchar(255) DEFAULT NULL,
   `meta_description` text NOT NULL,
   `meta_keyword` text NOT NULL,
-  `branch_id` int(11) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+  `branch_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `front_cms_events`
+-- Дамп данных таблицы `front_cms_events`
 --
 
 INSERT INTO `front_cms_events` (`id`, `title`, `description`, `page_title`, `banner_image`, `meta_description`, `meta_keyword`, `branch_id`) VALUES
@@ -854,11 +888,11 @@ INSERT INTO `front_cms_events` (`id`, `title`, `description`, `page_title`, `ban
 -- --------------------------------------------------------
 
 --
--- Table structure for table `front_cms_exam_results`
+-- Структура таблицы `front_cms_exam_results`
 --
 
-CREATE TABLE IF NOT EXISTS `front_cms_exam_results` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `front_cms_exam_results` (
+  `id` int(11) NOT NULL,
   `page_title` varchar(255) DEFAULT NULL,
   `grade_scale` tinyint(1) NOT NULL,
   `attendance` tinyint(1) NOT NULL,
@@ -866,12 +900,11 @@ CREATE TABLE IF NOT EXISTS `front_cms_exam_results` (
   `description` text NOT NULL,
   `meta_description` text NOT NULL,
   `meta_keyword` text NOT NULL,
-  `branch_id` int(11) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+  `branch_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `front_cms_exam_results`
+-- Дамп данных таблицы `front_cms_exam_results`
 --
 
 INSERT INTO `front_cms_exam_results` (`id`, `page_title`, `grade_scale`, `attendance`, `banner_image`, `description`, `meta_description`, `meta_keyword`, `branch_id`) VALUES
@@ -880,23 +913,22 @@ INSERT INTO `front_cms_exam_results` (`id`, `page_title`, `grade_scale`, `attend
 -- --------------------------------------------------------
 
 --
--- Table structure for table `front_cms_faq`
+-- Структура таблицы `front_cms_faq`
 --
 
-CREATE TABLE IF NOT EXISTS `front_cms_faq` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `front_cms_faq` (
+  `id` int(11) NOT NULL,
   `title` varchar(255) DEFAULT NULL,
   `description` text DEFAULT NULL,
   `page_title` varchar(255) DEFAULT NULL,
   `banner_image` varchar(255) DEFAULT NULL,
   `meta_description` text NOT NULL,
   `meta_keyword` text NOT NULL,
-  `branch_id` int(11) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+  `branch_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `front_cms_faq`
+-- Дамп данных таблицы `front_cms_faq`
 --
 
 INSERT INTO `front_cms_faq` (`id`, `title`, `description`, `page_title`, `banner_image`, `meta_description`, `meta_keyword`, `branch_id`) VALUES
@@ -905,19 +937,18 @@ INSERT INTO `front_cms_faq` (`id`, `title`, `description`, `page_title`, `banner
 -- --------------------------------------------------------
 
 --
--- Table structure for table `front_cms_faq_list`
+-- Структура таблицы `front_cms_faq_list`
 --
 
-CREATE TABLE IF NOT EXISTS `front_cms_faq_list` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `front_cms_faq_list` (
+  `id` int(11) NOT NULL,
   `title` varchar(255) DEFAULT NULL,
   `description` text DEFAULT NULL,
-  `branch_id` int(11) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+  `branch_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `front_cms_faq_list`
+-- Дамп данных таблицы `front_cms_faq_list`
 --
 
 INSERT INTO `front_cms_faq_list` (`id`, `title`, `description`, `branch_id`) VALUES
@@ -930,21 +961,20 @@ INSERT INTO `front_cms_faq_list` (`id`, `title`, `description`, `branch_id`) VAL
 -- --------------------------------------------------------
 
 --
--- Table structure for table `front_cms_gallery`
+-- Структура таблицы `front_cms_gallery`
 --
 
-CREATE TABLE IF NOT EXISTS `front_cms_gallery` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `front_cms_gallery` (
+  `id` int(11) NOT NULL,
   `page_title` varchar(255) DEFAULT NULL,
   `banner_image` varchar(255) DEFAULT NULL,
   `meta_description` text NOT NULL,
   `meta_keyword` text NOT NULL,
-  `branch_id` int(11) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+  `branch_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `front_cms_gallery`
+-- Дамп данных таблицы `front_cms_gallery`
 --
 
 INSERT INTO `front_cms_gallery` (`id`, `page_title`, `banner_image`, `meta_description`, `meta_keyword`, `branch_id`) VALUES
@@ -953,24 +983,23 @@ INSERT INTO `front_cms_gallery` (`id`, `page_title`, `banner_image`, `meta_descr
 -- --------------------------------------------------------
 
 --
--- Table structure for table `front_cms_gallery_category`
+-- Структура таблицы `front_cms_gallery_category`
 --
 
-CREATE TABLE IF NOT EXISTS `front_cms_gallery_category` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `front_cms_gallery_category` (
+  `id` int(11) NOT NULL,
   `name` varchar(255) NOT NULL,
-  `branch_id` int(11) NOT NULL,
-  PRIMARY KEY (`id`)
+  `branch_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `front_cms_gallery_content`
+-- Структура таблицы `front_cms_gallery_content`
 --
 
-CREATE TABLE IF NOT EXISTS `front_cms_gallery_content` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `front_cms_gallery_content` (
+  `id` int(11) NOT NULL,
   `title` varchar(255) NOT NULL,
   `alias` varchar(255) NOT NULL,
   `description` varchar(255) NOT NULL,
@@ -982,30 +1011,28 @@ CREATE TABLE IF NOT EXISTS `front_cms_gallery_content` (
   `elements` longtext NOT NULL,
   `show_web` tinyint(4) NOT NULL DEFAULT 0,
   `branch_id` int(11) NOT NULL,
-  `created_at` date NOT NULL,
-  PRIMARY KEY (`id`)
+  `created_at` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `front_cms_home`
+-- Структура таблицы `front_cms_home`
 --
 
-CREATE TABLE IF NOT EXISTS `front_cms_home` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `front_cms_home` (
+  `id` int(11) NOT NULL,
   `title` varchar(255) DEFAULT NULL,
   `subtitle` varchar(255) DEFAULT NULL,
   `item_type` varchar(20) NOT NULL,
   `description` text CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   `elements` mediumtext NOT NULL,
   `branch_id` int(11) NOT NULL,
-  `active` tinyint(3) NOT NULL DEFAULT 1,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
+  `active` tinyint(3) NOT NULL DEFAULT 1
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `front_cms_home`
+-- Дамп данных таблицы `front_cms_home`
 --
 
 INSERT INTO `front_cms_home` (`id`, `title`, `subtitle`, `item_type`, `description`, `elements`, `branch_id`, `active`) VALUES
@@ -1025,20 +1052,19 @@ INSERT INTO `front_cms_home` (`id`, `title`, `subtitle`, `item_type`, `descripti
 -- --------------------------------------------------------
 
 --
--- Table structure for table `front_cms_home_seo`
+-- Структура таблицы `front_cms_home_seo`
 --
 
-CREATE TABLE IF NOT EXISTS `front_cms_home_seo` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `front_cms_home_seo` (
+  `id` int(11) NOT NULL,
   `page_title` varchar(255) NOT NULL,
   `meta_keyword` text NOT NULL,
   `meta_description` text NOT NULL,
-  `branch_id` int(11) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+  `branch_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `front_cms_home_seo`
+-- Дамп данных таблицы `front_cms_home_seo`
 --
 
 INSERT INTO `front_cms_home_seo` (`id`, `page_title`, `meta_keyword`, `meta_description`, `branch_id`) VALUES
@@ -1047,11 +1073,11 @@ INSERT INTO `front_cms_home_seo` (`id`, `page_title`, `meta_keyword`, `meta_desc
 -- --------------------------------------------------------
 
 --
--- Table structure for table `front_cms_menu`
+-- Структура таблицы `front_cms_menu`
 --
 
-CREATE TABLE IF NOT EXISTS `front_cms_menu` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `front_cms_menu` (
+  `id` int(11) NOT NULL,
   `title` varchar(100) NOT NULL,
   `alias` varchar(100) NOT NULL,
   `ordering` int(11) NOT NULL,
@@ -1062,12 +1088,11 @@ CREATE TABLE IF NOT EXISTS `front_cms_menu` (
   `publish` tinyint(3) NOT NULL,
   `system` tinyint(3) NOT NULL,
   `branch_id` int(11) NOT NULL,
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8;
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `front_cms_menu`
+-- Дамп данных таблицы `front_cms_menu`
 --
 
 INSERT INTO `front_cms_menu` (`id`, `title`, `alias`, `ordering`, `parent_id`, `open_new_tab`, `ext_url`, `ext_url_address`, `publish`, `system`, `branch_id`, `created_at`) VALUES
@@ -1087,28 +1112,27 @@ INSERT INTO `front_cms_menu` (`id`, `title`, `alias`, `ordering`, `parent_id`, `
 -- --------------------------------------------------------
 
 --
--- Table structure for table `front_cms_menu_visible`
+-- Структура таблицы `front_cms_menu_visible`
 --
 
-CREATE TABLE IF NOT EXISTS `front_cms_menu_visible` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `front_cms_menu_visible` (
+  `id` int(11) NOT NULL,
   `name` varchar(100) DEFAULT NULL,
   `menu_id` int(11) NOT NULL,
   `parent_id` varchar(11) DEFAULT NULL,
   `ordering` varchar(20) DEFAULT NULL,
   `invisible` tinyint(2) NOT NULL DEFAULT 1,
-  `branch_id` int(11) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+  `branch_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `front_cms_pages`
+-- Структура таблицы `front_cms_pages`
 --
 
-CREATE TABLE IF NOT EXISTS `front_cms_pages` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `front_cms_pages` (
+  `id` int(11) NOT NULL,
   `page_title` varchar(255) NOT NULL,
   `content` longtext CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   `menu_id` int(11) NOT NULL,
@@ -1116,27 +1140,25 @@ CREATE TABLE IF NOT EXISTS `front_cms_pages` (
   `meta_description` text NOT NULL,
   `meta_keyword` text NOT NULL,
   `branch_id` int(11) NOT NULL,
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
-  PRIMARY KEY (`id`)
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `front_cms_services`
+-- Структура таблицы `front_cms_services`
 --
 
-CREATE TABLE IF NOT EXISTS `front_cms_services` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `front_cms_services` (
+  `id` int(11) NOT NULL,
   `title` varchar(255) DEFAULT NULL,
   `subtitle` varchar(255) DEFAULT NULL,
   `parallax_image` varchar(255) DEFAULT NULL,
-  `branch_id` int(11) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+  `branch_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `front_cms_services`
+-- Дамп данных таблицы `front_cms_services`
 --
 
 INSERT INTO `front_cms_services` (`id`, `title`, `subtitle`, `parallax_image`, `branch_id`) VALUES
@@ -1145,20 +1167,19 @@ INSERT INTO `front_cms_services` (`id`, `title`, `subtitle`, `parallax_image`, `
 -- --------------------------------------------------------
 
 --
--- Table structure for table `front_cms_services_list`
+-- Структура таблицы `front_cms_services_list`
 --
 
-CREATE TABLE IF NOT EXISTS `front_cms_services_list` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `front_cms_services_list` (
+  `id` int(11) NOT NULL,
   `title` varchar(255) DEFAULT NULL,
   `description` text DEFAULT NULL,
   `icon` varchar(255) DEFAULT NULL,
-  `branch_id` int(11) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+  `branch_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `front_cms_services_list`
+-- Дамп данных таблицы `front_cms_services_list`
 --
 
 INSERT INTO `front_cms_services_list` (`id`, `title`, `description`, `icon`, `branch_id`) VALUES
@@ -1172,11 +1193,11 @@ INSERT INTO `front_cms_services_list` (`id`, `title`, `description`, `icon`, `br
 -- --------------------------------------------------------
 
 --
--- Table structure for table `front_cms_setting`
+-- Структура таблицы `front_cms_setting`
 --
 
-CREATE TABLE IF NOT EXISTS `front_cms_setting` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `front_cms_setting` (
+  `id` int(11) NOT NULL,
   `application_title` varchar(255) NOT NULL,
   `url_alias` varchar(255) DEFAULT NULL,
   `cms_active` tinyint(4) NOT NULL DEFAULT 0,
@@ -1202,12 +1223,11 @@ CREATE TABLE IF NOT EXISTS `front_cms_setting` (
   `linkedin_url` varchar(100) NOT NULL,
   `pinterest_url` varchar(100) NOT NULL,
   `instagram_url` varchar(100) NOT NULL,
-  `branch_id` int(11) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+  `branch_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `front_cms_setting`
+-- Дамп данных таблицы `front_cms_setting`
 --
 
 INSERT INTO `front_cms_setting` (`id`, `application_title`, `url_alias`, `cms_active`, `online_admission`, `theme`, `captcha_status`, `recaptcha_site_key`, `recaptcha_secret_key`, `address`, `mobile_no`, `fax`, `receive_contact_email`, `email`, `copyright_text`, `fav_icon`, `logo`, `footer_about_text`, `working_hours`, `facebook_url`, `twitter_url`, `youtube_url`, `google_plus`, `linkedin_url`, `pinterest_url`, `instagram_url`, `branch_id`) VALUES
@@ -1216,21 +1236,20 @@ INSERT INTO `front_cms_setting` (`id`, `application_title`, `url_alias`, `cms_ac
 -- --------------------------------------------------------
 
 --
--- Table structure for table `front_cms_teachers`
+-- Структура таблицы `front_cms_teachers`
 --
 
-CREATE TABLE IF NOT EXISTS `front_cms_teachers` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `front_cms_teachers` (
+  `id` int(11) NOT NULL,
   `page_title` varchar(255) DEFAULT NULL,
   `banner_image` varchar(255) DEFAULT NULL,
   `meta_description` text NOT NULL,
   `meta_keyword` text NOT NULL,
-  `branch_id` int(11) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+  `branch_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `front_cms_teachers`
+-- Дамп данных таблицы `front_cms_teachers`
 --
 
 INSERT INTO `front_cms_teachers` (`id`, `page_title`, `banner_image`, `meta_description`, `meta_keyword`, `branch_id`) VALUES
@@ -1239,11 +1258,11 @@ INSERT INTO `front_cms_teachers` (`id`, `page_title`, `banner_image`, `meta_desc
 -- --------------------------------------------------------
 
 --
--- Table structure for table `front_cms_testimonial`
+-- Структура таблицы `front_cms_testimonial`
 --
 
-CREATE TABLE IF NOT EXISTS `front_cms_testimonial` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `front_cms_testimonial` (
+  `id` int(11) NOT NULL,
   `name` varchar(255) NOT NULL,
   `surname` varchar(355) NOT NULL,
   `image` varchar(255) NOT NULL,
@@ -1251,12 +1270,11 @@ CREATE TABLE IF NOT EXISTS `front_cms_testimonial` (
   `rank` int(5) NOT NULL,
   `branch_id` int(11) NOT NULL,
   `created_by` int(11) NOT NULL,
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `front_cms_testimonial`
+-- Дамп данных таблицы `front_cms_testimonial`
 --
 
 INSERT INTO `front_cms_testimonial` (`id`, `name`, `surname`, `image`, `description`, `rank`, `branch_id`, `created_by`, `created_at`) VALUES
@@ -1269,11 +1287,11 @@ INSERT INTO `front_cms_testimonial` (`id`, `name`, `surname`, `image`, `descript
 -- --------------------------------------------------------
 
 --
--- Table structure for table `global_settings`
+-- Структура таблицы `global_settings`
 --
 
-CREATE TABLE IF NOT EXISTS `global_settings` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `global_settings` (
+  `id` int(11) NOT NULL,
   `institute_name` varchar(255) NOT NULL,
   `institution_code` varchar(255) NOT NULL,
   `reg_prefix` varchar(255) NOT NULL,
@@ -1297,12 +1315,11 @@ CREATE TABLE IF NOT EXISTS `global_settings` (
   `preloader_backend` tinyint(1) NOT NULL DEFAULT 1,
   `cms_default_branch` int(11) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
-  `updated_at` datetime NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+  `updated_at` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `global_settings`
+-- Дамп данных таблицы `global_settings`
 --
 
 INSERT INTO `global_settings` (`id`, `institute_name`, `institution_code`, `reg_prefix`, `institute_email`, `address`, `mobileno`, `currency`, `currency_symbol`, `sms_service_provider`, `session_id`, `translation`, `footer_text`, `animations`, `timezone`, `date_format`, `facebook_url`, `twitter_url`, `linkedin_url`, `youtube_url`, `cron_secret_key`, `preloader_backend`, `cms_default_branch`, `created_at`, `updated_at`) VALUES
@@ -1311,21 +1328,20 @@ INSERT INTO `global_settings` (`id`, `institute_name`, `institution_code`, `reg_
 -- --------------------------------------------------------
 
 --
--- Table structure for table `languages`
+-- Структура таблицы `languages`
 --
 
-CREATE TABLE IF NOT EXISTS `languages` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `languages` (
+  `id` int(11) NOT NULL,
   `word` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `english` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `arabic` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `turkish` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `lang_32` longtext COLLATE utf8_unicode_ci DEFAULT '',
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=1342 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  `lang_32` longtext COLLATE utf8_unicode_ci DEFAULT ''
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Dumping data for table `languages`
+-- Дамп данных таблицы `languages`
 --
 
 INSERT INTO `languages` (`id`, `word`, `english`, `arabic`, `turkish`, `lang_32`) VALUES
@@ -2670,26 +2686,52 @@ INSERT INTO `languages` (`id`, `word`, `english`, `arabic`, `turkish`, `lang_32`
 (1338, 'hide_map', 'Hide Map', '', '', 'Xəritəni gizlət'),
 (1339, 'short_information', 'Short Information', '', '', 'Qısa məlumat'),
 (1340, 'show_all_information', 'Show All Information', '', '', 'Bütün məlumatları göstər'),
-(1341, 'extra_info', 'Extra Info', '', '', '');
+(1341, 'extra_info', 'Extra Info', '', '', ''),
+(1342, 'complaints', 'Complaints', '', '', ''),
+(1343, 'ads_banners', 'Ads Banners', '', '', ''),
+(1344, 'complain_category', 'Complain Category', '', '', ''),
+(1345, 'ads_configuration', 'Ads Configuration', '', '', ''),
+(1346, 'home_ads_limit', 'Home Ads Limit', '', '', ''),
+(1347, 'detail_ads_limit', 'Detail Ads Limit', '', '', ''),
+(1348, 'category_ads_limit', 'Category Ads Limit', '', '', ''),
+(1349, 'min_photo_count', 'Min Photo Count', '', '', ''),
+(1350, 'max_photo_count', 'Max Photo Count', '', '', ''),
+(1351, 'one_number_ads_count', 'One Number Ads Count', '', '', ''),
+(1352, 'ads_expire_day', 'Ads Expire Day', '', '', ''),
+(1353, 'rent', 'Rent', '', '', ''),
+(1354, 'about_ads_onfiguration', 'About Ads Onfiguration', '', '', ''),
+(1355, 'about_ads_configuration', 'About Ads Configuration', '', '', ''),
+(1356, 'set_ads_vip', 'Set Ads Vip', '', '', ''),
+(1357, 'set_ads_premium', 'Set Ads Premium', '', '', ''),
+(1358, 'pull_ads_forward', 'Pull Ads Forward', '', '', ''),
+(1359, 'delete_ads', 'Delete Ads', '', '', ''),
+(1360, 'update_ads', 'Update Ads', '', '', ''),
+(1361, 'Elanı VIP etmək', 'Elanı VIP Etmək', '', '', ''),
+(1362, 'Elanı Premium etmək', 'Elanı Premium Etmək', '', '', ''),
+(1363, 'Elanı İrəli çəkmək', 'Elanı İrəli çəkmək', '', '', ''),
+(1364, 'Elanı silmək', 'Elanı Silmək', '', '', ''),
+(1365, 'Elanı redaktə etmək', 'Elanı Redaktə Etmək', '', '', ''),
+(1366, 'similar_ads', 'Similar Ads', '', '', ''),
+(1367, 'all_new_ads', 'All New Ads', '', '', ''),
+(1368, 'add_advertisement_rules', 'Add Advertisement Rules', '', '', '');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `language_list`
+-- Структура таблицы `language_list`
 --
 
-CREATE TABLE IF NOT EXISTS `language_list` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `language_list` (
+  `id` int(11) NOT NULL,
   `name` varchar(600) NOT NULL,
   `lang_field` varchar(600) NOT NULL,
   `status` tinyint(1) NOT NULL DEFAULT 1,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
-  `updated_at` datetime DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=33 DEFAULT CHARSET=utf8;
+  `updated_at` datetime DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `language_list`
+-- Дамп данных таблицы `language_list`
 --
 
 INSERT INTO `language_list` (`id`, `name`, `lang_field`, `status`, `created_at`, `updated_at`) VALUES
@@ -2701,11 +2743,11 @@ INSERT INTO `language_list` (`id`, `name`, `lang_field`, `status`, `created_at`,
 -- --------------------------------------------------------
 
 --
--- Table structure for table `login_credential`
+-- Структура таблицы `login_credential`
 --
 
-CREATE TABLE IF NOT EXISTS `login_credential` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `login_credential` (
+  `id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
   `username` varchar(100) NOT NULL,
   `password` varchar(250) NOT NULL,
@@ -2713,35 +2755,33 @@ CREATE TABLE IF NOT EXISTS `login_credential` (
   `active` tinyint(1) NOT NULL DEFAULT 1 COMMENT '1(active) 0(deactivate)',
   `last_login` datetime DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT current_timestamp(),
-  `updated_at` datetime DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+  `updated_at` datetime DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `login_credential`
+-- Дамп данных таблицы `login_credential`
 --
 
 INSERT INTO `login_credential` (`id`, `user_id`, `username`, `password`, `role`, `active`, `last_login`, `created_at`, `updated_at`) VALUES
-(1, 1, 'admin@gmail.com', '$2y$10$EjHNS.iSKnai72IICIACSe7mlurHBOrM5u1HXu2zwfTYwknyU/lkW', 1, 1, '2022-06-09 17:11:56', '2022-04-19 20:01:34', NULL);
+(1, 1, 'admin@gmail.com', '$2y$10$EjHNS.iSKnai72IICIACSe7mlurHBOrM5u1HXu2zwfTYwknyU/lkW', 1, 1, '2022-06-15 12:36:57', '2022-04-19 20:01:34', NULL);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `metros`
+-- Структура таблицы `metros`
 --
 
-CREATE TABLE IF NOT EXISTS `metros` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `metros` (
+  `id` int(11) NOT NULL,
   `metro_name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `status` int(11) NOT NULL DEFAULT 1 COMMENT '0 - Deaktiv\r\n1 - Aktiv',
   `created_at` datetime NOT NULL,
   `updated_at` datetime NOT NULL,
-  `deleted_at` datetime NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  `deleted_at` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Dumping data for table `metros`
+-- Дамп данных таблицы `metros`
 --
 
 INSERT INTO `metros` (`id`, `metro_name`, `status`, `created_at`, `updated_at`, `deleted_at`) VALUES
@@ -2773,15 +2813,15 @@ INSERT INTO `metros` (`id`, `metro_name`, `status`, `created_at`, `updated_at`, 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `migrations`
+-- Структура таблицы `migrations`
 --
 
-CREATE TABLE IF NOT EXISTS `migrations` (
+CREATE TABLE `migrations` (
   `version` bigint(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `migrations`
+-- Дамп данных таблицы `migrations`
 --
 
 INSERT INTO `migrations` (`version`) VALUES
@@ -2790,11 +2830,11 @@ INSERT INTO `migrations` (`version`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `payment_config`
+-- Структура таблицы `payment_config`
 --
 
-CREATE TABLE IF NOT EXISTS `payment_config` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `payment_config` (
+  `id` int(11) NOT NULL,
   `paypal_username` varchar(255) DEFAULT NULL,
   `paypal_password` varchar(255) DEFAULT NULL,
   `paypal_signature` varchar(255) DEFAULT NULL,
@@ -2830,41 +2870,38 @@ CREATE TABLE IF NOT EXISTS `payment_config` (
   `midtrans_status` tinyint(1) NOT NULL,
   `branch_id` int(11) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
-  `updated_at` datetime DEFAULT NULL,
-  PRIMARY KEY (`id`)
+  `updated_at` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `payment_salary_stipend`
+-- Структура таблицы `payment_salary_stipend`
 --
 
-CREATE TABLE IF NOT EXISTS `payment_salary_stipend` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `payment_salary_stipend` (
+  `id` int(11) NOT NULL,
   `payslip_id` int(11) NOT NULL,
   `name` longtext NOT NULL,
   `amount` int(11) NOT NULL,
-  `type` varchar(20) NOT NULL,
-  PRIMARY KEY (`id`)
+  `type` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `payment_types`
+-- Структура таблицы `payment_types`
 --
 
-CREATE TABLE IF NOT EXISTS `payment_types` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `payment_types` (
+  `id` int(11) NOT NULL,
   `name` varchar(255) NOT NULL,
   `branch_id` int(11) NOT NULL DEFAULT 0,
-  `timestamp` datetime DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8;
+  `timestamp` datetime DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `payment_types`
+-- Дамп данных таблицы `payment_types`
 --
 
 INSERT INTO `payment_types` (`id`, `name`, `branch_id`, `timestamp`) VALUES
@@ -2885,11 +2922,11 @@ INSERT INTO `payment_types` (`id`, `name`, `branch_id`, `timestamp`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `permission`
+-- Структура таблицы `permission`
 --
 
-CREATE TABLE IF NOT EXISTS `permission` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `permission` (
+  `id` int(11) NOT NULL,
   `module_id` int(11) NOT NULL,
   `name` varchar(100) NOT NULL,
   `prefix` varchar(100) NOT NULL,
@@ -2897,12 +2934,11 @@ CREATE TABLE IF NOT EXISTS `permission` (
   `show_add` tinyint(1) DEFAULT 1,
   `show_edit` tinyint(1) DEFAULT 1,
   `show_delete` tinyint(1) DEFAULT 1,
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=134 DEFAULT CHARSET=utf8;
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `permission`
+-- Дамп данных таблицы `permission`
 --
 
 INSERT INTO `permission` (`id`, `module_id`, `name`, `prefix`, `show_view`, `show_add`, `show_edit`, `show_delete`, `created_at`) VALUES
@@ -3043,22 +3079,20 @@ INSERT INTO `permission` (`id`, `module_id`, `name`, `prefix`, `show_view`, `sho
 -- --------------------------------------------------------
 
 --
--- Table structure for table `permission_modules`
+-- Структура таблицы `permission_modules`
 --
 
-CREATE TABLE IF NOT EXISTS `permission_modules` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `permission_modules` (
+  `id` int(11) NOT NULL,
   `name` varchar(50) NOT NULL,
   `prefix` varchar(50) NOT NULL,
   `system` tinyint(1) NOT NULL,
   `sorted` tinyint(10) NOT NULL,
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
-  PRIMARY KEY (`id`),
-  KEY `id` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8;
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `permission_modules`
+-- Дамп данных таблицы `permission_modules`
 --
 
 INSERT INTO `permission_modules` (`id`, `name`, `prefix`, `system`, `sorted`, `created_at`) VALUES
@@ -3088,23 +3122,22 @@ INSERT INTO `permission_modules` (`id`, `name`, `prefix`, `system`, `sorted`, `c
 -- --------------------------------------------------------
 
 --
--- Table structure for table `regions`
+-- Структура таблицы `regions`
 --
 
-CREATE TABLE IF NOT EXISTS `regions` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `regions` (
+  `id` int(11) NOT NULL,
   `region_name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `seo_link` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `parent_city` int(11) NOT NULL,
   `status` int(11) NOT NULL DEFAULT 1 COMMENT '0 - Deaktiv\r\n1 - Aktiv',
   `created_at` datetime NOT NULL,
   `updated_at` datetime NOT NULL,
-  `deleted_at` datetime NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=88 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  `deleted_at` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Dumping data for table `regions`
+-- Дамп данных таблицы `regions`
 --
 
 INSERT INTO `regions` (`id`, `region_name`, `seo_link`, `parent_city`, `status`, `created_at`, `updated_at`, `deleted_at`) VALUES
@@ -3199,10 +3232,10 @@ INSERT INTO `regions` (`id`, `region_name`, `seo_link`, `parent_city`, `status`,
 -- --------------------------------------------------------
 
 --
--- Table structure for table `reset_password`
+-- Структура таблицы `reset_password`
 --
 
-CREATE TABLE IF NOT EXISTS `reset_password` (
+CREATE TABLE `reset_password` (
   `key` longtext NOT NULL,
   `username` varchar(100) NOT NULL,
   `login_credential_id` varchar(100) NOT NULL,
@@ -3212,59 +3245,67 @@ CREATE TABLE IF NOT EXISTS `reset_password` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `rm_sessions`
+-- Структура таблицы `rm_sessions`
 --
 
-CREATE TABLE IF NOT EXISTS `rm_sessions` (
+CREATE TABLE `rm_sessions` (
   `id` varchar(40) NOT NULL,
   `ip_address` varchar(45) NOT NULL,
   `timestamp` int(10) UNSIGNED NOT NULL DEFAULT 0,
-  `data` blob NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `ci_sessions_timestamp` (`timestamp`)
+  `data` blob NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `rm_sessions`
+-- Дамп данных таблицы `rm_sessions`
 --
 
 INSERT INTO `rm_sessions` (`id`, `ip_address`, `timestamp`, `data`) VALUES
-('1lksld3v2eoa42vf99ao2dufvvncn0ui', '::1', 1655036150, 0x5f5f63695f6c6173745f726567656e65726174657c693a313635353033363135303b776973685f736573737c733a33323a226632363465653532623432393762353830386332303139333566383264666432223b),
-('267oj2ahbno0nh48hdojdhk2mshjermf', '::1', 1655042292, 0x5f5f63695f6c6173745f726567656e65726174657c693a313635353034323239323b776973685f736573737c733a33323a226632363465653532623432393762353830386332303139333566383264666432223b),
-('27pak57nki9lpccqqec8v7o1sqhr9bvk', '::1', 1655036837, 0x5f5f63695f6c6173745f726567656e65726174657c693a313635353033363833373b776973685f736573737c733a33323a226632363465653532623432393762353830386332303139333566383264666432223b),
-('33ka2ki0hias37mq4vdu6vtibtogr5g7', '::1', 1655043650, 0x5f5f63695f6c6173745f726567656e65726174657c693a313635353034333635303b776973685f736573737c733a33323a226632363465653532623432393762353830386332303139333566383264666432223b),
-('386o3gcpcj7v9okqm21kl3q075pip2u0', '::1', 1655043990, 0x5f5f63695f6c6173745f726567656e65726174657c693a313635353034333939303b776973685f736573737c733a33323a226632363465653532623432393762353830386332303139333566383264666432223b),
-('6ojdv3ts5idc1f0d6rpumcpa05cu1n4a', '::1', 1655039410, 0x5f5f63695f6c6173745f726567656e65726174657c693a313635353033393431303b776973685f736573737c733a33323a226632363465653532623432393762353830386332303139333566383264666432223b),
-('bhsmno99p2bn1pdt2kudia8dth1fkr4o', '::1', 1655043992, 0x5f5f63695f6c6173745f726567656e65726174657c693a313635353034333939303b776973685f736573737c733a33323a226632363465653532623432393762353830386332303139333566383264666432223b),
-('c2712n4dmrrj95lneek41k2omilq2u8n', '::1', 1655041523, 0x5f5f63695f6c6173745f726567656e65726174657c693a313635353034313532333b776973685f736573737c733a33323a226632363465653532623432393762353830386332303139333566383264666432223b),
-('g3bfdorsa024h688703btn15mpjksl8c', '::1', 1655037809, 0x5f5f63695f6c6173745f726567656e65726174657c693a313635353033373830393b776973685f736573737c733a33323a226632363465653532623432393762353830386332303139333566383264666432223b),
-('gntv3ct1e3hujc6ekm78n0jh32ln73ti', '::1', 1655041946, 0x5f5f63695f6c6173745f726567656e65726174657c693a313635353034313934363b776973685f736573737c733a33323a226632363465653532623432393762353830386332303139333566383264666432223b),
-('h57cpvk8uf38cnapstjf92c6345jdejo', '::1', 1655037309, 0x5f5f63695f6c6173745f726567656e65726174657c693a313635353033373330393b776973685f736573737c733a33323a226632363465653532623432393762353830386332303139333566383264666432223b),
-('hasgoqefb0i9f82g22oo3e289gcl6a44', '::1', 1655036459, 0x5f5f63695f6c6173745f726567656e65726174657c693a313635353033363435393b776973685f736573737c733a33323a226632363465653532623432393762353830386332303139333566383264666432223b),
-('kdufl3ja3oeo7b60dltp8oojej7ik1t5', '::1', 1655038333, 0x5f5f63695f6c6173745f726567656e65726174657c693a313635353033383333333b776973685f736573737c733a33323a226632363465653532623432393762353830386332303139333566383264666432223b),
-('msmj7cndaqttd8836qd39csb4i43dolp', '::1', 1655039064, 0x5f5f63695f6c6173745f726567656e65726174657c693a313635353033393036343b776973685f736573737c733a33323a226632363465653532623432393762353830386332303139333566383264666432223b),
-('nf3hvsd4voiup0776gf19i874q6o4sfd', '::1', 1655039793, 0x5f5f63695f6c6173745f726567656e65726174657c693a313635353033393739333b776973685f736573737c733a33323a226632363465653532623432393762353830386332303139333566383264666432223b),
-('q0u67glg3pi1dl6gvialfucrfb73ulub', '::1', 1655035835, 0x5f5f63695f6c6173745f726567656e65726174657c693a313635353033353833353b776973685f736573737c733a33323a226632363465653532623432393762353830386332303139333566383264666432223b),
-('tha1aefdko0plf21rpv1a67bihrpkt7o', '::1', 1655138410, 0x5f5f63695f6c6173745f726567656e65726174657c693a313635353133383333363b),
-('tog373n3d3m8bhtd051uqvne2jhi229h', '::1', 1655040099, 0x5f5f63695f6c6173745f726567656e65726174657c693a313635353034303039393b776973685f736573737c733a33323a226632363465653532623432393762353830386332303139333566383264666432223b),
-('vg930itaqeiugqdg9ljhatotpk0plvds', '::1', 1655040524, 0x5f5f63695f6c6173745f726567656e65726174657c693a313635353034303532343b776973685f736573737c733a33323a226632363465653532623432393762353830386332303139333566383264666432223b);
+('0ohjtuuo674bm5qjfh1d88gtp0tg7prv', '::1', 1655247356, 0x5f5f63695f6c6173745f726567656e65726174657c693a313635353234373335363b6e616d657c733a353a224361766964223b6c6f676765725f70686f746f7c4e3b6c6f67676564696e5f6272616e63687c4e3b6c6f67676564696e5f69647c733a313a2231223b6c6f67676564696e5f7573657269647c733a313a2231223b6c6f67676564696e5f726f6c655f69647c733a313a2231223b6c6f67676564696e5f747970657c733a353a227374616666223b7365745f6c616e677c733a373a226c616e675f3332223b7365745f73657373696f6e5f69647c733a313a2233223b6c6f67676564696e7c623a313b616c6572742d6d6573736167652d737563636573737c733a34313a22496e666f726d6174696f6e20486173204265656e2055706461746564205375636365737366756c6c79223b5f5f63695f766172737c613a313a7b733a32313a22616c6572742d6d6573736167652d73756363657373223b733a333a226f6c64223b7d),
+('4gq8089gob08460dn52ep8a61cm8qlil', '::1', 1655200500, 0x5f5f63695f6c6173745f726567656e65726174657c693a313635353230303530303b6e616d657c733a353a224361766964223b6c6f676765725f70686f746f7c4e3b6c6f67676564696e5f6272616e63687c4e3b6c6f67676564696e5f69647c733a313a2231223b6c6f67676564696e5f7573657269647c733a313a2231223b6c6f67676564696e5f726f6c655f69647c733a313a2231223b6c6f67676564696e5f747970657c733a353a227374616666223b7365745f6c616e677c733a373a226c616e675f3332223b7365745f73657373696f6e5f69647c733a313a2233223b6c6f67676564696e7c623a313b),
+('4loil30052ic4nhvpq4fjkvf1q624lv1', '::1', 1655195043, 0x5f5f63695f6c6173745f726567656e65726174657c693a313635353139353034333b6e616d657c733a353a224361766964223b6c6f676765725f70686f746f7c4e3b6c6f67676564696e5f6272616e63687c4e3b6c6f67676564696e5f69647c733a313a2231223b6c6f67676564696e5f7573657269647c733a313a2231223b6c6f67676564696e5f726f6c655f69647c733a313a2231223b6c6f67676564696e5f747970657c733a353a227374616666223b7365745f6c616e677c733a373a226c616e675f3332223b7365745f73657373696f6e5f69647c733a313a2233223b6c6f67676564696e7c623a313b),
+('5cmear8f0jj559lmtbhpcvif7mq1abm1', '::1', 1655247689, 0x5f5f63695f6c6173745f726567656e65726174657c693a313635353234373638393b6e616d657c733a353a224361766964223b6c6f676765725f70686f746f7c4e3b6c6f67676564696e5f6272616e63687c4e3b6c6f67676564696e5f69647c733a313a2231223b6c6f67676564696e5f7573657269647c733a313a2231223b6c6f67676564696e5f726f6c655f69647c733a313a2231223b6c6f67676564696e5f747970657c733a353a227374616666223b7365745f6c616e677c733a373a226c616e675f3332223b7365745f73657373696f6e5f69647c733a313a2233223b6c6f67676564696e7c623a313b616c6572742d6d6573736167652d737563636573737c733a34313a22496e666f726d6174696f6e20486173204265656e2055706461746564205375636365737366756c6c79223b5f5f63695f766172737c613a313a7b733a32313a22616c6572742d6d6573736167652d73756363657373223b733a333a226f6c64223b7d),
+('5lgjq7a1pqkj8v3b3vmbnelce0ebng6a', '::1', 1655201795, 0x5f5f63695f6c6173745f726567656e65726174657c693a313635353230313532383b6e616d657c733a353a224361766964223b6c6f676765725f70686f746f7c4e3b6c6f67676564696e5f6272616e63687c4e3b6c6f67676564696e5f69647c733a313a2231223b6c6f67676564696e5f7573657269647c733a313a2231223b6c6f67676564696e5f726f6c655f69647c733a313a2231223b6c6f67676564696e5f747970657c733a353a227374616666223b7365745f6c616e677c733a373a226c616e675f3332223b7365745f73657373696f6e5f69647c733a313a2233223b6c6f67676564696e7c623a313b),
+('6fgvccsu1i1r35kqpder5vmrcd9k3jk7', '::1', 1655283096, 0x5f5f63695f6c6173745f726567656e65726174657c693a313635353238333039363b6e616d657c733a353a224361766964223b6c6f676765725f70686f746f7c4e3b6c6f67676564696e5f6272616e63687c4e3b6c6f67676564696e5f69647c733a313a2231223b6c6f67676564696e5f7573657269647c733a313a2231223b6c6f67676564696e5f726f6c655f69647c733a313a2231223b6c6f67676564696e5f747970657c733a353a227374616666223b7365745f6c616e677c733a373a226c616e675f3332223b7365745f73657373696f6e5f69647c733a313a2233223b6c6f67676564696e7c623a313b),
+('7louh95573tn2ps1v10vhqo8ns20j7il', '::1', 1655195779, 0x5f5f63695f6c6173745f726567656e65726174657c693a313635353139353737393b6e616d657c733a353a224361766964223b6c6f676765725f70686f746f7c4e3b6c6f67676564696e5f6272616e63687c4e3b6c6f67676564696e5f69647c733a313a2231223b6c6f67676564696e5f7573657269647c733a313a2231223b6c6f67676564696e5f726f6c655f69647c733a313a2231223b6c6f67676564696e5f747970657c733a353a227374616666223b7365745f6c616e677c733a373a226c616e675f3332223b7365745f73657373696f6e5f69647c733a313a2233223b6c6f67676564696e7c623a313b),
+('8lbvdqoqt92tpkl7gatcsrhfdog3ukft', '::1', 1655201528, 0x5f5f63695f6c6173745f726567656e65726174657c693a313635353230313532383b6e616d657c733a353a224361766964223b6c6f676765725f70686f746f7c4e3b6c6f67676564696e5f6272616e63687c4e3b6c6f67676564696e5f69647c733a313a2231223b6c6f67676564696e5f7573657269647c733a313a2231223b6c6f67676564696e5f726f6c655f69647c733a313a2231223b6c6f67676564696e5f747970657c733a353a227374616666223b7365745f6c616e677c733a373a226c616e675f3332223b7365745f73657373696f6e5f69647c733a313a2233223b6c6f67676564696e7c623a313b),
+('9tp3j7tljib1rv2qc4p0d17me29bvbsl', '::1', 1655284401, 0x5f5f63695f6c6173745f726567656e65726174657c693a313635353238343430313b6e616d657c733a353a224361766964223b6c6f676765725f70686f746f7c4e3b6c6f67676564696e5f6272616e63687c4e3b6c6f67676564696e5f69647c733a313a2231223b6c6f67676564696e5f7573657269647c733a313a2231223b6c6f67676564696e5f726f6c655f69647c733a313a2231223b6c6f67676564696e5f747970657c733a353a227374616666223b7365745f6c616e677c733a373a226c616e675f3332223b7365745f73657373696f6e5f69647c733a313a2233223b6c6f67676564696e7c623a313b776973685f736573737c733a33323a223532363136666465623862623437326132393731623065323162343665623835223b),
+('an9n415vdr666her6kbg97013fjsur4a', '::1', 1655198898, 0x5f5f63695f6c6173745f726567656e65726174657c693a313635353139383839383b6e616d657c733a353a224361766964223b6c6f676765725f70686f746f7c4e3b6c6f67676564696e5f6272616e63687c4e3b6c6f67676564696e5f69647c733a313a2231223b6c6f67676564696e5f7573657269647c733a313a2231223b6c6f67676564696e5f726f6c655f69647c733a313a2231223b6c6f67676564696e5f747970657c733a353a227374616666223b7365745f6c616e677c733a373a226c616e675f3332223b7365745f73657373696f6e5f69647c733a313a2233223b6c6f67676564696e7c623a313b),
+('bfg3ij2p5bhumao25bdet3rugrhsuqjt', '::1', 1655196527, 0x5f5f63695f6c6173745f726567656e65726174657c693a313635353139363532373b6e616d657c733a353a224361766964223b6c6f676765725f70686f746f7c4e3b6c6f67676564696e5f6272616e63687c4e3b6c6f67676564696e5f69647c733a313a2231223b6c6f67676564696e5f7573657269647c733a313a2231223b6c6f67676564696e5f726f6c655f69647c733a313a2231223b6c6f67676564696e5f747970657c733a353a227374616666223b7365745f6c616e677c733a373a226c616e675f3332223b7365745f73657373696f6e5f69647c733a313a2233223b6c6f67676564696e7c623a313b),
+('dl20daj26bqo7skk0ltdc5h9a2o73efh', '::1', 1655198558, 0x5f5f63695f6c6173745f726567656e65726174657c693a313635353139383535383b6e616d657c733a353a224361766964223b6c6f676765725f70686f746f7c4e3b6c6f67676564696e5f6272616e63687c4e3b6c6f67676564696e5f69647c733a313a2231223b6c6f67676564696e5f7573657269647c733a313a2231223b6c6f67676564696e5f726f6c655f69647c733a313a2231223b6c6f67676564696e5f747970657c733a353a227374616666223b7365745f6c616e677c733a373a226c616e675f3332223b7365745f73657373696f6e5f69647c733a313a2233223b6c6f67676564696e7c623a313b),
+('enaqeb6d2h8sdr66blh5ubvcapb3l2ke', '::1', 1655243316, 0x5f5f63695f6c6173745f726567656e65726174657c693a313635353234333331363b6e616d657c733a353a224361766964223b6c6f676765725f70686f746f7c4e3b6c6f67676564696e5f6272616e63687c4e3b6c6f67676564696e5f69647c733a313a2231223b6c6f67676564696e5f7573657269647c733a313a2231223b6c6f67676564696e5f726f6c655f69647c733a313a2231223b6c6f67676564696e5f747970657c733a353a227374616666223b7365745f6c616e677c733a373a226c616e675f3332223b7365745f73657373696f6e5f69647c733a313a2233223b6c6f67676564696e7c623a313b),
+('f44tmuthtv0fu0o484akva7evnk5bun8', '::1', 1655194143, 0x5f5f63695f6c6173745f726567656e65726174657c693a313635353139343134333b),
+('fvonjsd13n18ilgn94q0rrt58ce8t5v5', '::1', 1655241874, 0x5f5f63695f6c6173745f726567656e65726174657c693a313635353234313837343b),
+('i7mefaoqv8b0mdjt23pac5nisg580k75', '::1', 1655189865, 0x5f5f63695f6c6173745f726567656e65726174657c693a313635353138393836323b),
+('imdhb2o9s2do2i699jppo6s1unu8uqkt', '::1', 1655247690, 0x5f5f63695f6c6173745f726567656e65726174657c693a313635353234373638393b6e616d657c733a353a224361766964223b6c6f676765725f70686f746f7c4e3b6c6f67676564696e5f6272616e63687c4e3b6c6f67676564696e5f69647c733a313a2231223b6c6f67676564696e5f7573657269647c733a313a2231223b6c6f67676564696e5f726f6c655f69647c733a313a2231223b6c6f67676564696e5f747970657c733a353a227374616666223b7365745f6c616e677c733a373a226c616e675f3332223b7365745f73657373696f6e5f69647c733a313a2233223b6c6f67676564696e7c623a313b616c6572742d6d6573736167652d737563636573737c733a34313a22496e666f726d6174696f6e20486173204265656e2055706461746564205375636365737366756c6c79223b5f5f63695f766172737c613a313a7b733a32313a22616c6572742d6d6573736167652d73756363657373223b733a333a226f6c64223b7d),
+('jppsjopv9muam014irv4mc63rrpvns4n', '::1', 1655243631, 0x5f5f63695f6c6173745f726567656e65726174657c693a313635353234333633313b6e616d657c733a353a224361766964223b6c6f676765725f70686f746f7c4e3b6c6f67676564696e5f6272616e63687c4e3b6c6f67676564696e5f69647c733a313a2231223b6c6f67676564696e5f7573657269647c733a313a2231223b6c6f67676564696e5f726f6c655f69647c733a313a2231223b6c6f67676564696e5f747970657c733a353a227374616666223b7365745f6c616e677c733a373a226c616e675f3332223b7365745f73657373696f6e5f69647c733a313a2233223b6c6f67676564696e7c623a313b616c6572742d6d6573736167652d737563636573737c733a34313a22496e666f726d6174696f6e20486173204265656e2055706461746564205375636365737366756c6c79223b5f5f63695f766172737c613a313a7b733a32313a22616c6572742d6d6573736167652d73756363657373223b733a333a226f6c64223b7d),
+('l1ubejo25u2pfilgaqmi0m4imkdh0fqq', '::1', 1655201006, 0x5f5f63695f6c6173745f726567656e65726174657c693a313635353230313030363b6e616d657c733a353a224361766964223b6c6f676765725f70686f746f7c4e3b6c6f67676564696e5f6272616e63687c4e3b6c6f67676564696e5f69647c733a313a2231223b6c6f67676564696e5f7573657269647c733a313a2231223b6c6f67676564696e5f726f6c655f69647c733a313a2231223b6c6f67676564696e5f747970657c733a353a227374616666223b7365745f6c616e677c733a373a226c616e675f3332223b7365745f73657373696f6e5f69647c733a313a2233223b6c6f67676564696e7c623a313b),
+('ngs0814flkdq89bna8qieh9cg2r65arb', '::1', 1655245597, 0x5f5f63695f6c6173745f726567656e65726174657c693a313635353234353539373b6e616d657c733a353a224361766964223b6c6f676765725f70686f746f7c4e3b6c6f67676564696e5f6272616e63687c4e3b6c6f67676564696e5f69647c733a313a2231223b6c6f67676564696e5f7573657269647c733a313a2231223b6c6f67676564696e5f726f6c655f69647c733a313a2231223b6c6f67676564696e5f747970657c733a353a227374616666223b7365745f6c616e677c733a373a226c616e675f3332223b7365745f73657373696f6e5f69647c733a313a2233223b6c6f67676564696e7c623a313b616c6572742d6d6573736167652d737563636573737c733a34313a22496e666f726d6174696f6e20486173204265656e2055706461746564205375636365737366756c6c79223b5f5f63695f766172737c613a313a7b733a32313a22616c6572742d6d6573736167652d73756363657373223b733a333a226f6c64223b7d),
+('o15052cedp4rhs2gocqv7t3j2safe0d3', '::1', 1655284401, 0x5f5f63695f6c6173745f726567656e65726174657c693a313635353238343430313b6e616d657c733a353a224361766964223b6c6f676765725f70686f746f7c4e3b6c6f67676564696e5f6272616e63687c4e3b6c6f67676564696e5f69647c733a313a2231223b6c6f67676564696e5f7573657269647c733a313a2231223b6c6f67676564696e5f726f6c655f69647c733a313a2231223b6c6f67676564696e5f747970657c733a353a227374616666223b7365745f6c616e677c733a373a226c616e675f3332223b7365745f73657373696f6e5f69647c733a313a2233223b6c6f67676564696e7c623a313b776973685f736573737c733a33323a223532363136666465623862623437326132393731623065323162343665623835223b),
+('o9lfde1ileqad0eq6ud1ms87njijnbgr', '::1', 1655196221, 0x5f5f63695f6c6173745f726567656e65726174657c693a313635353139363232313b6e616d657c733a353a224361766964223b6c6f676765725f70686f746f7c4e3b6c6f67676564696e5f6272616e63687c4e3b6c6f67676564696e5f69647c733a313a2231223b6c6f67676564696e5f7573657269647c733a313a2231223b6c6f67676564696e5f726f6c655f69647c733a313a2231223b6c6f67676564696e5f747970657c733a353a227374616666223b7365745f6c616e677c733a373a226c616e675f3332223b7365745f73657373696f6e5f69647c733a313a2233223b6c6f67676564696e7c623a313b),
+('phd356677k8hhdgiecub0dkujfgf6u54', '::1', 1655284050, 0x5f5f63695f6c6173745f726567656e65726174657c693a313635353238343035303b6e616d657c733a353a224361766964223b6c6f676765725f70686f746f7c4e3b6c6f67676564696e5f6272616e63687c4e3b6c6f67676564696e5f69647c733a313a2231223b6c6f67676564696e5f7573657269647c733a313a2231223b6c6f67676564696e5f726f6c655f69647c733a313a2231223b6c6f67676564696e5f747970657c733a353a227374616666223b7365745f6c616e677c733a373a226c616e675f3332223b7365745f73657373696f6e5f69647c733a313a2233223b6c6f67676564696e7c623a313b),
+('quiabp3sqtp3la6cq8lp7ohja1eatikv', '::1', 1655244666, 0x5f5f63695f6c6173745f726567656e65726174657c693a313635353234343636363b6e616d657c733a353a224361766964223b6c6f676765725f70686f746f7c4e3b6c6f67676564696e5f6272616e63687c4e3b6c6f67676564696e5f69647c733a313a2231223b6c6f67676564696e5f7573657269647c733a313a2231223b6c6f67676564696e5f726f6c655f69647c733a313a2231223b6c6f67676564696e5f747970657c733a353a227374616666223b7365745f6c616e677c733a373a226c616e675f3332223b7365745f73657373696f6e5f69647c733a313a2233223b6c6f67676564696e7c623a313b616c6572742d6d6573736167652d737563636573737c733a34313a22496e666f726d6174696f6e20486173204265656e2055706461746564205375636365737366756c6c79223b5f5f63695f766172737c613a313a7b733a32313a22616c6572742d6d6573736167652d73756363657373223b733a333a226f6c64223b7d),
+('sjlmlr620m3ue8mfdddvs0vj3l0t3a8s', '::1', 1655246162, 0x5f5f63695f6c6173745f726567656e65726174657c693a313635353234363136323b6e616d657c733a353a224361766964223b6c6f676765725f70686f746f7c4e3b6c6f67676564696e5f6272616e63687c4e3b6c6f67676564696e5f69647c733a313a2231223b6c6f67676564696e5f7573657269647c733a313a2231223b6c6f67676564696e5f726f6c655f69647c733a313a2231223b6c6f67676564696e5f747970657c733a353a227374616666223b7365745f6c616e677c733a373a226c616e675f3332223b7365745f73657373696f6e5f69647c733a313a2233223b6c6f67676564696e7c623a313b616c6572742d6d6573736167652d737563636573737c733a34313a22496e666f726d6174696f6e20486173204265656e2055706461746564205375636365737366756c6c79223b5f5f63695f766172737c613a313a7b733a32313a22616c6572742d6d6573736167652d73756363657373223b733a333a226f6c64223b7d),
+('soelb853dn3t2d4t73lfi7qhqs4qlnfp', '::1', 1655195406, 0x5f5f63695f6c6173745f726567656e65726174657c693a313635353139353430363b6e616d657c733a353a224361766964223b6c6f676765725f70686f746f7c4e3b6c6f67676564696e5f6272616e63687c4e3b6c6f67676564696e5f69647c733a313a2231223b6c6f67676564696e5f7573657269647c733a313a2231223b6c6f67676564696e5f726f6c655f69647c733a313a2231223b6c6f67676564696e5f747970657c733a353a227374616666223b7365745f6c616e677c733a373a226c616e675f3332223b7365745f73657373696f6e5f69647c733a313a2233223b6c6f67676564696e7c623a313b),
+('su7tiha2t5tgg2i4g3ofgvs7i0lh9jus', '::1', 1655198167, 0x5f5f63695f6c6173745f726567656e65726174657c693a313635353139383136373b6e616d657c733a353a224361766964223b6c6f676765725f70686f746f7c4e3b6c6f67676564696e5f6272616e63687c4e3b6c6f67676564696e5f69647c733a313a2231223b6c6f67676564696e5f7573657269647c733a313a2231223b6c6f67676564696e5f726f6c655f69647c733a313a2231223b6c6f67676564696e5f747970657c733a353a227374616666223b7365745f6c616e677c733a373a226c616e675f3332223b7365745f73657373696f6e5f69647c733a313a2233223b6c6f67676564696e7c623a313b),
+('u5cvlnbaardbsr2put7u78qub1qnvnii', '::1', 1655197860, 0x5f5f63695f6c6173745f726567656e65726174657c693a313635353139373836303b6e616d657c733a353a224361766964223b6c6f676765725f70686f746f7c4e3b6c6f67676564696e5f6272616e63687c4e3b6c6f67676564696e5f69647c733a313a2231223b6c6f67676564696e5f7573657269647c733a313a2231223b6c6f67676564696e5f726f6c655f69647c733a313a2231223b6c6f67676564696e5f747970657c733a353a227374616666223b7365745f6c616e677c733a373a226c616e675f3332223b7365745f73657373696f6e5f69647c733a313a2233223b6c6f67676564696e7c623a313b),
+('v4njjbkhhshdaivdmjm7blejro9ihjjj', '::1', 1655242550, 0x5f5f63695f6c6173745f726567656e65726174657c693a313635353234323535303b6e616d657c733a353a224361766964223b6c6f676765725f70686f746f7c4e3b6c6f67676564696e5f6272616e63687c4e3b6c6f67676564696e5f69647c733a313a2231223b6c6f67676564696e5f7573657269647c733a313a2231223b6c6f67676564696e5f726f6c655f69647c733a313a2231223b6c6f67676564696e5f747970657c733a353a227374616666223b7365745f6c616e677c733a373a226c616e675f3332223b7365745f73657373696f6e5f69647c733a313a2233223b6c6f67676564696e7c623a313b),
+('vrna1k474ag01roj0i7o72t7vh2e9i6n', '::1', 1655193012, 0x5f5f63695f6c6173745f726567656e65726174657c693a313635353139333031303b);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `roles`
+-- Структура таблицы `roles`
 --
 
-CREATE TABLE IF NOT EXISTS `roles` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `roles` (
+  `id` int(11) NOT NULL,
   `name` varchar(50) NOT NULL,
   `prefix` varchar(50) DEFAULT NULL,
-  `is_system` varchar(10) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
+  `is_system` varchar(10) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `roles`
+-- Дамп данных таблицы `roles`
 --
 
 INSERT INTO `roles` (`id`, `name`, `prefix`, `is_system`) VALUES
@@ -3279,20 +3320,19 @@ INSERT INTO `roles` (`id`, `name`, `prefix`, `is_system`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `schoolyear`
+-- Структура таблицы `schoolyear`
 --
 
-CREATE TABLE IF NOT EXISTS `schoolyear` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `schoolyear` (
+  `id` int(11) NOT NULL,
   `school_year` varchar(255) NOT NULL,
   `created_by` int(11) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
-  `updated_at` datetime DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
+  `updated_at` datetime DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `schoolyear`
+-- Дамп данных таблицы `schoolyear`
 --
 
 INSERT INTO `schoolyear` (`id`, `school_year`, `created_by`, `created_at`, `updated_at`) VALUES
@@ -3307,44 +3347,41 @@ INSERT INTO `schoolyear` (`id`, `school_year`, `created_by`, `created_at`, `upda
 -- --------------------------------------------------------
 
 --
--- Table structure for table `section`
+-- Структура таблицы `section`
 --
 
-CREATE TABLE IF NOT EXISTS `section` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `section` (
+  `id` int(11) NOT NULL,
   `name` varchar(255) NOT NULL,
   `capacity` varchar(20) DEFAULT NULL,
-  `branch_id` int(11) DEFAULT NULL,
-  PRIMARY KEY (`id`)
+  `branch_id` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `sections_allocation`
+-- Структура таблицы `sections_allocation`
 --
 
-CREATE TABLE IF NOT EXISTS `sections_allocation` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `sections_allocation` (
+  `id` int(11) NOT NULL,
   `class_id` int(11) NOT NULL,
-  `section_id` int(11) NOT NULL,
-  PRIMARY KEY (`id`)
+  `section_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `sms_api`
+-- Структура таблицы `sms_api`
 --
 
-CREATE TABLE IF NOT EXISTS `sms_api` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+CREATE TABLE `sms_api` (
+  `id` int(11) NOT NULL,
+  `name` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `sms_api`
+-- Дамп данных таблицы `sms_api`
 --
 
 INSERT INTO `sms_api` (`id`, `name`) VALUES
@@ -3358,11 +3395,11 @@ INSERT INTO `sms_api` (`id`, `name`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `sms_credential`
+-- Структура таблицы `sms_credential`
 --
 
-CREATE TABLE IF NOT EXISTS `sms_credential` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `sms_credential` (
+  `id` int(11) NOT NULL,
   `sms_api_id` int(11) NOT NULL,
   `field_one` varchar(300) NOT NULL,
   `field_two` varchar(300) NOT NULL,
@@ -3371,25 +3408,23 @@ CREATE TABLE IF NOT EXISTS `sms_credential` (
   `branch_id` int(11) NOT NULL,
   `is_active` tinyint(1) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
-  `updated_at` datetime DEFAULT NULL,
-  PRIMARY KEY (`id`)
+  `updated_at` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `sms_template`
+-- Структура таблицы `sms_template`
 --
 
-CREATE TABLE IF NOT EXISTS `sms_template` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `sms_template` (
+  `id` int(11) NOT NULL,
   `name` varchar(255) NOT NULL,
-  `tags` text NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
+  `tags` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `sms_template`
+-- Дамп данных таблицы `sms_template`
 --
 
 INSERT INTO `sms_template` (`id`, `name`, `tags`) VALUES
@@ -3404,28 +3439,27 @@ INSERT INTO `sms_template` (`id`, `name`, `tags`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `sms_template_details`
+-- Структура таблицы `sms_template_details`
 --
 
-CREATE TABLE IF NOT EXISTS `sms_template_details` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `sms_template_details` (
+  `id` int(11) NOT NULL,
   `template_id` int(11) NOT NULL,
   `notify_student` tinyint(3) NOT NULL DEFAULT 1,
   `notify_parent` tinyint(3) NOT NULL DEFAULT 1,
   `template_body` longtext NOT NULL,
   `branch_id` int(11) NOT NULL,
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
-  PRIMARY KEY (`id`)
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `staff`
+-- Структура таблицы `staff`
 --
 
-CREATE TABLE IF NOT EXISTS `staff` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `staff` (
+  `id` int(11) NOT NULL,
   `staff_id` varchar(25) NOT NULL,
   `name` varchar(255) NOT NULL,
   `department` int(11) NOT NULL,
@@ -3449,12 +3483,11 @@ CREATE TABLE IF NOT EXISTS `staff` (
   `linkedin_url` varchar(255) DEFAULT NULL,
   `twitter_url` varchar(255) DEFAULT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
-  `updated_at` datetime DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+  `updated_at` datetime DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `staff`
+-- Дамп данных таблицы `staff`
 --
 
 INSERT INTO `staff` (`id`, `staff_id`, `name`, `department`, `qualification`, `experience_details`, `total_experience`, `designation`, `joining_date`, `birthday`, `sex`, `religion`, `blood_group`, `present_address`, `permanent_address`, `mobileno`, `email`, `salary_template_id`, `branch_id`, `photo`, `facebook_url`, `linkedin_url`, `twitter_url`, `created_at`, `updated_at`) VALUES
@@ -3463,19 +3496,18 @@ INSERT INTO `staff` (`id`, `staff_id`, `name`, `department`, `qualification`, `e
 -- --------------------------------------------------------
 
 --
--- Table structure for table `targets`
+-- Структура таблицы `targets`
 --
 
-CREATE TABLE IF NOT EXISTS `targets` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `targets` (
+  `id` int(11) NOT NULL,
   `target_name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `seo_link` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `status` int(11) NOT NULL DEFAULT 1 COMMENT '0 - Deaktiv\r\n1 - Aktiv',
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=322 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  `status` int(11) NOT NULL DEFAULT 1 COMMENT '0 - Deaktiv\r\n1 - Aktiv'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Dumping data for table `targets`
+-- Дамп данных таблицы `targets`
 --
 
 INSERT INTO `targets` (`id`, `target_name`, `seo_link`, `status`) VALUES
@@ -3804,20 +3836,19 @@ INSERT INTO `targets` (`id`, `target_name`, `seo_link`, `status`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `theme_settings`
+-- Структура таблицы `theme_settings`
 --
 
-CREATE TABLE IF NOT EXISTS `theme_settings` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `theme_settings` (
+  `id` int(11) NOT NULL,
   `border_mode` varchar(200) NOT NULL,
   `dark_skin` varchar(200) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
-  `updated_at` datetime DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+  `updated_at` datetime DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `theme_settings`
+-- Дамп данных таблицы `theme_settings`
 --
 
 INSERT INTO `theme_settings` (`id`, `border_mode`, `dark_skin`, `created_at`, `updated_at`) VALUES
@@ -3826,18 +3857,17 @@ INSERT INTO `theme_settings` (`id`, `border_mode`, `dark_skin`, `created_at`, `u
 -- --------------------------------------------------------
 
 --
--- Table structure for table `thumb_image`
+-- Структура таблицы `thumb_image`
 --
 
-CREATE TABLE IF NOT EXISTS `thumb_image` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `thumb_image` (
+  `id` int(11) NOT NULL,
   `avatar` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `path` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=224 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  `path` varchar(255) COLLATE utf8_unicode_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Dumping data for table `thumb_image`
+-- Дамп данных таблицы `thumb_image`
 --
 
 INSERT INTO `thumb_image` (`id`, `avatar`, `path`) VALUES
@@ -4068,35 +4098,851 @@ INSERT INTO `thumb_image` (`id`, `avatar`, `path`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `user_agreements`
+-- Структура таблицы `user_agreements`
 --
 
-CREATE TABLE IF NOT EXISTS `user_agreements` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `user_agreements` (
+  `id` int(11) NOT NULL,
   `content` text COLLATE utf8_unicode_ci NOT NULL,
-  `status` int(11) NOT NULL DEFAULT 1,
-  PRIMARY KEY (`id`)
+  `status` int(11) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Дамп данных таблицы `user_agreements`
+--
+
+INSERT INTO `user_agreements` (`id`, `content`, `status`) VALUES
+(1, '        this is a test desription 2', 1);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `wishlists`
+-- Структура таблицы `wishlists`
 --
 
-CREATE TABLE IF NOT EXISTS `wishlists` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `wishlists` (
+  `id` int(11) NOT NULL,
   `session_id` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `data_id` int(11) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=39 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  `data_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Dumping data for table `wishlists`
+-- Дамп данных таблицы `wishlists`
 --
 
 INSERT INTO `wishlists` (`id`, `session_id`, `data_id`) VALUES
-(18, '8c75b973e681065a9e47cce3edbb57d7', 14);
+(18, '8c75b973e681065a9e47cce3edbb57d7', 14),
+(39, '52616fdeb8bb472a2971b0e21b46eb85', 19);
+
+--
+-- Индексы сохранённых таблиц
+--
+
+--
+-- Индексы таблицы `about_ads_configuration`
+--
+ALTER TABLE `about_ads_configuration`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Индексы таблицы `add_advertisement_rules`
+--
+ALTER TABLE `add_advertisement_rules`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Индексы таблицы `ads_all`
+--
+ALTER TABLE `ads_all`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Индексы таблицы `ads_complain`
+--
+ALTER TABLE `ads_complain`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Индексы таблицы `ads_configuration`
+--
+ALTER TABLE `ads_configuration`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Индексы таблицы `ads_rules`
+--
+ALTER TABLE `ads_rules`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Индексы таблицы `ads_type`
+--
+ALTER TABLE `ads_type`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Индексы таблицы `ads_users`
+--
+ALTER TABLE `ads_users`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Индексы таблицы `banners`
+--
+ALTER TABLE `banners`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Индексы таблицы `branch`
+--
+ALTER TABLE `branch`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Индексы таблицы `cities`
+--
+ALTER TABLE `cities`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Индексы таблицы `class`
+--
+ALTER TABLE `class`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Индексы таблицы `custom_field`
+--
+ALTER TABLE `custom_field`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Индексы таблицы `custom_fields_values`
+--
+ALTER TABLE `custom_fields_values`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `relid` (`relid`),
+  ADD KEY `fieldid` (`field_id`);
+
+--
+-- Индексы таблицы `districts`
+--
+ALTER TABLE `districts`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Индексы таблицы `email_config`
+--
+ALTER TABLE `email_config`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Индексы таблицы `email_templates`
+--
+ALTER TABLE `email_templates`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Индексы таблицы `email_templates_details`
+--
+ALTER TABLE `email_templates_details`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Индексы таблицы `estate_type`
+--
+ALTER TABLE `estate_type`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Индексы таблицы `front_cms_about`
+--
+ALTER TABLE `front_cms_about`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Индексы таблицы `front_cms_admission`
+--
+ALTER TABLE `front_cms_admission`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Индексы таблицы `front_cms_admitcard`
+--
+ALTER TABLE `front_cms_admitcard`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Индексы таблицы `front_cms_certificates`
+--
+ALTER TABLE `front_cms_certificates`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Индексы таблицы `front_cms_contact`
+--
+ALTER TABLE `front_cms_contact`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Индексы таблицы `front_cms_events`
+--
+ALTER TABLE `front_cms_events`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Индексы таблицы `front_cms_exam_results`
+--
+ALTER TABLE `front_cms_exam_results`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Индексы таблицы `front_cms_faq`
+--
+ALTER TABLE `front_cms_faq`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Индексы таблицы `front_cms_faq_list`
+--
+ALTER TABLE `front_cms_faq_list`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Индексы таблицы `front_cms_gallery`
+--
+ALTER TABLE `front_cms_gallery`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Индексы таблицы `front_cms_gallery_category`
+--
+ALTER TABLE `front_cms_gallery_category`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Индексы таблицы `front_cms_gallery_content`
+--
+ALTER TABLE `front_cms_gallery_content`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Индексы таблицы `front_cms_home`
+--
+ALTER TABLE `front_cms_home`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Индексы таблицы `front_cms_home_seo`
+--
+ALTER TABLE `front_cms_home_seo`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Индексы таблицы `front_cms_menu`
+--
+ALTER TABLE `front_cms_menu`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Индексы таблицы `front_cms_menu_visible`
+--
+ALTER TABLE `front_cms_menu_visible`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Индексы таблицы `front_cms_pages`
+--
+ALTER TABLE `front_cms_pages`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Индексы таблицы `front_cms_services`
+--
+ALTER TABLE `front_cms_services`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Индексы таблицы `front_cms_services_list`
+--
+ALTER TABLE `front_cms_services_list`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Индексы таблицы `front_cms_setting`
+--
+ALTER TABLE `front_cms_setting`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Индексы таблицы `front_cms_teachers`
+--
+ALTER TABLE `front_cms_teachers`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Индексы таблицы `front_cms_testimonial`
+--
+ALTER TABLE `front_cms_testimonial`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Индексы таблицы `global_settings`
+--
+ALTER TABLE `global_settings`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Индексы таблицы `languages`
+--
+ALTER TABLE `languages`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Индексы таблицы `language_list`
+--
+ALTER TABLE `language_list`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Индексы таблицы `login_credential`
+--
+ALTER TABLE `login_credential`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Индексы таблицы `metros`
+--
+ALTER TABLE `metros`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Индексы таблицы `payment_config`
+--
+ALTER TABLE `payment_config`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Индексы таблицы `payment_salary_stipend`
+--
+ALTER TABLE `payment_salary_stipend`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Индексы таблицы `payment_types`
+--
+ALTER TABLE `payment_types`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Индексы таблицы `permission`
+--
+ALTER TABLE `permission`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Индексы таблицы `permission_modules`
+--
+ALTER TABLE `permission_modules`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `id` (`id`);
+
+--
+-- Индексы таблицы `regions`
+--
+ALTER TABLE `regions`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Индексы таблицы `rm_sessions`
+--
+ALTER TABLE `rm_sessions`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `ci_sessions_timestamp` (`timestamp`);
+
+--
+-- Индексы таблицы `roles`
+--
+ALTER TABLE `roles`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Индексы таблицы `schoolyear`
+--
+ALTER TABLE `schoolyear`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Индексы таблицы `section`
+--
+ALTER TABLE `section`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Индексы таблицы `sections_allocation`
+--
+ALTER TABLE `sections_allocation`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Индексы таблицы `sms_api`
+--
+ALTER TABLE `sms_api`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Индексы таблицы `sms_credential`
+--
+ALTER TABLE `sms_credential`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Индексы таблицы `sms_template`
+--
+ALTER TABLE `sms_template`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Индексы таблицы `sms_template_details`
+--
+ALTER TABLE `sms_template_details`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Индексы таблицы `staff`
+--
+ALTER TABLE `staff`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Индексы таблицы `targets`
+--
+ALTER TABLE `targets`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Индексы таблицы `theme_settings`
+--
+ALTER TABLE `theme_settings`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Индексы таблицы `thumb_image`
+--
+ALTER TABLE `thumb_image`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Индексы таблицы `user_agreements`
+--
+ALTER TABLE `user_agreements`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Индексы таблицы `wishlists`
+--
+ALTER TABLE `wishlists`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- AUTO_INCREMENT для сохранённых таблиц
+--
+
+--
+-- AUTO_INCREMENT для таблицы `about_ads_configuration`
+--
+ALTER TABLE `about_ads_configuration`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT для таблицы `add_advertisement_rules`
+--
+ALTER TABLE `add_advertisement_rules`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT для таблицы `ads_all`
+--
+ALTER TABLE `ads_all`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+
+--
+-- AUTO_INCREMENT для таблицы `ads_complain`
+--
+ALTER TABLE `ads_complain`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- AUTO_INCREMENT для таблицы `ads_configuration`
+--
+ALTER TABLE `ads_configuration`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT для таблицы `ads_rules`
+--
+ALTER TABLE `ads_rules`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT для таблицы `ads_type`
+--
+ALTER TABLE `ads_type`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT для таблицы `ads_users`
+--
+ALTER TABLE `ads_users`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+
+--
+-- AUTO_INCREMENT для таблицы `banners`
+--
+ALTER TABLE `banners`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT для таблицы `branch`
+--
+ALTER TABLE `branch`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT для таблицы `cities`
+--
+ALTER TABLE `cities`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=58;
+
+--
+-- AUTO_INCREMENT для таблицы `class`
+--
+ALTER TABLE `class`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT для таблицы `custom_field`
+--
+ALTER TABLE `custom_field`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT для таблицы `custom_fields_values`
+--
+ALTER TABLE `custom_fields_values`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT для таблицы `districts`
+--
+ALTER TABLE `districts`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=114;
+
+--
+-- AUTO_INCREMENT для таблицы `email_config`
+--
+ALTER TABLE `email_config`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT для таблицы `email_templates`
+--
+ALTER TABLE `email_templates`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+
+--
+-- AUTO_INCREMENT для таблицы `email_templates_details`
+--
+ALTER TABLE `email_templates_details`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT для таблицы `estate_type`
+--
+ALTER TABLE `estate_type`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+
+--
+-- AUTO_INCREMENT для таблицы `front_cms_about`
+--
+ALTER TABLE `front_cms_about`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT для таблицы `front_cms_admission`
+--
+ALTER TABLE `front_cms_admission`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT для таблицы `front_cms_admitcard`
+--
+ALTER TABLE `front_cms_admitcard`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT для таблицы `front_cms_certificates`
+--
+ALTER TABLE `front_cms_certificates`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT для таблицы `front_cms_contact`
+--
+ALTER TABLE `front_cms_contact`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT для таблицы `front_cms_events`
+--
+ALTER TABLE `front_cms_events`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT для таблицы `front_cms_exam_results`
+--
+ALTER TABLE `front_cms_exam_results`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT для таблицы `front_cms_faq`
+--
+ALTER TABLE `front_cms_faq`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT для таблицы `front_cms_faq_list`
+--
+ALTER TABLE `front_cms_faq_list`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT для таблицы `front_cms_gallery`
+--
+ALTER TABLE `front_cms_gallery`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT для таблицы `front_cms_gallery_category`
+--
+ALTER TABLE `front_cms_gallery_category`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT для таблицы `front_cms_gallery_content`
+--
+ALTER TABLE `front_cms_gallery_content`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT для таблицы `front_cms_home`
+--
+ALTER TABLE `front_cms_home`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+
+--
+-- AUTO_INCREMENT для таблицы `front_cms_home_seo`
+--
+ALTER TABLE `front_cms_home_seo`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT для таблицы `front_cms_menu`
+--
+ALTER TABLE `front_cms_menu`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+
+--
+-- AUTO_INCREMENT для таблицы `front_cms_menu_visible`
+--
+ALTER TABLE `front_cms_menu_visible`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT для таблицы `front_cms_pages`
+--
+ALTER TABLE `front_cms_pages`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT для таблицы `front_cms_services`
+--
+ALTER TABLE `front_cms_services`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT для таблицы `front_cms_services_list`
+--
+ALTER TABLE `front_cms_services_list`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- AUTO_INCREMENT для таблицы `front_cms_setting`
+--
+ALTER TABLE `front_cms_setting`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT для таблицы `front_cms_teachers`
+--
+ALTER TABLE `front_cms_teachers`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT для таблицы `front_cms_testimonial`
+--
+ALTER TABLE `front_cms_testimonial`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT для таблицы `global_settings`
+--
+ALTER TABLE `global_settings`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT для таблицы `languages`
+--
+ALTER TABLE `languages`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1369;
+
+--
+-- AUTO_INCREMENT для таблицы `language_list`
+--
+ALTER TABLE `language_list`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
+
+--
+-- AUTO_INCREMENT для таблицы `login_credential`
+--
+ALTER TABLE `login_credential`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT для таблицы `metros`
+--
+ALTER TABLE `metros`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+
+--
+-- AUTO_INCREMENT для таблицы `payment_config`
+--
+ALTER TABLE `payment_config`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT для таблицы `payment_salary_stipend`
+--
+ALTER TABLE `payment_salary_stipend`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT для таблицы `payment_types`
+--
+ALTER TABLE `payment_types`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+
+--
+-- AUTO_INCREMENT для таблицы `permission`
+--
+ALTER TABLE `permission`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=134;
+
+--
+-- AUTO_INCREMENT для таблицы `permission_modules`
+--
+ALTER TABLE `permission_modules`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+
+--
+-- AUTO_INCREMENT для таблицы `regions`
+--
+ALTER TABLE `regions`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=88;
+
+--
+-- AUTO_INCREMENT для таблицы `roles`
+--
+ALTER TABLE `roles`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
+-- AUTO_INCREMENT для таблицы `schoolyear`
+--
+ALTER TABLE `schoolyear`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+
+--
+-- AUTO_INCREMENT для таблицы `section`
+--
+ALTER TABLE `section`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT для таблицы `sections_allocation`
+--
+ALTER TABLE `sections_allocation`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT для таблицы `sms_api`
+--
+ALTER TABLE `sms_api`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- AUTO_INCREMENT для таблицы `sms_credential`
+--
+ALTER TABLE `sms_credential`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT для таблицы `sms_template`
+--
+ALTER TABLE `sms_template`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
+-- AUTO_INCREMENT для таблицы `sms_template_details`
+--
+ALTER TABLE `sms_template_details`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT для таблицы `staff`
+--
+ALTER TABLE `staff`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT для таблицы `targets`
+--
+ALTER TABLE `targets`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=322;
+
+--
+-- AUTO_INCREMENT для таблицы `theme_settings`
+--
+ALTER TABLE `theme_settings`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT для таблицы `thumb_image`
+--
+ALTER TABLE `thumb_image`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=224;
+
+--
+-- AUTO_INCREMENT для таблицы `user_agreements`
+--
+ALTER TABLE `user_agreements`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT для таблицы `wishlists`
+--
+ALTER TABLE `wishlists`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

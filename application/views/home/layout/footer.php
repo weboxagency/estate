@@ -31,7 +31,7 @@
    </div>
    <div class="page-container container">
       <div class="footer-primary">
-         <div class="footer-primary__container container">
+         <div class="footer-primary__container container d-flex justify-content-between">
             <p><?= translate('follow_us_on_social_networks') ?></p>
             <div class="links">
                <a target="_blank" href="https://www.facebook.com/www.evelani.az" class="links-social links-facebook">
