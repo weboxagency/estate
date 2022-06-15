@@ -230,6 +230,8 @@ class Home extends Frontend_Controller
         $this->data['new_ads_list']      = $this->home_model->allNewAdsList();
         $this->data['all_yeni_tikili']   = $this->home_model->allYeniTikili();
         $this->data['all_kohne_tikili']  = $this->home_model->allKohneTikili();
+        $this->data['all_heyet_evi']     = $this->home_model->allHeyetEvi();
+        $this->data['all_villa']         = $this->home_model->allVilla();
        
         array_unshift($this->data['metros'],"");
         unset($this->data['metros'][0]);
