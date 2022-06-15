@@ -423,7 +423,7 @@ $.extend(theme.PluginDatePicker.defaults, {
 					url: base_url + "settings/update",
 					data: {
 						id: id,
-						vip: state
+						status: state
 					},
 					dataType: "json",
 					success: function (data) {
