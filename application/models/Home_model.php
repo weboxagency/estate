@@ -266,13 +266,24 @@ class Home_model extends MY_Model
 
     public function getWishlist($sess)
     {
-        $this->db->select('data_id');
+        $this->db->select('*');
         $this->db->from('wishlists');
         $this->db->where("session_id", $sess);
         $query = $this->db->get();
         return $query->num_rows() > 0 ? $query->result_array() : NULL;
         
     }
+
+    public function getWishlistCount($sess)
+    {
+        $this->db->select('*');
+        $this->db->from('wishlists');
+        $this->db->where("session_id", $sess);
+        $query = $this->db->get();
+        return $query->num_rows();
+        
+    }
+    
 
     public function adsRules()
     {
@@ -360,7 +371,14 @@ class Home_model extends MY_Model
         $query = $this->db->query("SELECT * FROM ads_all WHERE property_type=10 AND status=2 AND created_at BETWEEN NOW() - INTERVAL 30 DAY AND NOW() ORDER BY id DESC LIMIT ".$ads_config['home_ads_limit']."");
         return $query->num_rows() > 0 ? $query->result_array() : NULL;   
     }
-    
+        
+    public function allSecilmisler($data)
+    {
+        $ads_config  = $this->db->get_where('ads_configuration', array('id' => 1))->row_array();
+        $query = $this->db->query("SELECT * FROM ads_all WHERE id IN (" . $data . ") AND status=2 ORDER BY id DESC ");
+        return $query->num_rows() > 0 ? $query->result_array() : NULL;   
+    }
+
     public function searchAdsList($sql)
     {
         $query = $this->db->query($sql." ORDER BY id DESC");
