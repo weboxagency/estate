@@ -374,7 +374,7 @@ class Add_listing extends Frontend_Controller
                 $emlak_novu = estateTypeName($property_type)['estate_type_name'];
                
                 $title      = strip_tags($pr.','.$emlak_novu.','.$an_headline.','.$loca);
-                $titleURL   = strtolower(url_title($title.'-'.$last_ads_id+10));
+                $titleURL   = strtolower(url_title($title.'-'.($last_ads_id+10)));
                 if (!empty($area)) 
                 {
                     $bol = str_replace(",","",$price);

@@ -69,12 +69,6 @@
       </div>
       <div class="footer-secondary">
          <div class="footer-secondary__container container">
-            <div class="footer-secondary__column footer-secondary--about">
-               <a href="<?= base_url() ?>" class="logo">
-               <img src="<?php echo base_url('uploads/frontend/images/' . $cms_setting['logo']); ?>">
-               </a>
-               <p>Estate.az daşınmaz əmlakın satış və kirayəsi xidmətlərini digital sferada təqdim edən platformadır. Estate.az saytı vasitəsilə daşınmaz əmlakınızın satış və kirayəsini, tez və interaktiv şəkildə təşkil edə, yüksək məhsuldarlıq əldə edə bilərsiniz.</p>
-            </div>
             <div class="footer-secondary__column footer-nav  d-lg-flex">
                <h6>Ümumi</h6>
                <a href="az/istifadeci-razilasmasi.html">İstifadəçi razılaşması</a>
