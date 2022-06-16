@@ -281,6 +281,140 @@ class Elanlar extends Frontend_Controller
         $this->load->view('home/layout/index', $this->data);
     }
 
+    public function kohne_tikili()
+    {
+        $this->data['cities']           = $this->home_model->allCities();
+        $this->data['regions']          = $this->home_model->allRegions();
+        $this->data['metros']           = $this->home_model->allMetros();
+        $this->data['estate_types']     = $this->home_model->estateTypes();
+        $this->data['ads_type']         = $this->home_model->adsType();
+        $this->data['district']         = $this->home_model->allDistricts();
+        $this->data['targets']          = $this->home_model->allTargets();
+        $this->data['title']            = '- '.translate("old_building");
+
+        $ads_config                     = $this->db->get_where('ads_configuration', array('id' => 1))->row_array();
+
+        $sayfada                        = $ads_config['category_ads_limit']; 
+        $toplam_icerik                  = $this->home_model->get_count_kohne_tikili();
+        $this->data['toplam_sayfa']     = ceil($toplam_icerik / $sayfada);
+        $this->data['sayfa']            = isset($_GET['page']) ? (int) $_GET['page'] : 1;
+        
+        if($this->data['sayfa'] < 1)
+        { 
+            $sayfa = 1;
+        }
+        
+        if($this->data['sayfa'] > $this->data['toplam_sayfa'])
+        {
+             $this->data['sayfa'] = $this->data['toplam_sayfa'];
+        }
+
+        $limit = ($this->data['sayfa'] - 1) * $sayfada;
+
+        $this->data['new_ads_list']     = $this->home_model->allKohneTikiliPagination($limit, $sayfada);
+        
+        array_unshift($this->data['metros'],"");
+        unset($this->data['metros'][0]);
+        array_unshift($this->data['district'],"");
+        unset($this->data['district'][0]);
+        array_unshift($this->data['regions'],"");
+        unset($this->data['regions'][0]);
+        array_unshift($this->data['cities'],"");
+        unset($this->data['cities'][0]);
+        $this->data['page_data']        = $this->home_model->get('front_cms_home_seo', array('branch_id' => 1), true);
+        $this->data['main_contents']    = $this->load->view('ads/kohne_tikili', $this->data, true);
+        $this->load->view('home/layout/index', $this->data);
+    }
+
+    public function heyet_evi_bag()
+    {
+        $this->data['cities']           = $this->home_model->allCities();
+        $this->data['regions']          = $this->home_model->allRegions();
+        $this->data['metros']           = $this->home_model->allMetros();
+        $this->data['estate_types']     = $this->home_model->estateTypes();
+        $this->data['ads_type']         = $this->home_model->adsType();
+        $this->data['district']         = $this->home_model->allDistricts();
+        $this->data['targets']          = $this->home_model->allTargets();
+        $this->data['title']            = '- '.translate("garden_house");
+
+        $ads_config                     = $this->db->get_where('ads_configuration', array('id' => 1))->row_array();
+
+        $sayfada                        = $ads_config['category_ads_limit']; 
+        $toplam_icerik                  = $this->home_model->get_count_heyet_evi();
+        $this->data['toplam_sayfa']     = ceil($toplam_icerik / $sayfada);
+        $this->data['sayfa']            = isset($_GET['page']) ? (int) $_GET['page'] : 1;
+        
+        if($this->data['sayfa'] < 1)
+        { 
+            $sayfa = 1;
+        }
+        
+        if($this->data['sayfa'] > $this->data['toplam_sayfa'])
+        {
+             $this->data['sayfa'] = $this->data['toplam_sayfa'];
+        }
+
+        $limit = ($this->data['sayfa'] - 1) * $sayfada;
+
+        $this->data['new_ads_list']     = $this->home_model->allHeyetEviPagination($limit, $sayfada);
+        
+        array_unshift($this->data['metros'],"");
+        unset($this->data['metros'][0]);
+        array_unshift($this->data['district'],"");
+        unset($this->data['district'][0]);
+        array_unshift($this->data['regions'],"");
+        unset($this->data['regions'][0]);
+        array_unshift($this->data['cities'],"");
+        unset($this->data['cities'][0]);
+        $this->data['page_data']        = $this->home_model->get('front_cms_home_seo', array('branch_id' => 1), true);
+        $this->data['main_contents']    = $this->load->view('ads/heyet_evi', $this->data, true);
+        $this->load->view('home/layout/index', $this->data);
+    }
+
+    public function villa()
+    {
+        $this->data['cities']           = $this->home_model->allCities();
+        $this->data['regions']          = $this->home_model->allRegions();
+        $this->data['metros']           = $this->home_model->allMetros();
+        $this->data['estate_types']     = $this->home_model->estateTypes();
+        $this->data['ads_type']         = $this->home_model->adsType();
+        $this->data['district']         = $this->home_model->allDistricts();
+        $this->data['targets']          = $this->home_model->allTargets();
+        $this->data['title']            = '- '.translate("villa");
+
+        $ads_config                     = $this->db->get_where('ads_configuration', array('id' => 1))->row_array();
+
+        $sayfada                        = $ads_config['category_ads_limit']; 
+        $toplam_icerik                  = $this->home_model->get_count_villa();
+        $this->data['toplam_sayfa']     = ceil($toplam_icerik / $sayfada);
+        $this->data['sayfa']            = isset($_GET['page']) ? (int) $_GET['page'] : 1;
+        
+        if($this->data['sayfa'] < 1)
+        { 
+            $sayfa = 1;
+        }
+        
+        if($this->data['sayfa'] > $this->data['toplam_sayfa'])
+        {
+             $this->data['sayfa'] = $this->data['toplam_sayfa'];
+        }
+
+        $limit = ($this->data['sayfa'] - 1) * $sayfada;
+
+        $this->data['new_ads_list']     = $this->home_model->allVillaPagination($limit, $sayfada);
+        
+        array_unshift($this->data['metros'],"");
+        unset($this->data['metros'][0]);
+        array_unshift($this->data['district'],"");
+        unset($this->data['district'][0]);
+        array_unshift($this->data['regions'],"");
+        unset($this->data['regions'][0]);
+        array_unshift($this->data['cities'],"");
+        unset($this->data['cities'][0]);
+        $this->data['page_data']        = $this->home_model->get('front_cms_home_seo', array('branch_id' => 1), true);
+        $this->data['main_contents']    = $this->load->view('ads/villa', $this->data, true);
+        $this->load->view('home/layout/index', $this->data);
+    }
     // public function satish()
     // {
     //     $this->data['cities']           = $this->home_model->allCities();

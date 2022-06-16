@@ -427,7 +427,7 @@ class Home extends Frontend_Controller
                 $ads_number                     = $this->data['ads_detail']['ads_number'];
                 
                 $ads_config                     = $this->db->get_where('ads_configuration', array('id' => 1))->row_array();
-
+                
                 $sayfada                        = $ads_config['detail_ads_limit']; 
                 $toplam_icerik                  = $this->home_model->get_count_detail_benzer($property_type, $ads_number);
                 $this->data['toplam_sayfa']     = ceil($toplam_icerik / $sayfada);

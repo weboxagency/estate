@@ -159,6 +159,7 @@
                               <p class="d-md-none">Elanı şikayət et</p>
                            </a>
                         </div>
+                        <?php if(aboutConfig("update")['status']==1){ ?>
                         <div class="announcement-edit--item">
                            <a href="#" data-toggle="modal" data-target="#edit-announcement">
                               <svg class="icon icon-edit-solid">
@@ -168,6 +169,8 @@
                               <p class="d-md-none">Elana düzəliş et</p>
                            </a>
                         </div>
+                        <?php } ?>
+                        <?php if(aboutConfig("delete")['status']==1){ ?>
                         <div class="announcement-edit--item">
                            <a href="#" data-toggle="modal" data-target="#delete-announcement">
                               <svg class="icon icon-close">
@@ -177,6 +180,7 @@
                               <p class="d-md-none">Elanı sil</p>
                            </a>
                         </div>
+                        <?php } ?>
                         <div class="announcement-edit--item">
                            <div class="favorites">
                               <form action="<?= base_url() ?>wishlist" method="post" x-edit-form="<?= $ads_detail['id'] ?>" x-target-with-data="afterWishlist">
@@ -206,24 +210,30 @@
                      </div>
                   </div>
                   <div class="announcement-details announcement-links">
+                     <?php if(aboutConfig("pull")['status']==1){ ?>
                      <a href="#" data-toggle="modal" data-target="#pull-forward-announcement">
                         <svg class="icon icon-circle-up">
                            <use xlink:href="<?= base_url() ?>assets/site/img/icons/icons.svg#icon-circle-up"></use>
                         </svg>
                         İrəli çək
                      </a>
+                     <?php } ?>
+                      <?php if(aboutConfig("vip")['status']==1){ ?>
                      <a href="#" data-toggle="modal" data-target="#make-announcement-vip">
                         <svg class="icon icon-vipp">
                            <use xlink:href="<?= base_url() ?>assets/site/img/icons/icons.svg#icon-vipp"></use>
                         </svg>
                         VIP Et
                      </a>
+                     <?php } ?>
+                      <?php if(aboutConfig("premium")['status']==1){ ?>
                      <a href="#" data-toggle="modal" data-target="#make-announcement-premium">
                         <svg class="icon icon-vip">
                            <use xlink:href="<?= base_url() ?>assets/site/img/icons/icons.svg#icon-vip"></use>
                         </svg>
                         Premium et
                      </a>
+                     <?php } ?>
                   </div>
                   <div class="announcement-details announcement-address">
                      <span>Ünvan</span>
@@ -412,6 +422,7 @@
                            <p>Elanı şikayət et</p>
                         </a>
                      </div>
+                     <?php if(aboutConfig("update")['status']==1){ ?>
                      <div class="announcement-edit--item">
                         <a href="#" data-toggle="modal" data-target="#edit-announcement">
                            <svg class="icon icon-edit-solid">
@@ -420,6 +431,8 @@
                            <p>Elana düzəliş et</p>
                         </a>
                      </div>
+                     <?php } ?>
+                     <?php if(aboutConfig("delete")['status']==1){ ?>
                      <div class="announcement-edit--item">
                         <a href="#" data-toggle="modal" data-target="#delete-announcement">
                            <svg class="icon icon-close">
@@ -428,6 +441,7 @@
                            <p>Elanı sil</p>
                         </a>
                      </div>
+                     <?php } ?>
                      <div class="announcement-edit--item">
                         <div class="favorites">
                            <form action="<?= base_url() ?>wishlist" method="post" x-edit-form="<?= $ads_detail['id'] ?>" x-target-with-data="afterWishlist">

@@ -61,6 +61,9 @@ $route['yeni-elanlar-satish'] 			= 'elanlar/new_satish';
 $route['yeni-elanlar-kiraye-ayliq']		= 'elanlar/new_kiraye_ayliq';
 $route['yeni-elanlar-kiraye-gunluk'] 	= 'elanlar/new_kiraye_gunluk';
 $route['yeni-tikili'] 					= 'elanlar/yeni_tikili';
+$route['kohne-tikili'] 					= 'elanlar/kohne_tikili';
+$route['heyet-evi-bag'] 				= 'elanlar/heyet_evi_bag';
+$route['villa'] 						= 'elanlar/villa';
 
 //HOME CONTROLLER
 $route['wishlist'] 						= 'home/wishlist';

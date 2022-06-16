@@ -346,6 +346,16 @@ function estateTypeName($id='')
     return  $query->num_rows() > 0 ? $query->result_array()[0] : NULL;
 }
 
+function aboutConfig($val)
+{
+    $CI = &get_instance();
+    $CI->db->select('*');
+    $CI->db->from('about_ads_configuration');
+    $CI->db->where('modul_key', $val);
+    $query = $CI->db->get();
+    return  $query->num_rows() > 0 ? $query->result_array()[0] : NULL;
+}
+
 
 
 function get_session_id()

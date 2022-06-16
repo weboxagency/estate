@@ -41,6 +41,25 @@ class Home_model extends MY_Model
         return $query->num_rows();
     }
 
+    public function get_count_kohne_tikili() 
+    {
+        $query = $this->db->query("SELECT * FROM ads_all WHERE property_type=2 AND status=2 AND created_at BETWEEN NOW() - INTERVAL 30 DAY AND NOW() ORDER BY id DESC");
+        return $query->num_rows();
+    }
+
+    public function get_count_heyet_evi() 
+    {
+        $query = $this->db->query("SELECT * FROM ads_all WHERE property_type=3 AND status=2 AND created_at BETWEEN NOW() - INTERVAL 30 DAY AND NOW() ORDER BY id DESC");
+        return $query->num_rows();
+    }
+
+    public function get_count_villa() 
+    {
+        $query = $this->db->query("SELECT * FROM ads_all WHERE property_type=5 AND status=2 AND created_at BETWEEN NOW() - INTERVAL 30 DAY AND NOW() ORDER BY id DESC");
+        return $query->num_rows();
+    }
+    
+    
     public function get_count_detail_benzer($property_type, $ads_number) 
     {
         $query = $this->db->query("SELECT * FROM ads_all WHERE status=2 AND property_type='".$property_type."' AND ads_number!='".$ads_number."' ORDER BY id DESC");
@@ -316,6 +335,27 @@ class Home_model extends MY_Model
         return $query->num_rows() > 0 ? $query->result_array() : NULL;
     }
 
+    public function allKohneTikiliPagination($limit,$sayfada)
+    {
+        $ads_config  = $this->db->get_where('ads_configuration', array('id' => 1))->row_array();
+        $query = $this->db->query("SELECT * FROM ads_all WHERE property_type=2 AND status=2 AND created_at BETWEEN NOW() - INTERVAL 30 DAY AND NOW() ORDER BY id DESC LIMIT $limit, $sayfada");
+        return $query->num_rows() > 0 ? $query->result_array() : NULL;
+    }
+
+    public function allHeyetEviPagination($limit,$sayfada)
+    {
+        $ads_config  = $this->db->get_where('ads_configuration', array('id' => 1))->row_array();
+        $query = $this->db->query("SELECT * FROM ads_all WHERE property_type=3 AND status=2 AND created_at BETWEEN NOW() - INTERVAL 30 DAY AND NOW() ORDER BY id DESC LIMIT $limit, $sayfada");
+        return $query->num_rows() > 0 ? $query->result_array() : NULL;
+    }
+
+    public function allVillaPagination($limit,$sayfada)
+    {
+        $ads_config  = $this->db->get_where('ads_configuration', array('id' => 1))->row_array();
+        $query = $this->db->query("SELECT * FROM ads_all WHERE property_type=5 AND status=2 AND created_at BETWEEN NOW() - INTERVAL 30 DAY AND NOW() ORDER BY id DESC LIMIT $limit, $sayfada");
+        return $query->num_rows() > 0 ? $query->result_array() : NULL;
+    }
+    
     public function allYeniTikili()
     {
         $ads_config  = $this->db->get_where('ads_configuration', array('id' => 1))->row_array();

@@ -791,7 +791,7 @@
 <div class="announcement-group">
    <div class="announcement-group__header">
       <h5 class="announcement-title">Köhnə tikililər</h5>
-      <a class="link-button link-button--tertiary" href="<?= base_url() ?>yeni-elanlar"><?= translate('see_them_all') ?></a>
+      <a class="link-button link-button--tertiary" href="<?= base_url() ?>kohne-tikili"><?= translate('see_them_all') ?></a>
    </div>
    <div class="announcement-group__body">
       <?php foreach ($all_kohne_tikili as $value) { ?>
@@ -921,7 +921,7 @@
 <div class="announcement-group">
    <div class="announcement-group__header">
       <h5 class="announcement-title">Həyət evi/Bağ</h5>
-      <a class="link-button link-button--tertiary" href="<?= base_url() ?>yeni-elanlar"><?= translate('see_them_all') ?></a>
+      <a class="link-button link-button--tertiary" href="<?= base_url() ?>heyet-evi-bag"><?= translate('see_them_all') ?></a>
    </div>
    <div class="announcement-group__body">
       <?php foreach ($all_heyet_evi as $value) { ?>
@@ -1051,7 +1051,7 @@
 <div class="announcement-group">
    <div class="announcement-group__header">
       <h5 class="announcement-title">Villa</h5>
-      <a class="link-button link-button--tertiary" href="<?= base_url() ?>yeni-elanlar"><?= translate('see_them_all') ?></a>
+      <a class="link-button link-button--tertiary" href="<?= base_url() ?>villa"><?= translate('see_them_all') ?></a>
    </div>
    <div class="announcement-group__body">
       <?php foreach ($all_villa as $value) { ?>
