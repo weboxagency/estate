@@ -303,15 +303,35 @@ class Home extends Frontend_Controller
         $sess_id   = $this->session->userdata('wish_sess');
            
         $list      = $this->home_model->getWishlist($sess_id);
-
-        
         // dd($list);
+
+        $massiv    = [];
+        if ($list) 
+        {
+            foreach ($list as $value) 
+            {
+                array_push($massiv, $value['data_id']);
+            }
+            $in_query_massiv                 = implode(', ', $massiv);
+        }
+        
         $this->data['cities']            = $this->home_model->allCities();
         $this->data['regions']           = $this->home_model->allRegions();
         $this->data['metros']            = $this->home_model->allMetros();
         $this->data['estate_types']      = $this->home_model->estateTypes();
         $this->data['ads_type']          = $this->home_model->adsType();
         $this->data['district']          = $this->home_model->allDistricts();
+        $this->data['count']             = $this->home_model->getWishlistCount($sess_id);
+        if (!empty($in_query_massiv)) 
+        {
+            $this->data['secilmisler']       = $this->home_model->allSecilmisler($in_query_massiv);
+        }
+        else
+        {
+            $this->data['secilmisler']       = [];
+        }
+        // dd($this->data['secilmisler']);        
+        // repair IN (" . $in_repair . ")"   
         array_unshift($this->data['metros'],"");
         unset($this->data['metros'][0]);
         array_unshift($this->data['district'],"");

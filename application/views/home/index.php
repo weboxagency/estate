@@ -1181,7 +1181,7 @@
 <!-- AGENTLİKLƏR -->
 
 
-<div class="announcement-group">
+<!-- <div class="announcement-group">
    <div class="announcement-group__header">
       <h4 class="announcement-title"><?= translate('agency') ?></h4>
       <a class="link-button link-button--tertiary" href="az/agentlikler.html"><?= translate('see_them_all') ?></a>
@@ -1280,7 +1280,7 @@
          </div>
       </a>
    </div>
-</div>
+</div> -->
 
 <!-- AGENTLİKLƏR SON  -->
 
@@ -1288,7 +1288,7 @@
 <!-- YAŞAYIŞ KOMPLEKSLƏRİ -->
 
 
-<div class="announcement-group">
+<!-- <div class="announcement-group">
    <div class="announcement-group__header">
       <h4 class="announcement-title">Yaşayış kompleksləri</h4>
       <a class="link-button link-button--tertiary" href="<?= base_url() ?>elan"><?= translate('see_them_all') ?></a>
@@ -1432,7 +1432,7 @@
       </a>
    </div>
 </div>
-
+ -->
 
 <!-- YAŞAYIŞ KOMPLEKSLƏRİ SON -->
 
