@@ -1,4 +1,3 @@
-
 <header class="header">
       <div class="header-primary">
         <div class="header-primary__container container">
@@ -386,103 +385,85 @@
               <img src="<?php echo base_url('uploads/frontend/images/' . $cms_setting['logo']); ?>" style="height: 110px;">
             </a>
             <div class="justify">
-              <nav class="nav d-none d-xl-flex">  
+              <nav class="nav d-none d-xl-flex">
                 <div class="dropdown-nav dropdown-hover">
-                  <a class="nav-item--secondary"> <?= translate('sale') ?> </a>
+                  <a class="nav-item--secondary"><?= translate('sale') ?></a>
                   <div class="dropdown-nav__menu dropdown-hover__menu">
                     <div class="dropdown-menu__group">
-                      <a href="https://evelani.az/az/axtar/satis/yeni-tikili">
+                      <a href="<?= base_url() ?>assets/az/axtar/satis/yeni-tikili">
                         <svg class="icon icon-yeni-tikili">
-                          <use xlink:href="
-                            <?= base_url() ?>assets/site/img/icons/icons.svg#icon-yeni-tikili">
-                          </use>
+                          <use xlink:href="<?= base_url() ?>assets/site/img/icons/icons.svg#icon-yeni-tikili"></use>
                         </svg> Yeni tikili </a>
-                      <a href="https://evelani.az/az/axtar/satis/kohne-tikili">
+                      <a href="<?= base_url() ?>assets/az/axtar/satis/kohne-tikili">
                         <svg class="icon icon-kohne-tikili">
-                          <use xlink:href="
-                            <?= base_url() ?>assets/site/img/icons/icons.svg#icon-kohne-tikili">
-                          </use>
+                          <use xlink:href="<?= base_url() ?>assets/site/img/icons/icons.svg#icon-kohne-tikili"></use>
                         </svg> Köhnə tikili </a>
-                      <a href="https://evelani.az/az/axtar/satis/heyet-evi-bag">
+                      <a href="<?= base_url() ?>assets/az/axtar/satis/heyet-evi-bag">
                         <svg class="icon icon-bag">
-                          <use xlink:href="
-                            <?= base_url() ?>assets/site/img/icons/icons.svg#icon-bag">
-                          </use>
+                          <use xlink:href="<?= base_url() ?>assets/site/img/icons/icons.svg#icon-bag"></use>
                         </svg> Həyət evi / Bağ </a>
-                      <a href="https://evelani.az/az/axtar/satis/villa">
+                      <a href="<?= base_url() ?>assets/az/axtar/satis/villa">
                         <svg class="icon icon-villa">
-                          <use xlink:href="
-                            <?= base_url() ?>assets/site/img/icons/icons.svg#icon-villa">
-                          </use>
+                          <use xlink:href="<?= base_url() ?>assets/site/img/icons/icons.svg#icon-villa"></use>
                         </svg> Villa </a>
-                      <a href="https://evelani.az/az/axtar/satis/ofis">
+                      <a href="<?= base_url() ?>assets/az/axtar/satis/ofis">
                         <svg class="icon icon-office">
-                          <use xlink:href="
-                            <?= base_url() ?>assets/site/img/icons/icons.svg#icon-office">
-                          </use>
+                          <use xlink:href="<?= base_url() ?>assets/site/img/icons/icons.svg#icon-office"></use>
                         </svg> Ofis </a>
-                      <a href="https://evelani.az/az/axtar/satis/torpaq">
+                      <a href="<?= base_url() ?>assets/az/axtar/satis/torpaq">
                         <svg class="icon icon-torpag">
-                          <use xlink:href="
-                            <?= base_url() ?>assets/site/img/icons/icons.svg#icon-torpag">
-                          </use>
+                          <use xlink:href="<?= base_url() ?>assets/site/img/icons/icons.svg#icon-torpag"></use>
                         </svg> Torpaq </a>
-                      <a href="https://evelani.az/az/axtar/satis/obyekt">
+                      <a href="<?= base_url() ?>assets/az/axtar/satis/obyekt">
                         <svg class="icon icon-obyekt">
-                          <use xlink:href="
-                            <?= base_url() ?>assets/site/img/icons/icons.svg#icon-obyekt">
-                          </use>
+                          <use xlink:href="<?= base_url() ?>assets/site/img/icons/icons.svg#icon-obyekt"></use>
                         </svg> Obyekt </a>
-                      <a href="https://evelani.az/az/axtar/satis/qaraj">
+                      <a href="<?= base_url() ?>assets/az/axtar/satis/qaraj">
                         <svg class="icon icon-obyekt">
-                          <use xlink:href="
-                            <?= base_url() ?>assets/site/img/icons/icons.svg#icon-obyekt">
-                          </use>
+                          <use xlink:href="<?= base_url() ?>assets/site/img/icons/icons.svg#icon-obyekt"></use>
                         </svg> Qaraj </a>
                     </div>
                   </div>
-                </div> 
+                </div>
                 <div class="dropdown-nav dropdown-hover">
                   <a class="nav-item--secondary"><?= translate('rent') ?></a>
                   <div class="dropdown-nav__menu dropdown-hover__menu">
                     <div class="dropdown-menu__group">
-                      <a href="https://evelani.az/az/axtar/kiraye/yeni-tikili">
+                      <a href="<?= base_url() ?>assets/az/axtar/kiraye/yeni-tikili">
                         <svg class="icon icon-yeni-tikili">
                           <use xlink:href="<?= base_url() ?>assets/site/img/icons/icons.svg#icon-yeni-tikili"></use>
                         </svg> Yeni tikili </a>
-                      <a href="https://evelani.az/az/axtar/kiraye/kohne-tikili">
+                      <a href="<?= base_url() ?>assets/az/axtar/kiraye/kohne-tikili">
                         <svg class="icon icon-kohne-tikili">
                           <use xlink:href="<?= base_url() ?>assets/site/img/icons/icons.svg#icon-kohne-tikili"></use>
                         </svg> Köhnə tikili </a>
-                      <a href="https://evelani.az/az/axtar/kiraye/heyet-evi-bag">
+                      <a href="<?= base_url() ?>assets/az/axtar/kiraye/heyet-evi-bag">
                         <svg class="icon icon-bag">
                           <use xlink:href="<?= base_url() ?>assets/site/img/icons/icons.svg#icon-bag"></use>
                         </svg> Həyət evi / Bağ </a>
-                      <a href="https://evelani.az/az/axtar/kiraye/villa">
+                      <a href="<?= base_url() ?>assets/az/axtar/kiraye/villa">
                         <svg class="icon icon-villa">
                           <use xlink:href="<?= base_url() ?>assets/site/img/icons/icons.svg#icon-villa"></use>
                         </svg> Villa </a>
-                      <a href="https://evelani.az/az/axtar/kiraye/ofis">
+                      <a href="<?= base_url() ?>assets/az/axtar/kiraye/ofis">
                         <svg class="icon icon-office">
                           <use xlink:href="<?= base_url() ?>assets/site/img/icons/icons.svg#icon-office"></use>
                         </svg> Ofis </a>
-                      <a href="https://evelani.az/az/axtar/kiraye/torpaq">
+                      <a href="<?= base_url() ?>assets/az/axtar/kiraye/torpaq">
                         <svg class="icon icon-torpag">
                           <use xlink:href="<?= base_url() ?>assets/site/img/icons/icons.svg#icon-torpag"></use>
                         </svg> Torpaq </a>
-                      <a href="https://evelani.az/az/axtar/kiraye/obyekt">
+                      <a href="<?= base_url() ?>assets/az/axtar/kiraye/obyekt">
                         <svg class="icon icon-obyekt">
                           <use xlink:href="<?= base_url() ?>assets/site/img/icons/icons.svg#icon-obyekt"></use>
                         </svg> Obyekt </a>
-                      <a href="https://evelani.az/az/axtar/kiraye/qaraj">
+                      <a href="<?= base_url() ?>assets/az/axtar/kiraye/qaraj">
                         <svg class="icon icon-obyekt">
                           <use xlink:href="<?= base_url() ?>assets/site/img/icons/icons.svg#icon-obyekt"></use>
                         </svg> Qaraj </a>
                     </div>
                   </div>
-                </div>          
-                <!-- <a href="<?= base_url() ?>elanlar/kiraye" class="nav-item--secondary"><?= translate('for_rent') ?></a> -->
-                <!-- <a href="<?= base_url() ?>elanlar/agency" class="nav-item--secondary"><?= translate('agency') ?></a> -->
+                </div>
               </nav>
             </div>
             <a href="<?= base_url() ?>add_listing" class="link-button link-button--primary link-setup d-none d-sm-flex">

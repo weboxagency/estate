@@ -302,8 +302,8 @@ function translate($word = '')
         }
     } else {
         $arrayData = array(
-            'word' => $word,
-            'english' => ucwords(str_replace('_', ' ', $word)),
+            'word'      => $word,
+            'english'   => ucwords(str_replace('_', ' ', $word)),
         );
         $CI->db->insert('languages', $arrayData);
         return ucwords(str_replace('_', ' ', $word));
