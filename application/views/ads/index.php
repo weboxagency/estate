@@ -70,9 +70,9 @@
                         <td><?php echo $row['ads_number'];?></td>
                         <td>
                         	<?php
-	                        	if ($row['type']==1) {
+	                        	if ($row['announcement_type']==1) {
 	                        		echo "Elan";
-	                        	} elseif ($row['type']==2) {
+	                        	} elseif ($row['announcement_type']==2) {
 	                        		echo "Yaşayış kompleksi";
 	                        	} else {
 	                        		echo "Biznes mərkəzi";
