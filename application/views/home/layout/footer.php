@@ -71,12 +71,10 @@
          <div class="footer-secondary__container container">
             <div class="footer-secondary__column footer-nav  d-lg-flex">
                <h6>Ümumi</h6>
-               <a href="az/istifadeci-razilasmasi.html">İstifadəçi razılaşması</a>
-               <a href="az/haqqimizda.html">Haqqımızda</a>
-               <a href="az/balansi-artirmaq.html">Balansı artır</a>
+               <a href="<?= base_url() ?>">İstifadəçi razılaşması</a>
                <a href="az/reklam-yerlesdirmek.html">Reklam yerləşdir</a>
                <a href="az/sitemap.html" target="_blank">Saytın xəritəsi</a>
-               <p class="footer-nav--date">© 2020 - 2022 Evelani.az</p>
+               <p class="footer-nav--date">© 2021 - <?= date("Y") ?> Estate.az</p>
             </div>
             <div class="footer-secondary__column footer-nav d-none d-lg-flex">
                <h6>Qısayollar</h6>
@@ -87,7 +85,7 @@
             </div>
             <div class="footer-secondary__column footer-contact d-none d-md-flex">
                <h6>Əlaqə</h6>
-               <a href="tel:info@evelani.az"><span class="__cf_email__" data-cfemail="422b2c242d022734272e232c2b6c2338">[email&#160;protected]</span></a>
+               <a href="tel:info@estate.az"><span class="__cf_email__" data-cfemail="422b2c242d022734272e232c2b6c2338">[email&#160;protected]</span></a>
                <a href="tel:info@evelani.az"><span class="__cf_email__" data-cfemail="ec85828a83ac899a89808d8285c28d96">[email&#160;protected]</span></a>
                <a href="cdn-cgi/l/email-protection.html#e1888f878ea18497848d808f88cf809b"><span class="__cf_email__" data-cfemail="4b22252d240b2e3d2e272a2522652a31">[email&#160;protected]</span></a>
             </div>
