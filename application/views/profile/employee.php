@@ -16,7 +16,7 @@
 			</div>
 			<div class="col-md-12 col-lg-5 col-xl-5">
 				<h5><?php echo $staff['name']; ?></h5>
-				<p><?php echo ucfirst($staff['role'])?> / <?php echo html_escape($staff['designation_name']); ?></p>
+				<p><?php echo ucfirst($staff['role'])?> </p>
 				<ul>
 					<li><div class="icon-holder" data-toggle="tooltip" data-original-title="<?=translate('department')?>"><i class="fas fa-user-tie"></i></div> <?=(!empty($staff['department_name']) ? $staff['department_name'] : 'N/A'); ?></li>
 					<li><div class="icon-holder" data-toggle="tooltip" data-original-title="<?=translate('birthday')?>"><i class="fas fa-birthday-cake"></i></div> <?=_d($staff['birthday'])?></li>

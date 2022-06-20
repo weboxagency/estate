@@ -71,16 +71,10 @@
          <div class="footer-secondary__container container">
             <div class="footer-secondary__column footer-nav  d-lg-flex">
                <h6>Ümumi</h6>
-
-               <a href="<?= base_url() ?>">İstifadəçi razılaşması</a>
-               <a href="az/reklam-yerlesdirmek.html">Reklam yerləşdir</a>
-               <a href="az/sitemap.html" target="_blank">Saytın xəritəsi</a>
-               <p class="footer-nav--date">© 2021 - <?= date("Y") ?> Estate.az</p>
-
-               <a href="az/istifadeci-razilasmasi"><?= translate('user_agreement') ?></a>
+               <a href="<?= base_url() ?>istifadeci-razilasmasi"><?= translate('user_agreement') ?></a>
                <a href="az/reklam-yerlesdirmek.html"><?= translate('add_advertisement') ?></a>
-               <a href="az/sitemap" target="_blank"><?= translate('sitemap') ?></a>
-
+               <a href="<?= base_url() ?>sitemap" target="_blank"><?= translate('sitemap') ?></a>
+               <p class="footer-nav--date">© 2021 - <?= date("Y") ?> Estate.az</p>
             </div>
             <div class="footer-secondary__column footer-nav d-none d-lg-flex">
                <h6>Qısayollar</h6>
@@ -2049,26 +2043,10 @@ function afterComplain()
                $( '[x-search-form] [x-property_type] [type="checkbox"]' ).attr("disabled", false);
            }
            // $( '[x-search-form] #propertyType .dropdown-toggle span strong' ).text('(' +count+ ')');
-       } );
+       });
    
-                   $.post( 'https://evelani.az/az/form-action' , {
-                               'type' : type ,
-               'property_type' : property_types.join() ,
-               '_token' : csrf
-           } ).done( function( res )
-           {
-               if( res[ 'status' ] === 'success' && typeof ( res[ 'action' ] ) !== 'undefined' )
-               {
-                   $( '[x-search-form]' ).attr( 'action' , res[ 'action' ] );
-               } else
-               {
-                   error( res.exception !== undefined ? ( res.exception.message + ' | Line: ' + res.exception.line + ' | File: ' + res.exception.file ) : ( res.warning !== undefined ? res.warning : '' ) );
-               }
-           } ).fail( function()
-           {
-               error( 'Network error!' );
-           } );
-           }
+
+    }
    
    $(function() {
        $(document).on('keyup', function(evt) {

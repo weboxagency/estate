@@ -479,6 +479,11 @@ class Home_model extends MY_Model
         
     }
     
+    public function banners()
+    {
+        $query = $this->db->query("SELECT * FROM banners");
+        return $query->num_rows() > 0 ? $query->result_array() : NULL;   
+    }
 
     public function getDefaultBranch()
     {

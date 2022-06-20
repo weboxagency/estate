@@ -22,12 +22,12 @@ class Ads_banners_model extends MY_Model
     public function banner_save($data)
     {
         $arrayBanner = array(
-            'page' => $data['page'],
+            'page'          => $data['page'],
             'external_link' => $data['external_link'],
-            'side' => $data['side'],
-            'type' => $data['type'],
-            'img' => $data['img'],
-            'status' => $data['status']
+            'side'          => $data['side'],
+            'type'          => $data['type'],
+            'img'           => $data['img'],
+            'status'        => $data['status']
         );
 
         $this->db->insert('banners', $arrayBanner);
