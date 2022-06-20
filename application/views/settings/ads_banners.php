@@ -15,9 +15,11 @@
 						<thead>
 							<tr>
 								<th width="50"><?=translate('id')?></th>
-								<th><?=translate('image')?></th>
+								<th><?=translate('page')?></th>
 								<th><?=translate('external_link')?></th>
-								<th><?=translate('position')?></th>
+								<th><?=translate('side')?></th>
+								<th><?=translate('type')?></th>
+								<th><?=translate('image')?></th>
 								<th><?=translate('status')?></th>
 								<th class="no-sort"><?=translate('action')?></th>
 							</tr>
@@ -25,13 +27,15 @@
 						<tbody>
 							<?php 
 								$count = 1;
-								foreach($banners as $row):
+								foreach($banners as $row) {
 							?>
 							<tr>
 								<td><?php echo $count++; ?></td>
-								<td><img src="<?= base_url($row['file'])?>" height="100"></td>
+								<td><?php echo $row['page'] ?></td>
 								<td><?php echo $row['external_link'];?></td>
-								<td><?php echo $row['position'];?></td>
+								<td><?php echo $row['side'];?></td>
+								<td><?php echo $row['type'];?></td>
+								<td><img src="<?php echo base_url($row['img']) ?>" alt=""></td>
 								<td>
 									<?php if (get_permission('cities', 'is_edit')) { ?>
 										<div class="material-switch ml-xs">
@@ -50,34 +54,21 @@
 									<?php echo btn_delete('settings/delete_banner/' . $row['id']);?>
 								</td>
 							</tr>
-							<?php endforeach; ?>
+							<?php } ?>
 						</tbody>
 					</table>
 				</div>
 			</div>
 			<div class="tab-pane <?=(!empty($validation_error) ? 'active' : '')?>" id="create">
 				<?php echo form_open_multipart($this->uri->uri_string(), array('class' => 'form-horizontal form-bordered validate')); ?>
-				
-					<div class="form-group mt-md">
-						<label class="col-md-3 control-label"><?=translate('banner_image')?> <span class="required">*</span></label>
-						<div class="col-md-6">
-							<input type="file" class="dropify" id="dropify" name="file">
-							<span class="error"><?=form_error('file') ?></span>
-						</div>
-					</div>
 
-					<div class="form-group mt-md">
-						<label class="col-md-3 control-label" for="position"><?=translate('position')?> <span class="required">*</span></label>
-						<div class="col-md-6">
-							<select class="form-control" name="position" id="position">
-								<option disabled><?= translate('please_select_one_item') ?></option>
-								<option value="left"><?= translate('left_banner') ?></option>
-								<option value="right"><?= translate('right_banner') ?></option>
-								<option value="center"><?= translate('center_banner') ?></option>
-							</select>
-							<span class="error"><?=form_error('position') ?></span>
-						</div>
-					</div>
+                    <div class="form-group mt-md">
+                        <label class="col-md-3 control-label"><?=translate('page')?> <span class="required">*</span></label>
+                        <div class="col-md-6">
+                            <input type="text" class="form-control" placeholder="ex: yeni-tikili" name="page">
+                            <span class="error"><?=form_error('page') ?></span>
+                        </div>
+                    </div>
 
 					<div class="form-group mt-md">
 						<label class="col-md-3 control-label"><?=translate('external_link')?> <span class="required">*</span></label>
@@ -86,6 +77,48 @@
 							<span class="error"><?=form_error('external_link') ?></span>
 						</div>
 					</div>
+
+                    <div class="form-group mt-md">
+                        <label class="col-md-3 control-label" for="side"><?=translate('side')?> <span class="required">*</span></label>
+                        <div class="col-md-6">
+                            <select class="form-control" name="side" id="side">
+                                <option disabled selected><?= translate('please_select_one_item') ?></option>
+                                <option value="left"><?= translate('left') ?></option>
+                                <option value="right"><?= translate('right') ?></option>
+                                <option value="center"><?= translate('center') ?></option>
+                                <option value="top"><?= translate('top') ?></option>
+                            </select>
+                            <span class="error"><?=form_error('side') ?></span>
+                        </div>
+                    </div>
+
+                    <div class="form-group mt-md">
+                        <label class="col-md-3 control-label" for="type"><?=translate('type')?> <span class="required">*</span></label>
+                        <div class="col-md-6">
+                            <select class="form-control type" name="type" id="type">
+                                <option disabled selected><?= translate('please_select_one_item') ?></option>
+                                <option value="image"><?= translate('image') ?></option>
+                                <option value="iframe"><?= translate('iframe') ?></option>
+                            </select>
+                            <span class="error"><?=form_error('type') ?></span>
+                        </div>
+                    </div>
+
+                    <div class="form-group mt-md for-image">
+                        <label class="col-md-3 control-label"><?=translate('banner_image')?> <span class="required">*</span></label>
+                        <div class="col-md-6">
+                            <input type="file" class="dropify" id="dropify" name="img">
+                            <span class="error"><?=form_error('file') ?></span>
+                        </div>
+                    </div>
+
+                    <div class="form-group mt-md for-iframe">
+                        <label class="col-md-3 control-label"><?=translate('iframe')?> <span class="required">*</span></label>
+                        <div class="col-md-6">
+                            <textarea name="img" id="img" class="form-control" cols="30" rows="10"></textarea>
+                            <span class="error"><?=form_error('img') ?></span>
+                        </div>
+                    </div>
 
 					<div class="form-group mt-md">
 						<label class="col-md-3 control-label" for="status"><?=translate('status')?> <span class="required">*</span></label>
@@ -114,3 +147,21 @@
 		</div>
 	</div>
 </section>
+
+<script>
+    $('.for-image').hide();
+    $('.for-iframe').hide();
+    $('.type').change(function () {
+        var type = $(this).val();
+        if (type=="image")
+        {
+            $('.for-image').show();
+            $('.for-iframe').hide();
+        }
+        else
+        {
+            $('.for-image').hide();
+            $('.for-iframe').show();
+        }
+    })
+</script>

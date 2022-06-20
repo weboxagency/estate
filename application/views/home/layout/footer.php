@@ -71,19 +71,16 @@
          <div class="footer-secondary__container container">
             <div class="footer-secondary__column footer-nav  d-lg-flex">
                <h6>Ümumi</h6>
-               <a href="az/istifadeci-razilasmasi.html">İstifadəçi razılaşması</a>
-               <a href="az/haqqimizda.html">Haqqımızda</a>
-               <a href="az/balansi-artirmaq.html">Balansı artır</a>
-               <a href="az/reklam-yerlesdirmek.html">Reklam yerləşdir</a>
-               <a href="az/sitemap.html" target="_blank">Saytın xəritəsi</a>
-               <p class="footer-nav--date">© 2020 - 2022 Evelani.az</p>
+               <a href="az/istifadeci-razilasmasi"><?= translate('user_agreement') ?></a>
+               <a href="az/reklam-yerlesdirmek.html"><?= translate('add_advertisement') ?></a>
+               <a href="az/sitemap" target="_blank"><?= translate('sitemap') ?></a>
             </div>
             <div class="footer-secondary__column footer-nav d-none d-lg-flex">
                <h6>Qısayollar</h6>
-               <a href="az/agentlikler.html">Agentliklər</a>
-               <a href="az/yasayis-kompleksleri.html">Yaşayış kompleksləri</a>
-               <a href="az/insaat-sirketleri.html">İnşaat şirkətləri</a>
-               <a href="az/biznez-merkezleri.html">Biznes mərkəzləri</a>
+               <a href="az/yeni-elanlar"><?= translate('new_listings') ?></a>
+               <a href="az/yeni-tikili"><?= translate('new_buildings') ?></a>
+               <a href="az/kohne-tikili"><?= translate('old_buildings') ?></a>
+               <a href="az/heyet-evi-bag"><?= translate('garden_villa') ?></a>
             </div>
             <div class="footer-secondary__column footer-contact d-none d-md-flex">
                <h6>Əlaqə</h6>
