@@ -42,7 +42,6 @@ class Ads_model extends MY_Model
             'max_floor'  => $data['max_floor'],
             'address'  => $data['address'],
             'description'  => $data['description'],
-            'description'  => $data['description']
 
         );
 
