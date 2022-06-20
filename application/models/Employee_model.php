@@ -15,7 +15,7 @@ class Employee_model extends MY_Model
     public function save($data, $role = null, $id = null)
     {
         $inser_data1 = array(
-            'branch_id' => $this->application_model->get_branch_id(),
+            'branch_id' => 1,
             'name' => $data['name'],
             'sex' => $data['sex'],
             'religion' => $data['religion'],
@@ -80,16 +80,14 @@ class Employee_model extends MY_Model
     // GET SINGLE EMPLOYEE DETAILS
     public function getSingleStaff($id = '')
     {
-        $this->db->select('staff.*,staff_designation.name as designation_name,staff_department.name as department_name,login_credential.role as role_id,login_credential.active,login_credential.username, roles.name as role');
+        $this->db->select('staff.*,login_credential.role as role_id,login_credential.active,login_credential.username, roles.name as role');
         $this->db->from('staff');
         $this->db->join('login_credential', 'login_credential.user_id = staff.id and login_credential.role != "6" and login_credential.role != "7"', 'inner');
         $this->db->join('roles', 'roles.id = login_credential.role', 'left');
-        $this->db->join('staff_designation', 'staff_designation.id = staff.designation', 'left');
-        $this->db->join('staff_department', 'staff_department.id = staff.department', 'left');
+        // $this->db->join('staff_designation', 'staff_designation.id = staff.designation', 'left');
+        // $this->db->join('staff_department', 'staff_department.id = staff.department', 'left');
         $this->db->where('staff.id', $id);
-        if (!is_superadmin_loggedin()) {
-            $this->db->where('staff.branch_id', get_loggedin_branch_id());
-        }
+        
         $query = $this->db->get();
         if ($query->num_rows() == 0) {
             show_404();
@@ -98,16 +96,16 @@ class Employee_model extends MY_Model
     }
 
     // get staff all list
-    public function getStaffList($branchID = '', $role_id, $active = 1)
+    public function getStaffList($branchID = '', $role_id='', $active = 1)
     {
-        $this->db->select('staff.*,staff_designation.name as designation_name,staff_department.name as department_name,login_credential.role as role_id, roles.name as role');
+        $this->db->select('staff.*,login_credential.role as role_id, roles.name as role');
         $this->db->from('staff');
         $this->db->join('login_credential', 'login_credential.user_id = staff.id and login_credential.role != "6" and login_credential.role != "7"', 'inner');
         $this->db->join('roles', 'roles.id = login_credential.role', 'left');
-        $this->db->join('staff_designation', 'staff_designation.id = staff.designation', 'left');
-        $this->db->join('staff_department', 'staff_department.id = staff.department', 'left');
+        // $this->db->join('staff_designation', 'staff_designation.id = staff.designation', 'left');
+        // $this->db->join('staff_department', 'staff_department.id = staff.department', 'left');
         if ($branchID != "") {
-            $this->db->where('staff.branch_id', $branchID);
+            $this->db->where('staff.branch_id', 1);
         }
         $this->db->where('login_credential.role', $role_id);
         $this->db->where('login_credential.active', $active);

@@ -49,6 +49,7 @@ class User_model extends MY_Model
         $this->db->select('*');
         $this->db->from('ads_users');
         $this->db->where('email', $email);
+        $this->db->where('is_registered', 1);
         $this->db->limit(1);
         $query = $this->db->get();
         if ($query->num_rows() == 1) {

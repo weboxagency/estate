@@ -262,14 +262,18 @@ class Settings extends Admin_Controller
             $this->form_validation->set_rules('type', translate('type'), 'required');
             $this->form_validation->set_rules('status', translate('status'), 'required');
 
-            if ($this->form_validation->run() == true) {
+            if ($this->form_validation->run() == true) 
+            {
                 $post = $this->input->post();
                 $response = $this->bmodel->banner_save($post);
-                if ($response) {
+                if ($response) 
+                {
                     set_alert('success', translate('information_has_been_saved_successfully'));
                 }
                 redirect(base_url('settings/ads_banners'));
-            } else {
+            } 
+            else 
+            {
                 $this->data['validation_error'] = true;
             }
         }

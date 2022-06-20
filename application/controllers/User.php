@@ -83,7 +83,7 @@ class User extends Frontend_Controller
                         }
                         elseif ($login_credential->is_registered == 0) 
                         {
-                           $output['email'] = [ucfirst(translate('unregistered_account'))];
+                           $output['email'] = [ucfirst(translate('username_or_password_incorrect'))];
                             
                             $response = [
                                 "status"        => "success",
@@ -767,7 +767,15 @@ class User extends Frontend_Controller
 
                     if ($this->form_validation->run() === TRUE)         
                     {
-
+                        $config = [
+                            "phone"                 => "0".$mobile,
+                            "mobile"                => "+994".$mobile,
+                            "mobile_format_second"  => $mobile,
+                            "mobileBeautified"      => formatPhoneNumber("","0".$mobile)['national'],
+                            "provider_name"         => provider_name(formatPhoneNumber("","0".$mobile)['provider'])
+                        ];
+                        $this->db->where('id',logged_user_id());
+                        $this->db->update('ads_users', $config);
                     }
                     else
                     {

@@ -154,7 +154,7 @@
                         </div>
                         <div class="form-item form-item--large">
                           <label for="mobile"><?= translate('phone_number') ?></label>
-                          <input onkeypress="return isNumberKey(event)" type="number" class="form-item__element" name="mobile" placeholder="<?= translate('phone_number') ?>">
+                          <input onkeypress="return isNumberKey(event)" type="number" maxlength="10" class="form-item__element" name="mobile" placeholder="<?= translate('phone_number') ?>" value="0">
                         </div>
                         <div class="form-item form-item--small">
                           <label for="password"><?= translate('password') ?></label>
