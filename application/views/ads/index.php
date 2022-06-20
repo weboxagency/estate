@@ -77,12 +77,13 @@
 	                        	} else {
 	                        		echo "Biznes mərkəzi";
 	                        	}
+
                     		?>
                     	</td>
                         <td><?= $row['connection_type'];?></td>
-                        <td><?= $row['property_type'];?></td>
+                        <td><?= estateTypeName($row['property_type'])['estate_type_name'];?></td>
                         <td><?= $row['price'];?> AZN</td>
-                        <td><?= $row['price']/$row['area'];?> AZN</td>
+                        <td><?= $row['average_price'];?> AZN</td>
                         <td><?= $row['room'];?></td>
                         <td><?= $row['area'];?> m<sup>2</sup></td>
                         <td><?= $row['land_area'];?> sot</td>
@@ -91,7 +92,7 @@
                         <td><?= $row['repair']==1 ? 'Təmirli' : 'Təmirsiz';?></td>
                         <td><?= $row['deed'];?></td>
                         <td><?= $row['mortgage'];?></td>
-                        <td><?= $row['description'];?></td>
+                        <td><?= $row['property_description'];?></td>
                         <td><?= $row['user_type']==1 ? 'Mülkiyyətçi' : 'Vasitəçi';?></td>
                         <td><?= $row['name'];?></td>
                         <td><?= $row['email'];?></td>

@@ -984,3 +984,4 @@ function insertPagination($base_url, $cur_page, $number_of_pages, $prev_next=tru
     
     echo '</div>';
 } 
+

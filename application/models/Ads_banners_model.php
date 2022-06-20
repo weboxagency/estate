@@ -26,12 +26,17 @@ class Ads_banners_model extends MY_Model
             'external_link' => $data['external_link'],
             'side'          => $data['side'],
             'type'          => $data['type'],
-            'img'           => $data['img'],
+            'img'           => $this->uploadBannerImage('banners'),
             'status'        => $data['status']
         );
 
         $this->db->insert('banners', $arrayBanner);
         $id = $this->db->insert_id();
+
+        if($data['status']==1)
+        {
+            $query = $this->db->query("UPDATE banners SET status = 0 WHERE side='".$data['side']."' AND page='".$data['page']."' AND id!='".$id."'");
+        }
 
         if ($this->db->affected_rows() > 0) {
             return true;
