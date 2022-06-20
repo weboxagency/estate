@@ -9,7 +9,34 @@ class MY_Model extends CI_Model {
 	public function hash($password) {
 		return hash("sha512", $password . config_item("encryption_key"));
 	}
-	
+		
+	public function uploadBannerImage() {
+		$return_photo = 'defualt.png';
+		$old_user_photo = $this->input->post('img');
+		if (isset($_FILES["img"]) && !empty($_FILES['img']['name'])) {
+			$config['upload_path'] = './uploads/banners/';
+			$config['allowed_types'] = 'jpg|png|jpeg';
+			$config['overwrite'] = FALSE;
+			$config['encrypt_name'] = TRUE;
+			$this->upload->initialize($config);
+			if ($this->upload->do_upload("img")) {
+	            // need to unlink previous photo
+	            if (!empty($old_user_photo)) {
+	            	$unlink_path = 'uploads/banners/';
+	                if (file_exists($unlink_path . $old_user_photo)) {
+	                    @unlink($unlink_path . $old_user_photo);
+	                }
+	            }
+				$return_photo = $this->upload->data('file_name');
+			}
+		}else{
+			if (!empty($old_user_photo)){
+				$return_photo = $old_user_photo;
+			}
+		}
+		return $return_photo;
+	}
+
 	public function uploadImage($role) {
 		$return_photo = 'defualt.png';
 		$old_user_photo = $this->input->post('old_user_photo');

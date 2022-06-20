@@ -557,7 +557,7 @@ $.extend(theme.PluginDatePicker.defaults, {
 					url: base_url + "ads/is_active",
 					data: {
 						id: id,
-						status: state
+						status: state					
 					},
 					dataType: "json",
 					success: function (data) {

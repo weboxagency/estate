@@ -261,6 +261,7 @@ class Settings extends Admin_Controller
             $this->form_validation->set_rules('side', translate('side'), 'required');
             $this->form_validation->set_rules('type', translate('type'), 'required');
             $this->form_validation->set_rules('status', translate('status'), 'required');
+            $this->form_validation->set_rules('img', 'picture',array(array('handle_upload', array($this->application_model, 'profilePicUpload'))));
 
             if ($this->form_validation->run() == true) 
             {
@@ -292,21 +293,80 @@ class Settings extends Admin_Controller
         $status = $this->input->post('status');
         if ($status == 'true') {
             $arrayData['status'] = 1;
+            $afterStatus = 0;
         } else {
             $arrayData['status'] = 0;
+            $afterStatus = 1;
         }
 
         $this->db->where('id', $id);
-        $this->db->update('right_left_banners', $arrayData);
+        $this->db->update('banners', $arrayData);
+        $query = $this->db->query("SELECT * FROM banners WHERE id='".$id."'");
+        $rows = $query->result_array()[0];
+        
+        $query = $this->db->query("UPDATE banners SET status = '".$afterStatus."' WHERE side='".$rows['side']."' AND page='".$rows['page']."' AND id!='".$id."'");
+        
+        
+
         $return = array('msg' => translate('information_has_been_updated_successfully'), 'status' => true);
         echo json_encode($return);
+    }
+
+    public function edit_banner($id='')
+    {
+
+        if ($this->input->post('submit') == 'edit') {
+            $this->form_validation->set_rules('page', translate('page'), 'required');
+            $this->form_validation->set_rules('side', translate('side'), 'required');
+            $this->form_validation->set_rules('type', translate('type'), 'required');
+            $this->form_validation->set_rules('status', translate('status'), 'required');
+            $this->form_validation->set_rules('img', 'picture',array(array('handle_upload', array($this->application_model, 'profilePicUpload'))));
+
+            if ($this->form_validation->run() == true) 
+            {
+                $arrayBanner = array(
+                'page'          => $this->input->post('page'),
+                'external_link' => $this->input->post('external_link'),
+                'side'          => $this->input->post('side'),
+                'type'          => $this->input->post('type'),
+                'img'           => $this->bmodel->uploadBannerImage('banners'),
+                'status'        => $this->input->post('status')
+                );
+
+                $this->db->where('id', $id);
+                $this->db->update('banners', $arrayBanner);
+
+                if($this->input->post('status')==1)
+                {
+                    $afterStatus = 0;
+                }
+                else
+                {
+                    $afterStatus = 1;
+                }
+                $query = $this->db->query("UPDATE banners SET status = '".$afterStatus."' WHERE side='".$this->input->post('side')."' AND page='".$this->input->post('page')."' AND id!='".$id."'");
+            } 
+            else 
+            {
+                $this->data['validation_error'] = true;
+            }
+        }
+
+
+        $query                          = $this->db->query("SELECT * FROM banners WHERE id='".$id."'");
+
+        $this->data['banner']           = $query->result_array()[0];
+        $this->data['title']            = translate('banners');
+        $this->data['sub_page']         = 'settings/edit_banner';
+        $this->data['main_menu']        = 'settings';
+        $this->load->view('layout/index', $this->data);
     }
 
     public function delete_banner($id = '')
     {
         if (is_superadmin_loggedin()) {
             $this->db->where('id', $id);
-            $this->db->delete('right_left_banners');
+            $this->db->delete('banners');
         } else {
             redirect(base_url(), 'refresh');
         }

@@ -52,7 +52,7 @@
     	});
     </script>
   </head>
-  <div class="lotriver-top-banner" id="js-lotriver-top-banner">
+     <div class="lotriver-top-banner" id="js-lotriver-top-banner">
       <div style="visibility:hidden;height:0px;left:-1000px;position:absolute;">
         <iframe id="ar_container_1" width="1" height="1" marginwidth="0" marginheight="0" scrolling="no" frameborder="0"></iframe>
       </div>
