@@ -12,12 +12,12 @@
          <div class="search-first">
             <select class="search-select p-0" type-select name="type">
                 <?php foreach ($ads_type as $value): ?>
-               <option value="<?= $value['id'] ?>"><?= $value['type_name'] ?></option>
+               <option value="<?= $value['id'] ?>"><?= translate($value['type_name']) ?></option>
                 <?php endforeach; ?>
             </select>
             <div class="home-search">
                <div class="caption">
-                  <span>Satış</span>
+                  <span><?= translate('sale') ?></span>
                   <svg class="icon icon-down">
                      <use xlink:href="<?= base_url() ?>assets/site/img/icons/icons.svg#icon-down"></use>
                   </svg>

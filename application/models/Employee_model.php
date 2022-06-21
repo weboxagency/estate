@@ -65,7 +65,7 @@ class Employee_model extends MY_Model
             $inser_data1['staff_id'] = $data['staff_id_no'];
             // UPDATE ALL INFORMATION IN THE DATABASE
             if (!is_superadmin_loggedin()) {
-                $this->db->where('branch_id', get_loggedin_branch_id());
+                $this->db->where('branch_id', 1);
             }
             $this->db->where('id', $data['staff_id']);
             $this->db->update('staff', $inser_data1);

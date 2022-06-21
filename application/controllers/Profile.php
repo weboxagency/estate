@@ -28,46 +28,6 @@ class Profile extends Admin_Controller
     {
         $userID = get_loggedin_user_id();
         $loggedinRoleID = loggedin_role_id();
-        if ($loggedinRoleID == 6) {
-            if ($_POST) {
-                $this->form_validation->set_rules('name', translate('name'), 'trim|required');
-                $this->form_validation->set_rules('relation', translate('relation'), 'trim|required');
-                $this->form_validation->set_rules('occupation', translate('occupation'), 'trim|required');
-                $this->form_validation->set_rules('income', translate('income'), 'trim|numeric');
-                $this->form_validation->set_rules('mobileno', translate('mobile_no'), 'trim|required');
-                $this->form_validation->set_rules('email', translate('email'), 'trim|valid_email');
-                $this->form_validation->set_rules('username', translate('username'), 'trim|required|callback_unique_username');
-                $this->form_validation->set_rules('user_photo', 'profile_picture',array(array('handle_upload', array($this->application_model, 'profilePicUpload'))));
-                $this->form_validation->set_rules('facebook', 'Facebook', 'valid_url');
-                $this->form_validation->set_rules('twitter', 'Twitter', 'valid_url');
-                $this->form_validation->set_rules('linkedin', 'Linkedin', 'valid_url');
-                if ($this->form_validation->run() == true) {
-                    $data = $this->input->post();
-                    $this->profile_model->parentUpdate($data);
-                    set_alert('success', translate('information_has_been_updated_successfully'));
-                    redirect(base_url('profile')); 
-                }
-            }
-            $this->data['parent'] = $this->parents_model->getSingleParent($userID);
-            $this->data['sub_page'] = 'profile/parent';
-        } elseif ($loggedinRoleID == 7) {
-            if ($_POST) {
-                $this->form_validation->set_rules('first_name', translate('first_name'), 'trim|required');
-                $this->form_validation->set_rules('last_name', translate('last_name'), 'trim|required');
-                $this->form_validation->set_rules('mobileno', translate('mobile_no'), 'trim|required');
-                $this->form_validation->set_rules('email', translate('email'), 'trim|valid_email');
-                $this->form_validation->set_rules('username', translate('username'), 'required|callback_unique_username');
-                $this->form_validation->set_rules('user_photo', 'profile_picture',array(array('handle_upload', array($this->application_model, 'profilePicUpload'))));
-                if ($this->form_validation->run() == true) {
-                    $data = $this->input->post();
-                    $this->profile_model->studentUpdate($data);
-                    set_alert('success', translate('information_has_been_updated_successfully'));
-                    redirect(base_url('profile'));
-                }
-            }
-            $this->data['student'] = $this->student_model->getSingleStudent($userID);
-            $this->data['sub_page'] = 'profile/student';
-        } else {
             if ($_POST) {
                 $this->form_validation->set_rules('name', translate('name'), 'trim|required');
                 $this->form_validation->set_rules('mobile_no', translate('mobile_no'), 'trim|required');
@@ -93,7 +53,7 @@ class Profile extends Admin_Controller
             }
             $this->data['staff'] = $this->employee_model->getSingleStaff($userID);
             $this->data['sub_page'] = 'profile/employee';
-        }
+        
 
         $this->data['title'] = translate('profile') . " " . translate('edit');
         $this->data['main_menu'] = 'profile';

@@ -764,7 +764,7 @@ class User extends Frontend_Controller
                         ]
                     );
                     $mobile       = $this->input->post('mobile', TRUE);
-
+                    $user_info = $this->um->getUserInfo(logged_user_id());
                     if ($this->form_validation->run() === TRUE)         
                     {
                         $config = [
@@ -776,6 +776,27 @@ class User extends Frontend_Controller
                         ];
                         $this->db->where('id',logged_user_id());
                         $this->db->update('ads_users', $config);
+
+                        $response = [
+                            "status"        => "success",
+                            "user"          => [
+                                "agency_id"         => null,
+                                "balance"           => 0,
+                                "created_at"        => $user_info['register_at'],
+                                "email"             => $user_info['email'],
+                                "id"                => (int)logged_user_id(),
+                                "isAgencyEmployee"  => false,
+                                "isDirectior"       => false,
+                                "mobile"            => $user_info['mobile'],
+                                "mobileBeautified"  => $user_info['mobileBeautified'],
+                                "name"              => $user_info['name'],
+                                "present"           => 0,
+                                "type"              => "customer",
+                                "updated_at"        => date("Y-m-d H:i:s")
+                            ],
+                            "validations"   => []
+                        ];
+                        echo json_encode($response);
                     }
                     else
                     {

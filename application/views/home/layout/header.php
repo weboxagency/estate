@@ -82,11 +82,11 @@
              <div class="dropdown-hover__menu">
                 <div class="dropdown-menu__group dropdown-menu__header" x-notification-area style="display: none;">
                    <span class="notification-count"><?= translate('notifications') ?> (<span x-notification-count>0</span>)</span>
-                   <!-- <form action="https://estate.az/notification/clear" x-edit-form x-target="clearNotifications">
+                   <form action="#" x-edit-form x-target="clearNotifications">
                       <button>
                       <span class="notification-clear">Təmizlə</span>
                       </button>
-                   </form> -->
+                   </form>
                 </div>
                 <div class="dropdown-menu__group dropdown-menu__header" x-no-notification-area>
                    <span class="notification-count">Bildiriş yoxdur</span>
