@@ -53,15 +53,22 @@
     </script>
   </head>
      <div class="lotriver-top-banner" id="js-lotriver-top-banner">
+      <?php if(!empty(banners("home","top"))){ ?>
+      <?php if (banners("home","top")['type']=='iframe') { ?>
       <div style="visibility:hidden;height:0px;left:-1000px;position:absolute;">
         <iframe id="ar_container_1" width="1" height="1" marginwidth="0" marginheight="0" scrolling="no" frameborder="0"></iframe>
       </div>
+      <?php } } ?>
+      <?php if(!empty(banners("home","top"))){ ?>
+      <?php if (banners("home","top")['type']=='image') { ?>
     <div id="ad_ph_1" style="display: block; width: 100%; height: 120px;">
       <div style="display:block;width:100%;height:100%;margin:0 auto;line-height:100%;text-align:center;">
-        <a href="https://ad.adriver.ru/cgi-bin/click.cgi?sid=220686&amp;ad=724514&amp;bid=7391282&amp;bt=43&amp;bn=1&amp;pz=0&amp;nid=0&amp;ref=<?= base_url() ?>" onclick="ar_clickCoord.calc(event, this, document.getElementById('ad_ph_1')); return ar_sendPix('');" target="_blank"><img id="ar_cr_1460892" src="https://servers2.adriver.ru/images/0007391/0007391282/0/yasamdesc.png" border="0" alt="AdRiver" style="display:inline;height:100%;max-width:1903px">
+        <a href="#" target="_blank">
+          <img id="ar_cr_1460892" src="<?= base_url() ?>uploads/banners/<?= banners("home","top")['img'] ?>" border="0" alt="AdRiver" style="display:inline;height:100%;max-width:1903px">
         </a>
       </div>
     </div>
+  <?php } } ?>
   </div>
   <body class="scroll" id="body">
     <div id="loading" class="loading  no-blur" style="display: none;">

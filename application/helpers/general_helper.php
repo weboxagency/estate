@@ -346,6 +346,18 @@ function estateTypeName($id='')
     return  $query->num_rows() > 0 ? $query->result_array()[0] : NULL;
 }
 
+function banners($page,$side)
+{
+    $CI = &get_instance();
+    $CI->db->select('*');
+    $CI->db->from('banners');
+    $CI->db->where('page', $page);
+    $CI->db->where('side', $side);
+    $CI->db->where('status', 1);
+    $query = $CI->db->get();
+    return  $query->num_rows() > 0 ? $query->result_array()[0] : NULL;
+}
+
 function aboutConfig($val)
 {
     $CI = &get_instance();
