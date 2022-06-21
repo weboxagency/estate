@@ -1312,8 +1312,9 @@
                 {
                     if( res[ 'status' ] === 'success' )
                     {
-                        loading();
-                    } else
+                        loading(1);
+                    } 
+                    else
                     {
                         error( res.exception !== undefined ? ( res.exception.message + ' | Line: ' + res.exception.line + ' | File: ' + res.exception.file ) : ( res.warning !== undefined ? res.warning : '' ) );
                     }

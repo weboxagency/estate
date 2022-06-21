@@ -47,9 +47,9 @@
                </ul>
             </div>
                <div class="find-home">
-                  <a href="https://evelani.az/az/my-homes"><span>Mənə ev tap</span></a>
+                  <a href="https://evelani.az/az/my-homes"><span><?= translate('agency_profile'); ?></span></a>
                   <div class="pretty p-switch p-fill newclass">
-                     <input x-activate-url="https://evelani.az/az/activate-find-me-home-function" type="checkbox" />
+                     <input x-activate-url="<?= base_url() ?>activate-agency-profile" type="checkbox" checked />
                      <div class="state"><label></label></div>
                   </div>
                   <div class="find-home--desc">

@@ -1180,11 +1180,10 @@
 
 <!-- AGENTLİKLƏR -->
 
-
-<!-- <div class="announcement-group">
+<div class="announcement-group">
    <div class="announcement-group__header">
       <h4 class="announcement-title"><?= translate('agency') ?></h4>
-      <a class="link-button link-button--tertiary" href="az/agentlikler.html"><?= translate('see_them_all') ?></a>
+      <a class="link-button link-button--tertiary" href="<?= base_url() ?>"><?= translate('see_them_all') ?></a>
    </div>
    <div class="announcement-group__body">
       <a class="announcement announcement--medium" href="az/agentlik/70.html">
@@ -1280,7 +1279,7 @@
          </div>
       </a>
    </div>
-</div> -->
+</div>
 
 <!-- AGENTLİKLƏR SON  -->
 

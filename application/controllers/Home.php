@@ -468,6 +468,13 @@ class Home extends Frontend_Controller
         }
     }
 
+    public function activate_agency()
+    {
+        $res['status'] = 'success';
+        $res['message'] = '';
+        echo json_encode($res);
+    }
+
     public function signin()
     {
        $res['status'] = 'error';
