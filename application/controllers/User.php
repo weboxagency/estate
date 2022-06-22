@@ -565,6 +565,7 @@ class User extends Frontend_Controller
             $this->session->set_userdata('redirect_url', current_url());
             redirect(base_url(), 'refresh');
         }
+        $this->data['main_menu']        = 'profile';
         $this->data['user_info']        = $this->um->getUserInfo(logged_user_id());
         $this->data['page_data']        = $this->home_model->get('front_cms_home_seo', array('branch_id' => 1), true);
         $this->data['main_contents']    = $this->load->view('user/profile', $this->data, true);
@@ -948,6 +949,7 @@ class User extends Frontend_Controller
             $this->session->set_userdata('redirect_url', current_url());
             redirect(base_url(), 'refresh');
         }
+        $this->data['main_menu']        = 'account';
         $this->data['user_info']        = $this->um->getUserInfo(logged_user_id());
         $this->data['page_data'] = $this->home_model->get('front_cms_home_seo', array('branch_id' => 1), true);
         $this->data['main_contents'] = $this->load->view('user/account', $this->data, true);
@@ -961,9 +963,10 @@ class User extends Frontend_Controller
             $this->session->set_userdata('redirect_url', current_url());
             redirect(base_url(), 'refresh');
         }
+        $this->data['main_menu']        = 'balance';
         $this->data['user_info']        = $this->um->getUserInfo(logged_user_id());
-        $this->data['page_data'] = $this->home_model->get('front_cms_home_seo', array('branch_id' => 1), true);
-        $this->data['main_contents'] = $this->load->view('user/balance', $this->data, true);
+        $this->data['page_data']        = $this->home_model->get('front_cms_home_seo', array('branch_id' => 1), true);
+        $this->data['main_contents']    = $this->load->view('user/balance', $this->data, true);
         $this->load->view('home/layout/index', $this->data);
     }
 
@@ -974,6 +977,7 @@ class User extends Frontend_Controller
             $this->session->set_userdata('redirect_url', current_url());
             redirect(base_url(), 'refresh');
         }
+        $this->data['main_menu']        = 'statistics';
         $this->data['user_info']        = $this->um->getUserInfo(logged_user_id());
         $this->data['page_data'] = $this->home_model->get('front_cms_home_seo', array('branch_id' => 1), true);
         $this->data['main_contents'] = $this->load->view('user/statistics', $this->data, true);

@@ -1339,14 +1339,17 @@ function afterComplain()
    
            $.post( url , {
                'id' : id ,
-               '_token' : csrf ,
+               '<?php echo $this->security->get_csrf_token_name();?>' : csrf ,
                [ column ] : active
            } ).done( function( res )
-           {
+           {    
+               res = JSON.parse(res);
                if( res[ 'status' ] === 'success' )
                {
-                   loading();
-               } else
+                // console.log('salam');
+                   loading(1);
+               } 
+               else
                {
                    error( res.exception !== undefined ? ( res.exception.message + ' | Line: ' + res.exception.line + ' | File: ' + res.exception.file ) : ( res.warning !== undefined ? res.warning : '' ) );
                }

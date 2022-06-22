@@ -71,6 +71,7 @@ $route['secilmisler'] 					= 'home/secilmisler';
 $route['complain'] 						= 'home/sikayet';
 $route['elan/(:any)'] 					= 'home/detail/$1';
 $route['axtar'] 						= 'home/search';
+$route['activate-agency-profile'] 		= 'home/activate_agency';
 
 // USER PROFILES
 $route['hesabim'] 						= 'user/profile';

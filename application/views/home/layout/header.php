@@ -1,7 +1,6 @@
 <header class="header">
       <div class="header-primary">
         <div class="header-primary__container container">
-          
           <!-- LANGUAGE DROPDOWN -->
           <div class="dropdown">
             <div class="header-language dropdown-toggle" id="languageDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -27,7 +26,8 @@
             foreach($languages as $lang) :
             ?>
                 <a class="dropdown-item " href="<?php echo base_url('home/set_language/' . html_escape($lang->lang_field));?>">
-                <span><img class="ln-img" src="<?php echo $this->home_model->getLangImage($lang->id);?>" alt="<?php echo $lang->lang_field;?>"> <?php echo ucfirst(html_escape($lang->name));?> </span>&nbsp; <?php echo ($set_lang == $lang->lang_field ? ' <i class="fas fa-check"></i>' : ''); ?>
+                <span>
+                  <img class="ln-img" src="<?php echo $this->home_model->getLangImage($lang->id);?>" alt="<?php echo $lang->lang_field;?>"> <?php echo ucfirst(html_escape($lang->name));?> </span>&nbsp; <?php echo ($set_lang == $lang->lang_field ? ' <i class="fas fa-check"></i>' : ''); ?>
                 </a>
               </li>
             <?php endforeach;?>
