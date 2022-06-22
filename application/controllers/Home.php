@@ -39,8 +39,7 @@ class Home extends Frontend_Controller
             $ads = $this->home_model->searchAdsNumber($sql);
             if ($ads) 
             {
-            redirect(base_url().'elan/'.$ads['url_slug'], 'refresh');
-                // dd($ads);
+                redirect(base_url().'elan/'.$ads['url_slug'], 'refresh');
             }
         }
         else
@@ -467,11 +466,11 @@ class Home extends Frontend_Controller
             }
         }
     }
+    
 
     public function activate_agency()
     {
         $res['status'] = 'success';
-        $res['message'] = '';
         echo json_encode($res);
     }
 

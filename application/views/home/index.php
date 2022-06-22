@@ -463,7 +463,9 @@
    <?php }  ?>
 </div>
 <div id="main-body" class="main-body page-container container">
-<div class="announcement-group">
+<!-- VIP ELANLAR -->
+
+<!-- <div class="announcement-group">
 <div class="announcement-group__header">
    <h2 class="announcement-title"><?= translate('vip_ads') ?></h2>
    <a class="link-button link-button--tertiary" href="<?= base_url() ?>elanlar/vip"><?= translate('see_them_all') ?></a>
@@ -478,7 +480,6 @@
                    <li data-target="#announcement-premium_3" data-slide-to="2"></li>
                </ol>
                <div class="emlak_sahibi">Əmlak sahibi</div>
-               <!-- <div class="satish">Satış</div> -->
                <div class="faiz" data-toggle="tooltip" title="<?= translate('mortgage') ?>">&nbsp;</div>
                <div class="kupcha" data-toggle="tooltip" title="Kupçalı">&nbsp;</div>
                <div class="carousel-inner">
@@ -525,12 +526,9 @@
          </a>
    </div>
    </div>
-</div>
+</div> -->
 
-
-
-
-
+<!-- VIP ELANLAR END -->
 
 
 <!-- YENI ELANLAR -->
@@ -663,8 +661,11 @@
    </div>
 </div>
 <!-- Yeni Elanlarin sonu -->
+
 <?php if(!empty(banners("home","center"))){ ?>
-<div class="banner-center "><img src="<?= base_url() ?>uploads/banners/<?= banners("home","center")['img'] ?>" width="100%"></div>
+<div class="banner-center ">
+   <img src="<?= base_url() ?>uploads/banners/<?= banners("home","center")['img'] ?>" width="100%">
+</div>
 <br>
 <?php } ?>
 
@@ -797,6 +798,7 @@
    </div>
 </div>
 <!-- YENI TIKILILER SONU -->
+
 
 <!-- KOHNE TIKILILER -->
 <div class="announcement-group">
