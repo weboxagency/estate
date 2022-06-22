@@ -28,12 +28,39 @@ class Ads extends Admin_Controller
     {
         if ($this->input->post('submit') == 'save') {                  
                 
-            $post = $this->input->post();
-            $response = $this->ads->ads_save($post);
-            if ($response) {
-                set_alert('success', translate('information_has_been_saved_successfully'));
-            }
-                    redirect(base_url('ads/index'));
+            $arrayAds = array(
+            'name'      => $_POST['name'],
+            'mobile' => $_POST['mobile'],
+            'email'  => $_POST['email'],
+            'user_type'  => $_POST['user_type'],
+            'has_whatsapp'  => $_POST['has_whatsapp'],
+
+            
+            'ads_pin_kod'       => mt_rand(100000, 999999),
+            'ads_type'          => $_POST['ads_type'],
+            'estate_type'       => $_POST['estate_type'],
+            'price'             => $_POST['price'],
+            'area'              => $_POST['area'],
+            'land_area'         => $_POST['land_area'],
+            'deed'              => $_POST['deed'],
+            'mortgage'          => $_POST['mortgage'],
+            'longitude'         => $_POST['longitude'],
+            'latitude'          => $_POST['latitude'],
+            'floor'             => $_POST['floor'],
+            'max_floor'         => $_POST['max_floor'],
+            'address'           => $_POST['address'],
+            'description'       => $_POST['description'],
+            'status'            => $_POST['status'],
+            'file'              => $_FILES['file'],
+
+        );
+
+            dd($arrayAds);
+
+            // if ($response) {
+            //     set_alert('success', translate('information_has_been_saved_successfully'));
+            // }
+            //         redirect(base_url('ads/index'));
                 
         }
 
@@ -98,4 +125,5 @@ class Ads extends Admin_Controller
        
         redirect(base_url(), 'refresh');   
     }
+
 }
