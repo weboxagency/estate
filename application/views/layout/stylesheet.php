@@ -15,6 +15,7 @@
 <link rel="stylesheet" href="<?php echo base_url('assets/css/skins/default.css');?>">
 <link rel="stylesheet" href="<?php echo base_url('assets/vendor/sweetalert/sweetalert-custom.css');?>">
 <link rel="stylesheet" href="<?php echo base_url('assets/vendor/dropify/css/dropify.min.css') ?>">
+<link rel="stylesheet" href="<?php echo base_url('assets/vendor/map.css') ?>">
 
 <link rel="stylesheet" href="<?php echo base_url('/assets/vendor/summernote/summernote.css') ?>">
 
