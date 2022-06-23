@@ -5,7 +5,7 @@
       <h5 class="announcement-title"><?= translate('new_ads') ?> <?= (isset($title)) ? $title : '' ?></h5>
    </div>
    <div class="announcement-group__body">
-      <?php if(!empty($new_ads_list)){ ?>
+      <?php if (!empty($new_ads_list)) { ?>
       <?php foreach ($new_ads_list as $value) { ?>
       <div class="announcement announcement--short announcement-template" x-announcement-owner="438">
          <div class="announcement-image">
@@ -135,8 +135,8 @@
          </section>
       <?php } ?>
    </div>
-   <?php if(!empty($new_ads_list)){ ?>
-   <?php echo insertPagination(base_url().'villa', $sayfa, $toplam_sayfa,true); ?>
+   <?php if (!empty($new_ads_list)) { ?>
+   <?php echo insertPagination(base_url().'qaraj', $sayfa, $toplam_sayfa,true); ?>
    <?php } ?>
 </div>
 </section>

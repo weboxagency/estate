@@ -6,6 +6,7 @@
       <h5 class="announcement-title"><?= translate('new_ads') ?> <?= (isset($title)) ? $title : '' ?></h5>
    </div>
    <div class="announcement-group__body">
+      <?php if(!empty($new_ads_list)){ ?>
       <?php foreach ($new_ads_list as $value) { ?>
       <div class="announcement announcement--short announcement-template" x-announcement-owner="438">
          <div class="announcement-image">
@@ -125,8 +126,19 @@
          </a>
       </div>
       <?php } ?>
+      <?php }else{ ?>
+         <section class="page-container container pb-0">
+         <div class="announcement-group map-announcement">
+            <div class="announcement-group__header justify-content-center">
+               <h1 class="announcement-title complex-title">Heç bir elan tapılmayıb</h1>
+            </div>
+         </div>
+         </section>
+      <?php } ?>
    </div>
+   <?php if(!empty($new_ads_list)){ ?>
    <?php echo insertPagination(base_url().'yeni-tikili', $sayfa, $toplam_sayfa,true); ?>
+   <?php } ?>
 </div>
 </section>
 </main>

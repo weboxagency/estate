@@ -1,33 +1,18 @@
-<div class="page-container container footer-container">
-   <div class="footer-thumblis">
-      <div class="thumblist-title">Populyar axtarışlar</div>
-      <ul>
-         <li><a target="_blank" href="az/axtar/satis/yeni-tikili.html">Yeni tikili mənzillər</a></li>
-         <li><a target="_blank" href="az/axtar/kiraye/heyet-evi-bag.html">Kirayə həyət evləri</a></li>
-         <li><a target="_blank" href="az/ipoteka.html">İpotekaya mənzillər</a></li>
-         <li><a target="_blank" href="az/bloq.html">Əmlak xəbərləri</a></li>
-         <li><a target="_blank" href="az/biznez-merkezleri.html">Bakıda ofislər</a></li>
-         <li><a target="_blank" href="az/axtar/satis/villa.html">Satılıq villalar</a></li>
-         <li><a target="_blank" href="az/axtar/satis7a66.html?sort=&amp;region=&amp;district=&amp;metro=&amp;placemark=&amp;page=1&amp;number=&amp;property_type%5B0%5D=on&amp;property_type%5B1%5D=on&amp;property_type%5B2%5D=on&amp;property_type%5B3%5D=on&amp;property_type%5B5%5D=on&amp;property_type%5B6%5D=on&amp;property_type%5B8%5D=on&amp;property_type%5B9%5D=on&amp;property_type%5B10%5D=on&amp;room%5B0%5D=on&amp;room%5B1%5D=on&amp;room%5B2%5D=on&amp;room%5B3%5D=on&amp;room%5B4%5D=on&amp;room%5B5%5D=on&amp;priceFrom=&amp;priceTo=&amp;areaFrom=&amp;areaTo=&amp;floorFrom=&amp;floorTo=&amp;repair=1&amp;city=1">Satılıq evlər 2020</a></li>
-         <li><a target="_blank" href="az/axtar/satis/kohne-tikili.html">Əmlak alqı-satqısı</a></li>
-         <li><a target="_blank" href="az/yasayis-kompleksleri.html">Yaşayış kompleks mənzilləri</a></li>
-         <li><a target="_blank" href="az/insaat-sirketleri.html">Bakıda təmir şirkətləri</a></li>
-         <li><a target="_blank" href="az/axtar/kiraye-gunluk/yeni-tikili.html">Günlük kirayə mənzillər</a></li>
-         <li><a target="_blank" href="az/axtar/satis/elanlar/yasamal.html">Yasamal rayonunda satılıq mənzillər</a></li>
-         <li><a target="_blank" href="az/axtar/satis/elanlar/28-mall.html">28 Mall evlər</a></li>
-         <li><a target="_blank" href="az/axtar/satis/elanlar/genclik.html">Gənclik metro evlər</a></li>
-         <li><a target="_blank" href="az/axtar/satis/elanlar/20-yanvar.html">20 Yanvar ucuz evlər</a></li>
-         <li><a target="_blank" href="az/axtar/satis9139.html?sort=&amp;region=&amp;district=&amp;metro=&amp;placemark=&amp;page=1&amp;type=1&amp;number=&amp;property_type%5B1%5D=on&amp;property_type%5B2%5D=on&amp;room%5B0%5D=on&amp;room%5B1%5D=on&amp;room%5B2%5D=on&amp;room%5B3%5D=on&amp;room%5B4%5D=on&amp;room%5B5%5D=on&amp;price_min=&amp;price_max=&amp;area_min=&amp;area_max=&amp;land_area_min=&amp;land_area_max=&amp;floor_min=&amp;floor_max=&amp;repair%5B0%5D=on&amp;city=1">Təmirsiz mənzillər</a></li>
-      </ul>
-   </div>
-</div>
 <footer class="footer">
    <div class="footer-navbar">
       <ul>
          <li>
-            <a href="az/elan-yerlesdir.html">
+            <a href="<?= base_url() ?>">
+               <svg class="icon icon-home">
+                  <use xlink:href="<?= base_url() ?>assets/site/img/icons/icons.svg#icon-home"></use>
+               </svg>
+               <p><?= translate('home') ?></p>
+            </a>
+         </li>
+         <li>
+            <a href="<?= base_url() ?>elan-yerlesdir">
                <svg class="icon icon-plusnew">
-                  <use xlink:href="assets/site/img/icons/icons.svg#icon-plusnew"></use>
+                  <use xlink:href="<?= base_url() ?>assets/site/img/icons/icons.svg#icon-plusnew"></use>
                </svg>
                <p><?= translate('add_listing') ?></p>
             </a>
@@ -35,24 +20,16 @@
          <li>
             <a href="az/axtar.html">
                <svg class="icon icon-loupe">
-                  <use xlink:href="assets/site/img/icons/icons.svg#icon-loupe"></use>
+                  <use xlink:href="<?= base_url() ?>assets/site/img/icons/icons.svg#icon-loupe"></use>
                </svg>
-               <p>Axtar</p>
+               <p><?= translate('search') ?></p>
             </a>
-         </li>
-         <li>
-            <a href="az/mene-ev-tap.html">
-               <svg class="icon icon-home">
-                  <use xlink:href="assets/site/img/icons/icons.svg#icon-home"></use>
-               </svg>
-               <p>Mənə ev tap</p>
-            </a>
-         </li>
+         </li> 
       </ul>
    </div>
    <div class="page-container container">
       <div class="footer-primary">
-         <div class="footer-primary__container container">
+         <div class="footer-primary__container container d-flex justify-content-between">
             <p><?= translate('follow_us_on_social_networks') ?></p>
             <div class="links">
                <a target="_blank" href="https://www.facebook.com/www.evelani.az" class="links-social links-facebook">
@@ -60,7 +37,7 @@
                      <use xlink:href="<?= base_url() ?>assets/site/img/icons/icons.svg#icon-facebook"></use>
                   </svg>
                </a>
-               <a target="_blank" href="https://www.instagram.com/evelani.az/" class="links-social links-instagram">
+               <a target="_blank" href="https://www.instagram.com/estate.az/" class="links-social links-instagram">
                   <svg class="icon icon-instagram">
                      <use xlink:href="<?= base_url() ?>assets/site/img/icons/icons.svg#icon-instagram"></use>
                   </svg>
@@ -86,45 +63,34 @@
                   </svg>
                </a>
             </div>
-            <div class="footer-background d-none d-md-flex">
-               <img src="assets/site/img/icons/footer%402x5760.png?v=2022-04-19%2000:11:03">
-            </div>
          </div>
       </div>
       <div class="footer-secondary">
          <div class="footer-secondary__container container">
-            <div class="footer-secondary__column footer-secondary--about">
-               <a href="az.html" class="logo">
-               <img src="site/img/logos/logo%402x5760.png?v=2022-04-19%2000:11:03">
-               </a>
-               <p>Evelani.az daşınmaz əmlakın satış və kirayəsi xidmətlərini digital sferada təqdim edən platformadır. Evelani.az saytı vasitəsilə daşınmaz əmlakınızın satış və kirayəsini, tez və interaktiv şəkildə təşkil edə, yüksək məhsuldarlıq əldə edə bilərsiniz.</p>
-            </div>
             <div class="footer-secondary__column footer-nav  d-lg-flex">
                <h6>Ümumi</h6>
-               <a href="az/istifadeci-razilasmasi.html">İstifadəçi razılaşması</a>
-               <a href="az/haqqimizda.html">Haqqımızda</a>
-               <a href="az/balansi-artirmaq.html">Balansı artır</a>
-               <a href="az/reklam-yerlesdirmek.html">Reklam yerləşdir</a>
-               <a href="az/sitemap.html" target="_blank">Saytın xəritəsi</a>
-               <p class="footer-nav--date">© 2020 - 2022 Evelani.az</p>
+               <a href="<?= base_url() ?>istifadeci-razilasmasi"><?= translate('user_agreement') ?></a>
+               <a href="<?= base_url() ?>reklam-yerlesdirmek"><?= translate('add_advertisement') ?></a>
+               <a href="<?= base_url() ?>sitemap" target="_blank"><?= translate('sitemap') ?></a>
+               <p class="footer-nav--date">© 2021 - <?= date("Y") ?> Estate.az</p>
             </div>
             <div class="footer-secondary__column footer-nav d-none d-lg-flex">
                <h6>Qısayollar</h6>
-               <a href="az/agentlikler.html">Agentliklər</a>
-               <a href="az/yasayis-kompleksleri.html">Yaşayış kompleksləri</a>
-               <a href="az/insaat-sirketleri.html">İnşaat şirkətləri</a>
-               <a href="az/biznez-merkezleri.html">Biznes mərkəzləri</a>
+               <a href="<?= base_url() ?>yeni-elanlar"><?= translate('new_listings') ?></a>
+               <a href="<?= base_url() ?>yeni-tikili"><?= translate('new_buildings') ?></a>
+               <a href="<?= base_url() ?>kohne-tikili"><?= translate('old_buildings') ?></a>
+               <a href="<?= base_url() ?>heyet-evi-bag"><?= translate('garden_villa') ?></a>
             </div>
             <div class="footer-secondary__column footer-contact d-none d-md-flex">
                <h6>Əlaqə</h6>
-               <a href="tel:info@evelani.az"><span class="__cf_email__" data-cfemail="422b2c242d022734272e232c2b6c2338">[email&#160;protected]</span></a>
-               <a href="tel:info@evelani.az"><span class="__cf_email__" data-cfemail="ec85828a83ac899a89808d8285c28d96">[email&#160;protected]</span></a>
-               <a href="cdn-cgi/l/email-protection.html#e1888f878ea18497848d808f88cf809b"><span class="__cf_email__" data-cfemail="4b22252d240b2e3d2e272a2522652a31">[email&#160;protected]</span></a>
+               <a href="tel:info@estate.az"></a>
+               <a href="tel:info@evelani.az"></a>
+               <a href=""></a>
             </div>
          </div>
          <div class="footer-secondary__container container">
             <div class="footer-secondary__column footer-secondary--about" style="max-width: unset;">
-               <p>© 2020 - 2022 Evelani.az | Bütün hüquqlar qorunur</p>
+               <p>© 2021 - <?= date("Y") ?> Estate.az </p>
             </div>
          </div>
          <div class="scroll-up">
@@ -1794,8 +1760,6 @@
             });
         </script>
 <script>
-
-
 
         function inputs()
         {

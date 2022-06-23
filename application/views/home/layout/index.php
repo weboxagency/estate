@@ -4,6 +4,13 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
+    <meta http-equiv="X-XSS-Protection" content="0" />
+    <meta name="author" content="Karimov Aghakarim Maharram">
+    <meta name="publisher" content="Webox Agency" />
     <link rel="icon" type="image/png" href="<?php echo base_url('uploads/frontend/images/' . $cms_setting['fav_icon']); ?>">
     <meta name="yandex-verification" content="50ff69c45bae97d7" />
     <meta name="msvalidate.01" content="5F0AD8E00E5343818DEB4475F2DA3D0C" />
@@ -78,7 +85,7 @@
     </div>
 		<?php $this->load->view('home/layout/header'); ?>
 		<?php echo $main_contents; ?>
-    <?php if(@end($this->uri->segment_array())=='add_listing'){ ?>
+    <?php if(@end($this->uri->segment_array())=='elan-yerlesdir'){ ?>
 		<?php $this->load->view('home/layout/footer2'); ?>
   <?php }else{ ?>
     <?php $this->load->view('home/layout/footer'); ?>

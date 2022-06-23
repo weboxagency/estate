@@ -67,7 +67,7 @@
                      <div class="form-row">
                         <div class="form-item form-item--flex form-item--large">
                            <label for="mobile">
-                           Mobil nömrə
+                           <?= translate('mobile_number') ?>
                            <i class="fas fa-star-of-life"></i>
                            </label>
                            <div class="inputPhone">
@@ -132,7 +132,6 @@
                                  <?php foreach ($ads_type as $value): ?>
                                  <option value="<?= $value['id'] ?>"><?= $value['type_name'] ?></option>
                                  <?php endforeach; ?>
-                                 
                               </select>
                            </div>
                         </div>

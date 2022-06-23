@@ -1,8 +1,9 @@
 <main class="main">
+
 <section class="main-body page-container container">
    <div class="announcement-group">
    <div class="announcement-group__header">
-      <h5 class="announcement-title"><?= translate('new_ads') ?> <?= (isset($title)) ? $title : '' ?></h5>
+      <h5 class="announcement-title"><?= translate('sale') ?> <?= (isset($title)) ? $title : '' ?></h5>
    </div>
    <div class="announcement-group__body">
       <?php if(!empty($new_ads_list)){ ?>
@@ -136,7 +137,7 @@
       <?php } ?>
    </div>
    <?php if(!empty($new_ads_list)){ ?>
-   <?php echo insertPagination(base_url().'villa', $sayfa, $toplam_sayfa,true); ?>
+   <?php echo insertPagination(base_url().'yeni-tikili-satis', $sayfa, $toplam_sayfa,true); ?>
    <?php } ?>
 </div>
 </section>

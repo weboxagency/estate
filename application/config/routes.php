@@ -49,10 +49,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | Examples:	my-controller/index	-> my_controller/index
 |		my-controller/my-method	-> my_controller/my_method
 */
-$route['default_controller'] 		= 'home';
+$route['default_controller'] 			= 'home';
 
 
-// $route['elan-yerlesdir'] 			= 'add_listing';
+$route['elan-yerlesdir'] 				= 'add_listing';
 // $route['elan-yerlesdir/check_info'] = 'add_listing/check_info';
 $route['istifadeci-razilasmasi'] 		= 'home/user_agreement';
 $route['sitemap'] 						= 'home/sitemap';
@@ -64,6 +64,50 @@ $route['yeni-tikili'] 					= 'elanlar/yeni_tikili';
 $route['kohne-tikili'] 					= 'elanlar/kohne_tikili';
 $route['heyet-evi-bag'] 				= 'elanlar/heyet_evi_bag';
 $route['villa'] 						= 'elanlar/villa';
+$route['ofis'] 							= 'elanlar/office';
+$route['torpaq'] 						= 'elanlar/torpaq';
+$route['obyekt'] 						= 'elanlar/obyekt';
+$route['qaraj'] 						= 'elanlar/qaraj';
+
+/* SALE */
+
+$route['yeni-tikili-satis'] 			= 'elanlar/yeni_tikili_sale';
+$route['kohne-tikili-satis'] 			= 'elanlar/kohne_tikili_sale';
+$route['heyet-evi-bag-satis'] 			= 'elanlar/heyet_evi_bag_sale';
+$route['villa-satis'] 					= 'elanlar/villa_sale';
+$route['ofis-satis'] 					= 'elanlar/office_sale';
+$route['torpaq-satis'] 					= 'elanlar/torpaq_sale';
+$route['obyekt-satis'] 					= 'elanlar/obyekt_sale';
+$route['qaraj-satis'] 					= 'elanlar/qaraj_sale';
+
+/* SALE END */
+
+/* RENT */
+
+$route['yeni-tikili-kiraye'] 			= 'elanlar/yeni_tikili_rent';
+$route['kohne-tikili-kiraye'] 			= 'elanlar/kohne_tikili_rent';
+$route['heyet-evi-bag-kiraye'] 			= 'elanlar/heyet_evi_bag_rent';
+$route['villa-kiraye'] 					= 'elanlar/villa_rent';
+$route['ofis-kiraye'] 					= 'elanlar/office_rent';
+$route['torpaq-kiraye'] 				= 'elanlar/torpaq_rent';
+$route['obyekt-kiraye'] 				= 'elanlar/obyekt_rent';
+$route['qaraj-kiraye'] 					= 'elanlar/qaraj_rent';
+
+/* RENT END */
+
+/* RENT DAILY */
+
+$route['yeni-tikili-kiraye-gundelik'] 			= 'elanlar/yeni_tikili_rent_daily';
+$route['kohne-tikili-kiraye-gundelik'] 			= 'elanlar/kohne_tikili_rent_daily';
+$route['heyet-evi-bag-kiraye-gundelik'] 		= 'elanlar/heyet_evi_bag_rent_daily';
+$route['villa-kiraye-gundelik'] 				= 'elanlar/villa_rent_daily';
+$route['ofis-kiraye-gundelik'] 					= 'elanlar/office_rent_daily';
+$route['torpaq-kiraye-gundelik'] 				= 'elanlar/torpaq_rent_daily';
+$route['obyekt-kiraye-gundelik'] 				= 'elanlar/obyekt_rent_daily';
+$route['qaraj-kiraye-gundelik'] 				= 'elanlar/qaraj_rent_daily';
+
+/* RENT DAILY END */
+
 
 //HOME CONTROLLER
 $route['wishlist'] 						= 'home/wishlist';
