@@ -2,7 +2,7 @@
 <section class="main-body page-container container">
    <div class="announcement-group">
    <div class="announcement-group__header">
-      <h5 class="announcement-title"><?= translate('new_ads') ?> <?= (isset($title)) ? $title : '' ?></h5>
+      <h5 class="announcement-title"><?= translate('daily_rent') ?> <?= (isset($title)) ? $title : '' ?></h5>
    </div>
    <div class="announcement-group__body">
       <?php if(!empty($new_ads_list)){ ?>
@@ -125,7 +125,7 @@
          </a>
       </div>
       <?php } ?>
-      <?php }else{ ?>
+       <?php }else{ ?>
          <section class="page-container container pb-0">
          <div class="announcement-group map-announcement">
             <div class="announcement-group__header justify-content-center">
@@ -136,7 +136,7 @@
       <?php } ?>
    </div>
    <?php if(!empty($new_ads_list)){ ?>
-   <?php echo insertPagination(base_url().'villa', $sayfa, $toplam_sayfa,true); ?>
+   <?php echo insertPagination(base_url().'torpaq-kiraye-gundelik', $sayfa, $toplam_sayfa,true); ?>
    <?php } ?>
 </div>
 </section>

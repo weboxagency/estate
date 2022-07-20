@@ -30452,3 +30452,28 @@ body::-webkit-scrollbar-thumb {
 .SDYZEU-keyboard-shortcuts-dialog-view{
     display: none !important;
 }
+
+.shw_num_anime  {
+    transition: all .5s ease-in-out;
+    animation: animate 2s linear infinite;
+}
+
+
+@keyframes animate {
+    0% {  
+        box-shadow: 0 0 0 0 rgba(244, 181, 69);
+    }
+
+    40% {
+        box-shadow: 0 0 0 25px rgba(51, 122, 183, 0);
+    }
+
+    80% {
+        box-shadow: 0 0 0 25px rgba(51, 122, 183, 0);
+    }
+
+    100% {
+        box-shadow: 0 0 0 rgba(244, 181, 69);
+    }
+}
+

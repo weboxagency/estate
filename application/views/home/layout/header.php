@@ -187,7 +187,7 @@
                               <i class="icon fa fa-check"></i>
                               <label></label>
                               <span>
-                                <a href="#" target="_blank">İstifadəçi qaydalarını</a> oxudum və qəbul edirəm </span>
+                                <a href="<?= base_url() ?>istifadeci-razilasmasi" target="_blank">İstifadəçi qaydalarını</a> oxudum və qəbul edirəm </span>
                             </div>
                           </div>
                         </div>
@@ -213,7 +213,7 @@
             <div class="modal-dialog">
               <div class="modal-content">
                 <div class="modal-header">
-                  <h6 class="modal-title">Estate.az-a xoş gəlmisiniz</h6>
+                  <h6 class="modal-title"><?= translate('welcome_to_estate_az') ?></h6>
                   <div class="modal-close" data-dismiss="modal">
                     <svg class="icon icon-close">
                       <use xlink:href="<?= base_url() ?>assets/site/img/icons/icons.svg#icon-close"></use>
@@ -225,11 +225,11 @@
                     <input type="hidden" name="<?php echo $this->security->get_csrf_token_name();?>" value="<?php echo $this->security->get_csrf_hash();?>">
                     <div class="form-row">
                       <div class="form-item form-item--large">
-                        <label>Elektron poçt</label>
-                        <input class="form-item__element" placeholder="Elektron poçt" name="email">
+                        <label><?= translate('email') ?></label>
+                        <input class="form-item__element" placeholder="<?= translate('email') ?>" name="email">
                       </div>
                       <div class="form-item form-item--large">
-                        <label>Şifrə</label>
+                        <label><?= translate('password') ?></label>
                         <div class="form-item__password">
                           <input class="form-item__element" type="password" name="password" placeholder="∗∗∗∗∗∗">
                           <svg class="icon icon-eye">
@@ -242,16 +242,16 @@
                       </div>
                       <div x-validations></div>
                       <div class="form-item form-item--large">
-                        <button type="submit" class="link-button link-button--primary">Daxil ol</button>
+                        <button type="submit" class="link-button link-button--primary"><?= translate('sign_in') ?></button>
                       </div>
                     </div>
                   </form>
                   <div class="form-item form-item--large">
-                    <a data-toggle="modal" data-target="#forgotPassword" data-dismiss="modal">Şifrənizi unutmusunuz?</a>
+                    <a data-toggle="modal" data-target="#forgotPassword" data-dismiss="modal"><?= translate('forgot_password') ?>?</a>
                   </div>
                 </div>
                 <div class="modal-footer">
-                  <p>Hesabınız yoxdur? <a data-dismiss="modal" data-toggle="modal" data-target="#register">Qeydiyyatdan keç</a>
+                  <p>Hesabınız yoxdur? <a data-dismiss="modal" data-toggle="modal" data-target="#register"><?= translate('register') ?></a>
                   </p>
                 </div>
               </div>
@@ -264,7 +264,7 @@
             <div class="modal-dialog">
               <div class="modal-content">
                 <div class="modal-header">
-                  <h6 class="modal-title">Şifrənizi yeniləyin</h6>
+                  <h6 class="modal-title"><?= translate('update_your_password') ?></h6>
                   <div class="modal-close" data-dismiss="modal">
                     <svg class="icon icon-close">
                       <use xlink:href="<?= base_url() ?>assets/site/img/icons/icons.svg#icon-close"></use>
@@ -277,8 +277,8 @@
                     <fieldset>
                       <div class="form-row">
                         <div class="form-item form-item--large">
-                          <label for="email">Elektron poçt</label>
-                          <input class="form-item__element" name="email" placeholder="Elektron poçt">
+                          <label for="email"><?= translate('email') ?></label>
+                          <input class="form-item__element" name="email" placeholder="<?= translate('email') ?>">
                         </div>
                         <div x-validations></div>
                         <div class="form-item form-item--large">
@@ -304,7 +304,7 @@
              <div class="modal-dialog">
                 <div class="modal-content">
                    <div class="modal-header">
-                      <h6 class="modal-title">Şifrənizi yeniləyin</h6>
+                      <h6 class="modal-title"><?= translate('update_your_password') ?></h6>
                       <div class="modal-close" data-dismiss="modal">
                          <svg class="icon icon-close">
                             <use xlink:href="<?= base_url() ?>assets/site/img/icons/icons.svg#icon-close"></use>
@@ -316,7 +316,7 @@
                          <input type="hidden" name="<?php echo $this->security->get_csrf_token_name();?>" value="<?php echo $this->security->get_csrf_hash();?>">
                          <div class="form-row">
                             <div class="form-item form-item--large">
-                               <label for="password">Yeni şifrə</label>
+                               <label for="password"><?= translate('new_password') ?></label>
                                <div class="form-item__password">
                                   <input class="form-item__element" type="password" name="password" placeholder="∗∗∗∗∗∗">
                                   <svg class="icon icon-eye">
@@ -328,7 +328,7 @@
                                </div>
                             </div>
                             <div class="form-item form-item--large">
-                               <label for="passwordRepeat">Yeni şifrə təkrar</label>
+                               <label for="passwordRepeat"><?= translate('repeat_new_password') ?></label>
                                <div class="form-item__password">
                                   <input class="form-item__element" type="password" name="passwordRepeat" placeholder="∗∗∗∗∗∗">
                                   <svg class="icon icon-eye">
@@ -377,48 +377,47 @@
           <?php } ?>
         </div>
           
-
         <!-- SECOND HEADER START -->
         <div class="header-secondary" id="headerSecondary">
           <div class="header-secondary__container container">
             <a class="logo" href="<?= base_url(); ?>">
               <img src="<?php echo base_url('uploads/frontend/images/' . $cms_setting['logo']); ?>" style="height: 110px;">
             </a>
-            <div class="justify">
+            <!-- <div class="justify"> -->
               <nav class="nav d-none d-xl-flex">
                 <div class="dropdown-nav dropdown-hover">
                   <a class="nav-item--secondary"><?= translate('sale') ?></a>
                   <div class="dropdown-nav__menu dropdown-hover__menu">
                     <div class="dropdown-menu__group">
-                      <a href="<?= base_url() ?>assets/az/axtar/satis/yeni-tikili">
+                      <a href="<?= base_url() ?>yeni-tikili">
                         <svg class="icon icon-yeni-tikili">
                           <use xlink:href="<?= base_url() ?>assets/site/img/icons/icons.svg#icon-yeni-tikili"></use>
                         </svg> Yeni tikili </a>
-                      <a href="<?= base_url() ?>assets/az/axtar/satis/kohne-tikili">
+                      <a href="<?= base_url() ?>kohne-tikili">
                         <svg class="icon icon-kohne-tikili">
                           <use xlink:href="<?= base_url() ?>assets/site/img/icons/icons.svg#icon-kohne-tikili"></use>
                         </svg> Köhnə tikili </a>
-                      <a href="<?= base_url() ?>assets/az/axtar/satis/heyet-evi-bag">
+                      <a href="<?= base_url() ?>heyet-evi-bag">
                         <svg class="icon icon-bag">
                           <use xlink:href="<?= base_url() ?>assets/site/img/icons/icons.svg#icon-bag"></use>
                         </svg> Həyət evi / Bağ </a>
-                      <a href="<?= base_url() ?>assets/az/axtar/satis/villa">
+                      <a href="<?= base_url() ?>villa">
                         <svg class="icon icon-villa">
                           <use xlink:href="<?= base_url() ?>assets/site/img/icons/icons.svg#icon-villa"></use>
                         </svg> Villa </a>
-                      <a href="<?= base_url() ?>assets/az/axtar/satis/ofis">
+                      <a href="<?= base_url() ?>ofis">
                         <svg class="icon icon-office">
                           <use xlink:href="<?= base_url() ?>assets/site/img/icons/icons.svg#icon-office"></use>
                         </svg> Ofis </a>
-                      <a href="<?= base_url() ?>assets/az/axtar/satis/torpaq">
+                      <a href="<?= base_url() ?>torpaq">
                         <svg class="icon icon-torpag">
                           <use xlink:href="<?= base_url() ?>assets/site/img/icons/icons.svg#icon-torpag"></use>
                         </svg> Torpaq </a>
-                      <a href="<?= base_url() ?>assets/az/axtar/satis/obyekt">
+                      <a href="<?= base_url() ?>obyekt">
                         <svg class="icon icon-obyekt">
                           <use xlink:href="<?= base_url() ?>assets/site/img/icons/icons.svg#icon-obyekt"></use>
                         </svg> Obyekt </a>
-                      <a href="<?= base_url() ?>assets/az/axtar/satis/qaraj">
+                      <a href="<?= base_url() ?>qaraj">
                         <svg class="icon icon-obyekt">
                           <use xlink:href="<?= base_url() ?>assets/site/img/icons/icons.svg#icon-obyekt"></use>
                         </svg> Qaraj </a>
@@ -429,35 +428,75 @@
                   <a class="nav-item--secondary"><?= translate('rent') ?></a>
                   <div class="dropdown-nav__menu dropdown-hover__menu">
                     <div class="dropdown-menu__group">
-                      <a href="<?= base_url() ?>assets/az/axtar/kiraye/yeni-tikili">
+                      <a href="<?= base_url() ?>yeni-tikili-kiraye">
                         <svg class="icon icon-yeni-tikili">
                           <use xlink:href="<?= base_url() ?>assets/site/img/icons/icons.svg#icon-yeni-tikili"></use>
                         </svg> Yeni tikili </a>
-                      <a href="<?= base_url() ?>assets/az/axtar/kiraye/kohne-tikili">
+                      <a href="<?= base_url() ?>kohne-tikili-kiraye">
                         <svg class="icon icon-kohne-tikili">
                           <use xlink:href="<?= base_url() ?>assets/site/img/icons/icons.svg#icon-kohne-tikili"></use>
                         </svg> Köhnə tikili </a>
-                      <a href="<?= base_url() ?>assets/az/axtar/kiraye/heyet-evi-bag">
+                      <a href="<?= base_url() ?>heyet-evi-bag-kiraye">
                         <svg class="icon icon-bag">
                           <use xlink:href="<?= base_url() ?>assets/site/img/icons/icons.svg#icon-bag"></use>
                         </svg> Həyət evi / Bağ </a>
-                      <a href="<?= base_url() ?>assets/az/axtar/kiraye/villa">
+                      <a href="<?= base_url() ?>villa-kiraye">
                         <svg class="icon icon-villa">
                           <use xlink:href="<?= base_url() ?>assets/site/img/icons/icons.svg#icon-villa"></use>
                         </svg> Villa </a>
-                      <a href="<?= base_url() ?>assets/az/axtar/kiraye/ofis">
+                      <a href="<?= base_url() ?>ofis-kiraye">
                         <svg class="icon icon-office">
                           <use xlink:href="<?= base_url() ?>assets/site/img/icons/icons.svg#icon-office"></use>
                         </svg> Ofis </a>
-                      <a href="<?= base_url() ?>assets/az/axtar/kiraye/torpaq">
+                      <a href="<?= base_url() ?>torpaq-kiraye">
                         <svg class="icon icon-torpag">
                           <use xlink:href="<?= base_url() ?>assets/site/img/icons/icons.svg#icon-torpag"></use>
                         </svg> Torpaq </a>
-                      <a href="<?= base_url() ?>assets/az/axtar/kiraye/obyekt">
+                      <a href="<?= base_url() ?>obyekt-kiraye">
                         <svg class="icon icon-obyekt">
                           <use xlink:href="<?= base_url() ?>assets/site/img/icons/icons.svg#icon-obyekt"></use>
                         </svg> Obyekt </a>
-                      <a href="<?= base_url() ?>assets/az/axtar/kiraye/qaraj">
+                      <a href="<?= base_url() ?>qaraj-kiraye">
+                        <svg class="icon icon-obyekt">
+                          <use xlink:href="<?= base_url() ?>assets/site/img/icons/icons.svg#icon-obyekt"></use>
+                        </svg> Qaraj </a>
+                    </div>
+                  </div>
+                </div>
+
+                 <div class="dropdown-nav dropdown-hover">
+                  <a class="nav-item--secondary"><?= translate('daily_rent') ?></a>
+                  <div class="dropdown-nav__menu dropdown-hover__menu">
+                    <div class="dropdown-menu__group">
+                      <a href="<?= base_url() ?>yeni-tikili-kiraye-gundelik">
+                        <svg class="icon icon-yeni-tikili">
+                          <use xlink:href="<?= base_url() ?>assets/site/img/icons/icons.svg#icon-yeni-tikili"></use>
+                        </svg> Yeni tikili </a>
+                      <a href="<?= base_url() ?>kohne-tikili-kiraye-gundelik">
+                        <svg class="icon icon-kohne-tikili">
+                          <use xlink:href="<?= base_url() ?>assets/site/img/icons/icons.svg#icon-kohne-tikili"></use>
+                        </svg> Köhnə tikili </a>
+                      <a href="<?= base_url() ?>heyet-evi-bag-kiraye-gundelik">
+                        <svg class="icon icon-bag">
+                          <use xlink:href="<?= base_url() ?>assets/site/img/icons/icons.svg#icon-bag"></use>
+                        </svg> Həyət evi / Bağ </a>
+                      <a href="<?= base_url() ?>villa-kiraye-gundelik">
+                        <svg class="icon icon-villa">
+                          <use xlink:href="<?= base_url() ?>assets/site/img/icons/icons.svg#icon-villa"></use>
+                        </svg> Villa </a>
+                      <a href="<?= base_url() ?>ofis-kiraye-gundelik">
+                        <svg class="icon icon-office">
+                          <use xlink:href="<?= base_url() ?>assets/site/img/icons/icons.svg#icon-office"></use>
+                        </svg> Ofis </a>
+                      <a href="<?= base_url() ?>torpaq-kiraye-gundelik">
+                        <svg class="icon icon-torpag">
+                          <use xlink:href="<?= base_url() ?>assets/site/img/icons/icons.svg#icon-torpag"></use>
+                        </svg> Torpaq </a>
+                      <a href="<?= base_url() ?>obyekt-kiraye-gundelik">
+                        <svg class="icon icon-obyekt">
+                          <use xlink:href="<?= base_url() ?>assets/site/img/icons/icons.svg#icon-obyekt"></use>
+                        </svg> Obyekt </a>
+                      <a href="<?= base_url() ?>qaraj-kiraye-gundelik">
                         <svg class="icon icon-obyekt">
                           <use xlink:href="<?= base_url() ?>assets/site/img/icons/icons.svg#icon-obyekt"></use>
                         </svg> Qaraj </a>
@@ -465,8 +504,8 @@
                   </div>
                 </div>
               </nav>
-            </div>
-            <a href="<?= base_url() ?>add_listing" class="link-button link-button--primary link-setup d-none d-sm-flex">
+            <!-- </div> -->
+            <a href="<?= base_url() ?>elan-yerlesdir" class="link-button link-button--primary link-setup d-none d-sm-flex shw_num_anime">
               <span>
                 <svg class="icon icon-plus-circle">
                 <use xlink:href="<?= base_url() ?>assets/site/img/icons/icons.svg#icon-plus-circle"></use>
@@ -487,69 +526,56 @@
         <div class="burger-menu collapse d-xl-none" id="burger-menu">
           <ul class="burger-menu__container">
             <li class="container">
-              <a href="#" class="burger-menu__link">Satış <i class="far fa-chevron-down"></i>
+              <a href="#" class="burger-menu__link"><?= translate('sale') ?> <i class="far fa-chevron-down"></i>
               </a>
               <ul>
                 <li>
-                  <a href="az/axtar/satis/yeni-tikili.html">Yeni tikili</a>
-                  <a href="az/axtar/satis/kohne-tikili.html">Köhnə tikili</a>
-                  <a href="az/axtar/satis/heyet-evi-bag.html">Həyət evi / Bağ</a>
-                  <a href="az/axtar/satis/villa.html">Villa</a>
-                  <a href="az/axtar/satis/ofis.html">Ofis</a>
-                  <a href="az/axtar/satis/torpaq.html">Torpaq</a>
-                  <a href="az/axtar/satis/obyekt.html">Obyekt</a>
-                  <a href="az/axtar/satis/qaraj.html">Qaraj</a>
+                  <a href="<?= base_url() ?>yeni-tikili">Yeni tikili</a>
+                  <a href="<?= base_url() ?>kohne-tikili">Köhnə tikili</a>
+                  <a href="<?= base_url() ?>heyet-evi-bag">Həyət evi / Bağ</a>
+                  <a href="<?= base_url() ?>villa">Villa</a>
+                  <a href="<?= base_url() ?>ofis">Ofis</a>
+                  <a href="<?= base_url() ?>torpaq">Torpaq</a>
+                  <a href="<?= base_url() ?>obyekt">Obyekt</a>
+                  <a href="<?= base_url() ?>qaraj">Qaraj</a>
                 </li>
               </ul>
-              <a href="#" class="burger-menu__link">Kirayə <i class="far fa-chevron-down"></i>
+              <a href="#" class="burger-menu__link"><?= translate('rent') ?> <i class="far fa-chevron-down"></i>
               </a>
               <ul>
                 <li>
-                  <a href="az/axtar/kiraye/yeni-tikili.html">Yeni tikili</a>
-                  <a href="az/axtar/kiraye/kohne-tikili.html">Köhnə tikili</a>
-                  <a href="az/axtar/kiraye/heyet-evi-bag.html">Həyət evi / Bağ</a>
-                  <a href="az/axtar/kiraye/villa.html">Villa</a>
-                  <a href="az/axtar/kiraye/ofis.html">Ofis</a>
-                  <a href="az/axtar/kiraye/torpaq.html">Torpaq</a>
-                  <a href="az/axtar/kiraye/obyekt.html">Obyekt</a>
-                  <a href="az/axtar/kiraye/qaraj.html">Qaraj</a>
+                  <a href="<?= base_url() ?>yeni-tikili-kiraye">Yeni tikili</a>
+                  <a href="<?= base_url() ?>kohne-tikili-kiraye">Köhnə tikili</a>
+                  <a href="<?= base_url() ?>heyet-evi-bag-kiraye">Həyət evi / Bağ</a>
+                  <a href="<?= base_url() ?>villa-kiraye">Villa</a>
+                  <a href="<?= base_url() ?>ofis-kiraye">Ofis</a>
+                  <a href="<?= base_url() ?>torpaq-kiraye">Torpaq</a>
+                  <a href="<?= base_url() ?>obyekt-kiraye">Obyekt</a>
+                  <a href="<?= base_url() ?>qaraj-kiraye">Qaraj</a>
                 </li>
               </ul>
               <a href="#" class="burger-menu__link">Kirayə günlük <i class="far fa-chevron-down"></i>
               </a>
               <ul>
                 <li>
-                  <a href="az/axtar/kiraye-gunluk/yeni-tikili.html">Yeni tikili</a>
-                  <a href="az/axtar/kiraye-gunluk/kohne-tikili.html">Köhnə tikili</a>
-                  <a href="az/axtar/kiraye-gunluk/heyet-evi-bag.html">Həyət evi / Bağ</a>
-                  <a href="az/axtar/kiraye-gunluk/villa.html">Villa</a>
-                  <a href="az/axtar/kiraye-gunluk/ofis.html">Ofis</a>
+                  <a href="<?= base_url() ?>yeni-tikili-kiraye-gundelik">Yeni tikili</a>
+                  <a href="<?= base_url() ?>kohne-tikili-kiraye-gundelik">Köhnə tikili</a>
+                  <a href="<?= base_url() ?>heyet-evi-bag-kiraye-gundelik">Həyət evi / Bağ</a>
+                  <a href="<?= base_url() ?>villa-kiraye-gundelik">Villa</a>
+                  <a href="<?= base_url() ?>ofis-kiraye-gundelik">Ofis</a>
                 </li>
               </ul>
-              <a href="az/agentlikler.html" class="burger-menu__link">Agentliklər</a>
-              <a href="az/yasayis-kompleksleri.html" class="burger-menu__link">Yaşayış kompleksləri</a>
-              <a href="az/insaat-sirketleri.html" class="burger-menu__link">İnşaat şirkətləri</a>
-              <a href="az/biznez-merkezleri.html" class="burger-menu__link">Biznes mərkəzləri</a>
-              <a href="az/bloq.html" class="burger-menu__link burger-menu--bloq ">Xəbərlər</a>
-              <a href="az/ipoteka.html">İpoteka</a>
+              <a href="<?= base_url() ?>agentlikler" class="burger-menu__link">Agentliklər</a>
               <ul>
                 <li>
-                  <a href="az/balansi-artirmaq.html">Balansı artır</a>
-                  <a href="az/reklam-yerlesdirmek.html">Reklam yerləşdir</a>
-                  <a href="az/ipoteka.html">İpoteka</a>
+                  <a href="<?= base_url() ?>reklam-yerlesdirmek">Reklam yerləşdir</a>
                 </li>
               </ul>
               <ul class="contact-numbers">
                 <li>
-                  <a href="tel:info@estate.az">
-                    <span class="__cf_email__" data-cfemail="a5cccbc3cae5c0d3c0c9c4cbcc8bc4df">[email&#160;protected]</span>
-                  </a>
-                  <a href="tel:info@evelani.az">
-                    <span class="__cf_email__" data-cfemail="5c35323a331c392a39303d3235723d26">[email&#160;protected]</span>
-                  </a>
-                  <a href="cdn-cgi/l/email-protection.html#8fe6e1e9e0cfeaf9eae3eee1e6a1eef5">
-                    <span class="__cf_email__" data-cfemail="1970777f76597c6f7c75787770377863">[email&#160;protected]</span>
-                  </a>
+                  <a href="tel:info@estate.az">0708544301</a>
+                  <a href="tel:info@evelani.az">0552323402</a>
+                  <a href="mailto:info@estate.az">info@estate.az</a>
                 </li>
               </ul>
             </li>

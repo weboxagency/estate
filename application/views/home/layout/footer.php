@@ -2,7 +2,7 @@
    <div class="footer-navbar">
       <ul>
          <li>
-            <a href="az/axtar.html">
+            <a href="<?= base_url() ?>">
                <svg class="icon icon-home">
                   <use xlink:href="<?= base_url() ?>assets/site/img/icons/icons.svg#icon-home"></use>
                </svg>
@@ -10,7 +10,7 @@
             </a>
          </li>
          <li>
-            <a href="<?= base_url() ?>add_listing">
+            <a href="<?= base_url() ?>elan-yerlesdir">
                <svg class="icon icon-plusnew">
                   <use xlink:href="<?= base_url() ?>assets/site/img/icons/icons.svg#icon-plusnew"></use>
                </svg>
@@ -24,9 +24,7 @@
                </svg>
                <p><?= translate('search') ?></p>
             </a>
-         </li>
-         
-         
+         </li> 
       </ul>
    </div>
    <div class="page-container container">
@@ -72,27 +70,27 @@
             <div class="footer-secondary__column footer-nav  d-lg-flex">
                <h6>Ümumi</h6>
                <a href="<?= base_url() ?>istifadeci-razilasmasi"><?= translate('user_agreement') ?></a>
-               <a href="az/reklam-yerlesdirmek.html"><?= translate('add_advertisement') ?></a>
+               <a href="<?= base_url() ?>reklam-yerlesdirmek"><?= translate('add_advertisement') ?></a>
                <a href="<?= base_url() ?>sitemap" target="_blank"><?= translate('sitemap') ?></a>
                <p class="footer-nav--date">© 2021 - <?= date("Y") ?> Estate.az</p>
             </div>
             <div class="footer-secondary__column footer-nav d-none d-lg-flex">
                <h6>Qısayollar</h6>
-               <a href="az/yeni-elanlar"><?= translate('new_listings') ?></a>
-               <a href="az/yeni-tikili"><?= translate('new_buildings') ?></a>
-               <a href="az/kohne-tikili"><?= translate('old_buildings') ?></a>
-               <a href="az/heyet-evi-bag"><?= translate('garden_villa') ?></a>
+               <a href="<?= base_url() ?>yeni-elanlar"><?= translate('new_listings') ?></a>
+               <a href="<?= base_url() ?>yeni-tikili"><?= translate('new_buildings') ?></a>
+               <a href="<?= base_url() ?>kohne-tikili"><?= translate('old_buildings') ?></a>
+               <a href="<?= base_url() ?>heyet-evi-bag"><?= translate('garden_villa') ?></a>
             </div>
             <div class="footer-secondary__column footer-contact d-none d-md-flex">
                <h6>Əlaqə</h6>
-               <a href="tel:info@estate.az"><span class="__cf_email__" data-cfemail="422b2c242d022734272e232c2b6c2338">[email&#160;protected]</span></a>
-               <a href="tel:info@evelani.az"><span class="__cf_email__" data-cfemail="ec85828a83ac899a89808d8285c28d96">[email&#160;protected]</span></a>
-               <a href="cdn-cgi/l/email-protection.html#e1888f878ea18497848d808f88cf809b"><span class="__cf_email__" data-cfemail="4b22252d240b2e3d2e272a2522652a31">[email&#160;protected]</span></a>
+               <a href="tel:info@estate.az"></a>
+               <a href="tel:info@evelani.az"></a>
+               <a href=""></a>
             </div>
          </div>
          <div class="footer-secondary__container container">
             <div class="footer-secondary__column footer-secondary--about" style="max-width: unset;">
-               <p>© 2020 - 2022 Estate.az | Bütün hüquqlar qorunur</p>
+               <p>© 2021 - <?= date("Y") ?> Estate.az </p>
             </div>
          </div>
          <div class="scroll-up">
@@ -105,7 +103,6 @@
 <script src='<?= base_url('assets/site/admin/sweetalert2.all.min.js') ?>'></script>
 <script src='<?= base_url('assets/site/admin/underscore-min.js') ?>'></script>
 <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCcVxlZlT3nO44ljCnR2f89GqzxkuCQftY&libraries=places&callback=initMap&language=az">
-    
 </script>
 <script>
     $(window).bind('load', function() {

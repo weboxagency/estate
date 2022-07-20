@@ -136,7 +136,7 @@
       <?php } ?>
    </div>
    <?php if(!empty($new_ads_list)){ ?>
-   <?php echo insertPagination(base_url().'villa', $sayfa, $toplam_sayfa,true); ?>
+   <?php echo insertPagination(base_url().'villa-kiraye', $sayfa, $toplam_sayfa,true); ?>
    <?php } ?>
 </div>
 </section>
