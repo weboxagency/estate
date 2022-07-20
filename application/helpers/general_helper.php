@@ -665,6 +665,28 @@ function get_image_url($role = '', $file_name = '')
     return $image_url;
 }
 
+// generate get agency image url
+function get_agency_image_url($file_name = '')
+{
+    if ($file_name == 'defualt.png' || empty($file_name)) {
+        $image_url = base_url('uploads/app_image/defualt.png');
+    } else {
+        if (file_exists('uploads/images/agencies/' . $file_name)) {
+            $image_url = base_url('uploads/images/agencies/' . $file_name);
+        } else {
+            $image_url = base_url('uploads/app_image/defualt.png');
+        }
+    }
+    return $image_url;
+}
+
+function adsCountForUser($par)
+{
+    $CI = &get_instance();
+    $query = $CI->db->query("SELECT * FROM ads_all WHERE mobile='".$par."'");
+    return $query->num_rows();
+}
+
 // get date format config
 function _d($date)
 {

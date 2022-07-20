@@ -29,11 +29,11 @@ class Ads extends Admin_Controller
         if ($this->input->post('submit') == 'save') {                  
                 
             $arrayAds = array(
-            'name'      => $_POST['name'],
-            'mobile' => $_POST['mobile'],
-            'email'  => $_POST['email'],
-            'user_type'  => $_POST['user_type'],
-            'has_whatsapp'  => $_POST['has_whatsapp'],
+            'name'              => $_POST['name'],
+            'mobile'            => $_POST['mobile'],
+            'email'             => $_POST['email'],
+            'user_type'         => $_POST['user_type'],
+            'has_whatsapp'      => (isset($_POST['has_whatsapp'])) ? 1 : 0,
 
             
             'ads_pin_kod'       => mt_rand(100000, 999999),
@@ -42,20 +42,19 @@ class Ads extends Admin_Controller
             'price'             => $_POST['price'],
             'area'              => $_POST['area'],
             'land_area'         => $_POST['land_area'],
-            'deed'              => $_POST['deed'],
-            'mortgage'          => $_POST['mortgage'],
+            'deed'              => (isset($_POST['deed'])) ? 1 : 0,
+            'mortgage'          => (isset($_POST['mortgage'])) ? 1 : 0,
             'longitude'         => $_POST['longitude'],
             'latitude'          => $_POST['latitude'],
             'floor'             => $_POST['floor'],
             'max_floor'         => $_POST['max_floor'],
             'address'           => $_POST['address'],
             'description'       => $_POST['description'],
-            'status'            => $_POST['status'],
-            'file'              => $_FILES['file'],
+            'status'            => $_POST['status']
+            // 'file'              => $_FILES['file'],
 
         );
 
-            dd($arrayAds);
 
             // if ($response) {
             //     set_alert('success', translate('information_has_been_saved_successfully'));
@@ -75,6 +74,11 @@ class Ads extends Admin_Controller
         $this->data['sub_page']     =  'ads/index';
         $this->data['main_menu']    =  'ads';
         $this->load->view('layout/index', $this->data);
+    }
+
+    public function upload()
+    {
+        dd($_FILES);
     }
 
     public function ads_status()

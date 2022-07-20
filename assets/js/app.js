@@ -413,6 +413,28 @@ $.extend(theme.PluginDatePicker.defaults, {
 			}
 		});
 
+		// agencies status
+		$(".agency-switch").on("change", function() {
+			var state = $(this).prop('checked');
+			var id = $(this).data('id');
+			if (state != null) {
+				$.ajax({
+					type: 'POST',
+					url: base_url + "agencies/agency_status",
+					data: {
+						id: id,
+						status: state
+					},
+					dataType: "json",
+					success: function (data) {
+						if(data.status == true) {
+							alertMsg(data.msg);
+						}
+					}
+				});
+			}
+		});
+
 		//about ads configuration status
 		$(".modul_switch").on("change", function() {
 			var state = $(this).prop('checked');

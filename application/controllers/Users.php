@@ -42,7 +42,9 @@ class Users extends Admin_Controller
                 }
         }
 
-        $this->data['users']        =  $this->u->allUsers();
+        $this->data['registeredUsers']        =  $this->u->allRegisteredUsers();
+        $this->data['nonRegisteredUsers']        =  $this->u->allNonRegisteredUsers();
+        // dd($this->data['users']);
         $this->data['title']        =  translate('users');
         $this->data['sub_page']     =  'users/index';
         $this->data['main_menu']    =  'users';

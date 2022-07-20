@@ -37,6 +37,33 @@ class MY_Model extends CI_Model {
 		return $return_photo;
 	}
 
+	public function uploadAgenciesImage() {
+		$return_photo = 'defualt.png';
+		$old_user_photo = $this->input->post('old_user_photo');
+		if (isset($_FILES["img"]) && !empty($_FILES['img']['name'])) {
+			$config['upload_path'] = './uploads/images/agencies';
+			$config['allowed_types'] = 'jpg|png|jpeg';
+			$config['overwrite'] = FALSE;
+			$config['encrypt_name'] = TRUE;
+			$this->upload->initialize($config);
+			if ($this->upload->do_upload("img")) {
+	            // need to unlink previous photo
+	            if (!empty($old_user_photo)) {
+	            	$unlink_path = '/uploads/images/agenciess';
+	                if (file_exists($unlink_path . $old_user_photo)) {
+	                    @unlink($unlink_path . $old_user_photo);
+	                }
+	            }
+				$return_photo = $this->upload->data('file_name');
+			}
+		}else{
+			if (!empty($old_user_photo)){
+				$return_photo = $old_user_photo;
+			}
+		}
+		return $return_photo;
+	}
+
 	public function uploadImage($role) {
 		$return_photo = 'defualt.png';
 		$old_user_photo = $this->input->post('old_user_photo');

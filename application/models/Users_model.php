@@ -17,10 +17,26 @@ class Users_model extends MY_Model
         $query = $this->db->get();
         $this->db->order_by("id", "asc");
         return $query->result_array();
-
-        $this->db->join('ads_all', 'ads_all.mobile = ads_users.mobile_format_second');
     }
 
+    public function allRegisteredUsers()
+    {
+        $this->db->select('*');
+        $this->db->from('ads_users');
+        $this->db->where('is_registered',1);
+        $query = $this->db->get();
+        $this->db->order_by("id", "asc");
+        return $query->result_array();
+    } 
+    public function allNonRegisteredUsers()
+    {
+        $this->db->select('*');
+        $this->db->from('ads_users');
+        $this->db->where('is_registered',0);
+        $query = $this->db->get();
+        $this->db->order_by("id", "asc");
+        return $query->result_array();
+    }
     public function user_save($data)
     {
         $arrayUsers = array(

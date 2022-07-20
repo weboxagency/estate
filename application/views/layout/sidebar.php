@@ -81,6 +81,15 @@
 
                     <?php if (is_superadmin_loggedin()) : ?>
                     <!-- users -->
+                    <li class="<?php if ($main_menu == 'agencies') echo 'nav-active';?>">
+                        <a href="<?=base_url('agencies/index')?>">
+                            <i class="icons icon-list"></i><span><?=translate('agencies')?></span>
+                        </a>
+                    </li>
+                    <?php endif; ?>
+
+                    <?php if (is_superadmin_loggedin()) : ?>
+                    <!-- users -->
                     <li class="<?php if ($main_menu == 'ads') echo 'nav-active';?>">
                         <a href="<?=base_url('ads/index')?>">
                             <i class="icons icon-list"></i><span><?=translate('ads')?></span>

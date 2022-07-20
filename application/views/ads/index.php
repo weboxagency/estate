@@ -140,24 +140,24 @@
 
                            <!-- Show modal -->
                            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-							  <div class="modal-dialog modal-lg" role="document">
-							    <div class="modal-content">
-							      <div class="modal-header">
-							        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-							        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-							          <span aria-hidden="true">&times;</span>
-							        </button>
-							      </div>
-							      <div class="modal-body">
-							        ...
-							      </div>
-							      <div class="modal-footer">
-							        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-							        <button type="button" class="btn btn-primary">Save changes</button>
-							      </div>
-							    </div>
-							  </div>
-							</div>
+									  <div class="modal-dialog modal-lg" role="document">
+									    <div class="modal-content">
+									      <div class="modal-header">
+									        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+									        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+									          <span aria-hidden="true">&times;</span>
+									        </button>
+									      </div>
+									      <div class="modal-body">
+									        ...
+									      </div>
+									      <div class="modal-footer">
+									        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+									        <button type="button" class="btn btn-primary">Save changes</button>
+									      </div>
+									    </div>
+									  </div>
+									</div>
 
                            <!--update link-->
                            <a href="<?=base_url('users/user_edit/'.$row['id'])?>" class="btn btn-default btn-circle icon">
@@ -414,14 +414,26 @@
 						</div>
 					</div>
 
-					<div class="form-group mt-md images">
-						<label class="col-md-3 control-label" for="images"><?=translate('images')?> <span class="required">*</span></label>
+					<div class="form-group mt-md description">
+						<label class="col-md-3 control-label"><?=translate('image')?> <span class="required">*</span></label>
 						<div class="col-md-6">
-							<input type="file" name="file" multiple id="image-input">
-							<div id="display-image"></div>
+							<div class="form-group mt-md images">
+								<div id="addform" class="form-item__file" x-upload-photo>
+		                     <label for="">
+		                        <span>
+		                        	<i class="fa fa-image"></i>
+		                        </span>
+		                        <p><?= translate('add') ?></p>
+		                     </label>
+		                  </div>
+		                  <div x-images class="form-gallery"></div>
+							</div>
+							<input multiple type="file" id="image-input" x-select-images accept="image/*" />
+							<span class="error"><?=form_error('description') ?></span>
 						</div>
 					</div>
 
+					
 
 
 					<div class="form-group mt-md status">
@@ -457,4 +469,207 @@
 <script src='<?= base_url('assets/site/admin/underscore-min.js') ?>'></script>
 <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCcVxlZlT3nO44ljCnR2f89GqzxkuCQftY&libraries=places&callback=initMap&language=az">
 
-	</script>
+</script>
+<script type="text/javascript">
+
+       $( document ).on( 'change' , '[x-photo-input]' , function( e )
+       {
+           let ext = e.target.files[ 0 ][ 'name' ].replace( /^.*\./ , '' ).toLowerCase() ,
+               t = $( this ) , name = t.attr( 'x-photo-input' ) ,
+               img = t.closest( '[x-photo]' ).find( '[x-photo-img="' + name + '"]' );
+   
+           if( ext == 'jpeg' || ext == 'png' || ext == 'jpg' || 'gif' )
+           {
+               img.attr( 'src' , URL.createObjectURL( e.target.files[ 0 ] ) );
+           } else
+           {
+               t.val( '' );
+   
+               img.attr( 'src' , img.attr( 'x-photo-default' ) );
+   
+               error( '' , 'Select valid image extension' );
+           }
+       } );
+   
+   
+       $( document ).on( 'change' , '[x-file-input]' , function( e )
+       {
+           let t = $( this ) , val = t.val() , name = t.attr( 'x-file-input' ) ,
+               _file = t.closest( '[x-file]' ).find( '[x-file-a="' + name + '"]' );
+   
+           if( val ) _file.hide();
+           else _file.show();
+       } );
+	 $( document ).on( 'click' , '[x-upload-photo]' , function() { $( '[x-select-images]' ).click(); } );
+
+            $( document ).on( 'change' , '[x-select-images]' , fileUpload );
+
+
+            $( document ).on( 'click' , '.form-gallery__item--delete' , function()
+            {
+                $( this ).closest( '.form-gallery__item' ).fadeOut( function (){ $( this ).remove(); } );
+                var imageName = $( this ).attr("data-id")
+                files = files.filter(img => img.name !== imageName)
+                document.querySelector("[x-select-images]").value = ""
+                console.log(document.querySelector("[x-select-images]").files)
+            } );
+
+
+function fileUpload( e )
+        {
+
+            files = Array.prototype.slice.call( e.target.files );
+
+
+            uploadFile();
+        }
+
+        function  uploadFile( i = 0 )
+        {
+            if( files[ i ] !== undefined )
+            {
+                var d = new Date();
+                var year = d.getFullYear();
+                var month = d.getMonth() + 1
+                var date = d.getDate();
+                var hour = d.getHours();
+                var minute = d.getMinutes();
+                var second = d.getSeconds();
+                var minSec = d.getMilliseconds()
+                var dataId = files[ i ].name.replace(/(.*)\.(.*?)$/, "$1").split(" ").join("");
+                var imageName = files[ i ].name;
+
+                dataId = dataId.toLowerCase().split(/[\])}[{(]/).join("-").split(/[!@#$%-^&*]/).join("") + `${year}-${month}-${date}-${hour}-${minute}-${second}-${minSec}-${count++}`;
+
+                $( '[x-images]' ).append( _.template( $( 'script[x-photo]' ).html() )( { uniqeId : "x-image-" + dataId,imageName: imageName } ) );
+
+                $( '[x-edit-announcement-button]' ).attr( 'disabled' , 'disabled' );
+
+                if( files[ i + 1 ] !== undefined ) uploadFile( i + 1 );
+
+                let file = files[ i ];
+
+
+                if( file.type.match( 'image.*' ) )
+                {
+                    let formData = new FormData();
+
+                    formData.append( '<?php echo $this->security->get_csrf_token_name();?>' , csrf );
+
+                    formData.append( 'path' , file );
+
+                    $.ajax( {
+                        xhr: function () {
+                            var xhr = new window.XMLHttpRequest();
+                            xhr.upload.addEventListener("progress", function (evt) {
+                                if (evt.lengthComputable) {
+                                    var percentComplete = evt.loaded / evt.total;
+
+                                    $('[x-image-' + dataId + ']').find(".progress-bar").css({
+                                        width: percentComplete * 100 + '%'
+                                    });
+                                    if (percentComplete === 1) {
+                                        $('[x-image-' + dataId + ']').find(".progress").addClass('d-none');
+                                    }
+                                }
+                            }, false);
+                            xhr.addEventListener("progress", function (evt) {
+                                if (evt.lengthComputable) {
+                                    var percentComplete = evt.loaded / evt.total;
+
+                                    $('[x-image-' + dataId + ']').find(".progress-bar").css({
+                                        width: percentComplete * 100 + '%'
+                                    });
+                                }
+                            }, false);
+                            return xhr;
+                        },
+                        type : 'POST' ,
+                        url : '<?= base_url() ?>add_listing/upload' ,
+                        data : formData ,
+                        cache : false ,
+                        contentType : false ,
+                        processData : false ,
+                        success : function( res )
+                        {
+                            res = JSON.parse(res);
+                            if( res[ 'status' ] === 'success' )
+                            {
+                                if( res.validations !== undefined && Object.keys( res.validations ).length )
+                                {
+
+                                    $( '[x-image]:last-child' ).remove();
+
+                                    $.each( res.validations , function( name , v )
+                                    {
+                                        $.each( v , function( k , m )
+                                        {
+                                            warning( m );
+                                        } );
+                                    } );
+                                }
+                                else
+                                {
+
+                                    let div =  $('[x-image-' + dataId + ']').append( _.template( $( 'script[x-photo-data]' ).html() )( { id : res.photo.id , avatar : '' } ) );
+
+                                    div.prev( '[x-loading]' ).remove();
+
+                                    resizeImage( file , div );
+
+                                    $( '[x-edit-announcement-button]' ).removeAttr( 'disabled' );
+                                }
+                            }
+
+                            else {
+
+                                warning( res.exception !== undefined ? ( res.exception.message + ' | Line: ' + res.exception.line + ' | File: ' + res.exception.file ) : ( res.warning !== undefined ? res.warning : 'Şəkil üçün yüklədiyiniz faylın ölçüsü çox böyükdür' ) );
+                            }
+                        } ,
+                        error : function( res )
+                        {
+                            error( 'Network error!' );
+                        }
+                    } );
+                }
+            }
+        }
+
+        function resizeImage( file , div )
+        {
+            var canvas = document.createElement("canvas");
+            var ctx = canvas.getContext("2d");
+            var img = new Image();
+
+            img.onload = function () {
+                let n = 0.5;
+
+                canvas.height = canvas.width * (img.height / img.width);
+                var oc = document.createElement('canvas'), octx = oc.getContext('2d');
+                oc.width = img.width * n;
+                oc.height = img.height * n;
+                octx.drawImage(img, 0, 0, oc.width, oc.height);
+                octx.drawImage(oc, 0, 0, oc.width * n, oc.height * n);
+                ctx.drawImage(oc, 0, 0, oc.width * n, oc.height * n, 0, 0, canvas.width, canvas.height);
+
+                div.find( 'img' ).attr( 'src' , canvas.toDataURL() );
+                div.find( 'img' ).show();
+            }
+
+            img.src = URL.createObjectURL( file );
+        }
+
+
+        $('body').on('click', '.form-gallery__item--rotate', function () {
+            var rotationElement = $(this).parent().find('[name="rotation[]"]');
+            var img = $(this).parent().find('.form-item__file');
+            var rotation = parseInt($(rotationElement).val());
+            if ($(this).hasClass("form-gallery__item--rotate--left")) {
+                rotation = (rotation - 90) % 360;
+            } else if ($(this).hasClass("form-gallery__item--rotate--right")) {
+                rotation = (rotation + 90) % 360;
+            }
+            $(img).css({ 'transform': 'rotate(' + rotation + 'deg)' });
+            $(rotationElement).val(rotation);
+        });
+</script>

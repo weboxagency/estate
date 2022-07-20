@@ -278,7 +278,7 @@ class Settings extends Admin_Controller
                 $this->data['validation_error'] = true;
             }
         }
-
+        
         $this->data['banners']      =  $this->bmodel->allBanners();
         $this->data['title']        = translate('banners');
         $this->data['sub_page']     = 'settings/ads_banners';
