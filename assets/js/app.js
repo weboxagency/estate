@@ -18,80 +18,80 @@ $.extend(theme.PluginDatePicker.defaults, {
 		"lengthChange": false,
 		"pageLength": 25,
 		"columnDefs": [
-			{targets: 'no-sort', orderable: false},
-			{targets: [-1], orderable: false}
+		{targets: 'no-sort', orderable: false},
+		{targets: [-1], orderable: false}
 		],
 		"buttons": [
-			{
-				extend: 'copyHtml5',
-				text: '<i class="far fa-copy"></i>',
-				titleAttr: 'Copy',
-				title: $('.export_title').html(),
-				exportOptions: {
-					columns: ':visible'
-				}
+		{
+			extend: 'copyHtml5',
+			text: '<i class="far fa-copy"></i>',
+			titleAttr: 'Copy',
+			title: $('.export_title').html(),
+			exportOptions: {
+				columns: ':visible'
+			}
+		},
+		{
+			extend: 'excelHtml5',
+			text: '<i class="fa fa-file-excel"></i>',
+			titleAttr: 'Excel',
+			title: $('.export_title').html(),
+			exportOptions: {
+				columns: ':visible'
+			}
+		},
+		{
+			extend: 'csvHtml5',
+			text: '<i class="fa fa-file-alt"></i>',
+			titleAttr: 'CSV',
+			title: $('.export_title').html(),
+			exportOptions: {
+				columns: ':visible'
+			}
+		},
+		{
+			extend: 'pdfHtml5',
+			text: '<i class="fa fa-file-pdf"></i>',
+			titleAttr: 'PDF',
+			title: $('.export_title').html(),
+			footer: true,
+			customize: function ( win ) {
+				win.styles.tableHeader.fontSize = 10;
+				win.styles.tableFooter.fontSize = 10;
+				win.styles.tableHeader.alignment = 'left';
 			},
-			{
-				extend: 'excelHtml5',
-				text: '<i class="fa fa-file-excel"></i>',
-				titleAttr: 'Excel',
-				title: $('.export_title').html(),
-				exportOptions: {
-					columns: ':visible'
-				}
-			},
-			{
-				extend: 'csvHtml5',
-				text: '<i class="fa fa-file-alt"></i>',
-				titleAttr: 'CSV',
-				title: $('.export_title').html(),
-				exportOptions: {
-					columns: ':visible'
-				}
-			},
-			{
-				extend: 'pdfHtml5',
-				text: '<i class="fa fa-file-pdf"></i>',
-				titleAttr: 'PDF',
-				title: $('.export_title').html(),
-				footer: true,
-				customize: function ( win ) {
-					win.styles.tableHeader.fontSize = 10;
-					win.styles.tableFooter.fontSize = 10;
-					win.styles.tableHeader.alignment = 'left';
-				},
-				exportOptions: {
-					columns: ':visible'
-				}
-			},
-			{
-				extend: 'print',
-				text: '<i class="fa fa-print"></i>',
-				titleAttr: 'Print',
-				title: $('.export_title').html(),
-				customize: function ( win ) {
-					$(win.document.body)
-						.css( 'font-size', '9pt' );
+			exportOptions: {
+				columns: ':visible'
+			}
+		},
+		{
+			extend: 'print',
+			text: '<i class="fa fa-print"></i>',
+			titleAttr: 'Print',
+			title: $('.export_title').html(),
+			customize: function ( win ) {
+				$(win.document.body)
+				.css( 'font-size', '9pt' );
 
-					$(win.document.body).find( 'table' )
-						.addClass( 'compact' )
-						.css( 'font-size', 'inherit' );
+				$(win.document.body).find( 'table' )
+				.addClass( 'compact' )
+				.css( 'font-size', 'inherit' );
 
-					$(win.document.body).find( 'h1' )
-						.css( 'font-size', '14pt' );
-				},
-				footer: true,
-				exportOptions: {
-					columns: ':visible'
-				}
+				$(win.document.body).find( 'h1' )
+				.css( 'font-size', '14pt' );
 			},
-			{
-				extend: 'colvis',
-				text: '<i class="fas fa-columns"></i>',
-				titleAttr: 'Columns',
-				title: $('.export_title').html(),
-				postfixButtons: ['colvisRestore']
-			},
+			footer: true,
+			exportOptions: {
+				columns: ':visible'
+			}
+		},
+		{
+			extend: 'colvis',
+			text: '<i class="fas fa-columns"></i>',
+			titleAttr: 'Columns',
+			title: $('.export_title').html(),
+			postfixButtons: ['colvisRestore']
+		},
 		]
 	});
 
@@ -207,17 +207,17 @@ $.extend(theme.PluginDatePicker.defaults, {
 	if ($(".daterange").length) {
 		$('.daterange').daterangepicker({
 			opens: 'left',
-		    locale: {format: 'YYYY/MM/DD'},
-		    ranges: {
-		       'Today': [moment(), moment()],
-		       'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
-		       'Last 7 Days': [moment().subtract(6, 'days'), moment()],
-		       'Last 30 Days': [moment().subtract(29, 'days'), moment()],
-		       'This Month': [moment().startOf('month'), moment().endOf('month')],
-		       'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')],
-		       'This Year': [moment().startOf('year'), moment().endOf('year')],
-		       'Last Year': [moment().subtract(1, 'year').startOf('year'), moment().subtract(1, 'year').endOf('year')]
-		    }
+			locale: {format: 'YYYY/MM/DD'},
+			ranges: {
+				'Today': [moment(), moment()],
+				'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+				'Last 7 Days': [moment().subtract(6, 'days'), moment()],
+				'Last 30 Days': [moment().subtract(29, 'days'), moment()],
+				'This Month': [moment().startOf('month'), moment().endOf('month')],
+				'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')],
+				'This Year': [moment().startOf('year'), moment().endOf('year')],
+				'Last Year': [moment().subtract(1, 'year').startOf('year'), moment().subtract(1, 'year').endOf('year')]
+			}
 		});
 	}
 
@@ -573,38 +573,89 @@ $.extend(theme.PluginDatePicker.defaults, {
 		$(".ads-switch").on("change", function() {
 			var state = $(this).prop('checked');
 			var id = $(this).data('id');
-			if (state != null) {
-				$.ajax({
-					type: 'POST',
-					url: base_url + "ads/is_active",
-					data: {
-						id: id,
-						status: state					
-					},
-					dataType: "json",
-					success: function (data) {
-						if(data.status == true) {
-							alertMsg(data.msg);
-						}
-					}
-				});
-			}
-		});
+
+			var csrfName = $('#estate_token').attr('name'); // Value specified in $config['csrf_token_name']
+          	var csrfHash = $('#estate_token').val(); // CSRF hash
+
+
+          if (state != null) {
+          	$.ajax({
+          		type: 'POST',
+          		url: base_url + "ads/is_active",
+          		data: {
+          			id: id,
+          			status: state,
+          			[csrfName]: csrfHash					
+          		},
+          		dataType: "json",
+          		success: function (data) {
+          			if(data.status == true) {
+          				alertMsg(data.msg);
+          			}
+          		}
+          	});
+          }
+      });
 
 		// ads status
 		$(".ads-status").on("change", function() {
+
+			var csrfName = $('#estate_token').attr('name'); // Value specified in $config['csrf_token_name']
+          	var csrfHash = $('#estate_token').val(); // CSRF hash
+
+          	var data_id = $(this).attr('data-id');
 			var id = $(this).data('id');
 			var status = $(this).val();
 			var estate_token = $("#estate_token").val();
-			if (status != null) {
-				$.ajax({
+			
+			if(status==3)
+			{
+				$('#qebul-edilmemis-'+data_id).modal("show");
+			}
+			else
+			{
+				if (status != null) {
+					$.ajax({
+						type: 'POST',
+						url: base_url + "ads/ads_status",
+						data: {
+
+							id: id,
+							status: status,
+							[csrfName]: csrfHash	
+						},
+						dataType: "json",
+						success: function (data) {
+							if(data.status == true) {
+								alertMsg(data.msg);
+							}
+						}
+					});
+				}
+			}
+			
+		});
+
+		//save-reason
+		$(document).ready(function(){
+	        $(".save-ads-reason").click(function(){
+	            var reason = $.trim($("#reason").val());
+	            var id = $(this).attr('data-id');
+	            var status = 3;
+
+	            var csrfName = $('#estate_token').attr('name'); // Value specified in $config['csrf_token_name']
+          		var csrfHash = $('#estate_token').val(); // CSRF hash
+
+          		$('#qebul-edilmemis-'+id).modal("hide");
+          		$.ajax({
 					type: 'POST',
-					url: base_url + "ads/ads_status",
+					url: base_url + "ads/save_reason",
 					data: {
 
 						id: id,
 						status: status,
-						token: estate_token
+						reason: reason,
+						[csrfName]: csrfHash	
 					},
 					dataType: "json",
 					success: function (data) {
@@ -613,8 +664,10 @@ $.extend(theme.PluginDatePicker.defaults, {
 						}
 					}
 				});
-			}
-		});
+
+	        });
+	        
+	    });
 
 		// banners status
 		$(".banner-switch").on("change", function() {
@@ -717,14 +770,14 @@ $.extend(theme.PluginDatePicker.defaults, {
 
 	// month and year mode datepicker
 	if ($(".monthyear").length) {
-        $(".monthyear").datepicker({
-            orientation: 'bottom',
-            autoclose: true,
-            startView: 1,
-            format: 'yyyy-mm',
-            minViewMode: 1,
-        });
-    }
+		$(".monthyear").datepicker({
+			orientation: 'bottom',
+			autoclose: true,
+			startView: 1,
+			format: 'yyyy-mm',
+			minViewMode: 1,
+		});
+	}
 
 	// customize ckeditor
 	if ($("#ckeditor").length) {
@@ -740,13 +793,13 @@ $.extend(theme.PluginDatePicker.defaults, {
 		$('.summernote').summernote({
 			height: 220,
 			toolbar: [
-				["style", ["style"]],
-				["name", ["fontname","fontsize"]],
-				["font", ["bold","italic","underline", "clear"]],
-				["color", ["color"]],
-				["para", ["ul", "ol", "paragraph"]],
-				["insert", ["link","table"]],
-				["misc", ["fullscreen", "undo", "codeview"]]
+			["style", ["style"]],
+			["name", ["fontname","fontsize"]],
+			["font", ["bold","italic","underline", "clear"]],
+			["color", ["color"]],
+			["para", ["ul", "ol", "paragraph"]],
+			["insert", ["link","table"]],
+			["misc", ["fullscreen", "undo", "codeview"]]
 			]
 		});
 	}
@@ -755,17 +808,17 @@ $.extend(theme.PluginDatePicker.defaults, {
 	if ($(".daterange").length) {
 		$('.daterange').daterangepicker({
 			opens: 'left',
-		    locale: {format: 'YYYY/MM/DD'},
-		    ranges: {
-		       'Today': [moment(), moment()],
-		       'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
-		       'Last 7 Days': [moment().subtract(6, 'days'), moment()],
-		       'Last 30 Days': [moment().subtract(29, 'days'), moment()],
-		       'This Month': [moment().startOf('month'), moment().endOf('month')],
-		       'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')],
-		       'This Year': [moment().startOf('year'), moment().endOf('year')],
-		       'Last Year': [moment().subtract(1, 'year').startOf('year'), moment().subtract(1, 'year').endOf('year')]
-		    }
+			locale: {format: 'YYYY/MM/DD'},
+			ranges: {
+				'Today': [moment(), moment()],
+				'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+				'Last 7 Days': [moment().subtract(6, 'days'), moment()],
+				'Last 30 Days': [moment().subtract(29, 'days'), moment()],
+				'This Month': [moment().startOf('month'), moment().endOf('month')],
+				'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')],
+				'This Year': [moment().startOf('year'), moment().endOf('year')],
+				'Last Year': [moment().subtract(1, 'year').startOf('year'), moment().subtract(1, 'year').endOf('year')]
+			}
 		});
 	}
 })(jQuery);
@@ -773,8 +826,8 @@ $.extend(theme.PluginDatePicker.defaults, {
 // payroll salary add more allowances
 function add_more_allowances() {
 	var add_new = $('<div class="row"><div class="col-md-6 mt-md"> <input class="form-control" name="allowance_name[]" placeholder="Name Of Allowance" type="text">\n\
-	</div><div class="col-md-4 mt-md"> <input class="salary form-control" name="allowance_value[]" placeholder="Amount" type="number"></div>\n\
-	<div class="col-md-2 mt-md text-right"><button type="button" class="btn btn-danger removeAL" ><i class="fas fa-times"></i> </button></div></div>');
+		</div><div class="col-md-4 mt-md"> <input class="salary form-control" name="allowance_value[]" placeholder="Amount" type="number"></div>\n\
+		<div class="col-md-2 mt-md text-right"><button type="button" class="btn btn-danger removeAL" ><i class="fas fa-times"></i> </button></div></div>');
 	$("#add_new_allowance").append(add_new);
 }
 
@@ -787,8 +840,8 @@ $("#add_new_allowance").on('click', '.removeAL', function () {
 // payroll salary add more deduction
 function add_more_deduction() {
 	var add_new = $('<div class="row"><div class="col-md-6 mt-md"> <input class="form-control" name="deduction_name[]" placeholder="Name Of Deductions" type="text">\n\
-	</div><div class="col-md-4 mt-md"> <input class="deduction form-control" name="deduction_value[]" placeholder="Amount" type="number"></div>\n\
-	<div class="col-md-2 mt-md text-right"><button type="button" class="btn btn-danger removeDE"><i class="fas fa-times"></i> </button></div></div>');
+		</div><div class="col-md-4 mt-md"> <input class="deduction form-control" name="deduction_value[]" placeholder="Amount" type="number"></div>\n\
+		<div class="col-md-2 mt-md text-right"><button type="button" class="btn btn-danger removeDE"><i class="fas fa-times"></i> </button></div></div>');
 	$("#add_new_deduction").append(add_new);
 }
 
@@ -799,25 +852,25 @@ $("#add_new_deduction").on('click', '.removeDE', function () {
 });
 
 function payrollCheckSum() {
-    var sum = 0;
-    var deduc = 0;
-    $(".salary").each(function () {
-        sum += $(this).val() ? parseFloat($(this).val()) : 0;
-    });
+	var sum = 0;
+	var deduc = 0;
+	$(".salary").each(function () {
+		sum += $(this).val() ? parseFloat($(this).val()) : 0;
+	});
 
-    $(".deduction").each(function () {
-        deduc += $(this).val() ? parseFloat($(this).val()) : 0;
-    });
+	$(".deduction").each(function () {
+		deduc += $(this).val() ? parseFloat($(this).val()) : 0;
+	});
 
-    $("#total_allowance").val(sum);
-    $("#total_deduction").val(deduc);
+	$("#total_allowance").val(sum);
+	$("#total_deduction").val(deduc);
 
-    var net_salary = 0;
+	var net_salary = 0;
 	var basic = $('#basic_salary').val() ? parseFloat($('#basic_salary').val()) : 0;
 	
-    net_salary = (basic + sum) - deduc;
-    $("#net_salary").val(net_salary);
-    $("#v_basic_salary").val(basic);
+	net_salary = (basic + sum) - deduc;
+	$("#net_salary").val(net_salary);
+	$("#v_basic_salary").val(basic);
 }
 
 // event modal showing

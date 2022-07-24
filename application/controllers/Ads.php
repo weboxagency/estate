@@ -131,4 +131,20 @@ class Ads extends Admin_Controller
         redirect(base_url(), 'refresh');   
     }
 
+    public function save_reason()
+    {
+       $arrayCity = array(
+            'ads_reason' => trim($_POST['reason']),
+            'status' => $_POST['status']
+        );
+
+       
+        $this->db->where('id', $_POST['id']);
+        $this->db->update('ads_all', $arrayCity);
+        
+
+        $return = array('msg' => translate('information_has_been_updated_successfully'), 'status' => true);
+        echo json_encode($return);
+    }
+
 }

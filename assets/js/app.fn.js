@@ -177,6 +177,7 @@ function alertMsg(msg, type='success') {
     });
 }
 
+
 // staff documents edit modal show
 function editDocument(id, user) {
     $.ajax({
