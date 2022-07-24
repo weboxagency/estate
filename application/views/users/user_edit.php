@@ -43,6 +43,31 @@
 		                     <span class="error"><?=form_error('balance') ?></span>
 		                  </div>
 		               </div>
+		               <input type="hidden" name="user_type_hidden" id="user_type_hidden" value="<?= $user['isAgencyEmployee'] ?>">
+		               <div class="form-group mt-md">
+						<label class="col-md-3 control-label" for="isAgencyEmployee"><?=translate('isAgencyEmployee')?> <span class="required">*</span></label>
+						<div class="col-md-6">
+							<select class="form-control" name="isAgencyEmployee" id="isAgencyEmployee">
+								<option disabled><?= translate('please_select_one_item') ?></option>
+								<option value="0" <?= ($user['isAgencyEmployee']==0) ? 'selected' : '' ?>><?= translate('personal_profile') ?></option>
+								<option value="1" <?= ($user['isAgencyEmployee']==1) ? 'selected' : '' ?>><?= translate('agency_employee') ?></option>
+							</select>
+							<span class="error"><?=form_error('status') ?></span>
+						</div>
+					</div>
+
+					<div class="form-group mt-md agencies">
+						<label class="col-md-3 control-label" for="status"><?=translate('agencies')?> <span class="required">*</span></label>
+						<div class="col-md-6">
+							<select class="form-control" name="agency_id" id="agency_id">
+								<option disabled><?= translate('please_select_one_item') ?></option>
+								<?php foreach ($agencies as $agency): ?>
+									<option value="<?= $agency['agency_id'] ?>" <?= ($agency['agency_id']==$user['agency_id']) ? 'selected' : '' ?>><?= $agency['agency_name'] ?></option>
+								<?php endforeach ?>
+							</select>
+							<span class="error"><?=form_error('status') ?></span>
+						</div>
+					</div>
 					
 					<div class="form-group mt-md">
 						<label class="col-md-3 control-label" for="status"><?=translate('status')?> <span class="required">*</span></label>
@@ -70,3 +95,29 @@
 		</div>
 	</div>
 </section>
+
+<script type="text/javascript">
+	$( document ).ready(function() {
+		let user_type = $("#user_type_hidden").val();
+		if (user_type==1) 
+		{
+			$('.agencies').show();
+		}
+		else
+		{
+			$('.agencies').hide();
+		}
+	    $('#isAgencyEmployee').change(function(e){
+	    	e.preventDefault();
+	    	var isAgencyEmployee = $(this).val();
+	    	if(isAgencyEmployee == 1)
+	    	{
+	    		$('.agencies').show();
+	    	}
+	    	else
+	    	{
+	    		$('.agencies').hide();
+	    	}
+	    })
+	});
+</script>

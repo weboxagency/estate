@@ -18,6 +18,7 @@ class Users extends Admin_Controller
     {
         parent::__construct();
         $this->load->model('users_model','u');
+        $this->load->model('agencies_model', 'ag');
     }
 
 
@@ -42,12 +43,12 @@ class Users extends Admin_Controller
                 }
         }
 
-        $this->data['registeredUsers']        =  $this->u->allRegisteredUsers();
-        $this->data['nonRegisteredUsers']        =  $this->u->allNonRegisteredUsers();
-        // dd($this->data['users']);
-        $this->data['title']        =  translate('users');
-        $this->data['sub_page']     =  'users/index';
-        $this->data['main_menu']    =  'users';
+        $this->data['registeredUsers']      =  $this->u->allRegisteredUsers();
+        $this->data['nonRegisteredUsers']   =  $this->u->allNonRegisteredUsers();
+        $this->data['agencies']             =  $this->ag->statusActiveAgencies();
+        $this->data['title']                =  translate('users');
+        $this->data['sub_page']             =  'users/index';
+        $this->data['main_menu']            =  'users';
         $this->load->view('layout/index', $this->data);
     }
 
@@ -93,6 +94,7 @@ class Users extends Admin_Controller
         }
         
         $this->data['user']         = $this->u->getUser($id)[0];
+        $this->data['agencies']     = $this->ag->statusActiveAgencies();
         $this->data['title']        = translate('users');
         $this->data['sub_page']     = 'users/user_edit';
         $this->data['main_menu']    = 'users';

@@ -39,6 +39,7 @@ class Users_model extends MY_Model
     }
     public function user_save($data)
     {
+        
         $arrayUsers = array(
             'name'                  => $data['name'],
             'email'                 => $data['email'],
@@ -47,6 +48,8 @@ class Users_model extends MY_Model
             "mobileBeautified"      => formatPhoneNumber("",$data['mobile'])['national'],
             "provider_name"         => provider_name(formatPhoneNumber("",$data['mobile'])['provider']),
             'balance'               => $data['balance'],
+            'isAgencyEmployee'      => $data['isAgencyEmployee'],
+            'agency_id'             => ($data['isAgencyEmployee']==0) ? NULL : $data['agency_id'],
             'status'                => $data['status']
         );
 
@@ -80,6 +83,8 @@ class Users_model extends MY_Model
             "mobileBeautified"      => formatPhoneNumber("",$data['mobile'])['national'],
             "provider_name"         => provider_name(formatPhoneNumber("",$data['mobile'])['provider']),
             'balance'               => $data['balance'],
+            'isAgencyEmployee'      => $data['isAgencyEmployee'],
+            'agency_id'             => ($data['isAgencyEmployee']==0) ? NULL : $data['agency_id'],
             'status'                => $data['status']
         );
 

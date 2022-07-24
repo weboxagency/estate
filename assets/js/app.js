@@ -595,13 +595,16 @@ $.extend(theme.PluginDatePicker.defaults, {
 		$(".ads-status").on("change", function() {
 			var id = $(this).data('id');
 			var status = $(this).val();
+			var estate_token = $("#estate_token").val();
 			if (status != null) {
 				$.ajax({
 					type: 'POST',
 					url: base_url + "ads/ads_status",
 					data: {
+
 						id: id,
-						status: status
+						status: status,
+						token: estate_token
 					},
 					dataType: "json",
 					success: function (data) {
@@ -874,4 +877,3 @@ function mfp_modal(data){
 		modal: true
 	});
 }
-

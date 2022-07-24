@@ -19,6 +19,12 @@ class Agencies_model extends MY_Model
         return $query->result_array();
     }
 
+    public function statusActiveAgencies()
+    {
+        $query = $this->db->query("SELECT * FROM agencies WHERE agency_status=1  ORDER BY agency_id DESC");
+        return $query->result_array();
+    }
+
     public function agency_save($data)
     {
 

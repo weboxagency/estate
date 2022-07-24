@@ -101,6 +101,7 @@ class Ads extends Admin_Controller
         $this->db->update('ads_all', $arrayData);
 
         $return = array('msg' => translate('information_has_been_updated_successfully'), 'status' => true);
+        
         echo json_encode($return);
     }
 

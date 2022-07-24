@@ -41,7 +41,7 @@
                         <td><?php echo $row['mobileBeautified'];?></td>
                         <td><?php echo $row['balance'];?> ₼</td>
                         <td><span class="label label-success" style="font-size:13px;"><?= adsCountForUser($row['mobile_format_second']) ?> elan </span></td>
-                        <td><?= ($row['isAgencyEmployee']==0) ? '<span class="label label-info" style="font-size:13px;">Şəxsi hesab</span>' : '<span class="label label-primary" style="font-size:13px;">Agentlik</span>' ?></td>
+                        <td><?= ($row['isAgencyEmployee']==0) ? '<span class="label label-info" style="font-size:13px;">'.translate('personal_profile').'</span>' : '<span class="label label-primary" style="font-size:13px;">'.translate('agency_employee').'</span>' ?></td>
                         <td><?php echo date_aze("j F Y | H:i:s",$row['register_at']);?> </td>
                         <td>
                            <div class="material-switch ml-xs">
@@ -149,6 +149,31 @@
                   <div class="col-md-6">
                      <input type="number" class="form-control" placeholder="<?= translate('AZN') ?>" name="balance" value="<?=set_value('balance')?>" />
                      <span class="error"><?=form_error('balance') ?></span>
+                  </div>
+               </div>
+
+                <div class="form-group mt-md">
+                  <label class="col-md-3 control-label" for="isAgencyEmployee"><?=translate('isAgencyEmployee')?> <span class="required">*</span></label>
+                  <div class="col-md-6">
+                     <select class="form-control" name="isAgencyEmployee" id="isAgencyEmployee">
+                        <option disabled><?= translate('please_select_one_item') ?></option>
+                        <option value="0"><?= translate('personal_profile') ?></option>
+                        <option value="1"><?= translate('agency_employee') ?></option>
+                     </select>
+                     <span class="error"><?=form_error('status') ?></span>
+                  </div>
+               </div>
+
+               <div class="form-group mt-md agencies">
+                  <label class="col-md-3 control-label" for="status"><?=translate('agencies')?> <span class="required">*</span></label>
+                  <div class="col-md-6">
+                     <select class="form-control" name="agency_id" id="agency_id">
+                        <option disabled><?= translate('please_select_one_item') ?></option>
+                        <?php foreach ($agencies as $agency): ?>
+                           <option value="<?= $agency['agency_id'] ?>"><?= $agency['agency_name'] ?></option>
+                        <?php endforeach ?>
+                     </select>
+                     <span class="error"><?=form_error('status') ?></span>
                   </div>
                </div>
 

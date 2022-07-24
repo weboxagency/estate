@@ -1,3 +1,9 @@
+<?php $CI =& get_instance(); ?>
+<script> 
+    var csrf_name = '<?php echo $CI->security->get_csrf_token_name(); ?>';
+    var csrf_hash = '<?php echo $CI->security->get_csrf_hash(); ?>';
+</script>
+
 <script src="<?php echo base_url('assets/vendor/jquery-browser-mobile/jquery.browser.mobile.js');?>"></script>
 <script src="<?php echo base_url('assets/vendor/bootstrap/js/bootstrap.js');?>"></script>
 <script src="<?php echo base_url('assets/vendor/nanoscroller/nanoscroller.js');?>"></script>
