@@ -65,6 +65,7 @@
 	$('.max-floor').hide();
 	$('.land-area').hide();
 	$('.region').hide();
+    $('.metro').hide();
 	$('.district').hide();
 	$('.deed').hide();
 	$('.mortgage').hide();
@@ -130,40 +131,105 @@
 			$('.mortgage').hide();
 			$('.repair').hide();
 		}
-	})
+	});
 
-	var loadFile = function(event) {
-    var output = document.getElementById('file');
-	    output.src = URL.createObjectURL(event.target.files[0]);
-	    output.onload = function() {
+    $('#city_id').on("change",function(){
+        var city_id = $(this).val();
+        if(city_id==1)
+        {
+            $('.metro').show();
+        }
+        else
+        {
+            $('.metro').hide();   
+        }
+            var csrfName = $('#estate_token').attr('name'); // Value specified in $config['csrf_token_name']
+            var csrfHash = $('#estate_token').val(); // CSRF hash
+
+            $.ajax({
+                url: base_url + "ads/get_regions",
+                type:"POST",
+                data:{
+                    [csrfName]: csrfHash,
+                    "city_id":city_id,
+                },
+                success:function(data){
+                    if(data!=""){
+                        $('.region').show();
+                        $('#region_id').html(data);
+                    }
+                    else
+                    {
+                        $('.region').hide();
+                        $('#region_id').html('');
+                    }
+                }
+            })
+
+        })
+
+    $('#region_id').on("change",function(){
+        var region_id = $(this).val();
+
+            var csrfName = $('#estate_token').attr('name'); // Value specified in $config['csrf_token_name']
+            var csrfHash = $('#estate_token').val(); // CSRF hash
+
+            $.ajax({
+                url: base_url + "ads/get_districts",
+                type:"POST",
+                data:{
+                    [csrfName]: csrfHash,
+                    "region_id":region_id,
+                },
+                success:function(data){
+                    if(data!=""){
+                        $('.district').show();
+                        $('#district_id').html(data);
+                    }
+                    else
+                    {
+                        $('.district').hide();
+                        $('#district_id').html('');
+                    }
+                }
+            })
+
+        })
+
+
+
+    var loadFile = function(event) {
+        var output = document.getElementById('file');
+        output.src = URL.createObjectURL(event.target.files[0]);
+        output.onload = function() {
 	      URL.revokeObjectURL(output.src) // free memory
-	    }
-  	};
+     }
+ };
 
-		const image_input = document.querySelector("#image-input");
-			image_input.addEventListener("change", function() {
-			  const reader = new FileReader();
-			  reader.addEventListener("load", () => {
-			    const uploaded_image = reader.result;
-			    document.querySelector("#display-image").style.backgroundImage = `url(${uploaded_image})`;
-			  });
-			  reader.readAsDataURL(this.files[0]);
-			  alert("Salam");
-			});
+ const image_input = document.querySelector("#image-input");
+ image_input.addEventListener("change", function() {
+   const reader = new FileReader();
+   reader.addEventListener("load", () => {
+     const uploaded_image = reader.result;
+     document.querySelector("#display-image").style.backgroundImage = `url(${uploaded_image})`;
+ });
+   reader.readAsDataURL(this.files[0]);
+   alert("Salam");
+});
 </script>
 <script type="text/javascript">
 	function initMap()
-        {
-            var geocoder = new google.maps.Geocoder();
+    {
+        var geocoder = new google.maps.Geocoder();
 
-            var map = new google.maps.Map(
-                document.getElementById( 'gmap' ),
-                {
-                    center : {
-                        lat: 40.3913,
-                        lng: 49.8666
-                    },
-                    zoom : 15,
+        var map = new google.maps.Map(
+            document.getElementById( 'gmap' ),
+            {
+                center : {
+                    lat: 40.3913,
+                    lng: 49.8666
+                },
+                zoom : 15,
                     // disableDefaultUI: true,
                     mapTypeId: "roadmap",
                     fullscreenControl: true,
@@ -171,68 +237,68 @@
                         position : google.maps.ControlPosition.RIGHT_TOP
                     }
                 }
-            );
+                );
 
-            var input = document.getElementById("pac-input");
-            var searchBox = new google.maps.places.SearchBox(input);
-            map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
+        var input = document.getElementById("pac-input");
+        var searchBox = new google.maps.places.SearchBox(input);
+        map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
 
-            let markers = [];
+        let markers = [];
 
-            var defaulticon = {
-                lat : 40.3913 ,
-                lng : 49.8666
-            };
+        var defaulticon = {
+            lat : 40.3913 ,
+            lng : 49.8666
+        };
 
-            var map = new google.maps.Map(
-                document.getElementById( 'gmap' ) ,
-                {
-                    zoom : 15 ,
-                    center : defaulticon
-                }
-            );
-
-            
-            var request = {
-                placeId : 'ChIJN1t_tDeuEmsRUsoyG83frY4' ,
-                fields : [ 'name' , 'formatted_address' , 'place_id' , 'geometry' ]
-            };
-
-            var infowindow = new google.maps.InfoWindow();
-            var service = new google.maps.places.PlacesService( map );
-
-            service.getDetails( request , function( place , status )
+        var map = new google.maps.Map(
+            document.getElementById( 'gmap' ) ,
             {
-                if( status === google.maps.places.PlacesServiceStatus.OK )
-                {
-                    var flag = 0;
-                    var x;
-                    searchBox.addListener("places_changed", function( event ) {
-                        const places = searchBox.getPlaces();
+                zoom : 15 ,
+                center : defaulticon
+            }
+            );
 
-                        if (places.length == 0) {
+
+        var request = {
+            placeId : 'ChIJN1t_tDeuEmsRUsoyG83frY4' ,
+            fields : [ 'name' , 'formatted_address' , 'place_id' , 'geometry' ]
+        };
+
+        var infowindow = new google.maps.InfoWindow();
+        var service = new google.maps.places.PlacesService( map );
+
+        service.getDetails( request , function( place , status )
+        {
+            if( status === google.maps.places.PlacesServiceStatus.OK )
+            {
+                var flag = 0;
+                var x;
+                searchBox.addListener("places_changed", function( event ) {
+                    const places = searchBox.getPlaces();
+
+                    if (places.length == 0) {
+                        return;
+                    }
+
+                    deleteMarkers();
+
+                    const bounds = new google.maps.LatLngBounds();
+                    places.forEach((place) => {
+                        if (!place.geometry) {
+                            console.log("Returned place contains no geometry");
                             return;
                         }
 
-                        deleteMarkers();
+                        placeMarker(place.geometry.location);
 
-                        const bounds = new google.maps.LatLngBounds();
-                        places.forEach((place) => {
-                            if (!place.geometry) {
-                                console.log("Returned place contains no geometry");
-                                return;
-                            }
-
-                            placeMarker(place.geometry.location);
-
-                            if (place.geometry.viewport) {
-                                bounds.union(place.geometry.viewport);
-                            } else {
-                                bounds.extend(place.geometry.location);
-                            }
-                            $("#map-id").attr('src',`https://maps.googleapis.com/maps/api/staticmap?center=${place.geometry.location.lat()},${place.geometry.location.lng()}&zoom=11&size=360x220&maptype=roadmap&markers=${place.geometry.location.lat()},${place.geometry.location.lng()}&key=AIzaSyCcVxlZlT3nO44ljCnR2f89GqzxkuCQftY`);
-                            document.getElementById( "latitude" ).value = place.geometry.location.lat();
-                            document.getElementById( "longitude" ).value = place.geometry.location.lng();
+                        if (place.geometry.viewport) {
+                            bounds.union(place.geometry.viewport);
+                        } else {
+                            bounds.extend(place.geometry.location);
+                        }
+                        $("#map-id").attr('src',`https://maps.googleapis.com/maps/api/staticmap?center=${place.geometry.location.lat()},${place.geometry.location.lng()}&zoom=11&size=360x220&maptype=roadmap&markers=${place.geometry.location.lat()},${place.geometry.location.lng()}&key=AIzaSyCcVxlZlT3nO44ljCnR2f89GqzxkuCQftY`);
+                        document.getElementById( "latitude" ).value = place.geometry.location.lat();
+                        document.getElementById( "longitude" ).value = place.geometry.location.lng();
                             // geocoder.geocode( {
                             //     'latLng' : place.geometry.location
                             // } , function( results , status )
@@ -263,18 +329,18 @@
                             //     }
                             // } );
                         });
-                        map.fitBounds(bounds);
-                    });
-                    map.addListener("bounds_changed", () => {
-                        searchBox.setBounds(map.getBounds());
-                    });
-                    google.maps.event.addListener( map , 'click' , function( event )
-                    {
+                    map.fitBounds(bounds);
+                });
+                map.addListener("bounds_changed", () => {
+                    searchBox.setBounds(map.getBounds());
+                });
+                google.maps.event.addListener( map , 'click' , function( event )
+                {
 
-                        $("#map-id").attr('src',`https://maps.googleapis.com/maps/api/staticmap?center=${event.latLng.lat()},${event.latLng.lng()}&zoom=11&size=360x220&maptype=roadmap&markers=${event.latLng.lat()},${event.latLng.lng()}&key=AIzaSyCcVxlZlT3nO44ljCnR2f89GqzxkuCQftY`)
+                    $("#map-id").attr('src',`https://maps.googleapis.com/maps/api/staticmap?center=${event.latLng.lat()},${event.latLng.lng()}&zoom=11&size=360x220&maptype=roadmap&markers=${event.latLng.lat()},${event.latLng.lng()}&key=AIzaSyCcVxlZlT3nO44ljCnR2f89GqzxkuCQftY`)
 
-                        deleteMarkers();
-                        placeMarker( event.latLng );
+                    deleteMarkers();
+                    placeMarker( event.latLng );
                         // geocoder.geocode( {
                         //     'latLng' : event.latLng
                         // } , function( results , status )
@@ -309,36 +375,36 @@
 
                     } );
 
-                    function placeMarker( location )
-                    {
+                function placeMarker( location )
+                {
 
-                        var marker = new google.maps.Marker( {
-                            position : location ,
-                            map : map
-                        } );
-                        markers.push( marker );
-                    }
+                    var marker = new google.maps.Marker( {
+                        position : location ,
+                        map : map
+                    } );
+                    markers.push( marker );
+                }
 
-                    function setMapOnAll( map )
+                function setMapOnAll( map )
+                {
+                    for( var i = 0; i < markers.length; i++ )
                     {
-                        for( var i = 0; i < markers.length; i++ )
-                        {
-                            markers[ i ].setMap( map );
-                        }
-                    }
-
-                    function clearMarkers()
-                    {
-                        setMapOnAll( null );
-                    }
-
-                    function deleteMarkers()
-                    {
-                        clearMarkers();
-                        markers = [];
+                        markers[ i ].setMap( map );
                     }
                 }
 
-            } );
-        }
+                function clearMarkers()
+                {
+                    setMapOnAll( null );
+                }
+
+                function deleteMarkers()
+                {
+                    clearMarkers();
+                    markers = [];
+                }
+            }
+
+        } );
+}
 </script>

@@ -80,6 +80,16 @@ class Locations_model extends MY_Model
         return $query->result_array();
     }
 
+    public function active_regions()
+    {
+        $this->db->select('*');
+        $this->db->from('regions');
+        $this->db->where('status', 1);
+        $query = $this->db->get();
+        $this->db->order_by("id", "asc");
+        return $query->result_array();
+    }
+
     public function region_save($data)
     {
         $arrayRegion = array(
@@ -200,6 +210,16 @@ class Locations_model extends MY_Model
     {
         $this->db->select('*');
         $this->db->from('metros');
+        $query = $this->db->get();
+        $this->db->order_by("id", "asc");
+        return $query->result_array();
+    }
+
+    public function active_metros()
+    {
+        $this->db->select('*');
+        $this->db->from('metros');
+        $this->db->where('status', 1);
         $query = $this->db->get();
         $this->db->order_by("id", "asc");
         return $query->result_array();

@@ -22,16 +22,8 @@ class Ads_model extends MY_Model
 
     public function ads_save($data)
     {
-
-
-        $this->db->insert('cities', $arrayCity);
-        $id = $this->db->insert_id();
-
-        if ($this->db->affected_rows() > 0) {
-            return true;
-        } else {
-            return false;
-        }
+                
+            
     }
 
     public function lastAdsId()

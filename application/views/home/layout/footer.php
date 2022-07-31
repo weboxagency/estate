@@ -168,7 +168,6 @@ function afterComplain()
        deleted_files = [] ,
        _map , _marker;
    
-   
    function initMap( latitude = <?= (isset($ads_detail['latitude']) AND !empty($ads_detail['latitude'])) ? $ads_detail['latitude'] : '40.4093'; ?>  ,  longitude = <?= (isset($ads_detail['longitude']) AND !empty($ads_detail['longitude'])) ? $ads_detail['longitude'] : '49.8671'; ?>  )
    {
        var input = document.getElementById("pac-input");

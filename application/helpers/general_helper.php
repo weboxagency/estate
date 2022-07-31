@@ -446,6 +446,21 @@ function metro_name_by_id($id)
     
 }
 
+function complex_name($id)
+{
+    $CI = &get_instance();
+    $CI->db->select('*');
+    $CI->db->from('complex');
+    $CI->db->where('id', $id);
+    $query = $CI->db->get();
+    
+    if ($query->num_rows() > 0) {
+        $row = $query->row();
+        return $row->name;
+    }
+    
+}
+
 
 
 /**************************FRONT****************************/
@@ -1018,3 +1033,4 @@ function insertPagination($base_url, $cur_page, $number_of_pages, $prev_next=tru
     
     echo '</div>';
 } 
+

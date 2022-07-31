@@ -27,40 +27,63 @@ class Ads extends Admin_Controller
     public function index()
     {
         if ($this->input->post('submit') == 'save') {                  
-                
-            $arrayAds = array(
-            'name'              => $_POST['name'],
-            'mobile'            => $_POST['mobile'],
-            'email'             => $_POST['email'],
-            'user_type'         => $_POST['user_type'],
-            'has_whatsapp'      => (isset($_POST['has_whatsapp'])) ? 1 : 0,
+                $last_ads_id                = $this->ads->lastAdsId();
+                $requesData = [
+                    "ads_pin_kod"               => rand(10000,99999),
+                    "ads_title"                 => "Salam",
+                    "url_slug"                  => seo_link("elan-salam"),
+                    "ads_number"                => $last_ads_id+10,
+                    "announcement_type"         => (isset($_POST['announcement_type'])) ? $_POST['announcement_type'] : '',   
+                    "connection_type"           => (isset($_POST['connection_type'])) ? $_POST['connection_type'] : '',
+                    "ads_type"                  => (isset($_POST['ads_type'])) ? $_POST['ads_type'] : '',                       //+
+                    "price"                     => (isset($_POST['price'])) ? $_POST['price'] : '',                             //+ 
+                    "average_price"             => (isset($_POST['average_price'])) ? $_POST['average_price'] : '',  
+                    "room"                      => (isset($_POST['room'])) ? $_POST['room'] : '',                               //+   
+                    "area"                      => (isset($_POST['area'])) ? $_POST['area'] : '',                               //+
+                    "land_area"                 => (isset($_POST['land_area'])) ? $_POST['land_area'] : '',  
+                    "floor"                     => (isset($_POST['floor'])) ? $_POST['floor'] : '',                             //+
+                    "max_floor"                 => (isset($_POST['max_floor'])) ? $_POST['max_floor'] : '',                     //+
+                    "repair"                    => (isset($_POST['repair'])) ? $_POST['repair'] : '',                           //+ 
+                    "deed"                      => (isset($_POST['deed'])) ? $_POST['deed'] : '',                               //+  
+                    "mortgage"                  => (isset($_POST['mortgage'])) ? $_POST['mortgage'] : '',                       //+  
+                    "user_type"                 => (isset($_POST['user_type'])) ? $_POST['user_type'] : '',                     //+  
+                    "name"                      => (isset($_POST['name'])) ? $_POST['name'] : '',                               //+
+                    "email"                     => (isset($_POST['email'])) ? $_POST['email'] : '',                             //+  
+                    "mobile"                    => (isset($_POST['mobile'])) ? $_POST['mobile'] : '',                           //+
+                    "has_whatsapp"              => (isset($_POST['has_whatsapp']) AND $_POST['has_whatsapp']=='on') ? 1 : 0,    //+   
+                    "city_id"                   => (isset($_POST['city_id'])) ? $_POST['city_id'] : '',                         //+
+                    "region_id"                 => (isset($_POST['region_id'])) ? $_POST['region_id'] : '',                     //+
+                    "district_id"               => (isset($_POST['district_id'])) ? $_POST['district_id'] : '',                 //+
+                    "metro_id"                  => (isset($_POST['metro_id'])) ? $_POST['metro_id'] : '',                       //+ 
+                    "address"                   => (isset($_POST['address'])) ? $_POST['address'] : '',                         //+
+                    "latitude"                  => (isset($_POST['latitude'])) ? $_POST['latitude'] : '',                       //+
+                    "longitude"                 => (isset($_POST['longitude'])) ? $_POST['longitude'] : '',                     //+ 
+                    "property_description"      => (isset($_POST['property_description'])) ? $_POST['property_description'] : '',  
+                    "business_center"           => '',
+                    "complex"                   => '',
+                    "is_active"                 => 0,  
+                    "status"                    => 2, 
+                    "pull_ads_forward_begin"    => '', 
+                    "pull_ads_forward_end"      => '',   
+                    "vip_begin"                 => '',  
+                    "vip_end"                   => '',
+                    "premium_begin"             => '',  
+                    "premium_end"               => '',
+                    "photos"                    => "Salam", 
+                    "created_at"                => date("Y-m-d H:i:s"), 
+                    "updated_at"                => '', 
+                    "deleted_at"                => '', 
+                    "approved_at"               => '',
+                    "simple_ads_end_date"       => ''
+                ];
 
-            
-            'ads_pin_kod'       => mt_rand(100000, 999999),
-            'ads_type'          => $_POST['ads_type'],
-            'estate_type'       => $_POST['estate_type'],
-            'price'             => $_POST['price'],
-            'area'              => $_POST['area'],
-            'land_area'         => $_POST['land_area'],
-            'deed'              => (isset($_POST['deed'])) ? 1 : 0,
-            'mortgage'          => (isset($_POST['mortgage'])) ? 1 : 0,
-            'longitude'         => $_POST['longitude'],
-            'latitude'          => $_POST['latitude'],
-            'floor'             => $_POST['floor'],
-            'max_floor'         => $_POST['max_floor'],
-            'address'           => $_POST['address'],
-            'description'       => $_POST['description'],
-            'status'            => $_POST['status']
-            // 'file'              => $_FILES['file'],
 
-        );
+                $this->db->insert('ads_all', $requesData);
+                $ads_last_id = $this->db->insert_id();
+                set_alert('success', translate('information_has_been_saved_successfully'));
+                redirect(base_url('ads/index'));
+     
 
-
-            // if ($response) {
-            //     set_alert('success', translate('information_has_been_saved_successfully'));
-            // }
-            //         redirect(base_url('ads/index'));
-                
         }
 
         $this->data['ads_type']     = $this->hm->adsType();
@@ -68,6 +91,7 @@ class Ads extends Admin_Controller
         $this->data['cities']       = $this->hm->allCities();
         $this->data['regions']      = $this->hm->allRegions();
         $this->data['districts']    = $this->hm->allDistricts();
+        $this->data['metros']       = $this->hm->allMetros();
         $this->data['ads']          =  $this->ads->allAds();
         $this->data['title']        =  translate('ads');
 
@@ -96,7 +120,7 @@ class Ads extends Admin_Controller
         } elseif($status == 5) {
             $arrayData['status'] = 5;
         }
-       
+
         $this->db->where('id', $id);
         $this->db->update('ads_all', $arrayData);
 
@@ -114,7 +138,7 @@ class Ads extends Admin_Controller
         } else {
             $arrayData['is_active'] = 0;
         }
-       
+
         $this->db->where('id', $id);
         $this->db->update('ads_all', $arrayData);
 
@@ -127,24 +151,74 @@ class Ads extends Admin_Controller
         $arrayData['status'] = 5;
         $this->db->where('id', $id);
         $this->db->update('ads_all', $arrayData);
-       
+
         redirect(base_url(), 'refresh');   
     }
 
     public function save_reason()
     {
-       $arrayCity = array(
-            'ads_reason' => trim($_POST['reason']),
-            'status' => $_POST['status']
-        );
+     $arrayCity = array(
+        'ads_reason' => trim($_POST['reason']),
+        'status' => $_POST['status']
+    );
 
-       
-        $this->db->where('id', $_POST['id']);
-        $this->db->update('ads_all', $arrayCity);
-        
 
-        $return = array('msg' => translate('information_has_been_updated_successfully'), 'status' => true);
-        echo json_encode($return);
+     $this->db->where('id', $_POST['id']);
+     $this->db->update('ads_all', $arrayCity);
+
+
+     $return = array('msg' => translate('information_has_been_updated_successfully'), 'status' => true);
+     echo json_encode($return);
+ }
+
+ public function get_regions()
+ {
+    $this->db->select('*');
+    $this->db->from('regions');
+    $this->db->where('parent_city', $_POST['city_id']);
+    $query = $this->db->get();
+    $kerim = $query->result_array();
+
+    $html = '';
+    if(!empty($kerim))
+    {
+        foreach($kerim as $region)
+        {
+            $html.= '<option value="'.$region['id'].'">'.$region['region_name'].'</option>';
+        }
+        echo $html;
     }
+    else
+    {
+
+        echo $html;
+    }
+
+}
+
+ public function get_districts()
+ {
+    $this->db->select('*');
+    $this->db->from('districts');
+    $this->db->where('parent_region', $_POST['region_id']);
+    $query = $this->db->get();
+    $kerim = $query->result_array();
+
+    $html = '';
+    if(!empty($kerim))
+    {
+        foreach($kerim as $district)
+        {
+            $html.= '<option value="'.$district['id'].'">'.$district['district_name'].'</option>';
+        }
+        echo $html;
+    }
+    else
+    {
+        
+        echo $html;
+    }
+
+}
 
 }

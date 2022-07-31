@@ -50,7 +50,7 @@ class Agencies extends Admin_Controller
                 }
         }
        
-        $this->data['agencies']       =  $this->am->allAgencies();
+        $this->data['agencies']     =  $this->am->allAgencies();
         $this->data['title']        = translate('agencies');
         $this->data['sub_page']     = 'agencies/index';
         $this->data['main_menu']    = 'agencies';
