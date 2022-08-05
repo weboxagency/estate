@@ -27,19 +27,19 @@ class Ads extends Admin_Controller
     public function index()
     {
         if ($this->input->post('submit') == 'save') {                  
-                $last_ads_id                = $this->ads->lastAdsId();
+                $last_ads_id                    = $this->ads->lastAdsId();
                 $requesData = [
                     "ads_pin_kod"               => rand(10000,99999),
                     "ads_title"                 => "Salam",
                     "url_slug"                  => seo_link("elan-salam"),
                     "ads_number"                => $last_ads_id+10,
-                    "announcement_type"         => (isset($_POST['announcement_type'])) ? $_POST['announcement_type'] : '',   
-                    "connection_type"           => (isset($_POST['connection_type'])) ? $_POST['connection_type'] : '',
-                    "ads_type"                  => (isset($_POST['ads_type'])) ? $_POST['ads_type'] : '',                       //+
+                    "announcement_type"         => (isset($_POST['estate_type'])) ? $_POST['estate_type'] : '',   
+                    "connection_type"           => 1,
+                    "property_type"                  => (isset($_POST['ads_type'])) ? $_POST['ads_type'] : '',                       //+
                     "price"                     => (isset($_POST['price'])) ? $_POST['price'] : '',                             //+ 
-                    "average_price"             => (isset($_POST['average_price'])) ? $_POST['average_price'] : '',  
-                    "room"                      => (isset($_POST['room'])) ? $_POST['room'] : '',                               //+   
                     "area"                      => (isset($_POST['area'])) ? $_POST['area'] : '',                               //+
+                    "average_price"             => 10,  
+                    "room"                      => (isset($_POST['room'])) ? $_POST['room'] : '',                               //+   
                     "land_area"                 => (isset($_POST['land_area'])) ? $_POST['land_area'] : '',  
                     "floor"                     => (isset($_POST['floor'])) ? $_POST['floor'] : '',                             //+
                     "max_floor"                 => (isset($_POST['max_floor'])) ? $_POST['max_floor'] : '',                     //+
@@ -58,7 +58,7 @@ class Ads extends Admin_Controller
                     "address"                   => (isset($_POST['address'])) ? $_POST['address'] : '',                         //+
                     "latitude"                  => (isset($_POST['latitude'])) ? $_POST['latitude'] : '',                       //+
                     "longitude"                 => (isset($_POST['longitude'])) ? $_POST['longitude'] : '',                     //+ 
-                    "property_description"      => (isset($_POST['property_description'])) ? $_POST['property_description'] : '',  
+                    "property_description"      => (isset($_POST['description'])) ? $_POST['description'] : '',  
                     "business_center"           => '',
                     "complex"                   => '',
                     "is_active"                 => 0,  
@@ -76,7 +76,6 @@ class Ads extends Admin_Controller
                     "approved_at"               => '',
                     "simple_ads_end_date"       => ''
                 ];
-
 
                 $this->db->insert('ads_all', $requesData);
                 $ads_last_id = $this->db->insert_id();
@@ -151,7 +150,14 @@ class Ads extends Admin_Controller
         $arrayData['status'] = 5;
         $this->db->where('id', $id);
         $this->db->update('ads_all', $arrayData);
+        redirect(base_url(), 'refresh');   
+    }
 
+    public function delete_ads($id = '')
+    {
+        $arrayData['status'] = 5;
+        $this->db->where('id', $id);
+        $this->db->update('ads_all', $arrayData);
         redirect(base_url(), 'refresh');   
     }
 

@@ -74,7 +74,7 @@
 
 									<td>
 										<?php
-										if ($row['pull_ads_forward_begin'] == NULL) { ?>
+										if ($row['pull_ads_forward_begin'] == '0000-00-00 00:00:00') { ?>
 											<button class="btn btn-primary btn-sm">
 												Elan irəli çəkilməyib
 											</button>
@@ -87,7 +87,7 @@
 										<?php } ?>
 									</td>
 									<td><?php
-										if ($row['vip_begin'] == NULL) { ?>
+										if ($row['vip_begin'] == '0000-00-00 00:00:00') { ?>
 											<button class="btn btn-info btn-sm">
 												Elan VIP deyil
 											</button>
@@ -101,7 +101,7 @@
 									</td>
 									<td>
 										<?php
-										if ($row['premium_begin'] == NULL) { ?>
+										if ($row['premium_begin'] == '0000-00-00 00:00:00') { ?>
 											<button class="btn btn-danger btn-sm">
 												Elan Premium deyil
 											</button>
@@ -260,7 +260,7 @@
 																<td><?= translate('pull_ads_forward_begin') ?></td>
 																<td>
 																	<?php
-																	if ($row['pull_ads_forward_begin'] == NULL) { ?>
+																	if ($row['pull_ads_forward_begin'] == '0000-00-00 00:00:00') { ?>
 																		<button class="btn btn-primary btn-sm">
 																			Elan irəli çəkilməyib
 																		</button>
@@ -278,7 +278,7 @@
 																<td><?= translate('vip_begin') ?></td>
 																<td>
 																	<?php
-																	if ($row['vip_begin'] == NULL) { ?>
+																	if ($row['vip_begin'] == '0000-00-00 00:00:00') { ?>
 																		<button class="btn btn-primary btn-sm">
 																			Elan VIP deyil
 																		</button>
@@ -296,7 +296,7 @@
 																<td><?= translate('premium_begin') ?></td>
 																<td>
 																	<?php
-																	if ($row['premium_begin'] == NULL) { ?>
+																	if ($row['premium_begin'] == '0000-00-00 00:00:00') { ?>
 																		<button class="btn btn-primary btn-sm">
 																			Elan irəli çəkilməyib
 																		</button>
@@ -407,7 +407,7 @@
 											<i class="fas fa-pen-nib"></i>
 										</a>
 										<!-- delete link -->
-										<?php echo btn_delete('ads/ads_delete/' . $row['id']); ?>
+										<?php echo btn_delete('ads/delete_ads/' . $row['id']); ?>
 									</td>
 								</tr>
 							<?php endforeach; ?>

@@ -421,15 +421,16 @@ function get_lang_info($field, $name = '')
 
 function ads_photos($ids)
 {
-    $CI = &get_instance();
-    $CI->db->select("*");
-    $CI->db->where_in('id',explode(",",$ids));
-    $CI->db->limit(5);
-    $query = $CI->db->get('thumb_image');
-    if ($query->num_rows() > 0) 
-    {
-        return $query->result_array();
-    } 
+    return $ids;
+    // $CI = &get_instance();
+    // $CI->db->select("*");
+    // $CI->db->where_in('id',explode(",",$ids));
+    // $CI->db->limit(5);
+    // $query = $CI->db->get('thumb_image');
+    // if ($query->num_rows() > 0) 
+    // {
+    //     return $query->result_array();
+    // } 
 }
 
 function metro_name_by_id($id)

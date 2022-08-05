@@ -77,10 +77,8 @@ class Agencies extends Admin_Controller
     public function agency_delete($id = '')
     {
         if (is_superadmin_loggedin()) {
-
             $this->db->where('agency_id', $id);
             $this->db->delete('agencies');
-
         } else {
             redirect(base_url(), 'refresh');
         }
